@@ -11,7 +11,7 @@ export default class CustomDocument extends Document {
     return (
       <Html lang="ko">
         <Head>
-          <meta name="description" content="꾸생의 포트폴리오, Kkusaeng, macjjuni" />
+          <meta name="description" content="꾸생의 포트폴리오, kkusaeng, macjjuni" />
         </Head>
         <body>
           <Main />

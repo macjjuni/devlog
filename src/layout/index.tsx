@@ -1,14 +1,16 @@
 import { ReactNode } from 'react'
+import { LayoutStyled } from './style'
 import Header from './header'
+import Main from './main'
 import Footer from './footer'
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div>
+    <LayoutStyled>
       <Header />
-      {children}
+      <Main>{children}</Main>
       <Footer />
-    </div>
+    </LayoutStyled>
   )
 }
 

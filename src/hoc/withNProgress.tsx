@@ -1,11 +1,15 @@
 import { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import { ReactNode, useEffect } from 'react'
+import { colors } from '../styles/theme'
+
+const { progress } = colors
 
 const options = {
   speed: 350,
+  height: '5px',
   showSpinner: false,
-  color: '#61dafb',
+  color: progress,
 }
 
 NProgress.configure({ speed: options.speed, showSpinner: options.showSpinner })
@@ -38,7 +42,7 @@ const WithNProgress = ({ children }: { children: ReactNode }) => {
         {`
           #nprogress .bar {
             background: ${options.color};
-            height: 3px;
+            height: ${options.height};
           }
         `}
       </style>

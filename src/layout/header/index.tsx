@@ -1,15 +1,13 @@
-import Link from 'next/link'
-import { router } from '../../router'
+import { HeaderStyled } from './style'
+import Logo from './components/Logo'
+import MenuList from './components/MenuList'
 
 const Header = () => {
   return (
-    <header>
-      {router.map((route) => (
-        <Link key={route.id} href={route.path}>
-          {route.title}
-        </Link>
-      ))}
-    </header>
+    <HeaderStyled>
+      <Logo />
+      <MenuList />
+    </HeaderStyled>
   )
 }
 

@@ -1,17 +1,21 @@
 import type { AppProps } from 'next/app'
-import WithNProgress from '../src/hoc/withNProgress'
+import { ThemeProvider } from 'styled-components'
 import Layout from '../src/layout'
-import { GlobalStyle } from '../styles/globals'
+import WithNProgress from '../src/hoc/withNProgress'
+import { GlobalStyle } from '../src/styles/globals'
+import { theme } from '../src/styles/theme'
 import 'nprogress/nprogress.css'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <WithNProgress>
-      <Layout>
-        <GlobalStyle />
-        <Component {...pageProps} />
-      </Layout>
-    </WithNProgress>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <WithNProgress>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </WithNProgress>
+    </ThemeProvider>
   )
 }
 

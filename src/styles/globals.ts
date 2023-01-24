@@ -10,15 +10,25 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
+    margin: 0;
     color: inherit;
     text-decoration: none;
   }
 
   * {
     box-sizing: border-box;
+    margin: 0 auto;
   }
 
-  @media (prefers-color-scheme: dark) {
+  img {
+    margin: 0;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  /* @media (prefers-color-scheme: dark) {
     html {
       color-scheme: dark;
     }
@@ -26,5 +36,5 @@ export const GlobalStyle = createGlobalStyle`
       color: white;
       background: black;
     }
-  }
+  } */
 `
