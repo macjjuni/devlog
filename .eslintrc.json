@@ -48,6 +48,7 @@
     "array-callback-return": "off",
     "react/jsx-no-useless-fragment": "off",
     "react/jsx-props-no-spreading": "off",
-    "jsx-a11y/label-has-associated-control": "off"
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/no-unknown-property": "off"
   }
 }
