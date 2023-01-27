@@ -18,7 +18,6 @@ const WithNProgress = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
 
   const handleStart = () => {
-    // console.log(`Loading: ${url}`)
     NProgress.start()
   }
   const handleStop = () => {
