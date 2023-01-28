@@ -1,5 +1,7 @@
 import { DefaultTheme, css } from 'styled-components'
 
+export type TypoVariantTypes = 'heading_xlg' | 'heading_lg' | 'heading_md' | 'heading_sm' | 'body' | 'text_strong' | 'text_small_md' | 'text_small_sm' | 'default'
+
 // 디바이스별 반응형 미디어쿼리 분기점
 export const deviceSizes = {
   mobile: '768px',
@@ -11,6 +13,12 @@ const device = {
   // tablet: `screen and (max-width: ${deviceSizes.tablet})`,
   laptop: `screen and (max-width: ${deviceSizes.laptop})`,
 }
+const layout = {
+  header: '70px',
+  main: `calc(100vh - 130px)`,
+  footer: '60px',
+}
+
 export const colors = {
   text: {
     BODY: '#1B1D1F',
@@ -145,10 +153,12 @@ const fontStyle = {
 
 export type ColorsTypes = typeof colors
 export type DeviceTypes = typeof device
+export type LayoutTypes = typeof layout
 export type FontTypes = typeof fontStyle
 
 export const theme: DefaultTheme = {
   colors,
   device,
   fontStyle,
+  layout,
 }

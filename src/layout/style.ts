@@ -5,6 +5,7 @@ export const LayoutStyled = styled.div`
   max-width: ${deviceSizes.laptop};
   min-height: 100vh;
   position: relative;
-  border: 1px solid #fff;
-  padding-bottom: 50px;
+  padding-bottom: ${({ theme }) => theme.layout.footer};
 `
+
+export const SkillSection = styled.section``

@@ -1,12 +1,18 @@
 import styled from 'styled-components'
 
 export const HeaderStyled = styled.header`
-  height: 70px;
+  height: ${({ theme }) => theme.layout.header};
   padding: 0 16px;
-  border-bottom: 1px solid #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  & h1 > a {
+    display: inline-block;
+    font-size: 24px;
+    font-family: 'Single Day', 'cursive';
+    white-space: nowrap;
+  }
 
   & h1 > a > img {
     border-radius: 50%;
@@ -22,39 +28,53 @@ export const HeaderStyled = styled.header`
       display: flex;
       align-items: center;
 
-      & > li {
+      & > li.nav-link {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 120px;
-        overflow: hidden;
+        width: 110px;
       }
 
-      & > li > a {
+      & > li.nav-link > a {
         position: relative;
+        top: 1px;
         display: inline-block;
         height: 40px;
-        color: ${({ theme }) => theme.colors.gray.BLG900};
         ${({ theme }) => theme.fontStyle.pc.heading_sm};
         transition: 0.3s ease-in;
       }
-      /* & > li > a.active {
-        transform: scale(1.05);
-      } */
-      & > li > a::after {
+      & > li.nav-link > a::after {
         content: '';
         position: absolute;
-        bottom: 0;
-        left: -5px;
+        bottom: 5px;
+        left: -4px;
         width: 0px;
         height: 2px;
-        background: ${({ theme }) => theme.colors.gray.BLG700};
         transition: 0.3s ease;
+        background: ${({ theme }) => theme.colors.gray.BLG700};
       }
-      & > li > a.active::after {
+      & > li.nav-link > a.active::after {
         width: calc(100% + 8px);
-        height: 3px;
+        height: 2px;
       }
     }
+  }
+`
+export const ToggleItem = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 6px;
+`
+export const ButtonStyled = styled.button`
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  & > svg {
+    color: '#000';
+  }
+  & > svg:hover {
   }
 `
