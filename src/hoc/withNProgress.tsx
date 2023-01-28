@@ -7,7 +7,7 @@ const { progress } = colors
 
 const options = {
   speed: 350,
-  height: '5px',
+  height: '4px',
   showSpinner: false,
   color: progress,
 }
