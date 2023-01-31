@@ -6,8 +6,8 @@ import { colors } from '../styles/theme'
 const { progress } = colors
 
 const options = {
-  speed: 350,
-  height: '4px',
+  speed: 200,
+  height: '3px',
   showSpinner: false,
   color: progress,
 }

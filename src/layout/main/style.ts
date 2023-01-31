@@ -9,18 +9,14 @@ export const MainStyled = styled(motion.main)`
 export const MainAnimation = {
   initial: {
     opacity: 0,
-    y: 30,
+    x: 25,
   },
   animate: {
     opacity: 1,
-    y: 0,
-  },
-  exit: {
-    opacity: 0,
-    y: 30,
+    x: 0,
   },
   transition: {
-    ease: [0.17, 0.67, 0.83, 0.67],
-    duration: 0.3,
+    type: 'spring',
+    duration: 0.2,
   },
 }
