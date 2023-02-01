@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import ToggleButton from './ToggleButton'
+import ToggleButton from './toggleButton'
 import { router } from '../../../router'
 
 const MenuList = () => {

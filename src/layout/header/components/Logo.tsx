@@ -6,7 +6,7 @@ const Logo = () => {
     <motion.h1 whileHover={{ rotate: 4 }} transition={{ duration: 0.4 }}>
       <Link href="/">
         {/* <Image src="/logo.png" alt="Kkusaeng Logo" width="50" height="50" /> */}
-        꾸생의 포트폴리오
+        {process.env.NEXT_PUBLIC_LOGO}
       </Link>
     </motion.h1>
   )
