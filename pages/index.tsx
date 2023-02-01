@@ -1,24 +1,18 @@
 import type { NextPage } from 'next'
-import styled from 'styled-components'
-import dynamic from 'next/dynamic'
+import { IndexLayout } from './style'
 
-const Voxel = dynamic(() => import('../src/components/Voxel'), {
-  ssr: false,
-})
+// import dynamic from 'next/dynamic'
 
-const LayoutStyled = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-`
+// const Voxel = dynamic(() => import('../src/components/Voxel'), {
+//   ssr: false,
+// })
 
 const Home: NextPage = () => {
   return (
-    <LayoutStyled>
-      <Voxel />
-    </LayoutStyled>
+    <IndexLayout>
+      <h2>Index Page</h2>
+      {/* <Voxel /> */}
+    </IndexLayout>
   )
 }
 
