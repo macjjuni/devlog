@@ -114,8 +114,6 @@ test : 테스트 코드 수정에 대한 커밋
 
 ### 📌 Commit Example
 
-<br>
-
 ```
 docs(readme): 프로젝트 소개 및 규칙 작성
 style(ui/input): secondary 스타일 작성
