@@ -13,11 +13,6 @@ export const router: IRouter[] = [
   },
   {
     id: '2',
-    path: '/skill',
-    title: 'Skill',
-  },
-  {
-    id: '3',
     path: '/portfolio',
     title: 'Portfolio',
   },
