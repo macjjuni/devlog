@@ -1,6 +1,6 @@
 import { HeaderStyled } from './style'
 import Logo from './components/logo'
-import MenuList from './components/MenuList'
+import MenuList from './components/menuList'
 
 const Header = () => {
   return (
