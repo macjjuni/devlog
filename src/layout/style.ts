@@ -8,5 +8,3 @@ export const LayoutStyled = styled.div`
   position: relative;
   padding-bottom: ${({ theme }) => theme.layout.footer};
 `
-
-export const SkillSection = styled.section``
