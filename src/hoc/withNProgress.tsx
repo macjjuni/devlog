@@ -1,6 +1,6 @@
+import { ReactNode, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import NProgress from 'nprogress'
-import { ReactNode, useEffect } from 'react'
 import { colors } from '../styles/theme'
 
 const { progress } = colors
@@ -15,25 +15,25 @@ const options = {
 NProgress.configure({ speed: options.speed, showSpinner: options.showSpinner })
 
 const WithNProgress = ({ children }: { children: ReactNode }) => {
-  const router = useRouter()
+  const { events } = useRouter()
 
-  const handleStart = () => {
+  const handleStart = useCallback(() => {
     NProgress.start()
-  }
-  const handleStop = () => {
+  }, [])
+  const handleStop = useCallback(() => {
     NProgress.done()
-  }
+  }, [])
 
   useEffect(() => {
-    router.events.on('routeChangeStart', handleStart)
-    router.events.on('routeChangeComplete', handleStop)
-    router.events.on('routeChangeError', handleStop)
+    events.on('routeChangeStart', handleStart)
+    events.on('routeChangeComplete', handleStop)
+    events.on('routeChangeError', handleStop)
     return () => {
-      router.events.off('routeChangeStart', handleStart)
-      router.events.off('routeChangeComplete', handleStop)
-      router.events.off('routeChangeError', handleStop)
+      events.off('routeChangeStart', handleStart)
+      events.off('routeChangeComplete', handleStop)
+      events.off('routeChangeError', handleStop)
     }
-  }, [router])
+  }, [])
 
   return (
     <>

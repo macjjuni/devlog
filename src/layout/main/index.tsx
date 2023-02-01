@@ -6,21 +6,21 @@ import { MainStyled, MainAnimation } from './style'
 const xSize = 25
 
 const Main = ({ children }: { children: ReactNode }) => {
-  const router = useRouter()
+  const { events, route } = useRouter()
 
   const handleStart = (nextPath: string) => {
-    const nowIdx = pages.findIndex((page) => page.path === router.pathname)
+    const currentPath = window.location.pathname
+    const nowIdx = pages.findIndex((page) => page.path === currentPath)
     const nextIdx = pages.findIndex((page) => page.path === nextPath)
-    if (nowIdx > nextIdx) MainAnimation.initial.x = -xSize
-    else MainAnimation.initial.x = xSize
+    MainAnimation.initial.x = nowIdx > nextIdx ? -xSize : xSize
   }
 
   useEffect(() => {
-    router.events.on('routeChangeStart', handleStart)
-  }, [router.pathname])
+    events.on('routeChangeStart', handleStart)
+  }, [])
 
   return (
-    <MainStyled {...MainAnimation} key={router.route}>
+    <MainStyled {...MainAnimation} key={route}>
       {children}
     </MainStyled>
   )
