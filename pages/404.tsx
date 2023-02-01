@@ -1,6 +1,6 @@
 import Lottie, { LottieProps } from 'react-lottie-player'
-import { ErrorLayout } from './style'
-import lottieJson from './lottieFiles/error-page-not-found.json'
+import { ErrorLayout } from '../styles/404'
+import lottieJson from '../src/assets/lottie/error-page-not-found.json'
 
 // Lottie Option
 const defaultOptions: LottieProps = {

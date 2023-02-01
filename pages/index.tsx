@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { IndexLayout } from './style'
+import { IndexLayout } from '../styles'
 
 // import dynamic from 'next/dynamic'
 

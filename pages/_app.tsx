@@ -6,6 +6,7 @@ import WithNProgress from '../src/hoc/withNProgress'
 import { GlobalStyle } from '../src/styles/globals'
 import { theme } from '../src/styles/theme'
 import { initColorMode } from '../src/utils/colorMode'
+import Titles from '../src/components/Title'
 import 'nprogress/nprogress.css'
 
 const useMultiEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
@@ -17,6 +18,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Titles />
       <GlobalStyle />
       <WithNProgress>
         <Layout>
