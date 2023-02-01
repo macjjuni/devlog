@@ -1,10 +1,8 @@
-import { useState, useEffect, useLayoutEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { FaMoon } from 'react-icons/fa'
 import { ImSun } from 'react-icons/im'
 import { ToggleItem, ButtonStyled } from '../style'
 import { themeToggle, getColorMode, type ModeReturnTypes } from '../../../utils/colorMode'
-
-const useMultiEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 const ToggleButton = () => {
   const [colorMode, setMode] = useState<ModeReturnTypes>(null)
@@ -14,7 +12,7 @@ const ToggleButton = () => {
     setMode(getColorMode())
   }, [])
 
-  useMultiEffect(() => {
+  useEffect(() => {
     const mode = getColorMode()
     setMode(mode)
   }, [])
