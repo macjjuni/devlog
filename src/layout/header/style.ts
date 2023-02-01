@@ -32,29 +32,30 @@ export const HeaderStyled = styled.header`
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 110px;
+        margin: 0 15px;
       }
 
       & > li.nav-link > a {
         position: relative;
-        top: 1px;
+        top: -3px;
         display: inline-block;
         height: 40px;
+        padding: 5px 10px;
         ${({ theme }) => theme.fontStyle.pc.heading_sm};
         transition: 0.3s ease-in;
       }
       & > li.nav-link > a::after {
         content: '';
         position: absolute;
-        bottom: 5px;
-        left: -4px;
+        bottom: 0px;
+        left: 5px;
         width: 0px;
         height: 2px;
         transition: 0.3s ease;
         background: ${({ theme }) => theme.colors.gray.BLG700};
       }
       & > li.nav-link > a.active::after {
-        width: calc(100% + 8px);
+        width: calc(100% - 10px);
         height: 2px;
       }
     }
