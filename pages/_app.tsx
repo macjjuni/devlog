@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 import Layout from '../src/layout'
@@ -8,8 +8,10 @@ import { theme } from '../src/styles/theme'
 import { initColorMode } from '../src/utils/colorMode'
 import 'nprogress/nprogress.css'
 
+const useMultiEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  useEffect(() => {
+  useMultiEffect(() => {
     initColorMode()
   }, [])
 
