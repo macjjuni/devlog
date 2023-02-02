@@ -12,7 +12,7 @@ export const MainAnimation = {
   transition: {
     type: 'spring',
     stiffness: 500,
-    damping: 20,
+    damping: 25,
     duration: 0.2,
   },
 }
