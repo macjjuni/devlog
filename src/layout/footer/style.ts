@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { motion } from 'framer-motion'
 
 export const FooterStyld = styled.footer`
@@ -27,6 +27,23 @@ export const UlStyled = styled.ul`
     &:hover {
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
     }
+    &:active {
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+  }
+`
+
+const blinkEffect = keyframes`
+  0% {
+    /* transform: scale(0); */
+    opacity: 0;
+  }
+  /* 40% {
+    opacity: 0;
+  } */
+  100% {
+    /* transform: scale(1); */
+    opacity: 1;
   }
 `
 
@@ -48,5 +65,6 @@ export const LinkStyled = styled(motion.a)`
     height: 8px;
     background-color: ${({ theme }) => theme.colors.system.SUCCESS};
     border-radius: 50%;
+    animation: ${blinkEffect} 1s ease-in-out infinite alternate;
   }
 `
