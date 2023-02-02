@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import ToggleButton from './toggleButton'
-import { router } from '../../../router'
+import { pages } from '../../../router'
 
 const MenuList = () => {
   const { pathname } = useRouter()
@@ -9,10 +9,10 @@ const MenuList = () => {
     <>
       <nav>
         <ul>
-          {router.map((route) => (
-            <li key={route.id} className="nav-link">
-              <Link href={route.path} className={pathname === route.path ? 'active' : ''}>
-                {route.title}
+          {pages.map((page) => (
+            <li key={page.id} className="nav-link">
+              <Link href={page.path} className={pathname === page.path ? 'active' : ''}>
+                {page.title}
               </Link>
             </li>
           ))}

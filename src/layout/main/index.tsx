@@ -1,9 +1,8 @@
 import { ReactNode, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { router as pages } from '../../router'
-import { MainStyled, MainAnimation } from './style'
-
-const xSize = 25
+import { pages } from '../../router'
+import { MainStyled } from './style'
+import { MainAnimation, xWidth } from './framer-motion'
 
 const Main = ({ children }: { children: ReactNode }) => {
   const { events, route } = useRouter()
@@ -12,7 +11,7 @@ const Main = ({ children }: { children: ReactNode }) => {
     const currentPath = window.location.pathname
     const nowIdx = pages.findIndex((page) => page.path === currentPath)
     const nextIdx = pages.findIndex((page) => page.path === nextPath)
-    MainAnimation.initial.x = nowIdx > nextIdx ? -xSize : xSize
+    MainAnimation.initial.x = nowIdx > nextIdx ? -xWidth : xWidth
   }
 
   useEffect(() => {
