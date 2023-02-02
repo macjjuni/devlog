@@ -1,0 +1,18 @@
+export const xWidth = 20
+
+export const MainAnimation = {
+  initial: {
+    opacity: 0,
+    x: xWidth,
+  },
+  animate: {
+    opacity: 1,
+    x: 0,
+  },
+  transition: {
+    type: 'spring',
+    stiffness: 500,
+    damping: 20,
+    duration: 0.2,
+  },
+}
