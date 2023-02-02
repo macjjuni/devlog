@@ -7,4 +7,5 @@ export const LayoutStyled = styled.div`
   min-height: 100vh;
   position: relative;
   padding-bottom: ${({ theme }) => theme.layout.footer};
+  overflow: hidden;
 `
