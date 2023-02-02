@@ -59,6 +59,10 @@ export const HeaderStyled = styled.header`
         height: 2px;
       }
     }
+
+    @media ${({ theme }) => theme.device.mobile} {
+      display: none;
+    }
   }
 `
 export const ToggleItem = styled.li`

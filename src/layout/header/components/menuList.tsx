@@ -7,8 +7,8 @@ const MenuList = () => {
   const { pathname } = useRouter()
   return (
     <>
-      <nav>
-        <ul>
+      <nav className="header-nav">
+        <ul className="nav-list">
           {pages.map((page) => (
             <li key={page.id} className="nav-link">
               <Link href={page.path} className={pathname === page.path ? 'active' : ''}>
