@@ -1,6 +1,6 @@
-import { IRouter } from './type'
+import { IPages } from './type'
 
-export const router: IRouter[] = [
+export const pages: IPages[] = [
   {
     id: '0',
     path: '/',
