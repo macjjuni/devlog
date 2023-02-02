@@ -34,17 +34,8 @@ export const UlStyled = styled.ul`
 `
 
 const blinkEffect = keyframes`
-  0% {
-    /* transform: scale(0); */
-    opacity: 0;
-  }
-  /* 40% {
-    opacity: 0;
-  } */
-  100% {
-    /* transform: scale(1); */
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 1;}
 `
 
 export const LinkStyled = styled(motion.a)`
@@ -65,6 +56,6 @@ export const LinkStyled = styled(motion.a)`
     height: 8px;
     background-color: ${({ theme }) => theme.colors.system.SUCCESS};
     border-radius: 50%;
-    animation: ${blinkEffect} 1s ease-in-out infinite alternate;
+    animation: ${blinkEffect} 0.95s ease-in-out infinite alternate;
   }
 `
