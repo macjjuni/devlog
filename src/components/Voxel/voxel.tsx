@@ -1,40 +1,24 @@
-import { useEffect } from 'react'
-import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
+import { useEffect, useState } from 'react'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { useLoader, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 const options = {
-  scale: 0.06,
+  scale: 0.07,
   position: [0, 1, 1],
 }
 
-const scene = new THREE.Scene()
-const gltfLoader = new GLTFLoader()
+const VoxelObject = ({ url }: { url: string }) => {
+  const { scene, animations } = useLoader(GLTFLoader, url)
+  const [mixer] = useState<THREE.AnimationMixer>(() => new THREE.AnimationMixer(scene))
 
-const VoxelObject = ({ url, onLoad }: { url: string; onLoad: () => void }) => {
+  useFrame((state, delta) => mixer.update(delta))
   useEffect(() => {
-    gltfLoader.load(
-      url,
-      (gltf: GLTF) => {
-        console.log('success')
-        const mixer = new THREE.AnimationMixer(gltf.scene)
-        gltf.animations.forEach((clip) => mixer.clipAction(clip).play())
-        gltf.animations.forEach((clip: THREE.AnimationClip) => {
-          mixer.clipAction(clip).play()
-        })
-        scene.add(gltf.scene)
-        onLoad()
-      },
-      (progress) => {
-        console.log('progress')
-        console.log(progress)
-      },
-      (error) => {
-        console.log('error')
-        console.log(error)
-      }
-    )
+    mixer.clipAction(animations[0]).play()
+    return () => animations.forEach((clip) => mixer.uncacheClip(clip))
   }, [])
 
   return <primitive object={scene} scale={options.scale} position={options.position} />
 }
+
 export default VoxelObject

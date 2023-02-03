@@ -1,28 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { PerspectiveCamera, PresentationControls } from '@react-three/drei'
 import VoxelObject from './voxel'
-import Spinner from './spinner'
+import Loader from './Loader'
 
 const url = '/voxel/juni-coding-voxel.gltf'
 
 const Voxel = () => {
   const [rotate, setRotate] = useState(3.15)
-  const [isLoad, setLoad] = useState(false)
-  const onLoad = () => {
-    setLoad(true)
-  }
 
   useEffect(() => {
-    if (isLoad)
-      setInterval(() => {
-        setRotate((prev: number) => prev + 0.05)
-      }, 100)
-  }, [isLoad])
+    setInterval(() => {
+      setRotate((prev: number) => prev + 0.05)
+    }, 100)
+  }, [])
 
   return (
-    <>
-      <Canvas style={{ height: '600px' }}>
+    <Canvas style={{ height: '600px' }}>
+      <Suspense fallback={<Loader />}>
         <PerspectiveCamera position={[0, -2.6, 0]} far={1000}>
           <directionalLight intensity={0.2} />
           <ambientLight intensity={0.3} />
@@ -36,11 +31,11 @@ const Voxel = () => {
             polar={[-Math.PI / 3, Math.PI / 3]}
             azimuth={[-Math.PI / 1.4, Math.PI / 2]}
           >
-            <VoxelObject url={url} onLoad={onLoad} />
+            <VoxelObject url={url} />
           </PresentationControls>
         </PerspectiveCamera>
-      </Canvas>
-    </>
+      </Suspense>
+    </Canvas>
   )
 }
 
