@@ -1,9 +1,12 @@
-import Lottie, { LottieProps } from 'react-lottie-player'
-import { ErrorLayout } from '../styles/404'
-import lottieJson from '../src/assets/lottie/error-page-not-found.json'
+import styled from 'styled-components'
+import Lotties from '../src/components/Lottie'
+import errorLottie from '../src/assets/lottie/error-page-not-found.json'
 
+const ErrorLayout = styled.section`
+  height: 100%;
+`
 // Lottie Option
-const defaultOptions: LottieProps = {
+const defaultOption = {
   loop: true,
   play: true,
   style: {
@@ -16,7 +19,7 @@ const defaultOptions: LottieProps = {
 const Error = () => {
   return (
     <ErrorLayout>
-      <Lottie {...defaultOptions} animationData={lottieJson} speed={1} />
+      <Lotties defaultOption={defaultOption} animationData={errorLottie} />
     </ErrorLayout>
   )
 }
