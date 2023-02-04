@@ -1,7 +1,8 @@
-import { useEffect, useState, Suspense } from 'react'
-import { Canvas } from '@react-three/fiber'
+import { useEffect, useState, Suspense, memo } from 'react'
 import { PerspectiveCamera, PresentationControls } from '@react-three/drei'
-import VoxelObject from './voxel'
+import { Canvas } from '@react-three/fiber'
+import { CanvasStyled } from './style'
+import VoxelObject from './voxelObject'
 import Loader from './Loader'
 
 const url = '/voxel/juni-coding-voxel.gltf'
@@ -16,7 +17,7 @@ const Voxel = () => {
   }, [])
 
   return (
-    <Canvas style={{ height: '600px' }}>
+    <Canvas>
       <Suspense fallback={<Loader />}>
         <PerspectiveCamera position={[0, -2.6, 0]} far={1000}>
           <directionalLight intensity={0.2} />
@@ -39,4 +40,4 @@ const Voxel = () => {
   )
 }
 
-export default Voxel
+export default memo(Voxel)

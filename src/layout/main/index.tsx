@@ -1,8 +1,13 @@
+import dynamic from 'next/dynamic'
 import { ReactNode, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { pages } from '../../router'
-import { MainStyled } from './style'
+import { MainStyled, SectionStyled, MotionStyled } from './style'
 import { MainAnimation, xWidth } from './framer-motion'
+
+const Voxel = dynamic(() => import('../../components/Voxel'), {
+  ssr: false,
+})
 
 const Main = ({ children }: { children: ReactNode }) => {
   const { events, route } = useRouter()
@@ -19,8 +24,13 @@ const Main = ({ children }: { children: ReactNode }) => {
   }, [])
 
   return (
-    <MainStyled {...MainAnimation} key={route}>
-      {children}
+    <MainStyled>
+      <SectionStyled>
+        <Voxel />
+      </SectionStyled>
+      <MotionStyled {...MainAnimation} key={route}>
+        {children}
+      </MotionStyled>
     </MainStyled>
   )
 }
