@@ -13,7 +13,7 @@ export const pages: IPages[] = [
   },
   {
     id: '2',
-    path: '/portfolio',
-    title: 'Portfolio',
+    path: '/work',
+    title: 'Work',
   },
 ]
