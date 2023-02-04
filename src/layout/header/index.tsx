@@ -1,12 +1,12 @@
 import { HeaderStyled } from './style'
 import Logo from './components/logo'
-import MenuList from './components/menuList'
+import NavList from './components/navList'
 
 const Header = () => {
   return (
     <HeaderStyled>
       <Logo />
-      <MenuList />
+      <NavList />
     </HeaderStyled>
   )
 }
