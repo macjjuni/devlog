@@ -1,6 +1,6 @@
 import { DefaultTheme, css } from 'styled-components'
 
-export type TypoVariantTypes = 'heading_xlg' | 'heading_lg' | 'heading_md' | 'heading_sm' | 'body' | 'text_strong' | 'text_small_md' | 'text_small_sm' | 'default'
+export type TypoVariantTypes = 'heading_xlg' | 'heading_lg' | 'heading_md' | 'heading_sm' | 'body' | 'text_strong' | 'text_lg' | 'text_md' | 'text_sm' | 'default'
 
 // 디바이스별 반응형 미디어쿼리 분기점
 export const deviceSizes = {
@@ -93,8 +93,8 @@ const fontStyle = {
       line-height: 40px;
     `,
     heading_sm: css`
-      font-size: 24px;
-      line-height: 37px;
+      font-size: 22px;
+      line-height: 36px;
     `,
     body: css`
       font-size: 16px;
@@ -104,11 +104,15 @@ const fontStyle = {
       font-size: 18px;
       line-height: 29px;
     `,
-    text_small_md: css`
+    text_lg: css`
+      font-size: 20px;
+      line-height: 30px;
+    `,
+    text_md: css`
       font-size: 14px;
       line-height: 22px;
     `,
-    text_small_sm: css`
+    text_sm: css`
       font-size: 12px;
       line-height: 17px;
     `,
@@ -139,11 +143,15 @@ const fontStyle = {
       font-size: 18px;
       line-height: 29px;
     `,
-    text_small_md: css`
+    text_lg: css`
+      font-size: 20px;
+      line-height: 30px;
+    `,
+    text_md: css`
       font-size: 14px;
       line-height: 22px;
     `,
-    text_small_sm: css`
+    text_sm: css`
       font-size: 12px;
       line-height: 17px;
     `,

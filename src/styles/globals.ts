@@ -5,7 +5,6 @@ export const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
-    margin: 0 auto;
   }
 
   html,
@@ -54,7 +53,7 @@ export const GlobalStyle = createGlobalStyle`
       color: ${({ theme }) => theme.colors.gray.BLG200};
       background: ${({ theme }) => theme.colors.gray.BLG900};
     }
-    .nav-link > a::after { 
+    .nav-list > .nav-link > a::after {
       background: ${({ theme }) => theme.colors.gray.BLG300};
     }
   }
