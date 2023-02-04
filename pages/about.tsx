@@ -5,11 +5,11 @@ export const AboutStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px;
+  gap: 24px;
   margin: 0;
   & > p {
     font-family: 'NanumBarunGothic';
-    ${({ theme }) => theme.fontStyle.pc.heading_sm}
+    font-size: 20px;
   }
 `
 
