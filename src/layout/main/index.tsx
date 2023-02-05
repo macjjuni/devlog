@@ -1,23 +1,30 @@
 import dynamic from 'next/dynamic'
-import { ReactNode, useEffect } from 'react'
+import { ReactNode, useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { pages } from '../../router'
 import { MainStyled, VexelWrap, MotionStyled } from './style'
 import { MainAnimation, xWidth } from './framer-motion'
+import Spinner from '../../components/Spinner'
 
 const Voxel = dynamic(() => import('../../components/Voxel'), {
   ssr: false,
 })
 
 const Main = ({ children }: { children: ReactNode }) => {
+  // 스피너랑 복셀 컴포넌트 렌더링
+  const [load, setLoad] = useState(false)
   const { events, route } = useRouter()
 
-  const handleStart = (nextPath: string) => {
+  const doneLoad = () => {
+    setLoad(true)
+  }
+
+  const handleStart = useCallback((nextPath: string) => {
     const currentPath = window.location.pathname
     const nowIdx = pages.findIndex((page) => page.path === currentPath)
     const nextIdx = pages.findIndex((page) => page.path === nextPath)
     MainAnimation.initial.x = nowIdx > nextIdx ? -xWidth : xWidth
-  }
+  }, [])
 
   useEffect(() => {
     events.on('routeChangeStart', handleStart)
@@ -26,7 +33,8 @@ const Main = ({ children }: { children: ReactNode }) => {
   return (
     <MainStyled>
       <VexelWrap>
-        <Voxel />
+        <Voxel load={load} doneLoad={doneLoad} />
+        {!load && <Spinner />}
       </VexelWrap>
       <MotionStyled {...MainAnimation} key={route}>
         {children}
