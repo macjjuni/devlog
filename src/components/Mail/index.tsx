@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { MailWrap, LottieCustom, Spacer, MailText } from './style'
-import Lotties from '../Lottie'
+import Lotties from '../Lotties'
 import errorLottie from '../../assets/lottie/mail-lottie.json'
 
 // Lottie Option

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Lotties from '../src/components/Lottie'
+import Lotties from '../src/components/Lotties'
 import errorLottie from '../src/assets/lottie/error-page-not-found.json'
 
 const ErrorLayout = styled.section`
