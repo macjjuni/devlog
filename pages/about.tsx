@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps = async (): Promise<GetStaticPropsRe
         status: 200,
         posts: data,
       },
-      revalidate: 100, // In seconds
+      revalidate: 60 * 60 * 24, // In seconds
     }
   } catch (e) {
     console.error(e)
