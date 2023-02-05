@@ -4,7 +4,7 @@ import { useLoader, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 const options = {
-  scale: 0.05,
+  scale: 0.055,
   position: [0, 1.5, 1],
 }
 

@@ -5,17 +5,39 @@ export const MainStyled = styled(motion.main)`
   position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   // 100vh - ( header + footer )
-  height: calc(100vh - (${({ theme }) => theme.layout.header} + ${({ theme }) => theme.layout.footer}));
+  min-height: calc(100vh - (${({ theme }) => theme.layout.header} + ${({ theme }) => theme.layout.footer}));
   // 모바일 스타일
   @media ${({ theme }) => theme.device.mobile} {
-    flex-direction: column;
+    display: block;
   }
 `
 
-export const SectionStyled = styled.section`
+export const VexelWrap = styled.section`
+  position: fixed;
+  top: 50%;
+  left: calc((100vw - 1200px) / 2);
+  transform: translateY(-50%);
+  width: 600px;
+  height: 600px;
+  // Mobile CSS
+  @media screen and (max-width: 1200px) {
+    left: 0;
+    width: calc(100vw / 2);
+  }
+  @media ${({ theme }) => theme.device.mobile} {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: 320px;
+    transform: none;
+  }
+`
+
+export const MotionStyled = styled(motion.section)`
   position: relative;
   display: flex;
   justify-content: flex-start;
@@ -23,12 +45,9 @@ export const SectionStyled = styled.section`
   width: 50%;
   height: 100%;
   margin: 0;
-  // 모바일 스타일
+  padding: 16px;
+  // Mobile CSS
   @media ${({ theme }) => theme.device.mobile} {
     width: 100%;
   }
-`
-
-export const MotionStyled = styled(motion(SectionStyled))`
-  padding: 16px;
 `

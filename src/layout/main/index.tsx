@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { ReactNode, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { pages } from '../../router'
-import { MainStyled, SectionStyled, MotionStyled } from './style'
+import { MainStyled, VexelWrap, MotionStyled } from './style'
 import { MainAnimation, xWidth } from './framer-motion'
 
 const Voxel = dynamic(() => import('../../components/Voxel'), {
@@ -25,9 +25,9 @@ const Main = ({ children }: { children: ReactNode }) => {
 
   return (
     <MainStyled>
-      <SectionStyled>
+      <VexelWrap>
         <Voxel />
-      </SectionStyled>
+      </VexelWrap>
       <MotionStyled {...MainAnimation} key={route}>
         {children}
       </MotionStyled>

@@ -1,7 +1,6 @@
 import { useEffect, useState, Suspense, memo } from 'react'
 import { PerspectiveCamera, PresentationControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { CanvasStyled } from './style'
 import VoxelObject from './voxelObject'
 import Loader from './Loader'
 
