@@ -6,7 +6,7 @@ const BlogArticle = ({ posts }: { posts: PostTypes[] }) => {
   return (
     <BlogWrap>
       {posts.map((post) => (
-        <Article post={post} />
+        <Article key={post.title} x post={post} />
       ))}
     </BlogWrap>
   )
