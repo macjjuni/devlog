@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { MailWrap, LottieCustom, Spacer, MailText } from './style'
+import { MailWrap, MailContainer, LottieCustom, Spacer, MailText } from './style'
 import Lotties from '../Lotties'
 import errorLottie from '../../assets/lottie/mail-lottie.json'
 
@@ -20,11 +20,13 @@ const Mail = () => {
 
   return (
     <MailWrap onClick={copyHandle}>
-      <LottieCustom>
-        <Lotties defaultOption={defaultOption} animationData={errorLottie} />
-      </LottieCustom>
-      <Spacer />
-      <MailText className="mail-text">macjjuni@gmail.com</MailText>
+      <MailContainer>
+        <LottieCustom>
+          <Lotties defaultOption={defaultOption} animationData={errorLottie} />
+        </LottieCustom>
+        <Spacer />
+        <MailText className="mail-text">macjjuni@gmail.com</MailText>
+      </MailContainer>
     </MailWrap>
   )
 }
