@@ -7,12 +7,12 @@ const IndexStyled = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 100%;
+  user-select: none;
   & > p {
     font-family: 'NanumBarunGothic';
     ${({ theme }) => theme.fontStyle.pc.heading_sm}
   }
 `
-
 const Spacer = styled.div`
   height: 40px;
 `
@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <IndexStyled>
       <p>
-        안녕하세요? 🙋🏻‍♂️👋
+        안녕하세요? 👋
         <br />
         이것저것 만들기 좋아하는 개발자입니다!
       </p>
