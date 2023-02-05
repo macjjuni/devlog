@@ -6,6 +6,7 @@ export const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  user-select: none;
 
   & .logo-h1 > .logo-a {
     display: inline-block;

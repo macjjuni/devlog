@@ -132,8 +132,8 @@ const fontStyle = {
       line-height: 34px;
     `,
     heading_sm: css`
-      font-size: 20px;
-      line-height: 34px;
+      font-size: 19px;
+      line-height: 32px;
     `,
     body: css`
       font-size: 16px;
