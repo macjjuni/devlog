@@ -1,9 +1,13 @@
+import styled from 'styled-components'
+
+const WorkWrap = styled.div``
+
 const Work = () => {
   return (
-    <>
-      <h2>Work page</h2>
+    <WorkWrap>
       <p>123</p>
-    </>
+      <p>123</p>
+    </WorkWrap>
   )
 }
 export default Work
