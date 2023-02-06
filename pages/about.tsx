@@ -4,7 +4,6 @@ import Text from '../src/components/Text'
 import Blog from '../src/components/Blog'
 import { getPostList } from '../src/api/blog/getPosts'
 import { type AboutPorps } from '../src/type/blog'
-import { AxiosError } from 'axios'
 
 export const AboutStyled = styled.div`
   display: block;
