@@ -6,6 +6,5 @@ export type PostTypes = {
 }
 
 export type AboutPorps = {
-  status: 200 | 404
   posts: PostTypes[]
 }

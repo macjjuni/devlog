@@ -16,9 +16,7 @@ export const AboutStyled = styled.div`
   }
 `
 
-const About = ({ posts = [], status }: AboutPorps) => {
-  console.log(posts, status)
-
+const About = ({ posts = [] }: AboutPorps) => {
   return (
     <>
       <AboutStyled>
@@ -43,19 +41,13 @@ export const getStaticProps: GetStaticProps = async (): Promise<GetStaticPropsRe
   try {
     const { data } = await getPostList()
     return {
-      props: {
-        status: 200,
-        posts: data,
-      },
+      props: { posts: data },
       revalidate: 60 * 60 * 24, // In seconds
     }
   } catch (e) {
     console.error(e)
     return {
-      props: {
-        status: 404,
-        posts: [],
-      },
+      props: { posts: [] },
     }
   }
 }
