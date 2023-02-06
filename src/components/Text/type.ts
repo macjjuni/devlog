@@ -10,4 +10,5 @@ export type IText = {
   fontSize?: string
   color?: string
   style?: CSSProperties
+  className?: string
 }

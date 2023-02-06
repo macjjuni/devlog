@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps = async (): Promise<GetStaticPropsRe
     const { data } = await getPostList()
     return {
       props: { posts: data },
-      revalidate: 60 * 60 * 24, // In seconds
+      revalidate: 60 * 60 * 24, // 1 day
     }
   } catch (e) {
     console.error(e)

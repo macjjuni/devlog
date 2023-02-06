@@ -50,14 +50,13 @@ export const ArticleWrap = styled.article`
       transition: 0.3s ease;
     }
 
-    & > h3 {
+    & > .post-title {
       opacity: 0;
       position: absolute;
-      bottom: 10px;
+      bottom: 2px;
       left: 10px;
       width: calc(100% - 10px);
       color: #fff;
-      font-size: 18px;
       font-family: 'NanumBarunGothic';
       overflow: hidden;
       white-space: nowrap;
@@ -66,23 +65,32 @@ export const ArticleWrap = styled.article`
       z-index: 1;
     }
 
-    & > svg {
+    & > .post-date {
       position: absolute;
       top: 10px;
-      right: 10px;
-      font-size: 24px;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 10px;
+      font-family: 'NanumBarunGothic';
+      font-weight: bold;
       color: #fff;
       opacity: 0;
       transition: 0.3s ease;
       z-index: 1;
+      & > svg {
+        font-size: 24px;
+      }
     }
 
     &:hover {
       &::after {
         background-color: rgba(0, 0, 0, 0.4);
       }
-      & > h3,
-      & > svg {
+      & > .post-date,
+      & > .post-title {
         opacity: 1;
       }
     }

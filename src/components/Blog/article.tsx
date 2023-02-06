@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Text from '../Text'
 import { MdOpenInNew } from 'react-icons/md'
 import { ArticleWrap } from './style'
 import { type PostTypes } from '../../type/blog'
@@ -10,8 +11,13 @@ const Article = ({ post }: { post: PostTypes }) => {
     <ArticleWrap>
       <a target="_blank" rel="noreferrer" title={post.title} href={`${blogURL}${post.link}`}>
         <Image src={post.thumb} alt={post.title} width={270} height={150} />
-        <MdOpenInNew />
-        <h3>{post.title}</h3>
+        <Text type="span" variant="text_md" className="post-date">
+          <span>{post.date}</span>
+          <MdOpenInNew />
+        </Text>
+        <Text type="h3" variant="text_lg" className="post-title">
+          {post.title}
+        </Text>
       </a>
     </ArticleWrap>
   )

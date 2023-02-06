@@ -19,9 +19,9 @@ const TextStyled = styled(({ type, children, ...props }: IText) => createElement
   }
 `
 
-const Text: FC<IText> = ({ children, type, variant = 'default', ellipsis = false, fullwidth = false, color, fontSize, style }) => {
+const Text: FC<IText> = ({ children, type, variant = 'default', ellipsis = false, fullwidth = false, color, fontSize, style, className = '' }) => {
   return (
-    <TextStyled type={type} variant={variant} fullwidth={fullwidth ? 1 : 0} ellipsis={ellipsis ? 1 : 0} style={{ ...style, color, fontSize }}>
+    <TextStyled type={type} variant={variant} fullwidth={fullwidth ? 1 : 0} ellipsis={ellipsis ? 1 : 0} style={{ ...style, color, fontSize }} className={className}>
       {children}
     </TextStyled>
   )

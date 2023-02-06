@@ -14,13 +14,18 @@ const defaultOption = {
 }
 
 const Mail = () => {
-  const copyHandle = useCallback(() => {
-    console.log('Copied!')
+  const copyMail = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText('macjjuni@gmail.com')
+      console.log('Email copied!')
+    } catch (err) {
+      console.error('Failed to copy: ', err)
+    }
   }, [])
 
   return (
-    <MailWrap onClick={copyHandle}>
-      <MailContainer>
+    <MailWrap>
+      <MailContainer onClick={copyMail}>
         <LottieCustom>
           <Lotties defaultOption={defaultOption} animationData={errorLottie} />
         </LottieCustom>
