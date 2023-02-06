@@ -1,4 +1,4 @@
-# kkusaeng's Portfolio
+# [kkusaeng's Portfolio [Link]](https://www.macjjuni.com/)
 
 <br>
 
@@ -43,11 +43,9 @@ kkusaeng's Portfolio
 ├─ src
 │  ├─ api           (🌏) => API 함수 모음
 │  │
-│  ├─ components    (🧩) => 반복되는 컴포넌트 모음
+│  ├─ components    (🧩) => 컴포넌트 모음
 │  ├─ hoc           (🕹️) => HOC 컴포넌트 모음
 │  ├─ hooks         (🕹️) => 커스텀 훅 모음(추가 예정)
-│  │  ├─ mutation   (📫) useMutation 훅
-│  │  └─ query      (🕸️) useQuery 훅
 │  │
 │  ├─ layout        (🪟) => 레이아웃 모음
 │  │  ├─ footer
