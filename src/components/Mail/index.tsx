@@ -1,7 +1,8 @@
-import { useCallback } from 'react'
 import { MailWrap, MailContainer, LottieCustom, Spacer, MailText } from './style'
 import Lotties from '../Lotties'
 import errorLottie from '../../assets/lottie/mail-lottie.json'
+
+const email = process.env.NEXT_PUBLIC_EMAIL || 'not found email 404'
 
 // Lottie Option
 const defaultOption = {
@@ -14,18 +15,21 @@ const defaultOption = {
 }
 
 const Mail = () => {
-  const copyMail = useCallback(async () => {
+  const emailCopy = async () => {
     try {
-      await navigator.clipboard.writeText('macjjuni@gmail.com')
-      console.log('Email copied!')
-    } catch (err) {
-      console.error('Failed to copy: ', err)
+      if ('clipboard' in navigator) {
+        await navigator.clipboard.writeText(email)
+      } else {
+        document.execCommand('copy', true, email)
+      }
+    } catch (e) {
+      console.error('Copy failed', e)
     }
-  }, [])
+  }
 
   return (
     <MailWrap>
-      <MailContainer onClick={copyMail}>
+      <MailContainer onClick={emailCopy}>
         <LottieCustom>
           <Lotties defaultOption={defaultOption} animationData={errorLottie} />
         </LottieCustom>
