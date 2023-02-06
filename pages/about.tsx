@@ -17,6 +17,8 @@ export const AboutStyled = styled.div`
 `
 
 const About = ({ posts = [] }: AboutPorps) => {
+  console.log(posts)
+
   return (
     <>
       <AboutStyled>

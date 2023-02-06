@@ -26,6 +26,7 @@
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.1.1",
     "@types/axios": "^0.14.0",
+    "@types/cheerio": "^0.22.31",
     "@types/node": "18.11.18",
     "@types/nprogress": "^0.2.0",
     "@types/react": "18.0.26",
