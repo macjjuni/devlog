@@ -53,7 +53,7 @@ export const ArticleWrap = styled.article`
     & > .post-title {
       opacity: 0;
       position: absolute;
-      bottom: 2px;
+      bottom: 4px;
       left: 10px;
       width: calc(100% - 10px);
       color: #fff;

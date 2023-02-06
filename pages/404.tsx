@@ -11,6 +11,7 @@ const ErrorLayout = styled.section`
   align-items: center;
   width: 100%;
   padding-bottom: 100px;
+
   & a {
     border: 1px solid ${({ theme }) => theme.colors.primary.MAIN};
     color: ${({ theme }) => theme.colors.primary.MAIN};
