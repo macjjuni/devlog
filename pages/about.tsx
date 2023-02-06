@@ -4,6 +4,7 @@ import Text from '../src/components/Text'
 import Blog from '../src/components/Blog'
 import { getPostList } from '../src/api/blog/getPosts'
 import { type AboutPorps } from '../src/type/blog'
+import { AxiosError } from 'axios'
 
 export const AboutStyled = styled.div`
   display: block;
@@ -54,14 +55,7 @@ export const getStaticProps: GetStaticProps = async (): Promise<GetStaticPropsRe
     return {
       props: {
         status: 404,
-        posts: [
-          {
-            title: 'useEffect, useLayoutEffect(feat. SSR 환경)',
-            thumb: 'https://img1.daumcdn.net/thumb/R750x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Foq54V%2FbtrXN2zpxD1%2FTzIGFLzLRsnhuOiCkxCXv1%2Fimg.png',
-            link: '/277',
-            date: '2023.02.01',
-          },
-        ],
+        posts: [],
       },
     }
   }

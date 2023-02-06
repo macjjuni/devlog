@@ -24,7 +24,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         res.status(200).send(postList)
       })
       .catch((err) => {
-        res.status(200).send([])
+        res.status(404).send([])
         console.log(err)
       })
   }
