@@ -16,8 +16,8 @@ export const AboutStyled = styled.div`
   }
 `
 
-const About = ({ posts = [] }: AboutPorps) => {
-  console.log(posts)
+const About = ({ posts = [], status }: AboutPorps) => {
+  console.log(posts, status)
 
   return (
     <>
@@ -54,7 +54,14 @@ export const getStaticProps: GetStaticProps = async (): Promise<GetStaticPropsRe
     return {
       props: {
         status: 404,
-        posts: [],
+        posts: [
+          {
+            title: 'useEffect, useLayoutEffect(feat. SSR 환경)',
+            thumb: 'https://img1.daumcdn.net/thumb/R750x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Foq54V%2FbtrXN2zpxD1%2FTzIGFLzLRsnhuOiCkxCXv1%2Fimg.png',
+            link: '/277',
+            date: '2023.02.01',
+          },
+        ],
       },
     }
   }
