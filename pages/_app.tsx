@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyle } from '../src/styles/globals'
 import { theme } from '../src/styles/theme'
-import { initColorMode } from '../src/utils/colorMode'
+import colorMode from '../src/utils/colorMode'
 import Layout from '../src/layout'
 import WithNProgress from '../src/hoc/withNProgress'
 import Titles from '../src/components/Title'
@@ -14,7 +14,7 @@ const useMultiEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffe
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   useMultiEffect(() => {
-    initColorMode()
+    colorMode.initColorMode()
   }, [])
 
   return (

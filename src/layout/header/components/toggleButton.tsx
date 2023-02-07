@@ -2,26 +2,27 @@ import { useState, useEffect, useCallback } from 'react'
 import { FaMoon } from 'react-icons/fa'
 import { ImSun } from 'react-icons/im'
 import { ToggleItem, ButtonStyled } from '../style'
-import { themeToggle, getColorMode, type ModeReturnTypes } from '../../../utils/colorMode'
+// import { themeToggle, gettheme, type ModeReturnTypes } from '../../../utils/theme'
+import colorMode, { type ModeReturnTypes } from '../../../utils/colorMode'
 
 const ToggleButton = () => {
-  const [colorMode, setMode] = useState<ModeReturnTypes>(null)
+  const [theme, setTheme] = useState<ModeReturnTypes>(null)
 
   const handleToggle = useCallback(() => {
-    themeToggle()
-    setMode(getColorMode())
+    colorMode.themeToggle()
+    setTheme(colorMode.getColorMode())
   }, [])
 
   useEffect(() => {
-    const mode = getColorMode()
-    setMode(mode)
+    const mode = colorMode.getColorMode()
+    setTheme(mode)
   }, [])
 
   return (
     <ToggleItem>
       <ButtonStyled onClick={handleToggle}>
-        {colorMode === 'light' && <ImSun fontSize="22px" color="#9d6fff" />}
-        {colorMode === 'dark' && <FaMoon fontSize="22px" color="#ffea20" />}
+        {theme === 'light' && <ImSun fontSize="22px" color="#9d6fff" />}
+        {theme === 'dark' && <FaMoon fontSize="22px" color="#ffea20" />}
       </ButtonStyled>
     </ToggleItem>
   )
