@@ -1,9 +1,10 @@
-import { UlStyled, LiStyled } from './style'
+import { UlStyled } from './style'
+import WorkItem from './components/workItem'
 
 const WorkList = () => {
   return (
     <UlStyled>
-      <LiStyled />
+      <WorkItem />
     </UlStyled>
   )
 }
