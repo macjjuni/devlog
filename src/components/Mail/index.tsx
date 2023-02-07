@@ -1,6 +1,7 @@
 import { MailWrap, MailContainer, LottieCustom, Spacer, MailText } from './style'
 import Lotties from '../Lotties'
 import errorLottie from '../../assets/lottie/mail-lottie.json'
+import { textCopied } from '../../utils/copy'
 
 const email = process.env.NEXT_PUBLIC_EMAIL || 'not found email 404'
 
@@ -8,28 +9,17 @@ const email = process.env.NEXT_PUBLIC_EMAIL || 'not found email 404'
 const defaultOption = {
   loop: true,
   play: true,
-  style: {
-    width: '50px',
-    height: '50px',
-  },
+  style: { width: '50px', height: '50px' },
 }
 
 const Mail = () => {
-  const emailCopy = async () => {
-    try {
-      if ('clipboard' in navigator) {
-        await navigator.clipboard.writeText(email)
-      } else {
-        document.execCommand('copy', true, email)
-      }
-    } catch (e) {
-      console.error('Copy failed', e)
-    }
+  const clickCopy = async () => {
+    await textCopied(email)
   }
 
   return (
     <MailWrap>
-      <MailContainer onClick={emailCopy}>
+      <MailContainer onClick={clickCopy}>
         <LottieCustom>
           <Lotties defaultOption={defaultOption} animationData={errorLottie} />
         </LottieCustom>
