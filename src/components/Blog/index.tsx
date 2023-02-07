@@ -1,4 +1,4 @@
-import Article from './article'
+import Article from './components/article'
 import { BlogWrap } from './style'
 import { type PostTypes } from '../../type/blog'
 

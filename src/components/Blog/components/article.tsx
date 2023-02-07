@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { MdOpenInNew } from 'react-icons/md'
-import Text from '../Text'
-import { ArticleWrap } from './style'
-import { type PostTypes } from '../../type/blog'
+import Text from '../../Text'
+import { ArticleWrap } from '../style'
+import { type PostTypes } from '../../../type/blog'
 
 const blogURL = process.env.NEXT_PUBLIC_BLOG_URL || 'https://juni-official.tistory.com/'
 
