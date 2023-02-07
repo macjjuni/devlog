@@ -1,7 +1,7 @@
 import { MailWrap, MailContainer, LottieCustom, Spacer, MailText } from './style'
 import Lotties from '../Lotties'
 import errorLottie from '../../assets/lottie/mail-lottie.json'
-import { textCopied } from '../../utils/copy'
+import { textCopy } from '../../utils/copy'
 
 const email = process.env.NEXT_PUBLIC_EMAIL || 'not found email 404'
 
@@ -14,7 +14,7 @@ const defaultOption = {
 
 const Mail = () => {
   const clickCopy = async () => {
-    await textCopied(email)
+    await textCopy(email)
   }
 
   return (
