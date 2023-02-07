@@ -10,7 +10,7 @@ const Article = ({ post }: { post: PostTypes }) => {
   return (
     <ArticleWrap>
       <a target="_blank" rel="noreferrer" title={post.title} href={`${blogURL}${post.link}`}>
-        <Image src={post.thumb} alt={post.title} width={270} height={150} />
+        <Image src={post.thumb} alt={post.title} width={270} height={150} priority />
         <Text type="span" variant="text_md" className="post-date">
           <span>{post.date}</span>
           <MdOpenInNew />
