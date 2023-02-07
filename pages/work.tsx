@@ -1,12 +1,12 @@
 import styled from 'styled-components'
+import WorkList from '../src/components/workList'
 
 const WorkWrap = styled.div``
 
 const Work = () => {
   return (
     <WorkWrap>
-      <p>123</p>
-      <p>123</p>
+      <WorkList />
     </WorkWrap>
   )
 }
