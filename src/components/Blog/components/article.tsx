@@ -15,7 +15,7 @@ const Article = ({ post }: { post: PostTypes }) => {
           <span>{post.date}</span>
           <MdOpenInNew />
         </Text>
-        <Text type="h3" variant="text_lg" className="post-title">
+        <Text type="h3" variant="text_md" className="post-title">
           {post.title}
         </Text>
       </a>
