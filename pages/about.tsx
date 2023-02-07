@@ -1,7 +1,7 @@
 import { type GetStaticProps, type GetStaticPropsResult } from 'next'
 import styled from 'styled-components'
-import Text from '../src/components/Text'
-import Blog from '../src/components/Blog'
+import Text from '../src/components/text'
+import Blog from '../src/components/blog'
 import { getPostList } from '../src/api/blog/getPosts'
 import { type AboutPorps } from '../src/type/blog'
 

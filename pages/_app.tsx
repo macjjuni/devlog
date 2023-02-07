@@ -6,7 +6,7 @@ import { theme } from '../src/styles/theme'
 import colorMode from '../src/utils/colorMode'
 import Layout from '../src/layout'
 import WithNProgress from '../src/hoc/withNProgress'
-import Titles from '../src/components/Title'
+import Titles from '../src/components/title'
 import 'nprogress/nprogress.css'
 import '../src/styles/font.css'
 

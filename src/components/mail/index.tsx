@@ -1,5 +1,5 @@
 import { MailWrap, MailContainer, LottieCustom, Spacer, MailText } from './style'
-import Lotties from '../Lotties'
+import Lotties from '../lotties'
 import errorLottie from '../../assets/lottie/mail-lottie.json'
 import { textCopy } from '../../utils/copy'
 

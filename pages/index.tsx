@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import Text from '../src/components/Text'
-import Mail from '../src/components/Mail'
+import Text from '../src/components/text'
+import Mail from '../src/components/mail'
 
 const IndexStyled = styled.div`
   display: flex;

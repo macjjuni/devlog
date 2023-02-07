@@ -4,9 +4,9 @@ import { useRouter } from 'next/router'
 import { pages } from '../../router'
 import { MainStyled, VexelWrap, MotionStyled } from './style'
 import { MainAnimation, xWidth } from './framer-motion'
-import Spinner from '../../components/Spinner'
+import Spinner from '../../components/spinner'
 
-const Voxel = dynamic(() => import('../../components/Voxel'), {
+const Voxel = dynamic(() => import('../../components/voxel'), {
   ssr: false,
 })
 

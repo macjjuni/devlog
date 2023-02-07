@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { MdOpenInNew } from 'react-icons/md'
-import Text from '../../Text'
+import Text from '../../text'
 import { ArticleWrap } from '../style'
 import { type PostTypes } from '../../../type/blog'
 

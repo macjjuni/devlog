@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { FooterStyld } from './style'
 import SnsIcons from './components/snsIcons'
-import Text from '../../components/Text'
+import Text from '../../components/text'
 
 const Footer = () => {
   return (

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
-import Text from '../src/components/Text'
-import Lotties from '../src/components/Lotties'
+import Text from '../src/components/text'
+import Lotties from '../src/components/lotties'
 import errorLottie from '../src/assets/lottie/error-page-not-found.json'
 
 const ErrorLayout = styled.section`
