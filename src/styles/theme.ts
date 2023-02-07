@@ -97,7 +97,7 @@ const fontStyle = {
       line-height: 36px;
     `,
     body: css`
-      font-size: 16px;
+      font-size: 18px;
       line-height: 27px;
     `,
     text_strong: css`
