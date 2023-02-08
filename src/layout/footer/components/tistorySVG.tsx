@@ -1,6 +1,6 @@
 const TistorySVG = ({ size = 20 }: { size?: number }) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408.4 408.4" style={{ width: `${size}px`, height: `${size}px` }}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408.4 408.4" className="tistory-svg" style={{ width: `${size}px`, height: `${size}px` }}>
       <g>
         <circle className="cls-1" cx="58.18" cy="58.18" r="58.18" />
         <circle className="cls-1" cx="204.2" cy="58.18" r="58.18" />
