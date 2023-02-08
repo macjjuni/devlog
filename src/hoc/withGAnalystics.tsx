@@ -8,12 +8,14 @@ const WithGAnalystics = ({ children }: { children: ReactNode }) => {
   const { events } = useRouter()
 
   useEffect(() => {
+    if (!isProd) return
     const handleRouteChange = (url: URL) => {
       gtag.pageview(url)
     }
     events.on('routeChangeComplete', handleRouteChange)
     events.on('hashChangeComplete', handleRouteChange)
     return () => {
+      if (!isProd) return
       events.off('routeChangeComplete', handleRouteChange)
       events.off('hashChangeComplete', handleRouteChange)
     }
