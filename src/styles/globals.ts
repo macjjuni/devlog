@@ -51,7 +51,7 @@ export const GlobalStyle = createGlobalStyle`
   :root[${colorSchema}='dark'] {
     body {
       color: ${({ theme }) => theme.colors.gray.BLG200};
-      background: ${({ theme }) => theme.colors.gray.BLG900};
+      background: ${({ theme }) => theme.colors.gray.BLG800};
     }
     .nav-list > .nav-link > a::after {
       background: ${({ theme }) => theme.colors.gray.BLG300};
