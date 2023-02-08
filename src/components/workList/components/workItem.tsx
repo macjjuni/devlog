@@ -1,16 +1,18 @@
-import { LiStyled } from '../style'
+import * as Work from '../style'
+import ProjectList from './projectList'
+import { type IWork } from '../type'
 
-const WorkItem = () => {
+const WorkItem = ({ title, position, date, project }: IWork) => {
   return (
-    <LiStyled>
-      <h2>소속명 ------------------ 재직기간</h2>
-      <p>소속팀 - 포지션</p>
-      <h3>프로젝트 명 (프로젝트 기간)</h3>
-      <ul>
-        <li>프로젝트 설명1</li>
-        <li>프로젝트 설명2</li>
-      </ul>
-    </LiStyled>
+    <Work.WorkItemWrap>
+      <Work.WorkTitle>
+        {title} ------------------ <Work.WorkDate>{date}</Work.WorkDate>
+      </Work.WorkTitle>
+      <Work.WorkPosition>{position}</Work.WorkPosition>
+      {project.map((proj) => (
+        <ProjectList key={proj.title + proj.date} title={proj.title} date={proj.date} list={proj.list} />
+      ))}
+    </Work.WorkItemWrap>
   )
 }
 export default WorkItem

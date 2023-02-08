@@ -1,11 +1,12 @@
-import { UlStyled } from './style'
+import { WorkListWrap } from './style'
 import WorkItem from './components/workItem'
+import { type IWork } from './type'
 
-const WorkList = () => {
+const WorkList = ({ work }: { work: IWork }) => {
   return (
-    <UlStyled>
-      <WorkItem />
-    </UlStyled>
+    <WorkListWrap>
+      <WorkItem title={work.title} date={work.date} position={work.position} project={work.project} />
+    </WorkListWrap>
   )
 }
 
