@@ -5,19 +5,19 @@ import * as gtag from '../lib/gtag'
 
 const WithGAnalystics = ({ children }: { children: ReactNode }) => {
   const isProd = process.env.NODE_ENV === 'production'
-  const router = useRouter()
+  const { events } = useRouter()
 
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
       gtag.pageview(url)
     }
-    router.events.on('routeChangeComplete', handleRouteChange)
-    router.events.on('hashChangeComplete', handleRouteChange)
+    events.on('routeChangeComplete', handleRouteChange)
+    events.on('hashChangeComplete', handleRouteChange)
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-      router.events.off('hashChangeComplete', handleRouteChange)
+      events.off('routeChangeComplete', handleRouteChange)
+      events.off('hashChangeComplete', handleRouteChange)
     }
-  }, [router.events])
+  }, [events])
 
   if (isProd) {
     return (
