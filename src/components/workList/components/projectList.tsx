@@ -1,5 +1,5 @@
 import * as Work from '../style'
-import { type IProject } from '../type'
+import { type IProject } from '../../../type/work'
 
 const ProjectList = ({ title, date, list }: IProject) => {
   return (
