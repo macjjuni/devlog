@@ -3,13 +3,14 @@ import { PerspectiveCamera, PresentationControls, useProgress } from '@react-thr
 import { CanvasStyled } from './style'
 import VoxelObject from './voxelObject'
 
-const url = '/voxel/juni-coding-voxel.gltf'
+const url = process.env.NEXT_PUBLIC_VOXEL_URL || '/voxel/juni-coding-voxel.gltf'
 
 const Voxel = ({ load, doneLoad }: { load: boolean; doneLoad: () => void }) => {
   const { progress } = useProgress()
   const [rotate, setRotate] = useState(3.15)
   const intervalId: { current: NodeJS.Timeout | null } = useRef(null)
 
+  // Voxel 자동 회전
   const spinRotate = () => {
     intervalId.current = setInterval(() => {
       setRotate((prev: number) => prev + 0.05)
@@ -26,6 +27,7 @@ const Voxel = ({ load, doneLoad }: { load: boolean; doneLoad: () => void }) => {
     spinRotate()
   }, [])
 
+  // progress 100% 일 경우 스피너 제거 및 자동회전
   useEffect(() => {
     if (progress === 100) {
       doneLoad()
@@ -33,14 +35,14 @@ const Voxel = ({ load, doneLoad }: { load: boolean; doneLoad: () => void }) => {
     }
   }, [progress])
 
+  // 브라우저 focus/blur 이벤트 효과 적용
   useEffect(() => {
     window.addEventListener('blur', browserEventHandler)
-    return () => window.removeEventListener('blur', browserEventHandler)
-  }, [])
-
-  useEffect(() => {
     window.addEventListener('focus', browserEventHandler)
-    return () => window.removeEventListener('focus', browserEventHandler)
+    return () => {
+      window.removeEventListener('blur', browserEventHandler)
+      window.removeEventListener('focus', browserEventHandler)
+    }
   }, [])
 
   return (
