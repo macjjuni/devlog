@@ -41,11 +41,12 @@ kkusaeng's Portfolio
 ├─ pages            (📚) => 페이지 모음
 ├─ public           (🏛️) => 정적파일 모음
 ├─ src
-│  ├─ api           (🌏) => API 함수 모음
+│  ├─ api           (🕸️) => API 함수 모음
+│  ├─ assets        (🏦) => API 함수 모음
 │  │
 │  ├─ components    (🧩) => 컴포넌트 모음
 │  ├─ hoc           (🕹️) => HOC 컴포넌트 모음
-│  ├─ hooks         (🕹️) => 커스텀 훅 모음(추가 예정)
+│  ├─ hooks         (🪝) => 커스텀 훅 모음
 │  │
 │  ├─ layout        (🪟) => 레이아웃 모음
 │  │  ├─ footer
@@ -55,9 +56,14 @@ kkusaeng's Portfolio
 │  │  └─ style.ts
 │  │
 │  ├─ router        (🚦) => 라우팅 관련 모음
-│  └─ styles        (🕺) => 공통 스타일 코드
-│     ├─ global.ts
-│     └─ theme.ts
+│  ├─ styles        (🕺) => 공통 스타일 코드
+│  │  ├─ font.css
+│  │  ├─ global.ts
+│  │  ├─ styled.d.ts
+│  │  └─ theme.ts
+│  │
+│  ├─ type          (🎲) => TS 타입 모음
+│  └─ utils         (🛠️) => 유틸 함수 모음
 │
 ├─ .eslintrc.cjs
 ├─ .prettierrc.cjs

@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 import WorkList from '../src/components/workList'
 import { getWorks } from '../src/api/work/getWorks'
-import { IWork } from '../src/components/workList/type'
+import { IWork } from '../src/type/work'
 
 const WorkWrap = styled.div``
 
 const Work = ({ workList }: { workList: IWork[] }) => {
-  console.log(workList)
   return (
     <WorkWrap>
       {workList.map((work) => (

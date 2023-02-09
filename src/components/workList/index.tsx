@@ -1,6 +1,6 @@
 import { WorkListWrap } from './style'
 import WorkItem from './components/workItem'
-import { type IWork } from './type'
+import { type IWork } from '../../type/work'
 
 const WorkList = ({ work }: { work: IWork }) => {
   return (

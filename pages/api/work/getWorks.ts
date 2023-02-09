@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { type IWork } from '../../../src/components/workList/type'
+import { type IWork } from '../../../src/type/work'
 
 const workList: IWork[] = [
   // {
