@@ -5,12 +5,12 @@ const port = process.env.PORT || 3000
 const domain = process.env.DOMAIN || 'http://www.macjjuni.com'
 const baseURL = isDev ? `http://localhost:${port}` : domain
 
-const nextApi = axios.create({
+const api = axios.create({
   baseURL,
   timeout: 180000,
 })
 
-nextApi.interceptors.request.use(
+api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => config,
   (error) => {
     console.log(error)
@@ -18,7 +18,7 @@ nextApi.interceptors.request.use(
   }
 )
 
-nextApi.interceptors.response.use(
+api.interceptors.response.use(
   (response: AxiosResponse) => {
     return response
   },
@@ -28,4 +28,5 @@ nextApi.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-export default nextApi
+
+export default api
