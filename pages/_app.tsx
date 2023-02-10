@@ -1,30 +1,41 @@
 import type { AppProps } from 'next/app'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from 'redux/store'
 import { ThemeProvider } from 'styled-components'
-import WithColorMode from '../src/hoc/withColorMode'
-import WithGAnalystics from '../src/hoc/withGAnalystics'
-import WithNProgress from '../src/hoc/withNProgress'
-import { GlobalStyle } from '../src/styles/globals'
-import { theme } from '../src/styles/theme'
-import Layout from '../src/layout'
-import Titles from '../src/components/title'
+// import InitColorMode from 'components/common/InitColorMode/InitColorMode'
+import GlobalStyle from 'components/common/GlobalStyle'
+import GoogleAnalystics from 'components/common/GoogleAnalytics'
+import WithNProgress from 'hoc/withNProgress'
+import { theme } from 'styles/theme'
+import Layout from 'layout'
+import Titles from 'components/views/Title'
+
+import 'styles/reset.css'
+import 'styles/font.css'
 import 'nprogress/nprogress.css'
-import '../src/styles/font.css'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <WithGAnalystics>
-      <WithColorMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={theme}>
-          <Titles />
+          {/* 전역 스타일 */}
           <GlobalStyle />
+          {/* HTML title 개별적용 컴포넌트 */}
+          <Titles />
+          {/* 구글 애널리틱스 */}
+          <GoogleAnalystics />
+          {/* 컬러모드 적용 컴포넌트 */}
+          {/* <InitColorMode /> */}
           <WithNProgress>
             <Layout>
               <Component {...pageProps} />
             </Layout>
           </WithNProgress>
         </ThemeProvider>
-      </WithColorMode>
-    </WithGAnalystics>
+      </PersistGate>
+    </Provider>
   )
 }
 
