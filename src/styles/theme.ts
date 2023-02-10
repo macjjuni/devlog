@@ -67,7 +67,7 @@ export const colors = {
   system: {
     ERROR: '#FA5C5C',
     ERROR_LIGHT: '#FFF5F5',
-    SUCCESS: '#16C27D',
+    SUCCESS: '#04cf52',
     SUCCESS_LIGHT: '#F3FFF8',
     WARNING: '#FFAB49',
     WARNING_LIGHT: '#FFF8F2',
