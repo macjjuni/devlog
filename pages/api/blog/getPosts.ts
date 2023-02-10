@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from 'axios'
 import { load } from 'cheerio'
 
 // 가져올 포스팅 개수
-const postCnt = 4
+const postCnt = 5
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
