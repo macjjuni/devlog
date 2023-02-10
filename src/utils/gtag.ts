@@ -1,11 +1,11 @@
-export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || ''
-
 interface IGTagEvent {
   action: string
   category: string
   label: string
   value: number
 }
+
+export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || ''
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: URL) => {
