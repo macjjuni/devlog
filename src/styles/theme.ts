@@ -15,8 +15,8 @@ const device = {
 }
 const layout = {
   header: '70px',
-  main: `calc(100vh - 130px)`,
-  footer: '60px',
+  main: `calc(100vh - 142px)`,
+  footer: '72px',
 }
 
 export const colors = {

@@ -12,7 +12,7 @@ export const Footer = styled.footer`
   align-items: center;
   width: 100%;
   height: ${({ theme }) => theme.layout.footer};
-  padding: 10px 16px;
+  padding: 16px;
 `
 
 export const SNSList = styled.ul`
@@ -27,8 +27,8 @@ const blinkEffect = keyframes`
 `
 
 export const SNSItem = styled.li`
-  padding: 6px;
   font-size: 0;
+  padding: 8px;
   margin-left: 14px;
   border-radius: 50%;
   transition: box-shadow 0.3s ease;
