@@ -25,9 +25,7 @@ export const getStaticProps = async () => {
   } catch (e) {
     console.error(e)
     return {
-      props: {
-        workList: [],
-      },
+      props: { workList: [] },
     }
   }
 }
