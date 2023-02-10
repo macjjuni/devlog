@@ -32,7 +32,7 @@ const About = ({ posts = [] }: AboutPorps) => {
         </Text>
         <br />
         <Text type="p" variant="body">
-          겉으로 드러나지 않는 예민한 성격이지만 개발할 때는 사소한 디테일에도 신경을 쓰는 편이고 프로젝트 완성도를 높이는데 열정적입니다.
+          겉으로 드러나지 않는 예민한 성격으로 개발할 때는 사소한 디테일에도 신경을 쓰는 편이고 프로젝트 완성도를 높이는데 열정적입니다.
         </Text>
         <br />
         <Text type="h3" variant="heading_md">
