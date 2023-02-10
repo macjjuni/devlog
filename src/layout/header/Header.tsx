@@ -1,13 +1,13 @@
-import { HeaderStyled } from './Header.style'
+import * as H from './Header.style'
 import Logo from './components/Logo'
 import NavList from './components/NavList'
 
 const Header = () => {
   return (
-    <HeaderStyled>
+    <H.Header>
       <Logo />
       <NavList />
-    </HeaderStyled>
+    </H.Header>
   )
 }
 

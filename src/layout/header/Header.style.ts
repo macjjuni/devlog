@@ -1,68 +1,76 @@
 import styled from 'styled-components'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { ColorModeTypes } from 'type/theme'
+import { light } from 'redux/slice/colorMode'
 
-export const HeaderStyled = styled.header`
+export const Header = styled.header`
   height: ${({ theme }) => theme.layout.header};
   padding: 0 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   user-select: none;
+`
 
-  & .logo-h1 > .logo-a {
-    display: inline-block;
-    font-size: 28px;
-    font-family: 'Single Day', 'cursive';
-    white-space: nowrap;
-  }
+export const Logo = styled(motion.h1)``
 
-  & > .header-nav {
-    margin: 0;
+export const LogoLink = styled(Link)`
+  display: inline-block;
+  font-size: 28px;
+  font-family: 'Single Day', 'cursive';
+  white-space: nowrap;
+`
 
-    & > .nav-list {
-      padding: 0;
-      display: flex;
-      align-items: center;
-
-      & > .nav-link {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 15px;
-      }
-
-      & > .nav-link > a {
-        position: relative;
-        top: -1px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 40px;
-        padding: 5px 10px;
-        ${({ theme }) => theme.fontStyle.pc.heading_sm};
-        transition: 0.3s ease-in;
-      }
-
-      & > .nav-link > a::after {
-        content: '';
-        position: absolute;
-        bottom: 4px;
-        left: 10px;
-        width: 0px;
-        height: 3px;
-        transition: 0.3s ease;
-        background: ${({ theme }) => theme.colors.gray.BLG700};
-      }
-      & > .nav-link > a.active::after {
-        width: calc(100% - 20px);
-      }
-    }
-
-    @media ${({ theme }) => theme.device.mobile} {
-      display: none;
-    }
+export const Nav = styled.nav`
+  margin: 0;
+  @media ${({ theme }) => theme.device.mobile} {
+    display: none;
   }
 `
-export const ToggleItem = styled.li`
+
+export const NavList = styled.ul`
+  padding: 0;
+  display: flex;
+  align-items: center;
+`
+export const NavItem = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 15px;
+`
+
+export const NavLink = styled(Link)<{ colormode: ColorModeTypes }>`
+  position: relative;
+  top: -1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  padding: 5px 10px;
+  ${({ theme }) => theme.fontStyle.pc.heading_md};
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 10px;
+    width: 0px;
+    height: 3px;
+    transition: 0.3s ease;
+    border-radius: 2px;
+    background: ${({ theme, colormode }) => {
+      if (colormode === light) return theme.colors.gray.BLG700
+      else return theme.colors.gray.BLG400
+    }};
+  }
+  &.active::after {
+    width: calc(100% - 20px);
+  }
+`
+
+export const Toggle = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,7 +78,7 @@ export const ToggleItem = styled.li`
   height: 40px;
   margin-left: 6px;
 `
-export const ButtonStyled = styled.button`
+export const ToggleButton = styled.button`
   width: 100%;
   height: 100%;
   border-radius: 50%;

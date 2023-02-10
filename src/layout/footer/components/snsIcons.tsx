@@ -1,22 +1,16 @@
 import { FiGithub, FiInstagram } from 'react-icons/fi'
-import LinkWrap from './LinkWrap'
-import TistorySVG from './TistorySVG'
-import { UlStyled } from '../Footer.style'
+import SNSItem from './SNSItem'
+import TistoryIcon from './TistoryIcon'
+import * as F from '../Footer.style'
 
-const SnsIcons = () => {
+const SNSIcons = () => {
   return (
-    <UlStyled>
-      <li>
-        <LinkWrap href="https://github.com/macjjuni" title="Github Profile" icon={<FiGithub />} />
-      </li>
-      <li>
-        <LinkWrap href="https://juni-official.tistory.com" title="Tistory Blog" icon={<TistorySVG />} />
-      </li>
-      <li>
-        <LinkWrap href="https://www.instagram.com/juni.btc/" title="Instagram Profile" icon={<FiInstagram />} />
-      </li>
-    </UlStyled>
+    <F.SNSList>
+      <SNSItem href="https://github.com/macjjuni" title="Github Profile" icon={<FiGithub />} />
+      <SNSItem href="https://juni-official.tistory.com" title="Tistory Blog" icon={<TistoryIcon />} />
+      <SNSItem href="https://www.instagram.com/juni.btc/" title="Instagram Profile" icon={<FiInstagram />} />
+    </F.SNSList>
   )
 }
 
-export default SnsIcons
+export default SNSIcons

@@ -1,28 +1,27 @@
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useAppSelector } from 'redux/hook'
 import { pages } from 'router'
-import ThemeButton from './ThemeButton'
-
-// import DropNav from './DropNav'
+import ColorToggleButton from './ColorToggleButton'
+import * as N from '../Header.style'
 
 const MenuList = () => {
+  const colorMode = useAppSelector((state) => state.colorMode.theme)
   const { pathname } = useRouter()
   return (
-    <>
-      <nav className="header-nav">
-        <ul className="nav-list">
+    <N.Nav>
+      <N.NavList>
+        <>
           {pages.map((page) => (
-            <li key={page.id} className="nav-link">
-              <Link href={page.path} className={pathname === page.path ? 'active' : ''}>
+            <N.NavItem key={page.id}>
+              <N.NavLink href={page.path} className={pathname === page.path ? 'active' : ''} colormode={colorMode}>
                 {page.title}
-              </Link>
-            </li>
+              </N.NavLink>
+            </N.NavItem>
           ))}
-          <ThemeButton />
-        </ul>
-      </nav>
-      {/* <DropNav /> */}
-    </>
+        </>
+        <ColorToggleButton />
+      </N.NavList>
+    </N.Nav>
   )
 }
 

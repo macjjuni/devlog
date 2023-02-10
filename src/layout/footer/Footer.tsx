@@ -1,16 +1,16 @@
 import { memo } from 'react'
 import Text from 'components/common/Text'
-import { FooterStyld } from './Footer.style'
-import SnsIcons from './components/SnsIcons'
+import * as F from './Footer.style'
+import SNSIcons from './components/SNSIcons'
 
 const Footer = () => {
   return (
-    <FooterStyld>
+    <F.Footer>
       <Text type="p" variant="body">
         © {new Date().getFullYear()} kkusaeng.
       </Text>
-      <SnsIcons />
-    </FooterStyld>
+      <SNSIcons />
+    </F.Footer>
   )
 }
 
