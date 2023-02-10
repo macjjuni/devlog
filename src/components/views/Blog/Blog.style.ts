@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Text from 'components/common/Text'
 
 export const Blog = styled.div`
-  margin-top: 30px;
+  margin-top: 40px;
 `
 
 export const BlogWrap = styled.div`
@@ -20,7 +20,7 @@ export const Article = styled.article`
   position: relative;
   flex: none;
   width: 250px;
-  height: 180px;
+  height: 170px;
   padding: 0;
   margin-right: 20px;
   border-radius: 6px;
