@@ -42,22 +42,32 @@ kkusaeng's Portfolio
 ├─ public           (🏛️) => 정적파일 모음
 ├─ src
 │  ├─ api           (🕸️) => API 함수 모음
-│  ├─ assets        (🏦) => API 함수 모음
+│  ├─ assets        (🏦) => 파일 리소스 모음
 │  │
 │  ├─ components    (🧩) => 컴포넌트 모음
+│  │  ├─ common     (🛞) => 기능형 컴포넌트
+│  │  └─ views      (🎨) => 레더형 컴포넌트
+│  │
 │  ├─ hoc           (🕹️) => HOC 컴포넌트 모음
 │  ├─ hooks         (🪝) => 커스텀 훅 모음
 │  │
 │  ├─ layout        (🪟) => 레이아웃 모음
-│  │  ├─ footer
-│  │  ├─ header
-│  │  ├─ main
-│  │  ├─ index.tsx
-│  │  └─ style.ts
+│  │  ├─ Footer
+│  │  ├─ Header
+│  │  ├─ Main
+│  │  ├─ index.ts
+│  │  ├─ Layout.style.ts
+│  │  └─ Layout.tsx
+│  │
+│  ├─ Redux        (🪟) => 레이아웃 모음
+│  │  ├─ slice     (🧀) => Redux Slice 모음
+│  │  ├─ store.ts
+│  │  └─ hook.ts
 │  │
 │  ├─ router        (🚦) => 라우팅 관련 모음
 │  ├─ styles        (🕺) => 공통 스타일 코드
 │  │  ├─ font.css
+│  │  ├─ reset.css
 │  │  ├─ global.ts
 │  │  ├─ styled.d.ts
 │  │  └─ theme.ts
@@ -65,19 +75,14 @@ kkusaeng's Portfolio
 │  ├─ type          (🎲) => TS 타입 모음
 │  └─ utils         (🛠️) => 유틸 함수 모음
 │
-├─ .eslintrc.cjs
-├─ .prettierrc.cjs
-├─ .gitignore
-├─ .eslintignore
+├─ .eslintrc
+├─ .prettierrc
 │
 ├─ .env.developmnet
 ├─ .env.production
 │
 ├─ tsconfig.json
-├─ tsconfig.node.json
-├─ vite.config.ts
-├─ yarn.lock
-├─ package-lock.json
+├─ next.config.js
 ├─ package.json
 └─ README.md
 ```
