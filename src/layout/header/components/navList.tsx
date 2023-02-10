@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { HiMenuAlt3 } from 'react-icons/hi'
+import { pages } from 'router'
 import ThemeButton from './ThemeButton'
-import { pages } from '../../../router'
-import { NavToggleButton } from '../style'
+
+// import DropNav from './DropNav'
 
 const MenuList = () => {
   const { pathname } = useRouter()
@@ -21,10 +21,7 @@ const MenuList = () => {
           <ThemeButton />
         </ul>
       </nav>
-
-      <NavToggleButton type="button" className="mobile-nav-toggle">
-        <HiMenuAlt3 fontSize={30} />
-      </NavToggleButton>
+      {/* <DropNav /> */}
     </>
   )
 }

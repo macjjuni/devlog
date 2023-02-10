@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import Link from 'next/link'
-import Text from '../src/components/text'
-import Lotties from '../src/components/lotties'
-import errorLottie from '../src/assets/lottie/error-page-not-found.json'
+import Text from 'components/common/Text'
+import Lotties from 'components/common/Lotties'
+import errorLottie from 'assets/lottie/error-page-not-found.json'
 
 const ErrorLayout = styled.section`
   display: flex;

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import WorkList from '../src/components/workList'
-import { getWorks } from '../src/api/work/getWorks'
-import { IWork } from '../src/type/work'
+import WorkList from 'components/views/WorkList'
+import { getWorks } from 'api/work/getWorks'
+import { IWork } from 'type/work'
 
 const WorkWrap = styled.div``
 

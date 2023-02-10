@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic'
+import Spinner from 'components/views/Spinner'
 import { ReactNode, useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/router'
-import { pages } from '../../router'
-import { MainStyled, VexelWrap, MotionStyled } from './style'
+import { pages } from 'router'
+import { MainStyled, VexelWrap, MotionStyled } from './Main.style'
 import { MainAnimation, xWidth } from './framer-motion'
-import Spinner from '../../components/spinner'
 
-const Voxel = dynamic(() => import('../../components/voxel'), {
+const Voxel = dynamic(() => import('components/views/Voxel'), {
   ssr: false,
 })
 

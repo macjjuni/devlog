@@ -1,9 +1,9 @@
 import { type GetStaticProps, type GetStaticPropsResult } from 'next'
 import styled from 'styled-components'
-import Text from '../src/components/text'
-import Blog from '../src/components/blog'
-import { getPostList } from '../src/api/blog/getPosts'
-import { type AboutPorps } from '../src/type/blog'
+import Text from 'components/common/Text'
+import Blog from 'components/views/Blog'
+import { getPostList } from 'api/blog/getPosts'
+import { type AboutPorps } from 'type/blog'
 
 export const AboutStyled = styled.div`
   display: block;

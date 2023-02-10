@@ -1,27 +1,18 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useAppDispatch, useAppSelector } from 'redux/hook'
+import { toggle } from 'redux/slice/colorMode'
 import { FaMoon } from 'react-icons/fa'
 import { ImSun } from 'react-icons/im'
-import { ToggleItem, ButtonStyled } from '../style'
-import colorMode, { type ModeReturnTypes } from '../../../utils/colorMode'
+import { ToggleItem, ButtonStyled } from '../Header.style'
 
 const ThemeButton = () => {
-  const [theme, setTheme] = useState<ModeReturnTypes>(null)
-
-  const handleToggle = useCallback(() => {
-    colorMode.themeToggle()
-    setTheme(colorMode.getColorMode())
-  }, [])
-
-  useEffect(() => {
-    const mode = colorMode.getColorMode()
-    setTheme(mode)
-  }, [])
+  const colorMode = useAppSelector((state) => state.colorMode.theme)
+  const dispatch = useAppDispatch()
 
   return (
     <ToggleItem>
-      <ButtonStyled onClick={handleToggle}>
-        {theme === 'light' && <ImSun fontSize="22px" color="#9d6fff" />}
-        {theme === 'dark' && <FaMoon fontSize="22px" color="#ffea20" />}
+      <ButtonStyled onClick={() => dispatch(toggle())}>
+        {colorMode === 'light' && <ImSun fontSize="22px" color="#9d6fff" />}
+        {colorMode !== 'light' && <FaMoon fontSize="22px" color="#ffea20" />}
       </ButtonStyled>
     </ToggleItem>
   )

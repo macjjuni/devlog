@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
-import { LayoutStyled } from './style'
-import Header from './header'
-import Main from './main'
-import Footer from './footer'
+import { LayoutStyled } from './Layout.style'
+import Header from './Header'
+import Main from './Main'
+import Footer from './Footer'
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (

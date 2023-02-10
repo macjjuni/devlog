@@ -1,6 +1,6 @@
-import { HeaderStyled } from './style'
-import Logo from './components/logo'
-import NavList from './components/navList'
+import { HeaderStyled } from './Header.style'
+import Logo from './components/Logo'
+import NavList from './components/NavList'
 
 const Header = () => {
   return (

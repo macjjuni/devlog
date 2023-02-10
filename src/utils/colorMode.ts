@@ -1,28 +1,28 @@
-export type ModeTypes = 'light' | 'dark'
-export type ModeReturnTypes = 'light' | 'dark' | null
+import { ColorModeTypes } from 'type/theme'
 
 // 컬러모드 표현방식 :: html 태그의 속성 이름과 로컬스토리지 key 값으로 사용
 export const colorSchema = 'theme'
 
 const colorMode = {
   localStorage: {
-    getColorMode: (): ModeTypes | null => {
-      return localStorage.getItem(colorSchema) as ModeTypes | null
+    getColorMode: (): ColorModeTypes => {
+      const mode = localStorage.getItem(colorSchema) as ColorModeTypes | null
+      return mode === null ? 'light' : mode
     },
-    setColorMode: (mode: ModeTypes) => {
+    setColorMode: (mode: ColorModeTypes) => {
       document.documentElement.setAttribute(colorSchema, mode)
       localStorage.setItem(colorSchema, mode)
     },
   },
-  getColorMode: (): ModeReturnTypes => {
-    const mode = (document.documentElement.getAttribute(colorSchema) as ModeReturnTypes) || null
+  getColorMode: (): ColorModeTypes => {
+    const mode = (document.documentElement.getAttribute(colorSchema) as ColorModeTypes) || null
     if (mode !== null) return mode
     return 'light'
   },
   isDark: () => {
     return window.matchMedia('(prefers-color-scheme: dark)').matches
   },
-  setColorMode: (mode: ModeTypes) => {
+  setColorMode: (mode: ColorModeTypes) => {
     document.documentElement.setAttribute(colorSchema, mode)
     localStorage.setItem(colorSchema, mode)
   },

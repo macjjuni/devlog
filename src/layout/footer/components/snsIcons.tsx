@@ -1,7 +1,7 @@
 import { FiGithub, FiInstagram } from 'react-icons/fi'
-import TistorySVG from './tistorySVG'
-import { UlStyled } from '../style'
-import LinkWrap from './linkWrap'
+import LinkWrap from './LinkWrap'
+import TistorySVG from './TistorySVG'
+import { UlStyled } from '../Footer.style'
 
 const SnsIcons = () => {
   return (

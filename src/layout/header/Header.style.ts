@@ -80,3 +80,42 @@ export const ButtonStyled = styled.button`
   & > svg:hover {
   }
 `
+
+export const MobileNav = {
+  Wrap: styled.div`
+    position: relative;
+  `,
+  Button: styled.button`
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    transition: 0.3s ease;
+    & > svg {
+      color: ${({ theme }) => theme.colors.gray.BLG800};
+    }
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    }
+  `,
+  MenuWrap: styled.ul`
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0;
+    border: 1px solid #000;
+    background-color: inherit;
+    width: 200px;
+    z-index: 1;
+  `,
+  MenuItem: styled.li`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  `,
+}
