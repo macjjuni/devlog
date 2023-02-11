@@ -16,7 +16,11 @@ const Work = ({ workList }: { workList: IWork[] }) => {
       {workList.map((work) => (
         <WorkList key={work.title} work={work} />
       ))}
-      {workList.length === 0 && <h2>작성 중입니다 😎</h2>}
+      {workList.length === 0 && (
+        <Text type="h1" variant="heading_sm">
+          준비 중입니다 😎
+        </Text>
+      )}
     </WorkWrap>
   )
 }
