@@ -5,9 +5,8 @@ export const light: ColorModeTypes = 'light'
 export const dark: ColorModeTypes = 'dark'
 
 interface IColorMode {
-  theme: ColorModeTypes | null
+  theme: ColorModeTypes
 }
-
 const initialState: IColorMode = {
   theme: null,
 }

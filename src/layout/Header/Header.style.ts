@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ColorModeTypes } from 'type/theme'
-import { light } from 'redux/slice/colorMode'
+import { dark } from 'redux/slice/colorMode'
 
 export const Header = styled.header`
   height: ${({ theme }) => theme.layout.header};
@@ -58,8 +58,8 @@ export const NavLink = styled(Link)<{ colormode: ColorModeTypes }>`
     transition: 0.3s ease;
     border-radius: 2px;
     background: ${({ theme, colormode }) => {
-      if (colormode === light) return theme.colors.gray.BLG700
-      else return theme.colors.gray.BLG400
+      if (colormode === dark) return theme.colors.gray.BLG400
+      else return theme.colors.gray.BLG700
     }};
   }
   &.active::after {

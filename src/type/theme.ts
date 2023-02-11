@@ -1,1 +1,1 @@
-export type ColorModeTypes = 'light' | 'dark'
+export type ColorModeTypes = 'light' | 'dark' | null

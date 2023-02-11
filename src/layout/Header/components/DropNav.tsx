@@ -1,4 +1,3 @@
-import colorMode from 'utils/colorMode'
 import { useState } from 'react'
 import { HiMenuAlt3 } from 'react-icons/hi'
 import { MobileNav } from '../Header.style'
@@ -15,7 +14,7 @@ const DropNav = () => {
         <HiMenuAlt3 fontSize={30} />
       </MobileNav.Button>
       {isDown && (
-        <MobileNav.MenuWrap className={colorMode.getColorMode()}>
+        <MobileNav.MenuWrap>
           <MobileNav.MenuItem>Home</MobileNav.MenuItem>
           <MobileNav.MenuItem>About</MobileNav.MenuItem>
         </MobileNav.MenuWrap>

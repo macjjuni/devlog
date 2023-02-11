@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 import { motion } from 'framer-motion'
 import { type ColorModeTypes } from 'type/theme'
-import { light } from 'redux/slice/colorMode'
+import { dark } from 'redux/slice/colorMode'
 
 export const Footer = styled.footer`
   position: absolute;
@@ -35,8 +35,8 @@ export const SNSItem = styled.li<{ colorMode: ColorModeTypes }>`
   cursor: pointer;
   &:hover {
     ${({ colorMode }) => {
-      if (colorMode === light) return 'box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;'
-      return 'box-shadow: rgba(255, 255, 255, 0.25) 0px 4px 8px -2px, rgba(255, 255, 255, 0.15) 0px 0px 0px 1px;'
+      if (colorMode === dark) return 'box-shadow: rgba(255, 255, 255, 0.25) 0px 4px 8px -2px, rgba(255, 255, 255, 0.15) 0px 0px 0px 1px;'
+      return 'box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;'
     }}
   }
   &:active {
@@ -68,8 +68,8 @@ export const SNSLink = styled(motion.a)`
 
 export const SVGStyled = styled.svg<{ colorMode: ColorModeTypes }>`
   fill: ${({ colorMode }) => {
-    if (colorMode === light) return '#000'
-    return '#fff'
+    if (colorMode === dark) return '#fff'
+    return '#000'
   }};
   transition: 0.3s ease;
 `

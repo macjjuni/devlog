@@ -1,21 +1,21 @@
 import { createGlobalStyle } from 'styled-components'
 import { type ColorModeTypes } from 'type/theme'
-import { light } from 'redux/slice/colorMode'
+import { dark } from 'redux/slice/colorMode'
 
 export const GlobalCSS = createGlobalStyle<{ colorMode: ColorModeTypes }>`
   html,
   body {
     color: ${({ theme, colorMode }) => {
-      if (colorMode === light) {
-        return theme.colors.gray.BLG900
+      if (colorMode === dark) {
+        return theme.colors.gray.BLG300
       }
-      return theme.colors.gray.BLG300
+      return theme.colors.gray.BLG900
     }};
     background: ${({ theme, colorMode }) => {
-      if (colorMode === light) {
-        return theme.colors.background.BASIC
+      if (colorMode === dark) {
+        return theme.colors.gray.BLG800
       }
-      return theme.colors.gray.BLG800
+      return theme.colors.background.BASIC
     }};
     padding: 0;
     margin: 0;
