@@ -31,7 +31,8 @@ const Voxel = ({ load, doneLoad }: { load: boolean; doneLoad: () => void }) => {
   useEffect(() => {
     if (progress === 100) {
       doneLoad()
-      spinRotate()
+      const isFocus = document.hasFocus()
+      if (isFocus) spinRotate()
     }
   }, [progress])
 
