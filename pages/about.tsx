@@ -10,6 +10,7 @@ export const AboutStyled = styled.div`
   width: 100%;
   margin: 0;
   user-select: none;
+  & > h2,
   & > p {
     font-family: 'NanumBarunGothic';
   }
@@ -18,12 +19,16 @@ export const AboutStyled = styled.div`
 const About = ({ posts = [] }: AboutPorps) => {
   return (
     <AboutStyled>
+      <Text type="h1" variant="heading_lg">
+        🙋🏻‍♂️ About
+      </Text>
+      <br />
       <Text type="p" variant="body">
         1년 차 프론트엔드 개발자 이준희입니다. 꾸준함이 생명이라는 인생 모토를 가지고 있으며, 개발을 통해 이것저것 만드는 걸 좋아합니다.
       </Text>
       <br />
       <Text type="p" variant="body">
-        개발 지식을 기록하는 블로그를 운영하면서 지금까지 200개 이상 포스팅을 작성했고 현재 진행 중입니다.
+        새롭게 알게 된 개발 지식을 블로그에 기록하면서 지금까지 200개 이상 포스팅을 작성했고 현재 진행 중입니다.
       </Text>
       <br />
       <Text type="p" variant="body">
