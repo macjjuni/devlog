@@ -9,7 +9,7 @@ import GoogleAnalystics from 'components/common/GoogleAnalytics'
 import WithNProgress from 'hoc/withNProgress'
 import { theme } from 'styles/theme'
 import Layout from 'layout'
-import Titles from 'components/views/Title'
+import Titles from 'components/common/Title'
 
 import 'styles/reset.css'
 import 'styles/font.css'
