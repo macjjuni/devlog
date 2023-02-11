@@ -109,12 +109,12 @@ const fontStyle = {
       line-height: 30px;
     `,
     text_md: css`
-      font-size: 14px;
-      line-height: 22px;
+      font-size: 16px;
+      line-height: 24px;
     `,
     text_sm: css`
-      font-size: 12px;
-      line-height: 17px;
+      font-size: 14px;
+      line-height: 18px;
     `,
     default: css``,
   },
@@ -148,12 +148,12 @@ const fontStyle = {
       line-height: 30px;
     `,
     text_md: css`
-      font-size: 14px;
-      line-height: 22px;
+      font-size: 16px;
+      line-height: 24px;
     `,
     text_sm: css`
-      font-size: 12px;
-      line-height: 17px;
+      font-size: 14px;
+      line-height: 18px;
     `,
     default: css``,
   },
