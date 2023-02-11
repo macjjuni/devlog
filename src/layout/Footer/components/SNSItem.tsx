@@ -1,4 +1,5 @@
 import type { FC, ReactNode } from 'react'
+import { useAppSelector } from 'redux/hook'
 import * as F from '../Footer.style'
 
 export interface ISNSItem {
@@ -9,8 +10,9 @@ export interface ISNSItem {
 }
 
 const SNSItem: FC<ISNSItem> = ({ href, target = '_blank', icon, title }) => {
+  const colorMode = useAppSelector((state) => state.colorMode.theme)
   return (
-    <F.SNSItem>
+    <F.SNSItem colorMode={colorMode}>
       <F.SNSLink href={href} target={target} title={title} whileHover={{ rotate: 8 }} transition={{ duration: 0.3 }}>
         {icon}
       </F.SNSLink>

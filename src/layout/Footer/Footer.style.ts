@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import { motion } from 'framer-motion'
-import { ColorModeTypes } from 'type/theme'
+import { type ColorModeTypes } from 'type/theme'
 import { light } from 'redux/slice/colorMode'
 
 export const Footer = styled.footer`
@@ -26,7 +26,7 @@ const blinkEffect = keyframes`
   100% { opacity: 1;}
 `
 
-export const SNSItem = styled.li`
+export const SNSItem = styled.li<{ colorMode: ColorModeTypes }>`
   font-size: 0;
   padding: 8px;
   margin-left: 14px;
@@ -34,7 +34,10 @@ export const SNSItem = styled.li`
   transition: box-shadow 0.3s ease;
   cursor: pointer;
   &:hover {
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    ${({ colorMode }) => {
+      if (colorMode === light) return 'box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;'
+      return 'box-shadow: rgba(255, 255, 255, 0.25) 0px 4px 8px -2px, rgba(255, 255, 255, 0.15) 0px 0px 0px 1px;'
+    }}
   }
   &:active {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
