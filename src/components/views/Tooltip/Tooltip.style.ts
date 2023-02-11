@@ -5,7 +5,7 @@ import { light } from 'redux/slice/colorMode'
 
 export const Tooltip = styled(motion.div)<{ colormode: ColorModeTypes }>`
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 5px);
   left: 50%;
   transform: translateX(-50%);
   padding: 2px 8px;

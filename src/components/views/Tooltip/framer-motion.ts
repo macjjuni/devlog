@@ -1,4 +1,4 @@
-export const y = 15
+export const y = 10
 
 export const TooltipAnimation = {
   initial: {
