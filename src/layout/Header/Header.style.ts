@@ -13,9 +13,7 @@ export const Header = styled.header`
   user-select: none;
 `
 
-export const Logo = styled(motion.h1)``
-
-export const LogoLink = styled(Link)`
+export const Logo = styled(motion(Link))`
   display: inline-block;
   font-size: 28px;
   font-family: 'Single Day', 'cursive';
@@ -23,7 +21,6 @@ export const LogoLink = styled(Link)`
 `
 
 export const Nav = styled.nav`
-  margin: 0;
   @media ${({ theme }) => theme.device.mobile} {
     display: none;
   }
