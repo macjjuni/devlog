@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor } from 'redux/store'
 import { ThemeProvider } from 'styled-components'
-// import InitColorMode from 'components/common/InitColorMode/InitColorMode'
+import InitialColorMode from 'components/common/InitialColorMode'
 import GlobalStyle from 'components/common/GlobalStyle'
 import GoogleAnalystics from 'components/common/GoogleAnalytics'
 import WithNProgress from 'hoc/withNProgress'
@@ -20,14 +20,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={theme}>
+          {/* OS에 설정된 컬러모드 초기화 */}
+          <InitialColorMode />
           {/* 전역 스타일 */}
           <GlobalStyle />
           {/* HTML title 개별적용 컴포넌트 */}
           <Titles />
           {/* 구글 애널리틱스 */}
           <GoogleAnalystics />
-          {/* 컬러모드 적용 컴포넌트 */}
-          {/* <InitColorMode /> */}
           <WithNProgress>
             <Layout>
               <Component {...pageProps} />
