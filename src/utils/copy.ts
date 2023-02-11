@@ -1,20 +1,19 @@
 type TextType = string
-type CopidReturnType = Promise<boolean>
 
-export const textCopy = async (text: TextType): CopidReturnType => {
+export const textCopy = async (text: TextType): Promise<boolean> => {
   try {
     if (navigator) {
       await navigator.clipboard.writeText(text)
-    } else {
-      const inputEle = document.createElement('input')
-      inputEle.style.position = 'absolute'
-      inputEle.style.top = '-9999px'
-      document.body.appendChild(inputEle)
-      inputEle.value = text
-      inputEle.select()
-      document.execCommand('copy')
-      document.body.removeChild(inputEle)
+      return true
     }
+    const inputEle = document.createElement('input')
+    inputEle.style.position = 'absolute'
+    inputEle.style.top = '-9999px'
+    document.body.appendChild(inputEle)
+    inputEle.value = text
+    inputEle.select()
+    document.execCommand('copy')
+    document.body.removeChild(inputEle)
     return true
   } catch (e) {
     console.error(e)
