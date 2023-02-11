@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-export const MailWrap = styled.div`
+export const Mail = styled.div`
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -11,7 +12,8 @@ export const MailWrap = styled.div`
     justify-content: flex-end;
   }
 `
-export const MailContainer = styled.div`
+export const MailWrap = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
