@@ -5,7 +5,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { colorModeSlice } from './slice/colorMode'
 
 const persistConfig = {
-  key: 'colorMode',
+  key: 'macjjuni',
   storage,
 }
 

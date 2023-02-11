@@ -5,10 +5,11 @@ export const light: ColorModeTypes = 'light'
 export const dark: ColorModeTypes = 'dark'
 
 interface IColorMode {
-  theme: ColorModeTypes
+  theme: ColorModeTypes | null
 }
+
 const initialState: IColorMode = {
-  theme: light,
+  theme: null,
 }
 
 export const colorModeSlice = createSlice({
