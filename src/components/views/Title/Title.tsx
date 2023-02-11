@@ -16,9 +16,9 @@ const Titles = () => {
     if (mainTitle) {
       if (currentPage) {
         setTitle(`${mainTitle} - ${currentPage.title}`)
-      } else {
-        setTitle(`${mainTitle} - 404 Not Found`)
+        return
       }
+      setTitle(`${mainTitle} - 404 Not Found`)
       return
     }
     // 메인 타이틀 없을 경우 에러메세지 출력
