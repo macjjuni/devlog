@@ -27,7 +27,6 @@ export const colors = {
     PLACEHOLDER: '#C9CDD2',
   },
   border: '#DEE2E6',
-  progress: '#61dafb',
   background: {
     DIM: 'rgba(0, 0 , 0, 0.6)',
     HIGHLIGHT: '#C9CDD2',

@@ -3,13 +3,13 @@ import { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import { colors } from 'styles/theme'
 
-const { progress } = colors
+const { primary } = colors
 
 const options = {
   speed: 200,
-  height: '3px',
+  height: '4px',
   showSpinner: false,
-  color: progress,
+  color: primary.MED,
 }
 
 NProgress.configure({ speed: options.speed, showSpinner: options.showSpinner })
