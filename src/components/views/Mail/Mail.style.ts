@@ -30,7 +30,7 @@ export const Spacer = styled.div`
 export const LottieCustom = styled.div`
   margin: 0 -10px;
 `
-export const MailText = styled.div`
+export const MailText = styled.h3`
   position: relative;
   top: 1px;
   ${({ theme }) => theme.fontStyle.pc.text_lg};
