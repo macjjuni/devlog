@@ -30,13 +30,16 @@ const Heads = () => {
 
   return (
     <Head>
+      {/* HTML Meta Tags */}
+      <title>{htmlTitle}</title>
+      <meta name="description" content="꾸생, 프론트엔드 개발자, 포트폴리오, kkusaeng, macjjuni, juni_official" />
+      {/* og Meta Tags */}
       <meta property="og:title" content="꾸생의 포트폴리오" />
       <meta property="og:site_name" content="꾸생의 포트폴리오" />
       <meta property="og:url" content="https://www.macjjuni.com" />
       <meta property="og:description" content="꾸생의 웹 프론트엔드 개발자 포트폴리오" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content="https://www.macjjuni.com/image/cover.webp" />
-      <title>{htmlTitle}</title>
     </Head>
   )
 }
