@@ -33,6 +33,10 @@
 </div>
 <br>
 
+## 📸 Initial Screen
+
+<img width="1508" alt="image" src="https://user-images.githubusercontent.com/38034518/218312477-cb8f8d1e-ab76-4939-9366-80d6302f1004.png">
+
 ## 🌲 Project Tree
 
 ```
