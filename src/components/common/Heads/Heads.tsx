@@ -39,7 +39,7 @@ const Heads = () => {
       <meta property="og:url" content="https://www.macjjuni.com" />
       <meta property="og:description" content="꾸생의 웹 프론트엔드 개발자 포트폴리오" />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content="https://www.macjjuni.com/image/cover.webp" />
+      <meta property="og:image" content="https://www.macjjuni.com/image/cover.jpg" />
     </Head>
   )
 }
