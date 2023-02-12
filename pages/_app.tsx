@@ -18,14 +18,15 @@ import 'nprogress/nprogress.css'
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <Provider store={store}>
+      {/* HTML title, meta 태그 컴포넌트 */}
+      <Heads />
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={theme}>
           {/* OS에 설정된 컬러모드 초기화 */}
           <InitialColorMode />
           {/* 전역 스타일 */}
           <GlobalStyle />
-          {/* HTML title 개별적용 컴포넌트 */}
-          <Heads />
+
           {/* 구글 애널리틱스 */}
           <GoogleAnalystics />
           <WithNProgress>
