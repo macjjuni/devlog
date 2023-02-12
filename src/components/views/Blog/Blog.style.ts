@@ -7,13 +7,9 @@ export const Blog = styled.div`
 
 export const BlogWrap = styled.div`
   display: flex;
-  margin-top: 20px;
+  padding: 18px 0;
   overflow-x: auto;
-  scroll-snap-type: x proximity;
-
-  @media ${({ theme }) => theme.device.mobile} {
-    margin-bottom: 20px;
-  }
+  scroll-snap-type: none;
 `
 
 export const Article = styled.article`
