@@ -32,14 +32,20 @@ const Heads = () => {
     <Head>
       {/* HTML Meta Tags */}
       <title>{htmlTitle}</title>
-      <meta name="description" content="꾸생, 프론트엔드 개발자, 포트폴리오, kkusaeng, macjjuni, juni_official" />
-      {/* og Meta Tags */}
-      <meta property="og:title" content="꾸생의 포트폴리오" />
-      <meta property="og:site_name" content="꾸생의 포트폴리오" />
-      <meta property="og:url" content="https://www.macjjuni.com" />
-      <meta property="og:description" content="꾸생의 웹 프론트엔드 개발자 포트폴리오" />
+      <meta name="description" content="꾸생의 프론트엔드 개발자 포트폴리오, kkusaeng, macjjuni, juni_official" />
+      {/* Facebook Meta Tags */}
+      <meta property="og:url" content="https://www.macjjuni.com/" />
       <meta property="og:type" content="website" />
+      <meta property="og:title" content="꾸생의 포트폴리오" />
+      <meta property="og:description" content="꾸생의 프론트엔드 개발자 포트폴리오, kkusaeng, macjjuni, juni_official" />
       <meta property="og:image" content="https://www.macjjuni.com/image/cover.jpg" />
+      {/* Twitter Meta Tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta property="twitter:domain" content="macjjuni.com" />
+      <meta property="twitter:url" content="https://www.macjjuni.com/" />
+      <meta name="twitter:title" content="꾸생의 포트폴리오" />
+      <meta name="twitter:description" content="꾸생의 프론트엔드 개발자 포트폴리오, kkusaeng, macjjuni, juni_official" />
+      <meta name="twitter:image" content="https://www.macjjuni.com/image/cover.jpg" />
     </Head>
   )
 }
