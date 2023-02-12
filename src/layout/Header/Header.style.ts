@@ -21,9 +21,9 @@ export const Logo = styled(motion(Link))`
 `
 
 export const Nav = styled.nav`
-  @media ${({ theme }) => theme.device.mobile} {
+  /* @media ${({ theme }) => theme.device.mobile} {
     display: none;
-  }
+  } */
 `
 
 export const NavList = styled.ul`

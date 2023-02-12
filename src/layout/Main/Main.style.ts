@@ -32,7 +32,7 @@ export const VexelWrap = styled.section`
     top: auto;
     left: auto;
     width: 100%;
-    height: 320px;
+    height: 250px;
     transform: none;
   }
 `
@@ -49,5 +49,6 @@ export const MotionWrap = styled(motion.section)`
   // Mobile CSS
   @media ${({ theme }) => theme.device.mobile} {
     width: 100%;
+    margin-top: -12px;
   }
 `
