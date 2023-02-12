@@ -4,7 +4,7 @@ import Spinner from 'components/views/Spinner'
 import { ReactNode, useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { pages } from 'router'
-import { MainStyled, VexelWrap, MotionStyled } from './Main.style'
+import * as M from './Main.style'
 import { MainAnimation, xWidth } from './framer-motion'
 
 // const Voxel = dynamic(() => import('components/views/Voxel'), {
@@ -32,15 +32,15 @@ const Main = ({ children }: { children: ReactNode }) => {
   }, [])
 
   return (
-    <MainStyled>
-      <VexelWrap>
+    <M.Main>
+      <M.VexelWrap>
         <Voxel load={load} doneLoad={doneLoad} />
         {!load && <Spinner />}
-      </VexelWrap>
-      <MotionStyled {...MainAnimation} key={route}>
+      </M.VexelWrap>
+      <M.MotionWrap {...MainAnimation} key={route}>
         {children}
-      </MotionStyled>
-    </MainStyled>
+      </M.MotionWrap>
+    </M.Main>
   )
 }
 

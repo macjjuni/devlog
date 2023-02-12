@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-export const MainStyled = styled(motion.main)`
+export const Main = styled(motion.main)`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -37,7 +37,7 @@ export const VexelWrap = styled.section`
   }
 `
 
-export const MotionStyled = styled(motion.section)`
+export const MotionWrap = styled(motion.section)`
   position: relative;
   display: flex;
   justify-content: flex-start;
