@@ -6,7 +6,7 @@ import { pages } from 'router'
 const useMultiEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 const mainTitle: string | undefined = process.env.NEXT_PUBLIC_TITLE
 
-const Titles = () => {
+const Heads = () => {
   const [htmlTitle, setTitle] = useState(mainTitle)
   const { route } = useRouter()
 
@@ -30,13 +30,14 @@ const Titles = () => {
 
   return (
     <Head>
-      <meta property="og:type" content="website" />
       <meta property="og:title" content="꾸생의 포트폴리오" />
+      <meta property="og:site_name" content="꾸생의 포트폴리오" />
       <meta property="og:url" content="https://www.macjjuni.com" />
-      <meta property="og:image" content="https://www.macjjuni.com/image/cover.webp" />
       <meta property="og:description" content="꾸생의 웹 프론트엔드 개발자 포트폴리오" />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content="https://www.macjjuni.com/image/cover.webp" />
       <title>{htmlTitle}</title>
     </Head>
   )
 }
-export default Titles
+export default Heads

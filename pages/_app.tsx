@@ -9,7 +9,7 @@ import GoogleAnalystics from 'components/common/GoogleAnalytics'
 import WithNProgress from 'hoc/withNProgress'
 import { theme } from 'styles/theme'
 import Layout from 'layout'
-import Titles from 'components/common/Title'
+import Heads from 'components/common/Heads'
 
 import 'styles/reset.css'
 import 'styles/font.css'
@@ -25,7 +25,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           {/* 전역 스타일 */}
           <GlobalStyle />
           {/* HTML title 개별적용 컴포넌트 */}
-          <Titles />
+          <Heads />
           {/* 구글 애널리틱스 */}
           <GoogleAnalystics />
           <WithNProgress>
