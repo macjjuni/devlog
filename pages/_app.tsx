@@ -26,7 +26,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <InitialColorMode />
           {/* 전역 스타일 */}
           <GlobalStyle />
-
           {/* 구글 애널리틱스 */}
           <GoogleAnalystics />
           <WithNProgress>
