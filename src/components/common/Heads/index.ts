@@ -1,1 +1,1 @@
-export { defualt } from './Heads'
+export { default } from './Heads'
