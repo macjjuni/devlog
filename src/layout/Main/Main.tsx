@@ -33,13 +33,13 @@ const Main = ({ children }: { children: ReactNode }) => {
 
   return (
     <M.Main>
-      <M.VexelWrap>
+      <M.LeftWrap>
         <Voxel load={load} doneLoad={doneLoad} />
         {!load && <Spinner />}
-      </M.VexelWrap>
-      <M.MotionWrap {...MainAnimation} key={route}>
+      </M.LeftWrap>
+      <M.RightWrap {...MainAnimation} key={route}>
         {children}
-      </M.MotionWrap>
+      </M.RightWrap>
     </M.Main>
   )
 }

@@ -15,29 +15,23 @@ export const Main = styled(motion.main)`
   }
 `
 
-export const VexelWrap = styled.section`
-  position: fixed;
-  top: 50%;
-  left: calc((100vw - 1200px) / 2);
-  transform: translateY(-50%);
-  width: 600px;
-  height: 600px;
+export const LeftWrap = styled.section`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+
   // Mobile CSS
-  @media screen and (max-width: 1200px) {
-    left: 0;
-    width: calc(100vw / 2);
-  }
   @media ${({ theme }) => theme.device.mobile} {
     position: relative;
     top: auto;
     left: auto;
     width: 100%;
-    height: 250px;
-    transform: none;
   }
 `
 
-export const MotionWrap = styled(motion.section)`
+export const RightWrap = styled(motion.section)`
   position: relative;
   display: flex;
   justify-content: flex-start;
