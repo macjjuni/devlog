@@ -5,12 +5,17 @@ import { ColorModeTypes } from 'type/theme'
 import { dark } from 'redux/slice/colorMode'
 
 export const Header = styled.header`
+  position: sticky;
+  top: 0px;
   height: ${({ theme }) => theme.layout.header};
   padding: 0 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   user-select: none;
+  z-index: 1;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
 `
 
 export const Logo = styled(motion(Link))`
