@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hook'
 import { toggle } from 'redux/slice/colorMode'
 import { FaMoon } from 'react-icons/fa'
@@ -18,4 +19,4 @@ const ColorToggleButton = () => {
   )
 }
 
-export default ColorToggleButton
+export default memo(ColorToggleButton)
