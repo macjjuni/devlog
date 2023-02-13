@@ -13,7 +13,7 @@ const Voxel = ({ load, doneLoad }: { load: boolean; doneLoad: () => void }) => {
   // Voxel 자동 회전
   const spinRotate = () => {
     intervalId.current = setInterval(() => {
-      setRotate((prev: number) => prev + 0.05)
+      setRotate((prev: number) => prev + 0.03)
     }, 100)
   }
 
