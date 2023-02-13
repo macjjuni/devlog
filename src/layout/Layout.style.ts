@@ -6,6 +6,9 @@ export const Layout = styled.div`
   max-width: ${deviceSizes.laptop};
   min-height: 100vh;
   margin: 0 auto;
-  padding-bottom: ${({ theme }) => theme.layout.footer};
+  padding-bottom: ${({ theme }) => theme.layout.desktop.footer};
+  @media ${({ theme }) => theme.device.mobile} {
+    padding-bottom: ${({ theme }) => theme.layout.mobile.footer};
+  }
   /* overflow: auto; */
 `
