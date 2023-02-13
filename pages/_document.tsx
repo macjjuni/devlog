@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
+import Favicon from 'components/common/Favicon'
 
 export default class CustomDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -14,7 +15,7 @@ export default class CustomDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet" />
-          <meta name="description" content="꾸생의 포트폴리오, kkusaeng, macjjuni" />
+          <Favicon />
           {this.props.styles}
         </Head>
         <body>
