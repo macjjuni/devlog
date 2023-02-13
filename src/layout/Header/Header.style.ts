@@ -12,7 +12,14 @@ export const Header = styled.header`
   z-index: 1;
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
+
+  & > .mobile-nav {
+    display: none;
+  }
   @media ${({ theme }) => theme.device.mobile} {
     height: ${({ theme }) => theme.layout.mobile.header};
+    & > .mobile-nav {
+      display: flex;
+    }
   }
 `
