@@ -1,4 +1,4 @@
-import * as L from '../Header.style'
+import * as L from './Logo.style'
 
 const Logo = () => {
   return (

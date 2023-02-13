@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import { useAppSelector } from 'redux/hook'
 import { pages } from 'router'
-import ColorToggleButton from './ColorToggleButton'
-import * as N from '../Header.style'
+import ColorToggleButton from '../ColorToggleButton'
+import * as N from './NavList.style'
 
 const MenuList = () => {
   const colorMode = useAppSelector((state) => state.colorMode.theme)

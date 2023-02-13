@@ -10,5 +10,4 @@ export const Layout = styled.div`
   @media ${({ theme }) => theme.device.mobile} {
     padding-bottom: ${({ theme }) => theme.layout.mobile.footer};
   }
-  /* overflow: auto; */
 `

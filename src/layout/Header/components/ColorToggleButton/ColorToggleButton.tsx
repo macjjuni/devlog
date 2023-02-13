@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from 'redux/hook'
 import { toggle } from 'redux/slice/colorMode'
 import { FaMoon } from 'react-icons/fa'
 import { ImSun } from 'react-icons/im'
-import * as T from '../Header.style'
+import * as T from './ColorToggleButton.style'
 
 const ColorToggleButton = () => {
   const colorMode = useAppSelector((state) => state.colorMode.theme)
