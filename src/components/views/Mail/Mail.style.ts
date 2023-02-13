@@ -33,7 +33,7 @@ export const LottieCustom = styled.div`
 export const MailText = styled.h3`
   position: relative;
   top: 1px;
-  ${({ theme }) => theme.fontStyle.pc.text_lg};
+  ${({ theme }) => theme.fontStyle.desktop.text_lg};
 
   &::after {
     content: '';
