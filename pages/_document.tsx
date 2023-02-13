@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
+import Font from 'components/common/Font'
 import Favicon from 'components/common/Favicon'
 
 export default class CustomDocument extends Document {
@@ -12,9 +13,7 @@ export default class CustomDocument extends Document {
     return (
       <Html lang="ko">
         <Head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet" />
+          <Font />
           <Favicon />
           {this.props.styles}
         </Head>
