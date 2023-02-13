@@ -13,7 +13,6 @@ import Heads from 'components/common/Heads'
 
 import 'styles/reset.css'
 import 'styles/font.css'
-import 'nprogress/nprogress.css'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
