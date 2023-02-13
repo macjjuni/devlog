@@ -4,7 +4,9 @@ import Text from 'components/common/Text'
 import { getWorks } from 'api/work/getWorks'
 import { IWork } from 'type/work'
 
-const WorkWrap = styled.div``
+const WorkWrap = styled.div`
+  width: 100%;
+`
 
 const Work = ({ workList }: { workList: IWork[] }) => {
   return (
