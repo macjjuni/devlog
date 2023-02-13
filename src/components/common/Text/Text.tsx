@@ -13,7 +13,6 @@ export type IText = {
   color?: string
   style?: CSSProperties
   className?: string
-  onClick?: () => void
 }
 
 const TextStyled = styled(({ type, children, ...props }: IText) => createElement(type, props, children))`
@@ -32,12 +31,9 @@ const TextStyled = styled(({ type, children, ...props }: IText) => createElement
   }
 `
 
-const Text: FC<IText> = ({ children, type, variant = 'default', ellipsis = false, fullwidth = false, color, fontSize, style, className = '', onClick }) => {
-  const handleClick = () => {
-    if (onClick) onClick()
-  }
+const Text: FC<IText> = ({ children, type, variant = 'default', ellipsis = false, fullwidth = false, color, fontSize, style, className = '' }) => {
   return (
-    <TextStyled type={type} variant={variant} fullwidth={fullwidth ? 1 : 0} ellipsis={ellipsis ? 1 : 0} style={{ ...style, color, fontSize }} className={className} onClick={handleClick}>
+    <TextStyled type={type} variant={variant} fullwidth={fullwidth ? 1 : 0} ellipsis={ellipsis ? 1 : 0} style={{ ...style, color, fontSize }} className={className}>
       {children}
     </TextStyled>
   )
