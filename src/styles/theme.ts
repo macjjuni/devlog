@@ -14,9 +14,16 @@ const device = {
   laptop: `screen and (max-width: ${deviceSizes.laptop})`,
 }
 const layout = {
-  header: '70px',
-  main: `calc(100vh - 138px)`,
-  footer: '68px',
+  desktop: {
+    header: '70px',
+    main: `calc(100vh - 138px)`,
+    footer: '68px',
+  },
+  mobile: {
+    header: '60px',
+    main: `calc(100vh - 128px)`,
+    footer: '68px',
+  },
 }
 
 export const colors = {
@@ -78,7 +85,7 @@ export const colors = {
 
 // Typography Font Style
 const fontStyle = {
-  pc: {
+  desktop: {
     heading_xlg: css`
       font-size: 44px;
       line-height: 64px;

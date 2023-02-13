@@ -19,8 +19,8 @@ const TextStyled = styled(({ type, children, ...props }: IText) => createElement
   ${({ fullwidth }) => (fullwidth ? fullwidthStyle : '')}
   ${({ ellipsis }) => (ellipsis ? ellipsisStyle : '')}
   ${({ theme, variant }) => {
-    if (variant) return theme.fontStyle.pc[variant]
-    return theme.fontStyle.pc.default
+    if (variant) return theme.fontStyle.desktop[variant]
+    return theme.fontStyle.desktop.default
   }}
     // Responsive Font Style
     @media ${({ theme }) => theme.device.mobile} {

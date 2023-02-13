@@ -8,10 +8,11 @@ export const Main = styled(motion.main)`
   justify-content: flex-end;
   align-items: center;
   // 100vh - ( header + footer )
-  min-height: calc(100vh - (${({ theme }) => theme.layout.header} + ${({ theme }) => theme.layout.footer}));
+  min-height: calc(100vh - (${({ theme }) => theme.layout.desktop.header} + ${({ theme }) => theme.layout.desktop.footer}));
   // 모바일 스타일
   @media ${({ theme }) => theme.device.mobile} {
     display: block;
+    min-height: calc(100vh - (${({ theme }) => theme.layout.mobile.header} + ${({ theme }) => theme.layout.mobile.footer}));
   }
 `
 

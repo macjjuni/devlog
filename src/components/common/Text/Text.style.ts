@@ -12,7 +12,7 @@ export const ellipsisStyle = css`
 
 export const generateStyle = (variant: TypoVariantTypes) => {
   const typoStyle = css`
-    ${({ theme }) => theme.fontStyle.pc[variant]}
+    ${({ theme }) => theme.fontStyle.desktop[variant]}
   `
   return typoStyle
 }

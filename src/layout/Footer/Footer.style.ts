@@ -11,8 +11,11 @@ export const Footer = styled.footer`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: ${({ theme }) => theme.layout.footer};
+  height: ${({ theme }) => theme.layout.desktop.footer};
   padding: 16px;
+  @media ${({ theme }) => theme.device.mobile} {
+    height: ${({ theme }) => theme.layout.mobile.footer};
+  }
 `
 
 export const SNSList = styled.ul`

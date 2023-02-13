@@ -7,7 +7,7 @@ import { dark } from 'redux/slice/colorMode'
 export const Header = styled.header`
   position: sticky;
   top: 0px;
-  height: ${({ theme }) => theme.layout.header};
+  height: ${({ theme }) => theme.layout.desktop.header};
   padding: 0 16px;
   display: flex;
   justify-content: space-between;
@@ -16,6 +16,9 @@ export const Header = styled.header`
   z-index: 1;
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
+  @media ${({ theme }) => theme.device.mobile} {
+    height: ${({ theme }) => theme.layout.mobile.header};
+  }
 `
 
 export const Logo = styled(motion(Link))`
@@ -51,7 +54,7 @@ export const NavLink = styled(Link)<{ colormode: ColorModeTypes }>`
   align-items: center;
   height: 40px;
   padding: 5px 10px;
-  ${({ theme }) => theme.fontStyle.pc.heading_md};
+  ${({ theme }) => theme.fontStyle.desktop.heading_md};
 
   &::after {
     content: '';
