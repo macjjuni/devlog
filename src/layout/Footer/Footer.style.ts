@@ -22,6 +22,19 @@ export const SNSList = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  & > li:first-child > a > svg {
+    width: 30px;
+    height: 30px;
+  }
+  & > li:nth-child(2) > a > svg {
+    width: 25px;
+    height: 25px;
+  }
+  & > li:last-child > a > svg {
+    width: 30px;
+    height: 30px;
+  }
 `
 
 const blinkEffect = keyframes`
@@ -31,7 +44,8 @@ const blinkEffect = keyframes`
 
 export const SNSItem = styled.li<{ colorMode: ColorModeTypes }>`
   font-size: 0;
-  padding: 8px;
+  width: 42px;
+  height: 42px;
   margin-left: 14px;
   border-radius: 50%;
   transition: box-shadow 0.3s ease;
@@ -59,8 +73,8 @@ export const SNSLink = styled(motion.a)`
   &::after {
     content: '';
     position: absolute;
-    bottom: -2px;
-    right: -2px;
+    bottom: 6px;
+    right: 6px;
     width: 8px;
     height: 8px;
     background-color: ${({ theme }) => theme.colors.system.SUCCESS};
