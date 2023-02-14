@@ -26,7 +26,7 @@ const MobileNav = () => {
   }, [])
 
   return (
-    <M.MobileNav>
+    <M.MobileNav className="mobile-nav">
       <ColorToggleButton />
       <M.NavToggleButton onClick={handleToggle}>
         <CgMenuRight color={colorMode === dark ? '#fff' : '#000'} fontSize={32} />
