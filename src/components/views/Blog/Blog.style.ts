@@ -72,7 +72,6 @@ export const BlogTitle = styled(Text)`
   left: 8px;
   width: calc(100% - 10px);
   color: #fff;
-  font-family: 'NanumBarunGothic';
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

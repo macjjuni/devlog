@@ -22,7 +22,7 @@ const DropNav = ({ closeNav }: { closeNav: () => void }) => {
 
   return (
     <M.NavWrap ref={dropRef} {...MobileNavAnimation}>
-      <M.NavList colorMode={colorMode}>
+      <M.NavList className="themeBgc" colorMode={colorMode}>
         {pages.map((page) => (
           <M.NavItem key={page.id}>
             <M.NavLink href={page.path}>{page.title}</M.NavLink>

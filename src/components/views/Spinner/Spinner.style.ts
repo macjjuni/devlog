@@ -18,7 +18,6 @@ export const LoadBackground = styled.div`
   width: 100vw;
   height: 100vh;
   opacity: 1;
-  z-index: 9999;
   transition: opacity 0.6s ease;
 `
 
@@ -27,6 +26,7 @@ export const LoadWrap = styled.div`
   top: 46%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 9999;
 
   & > div > .dot:nth-last-child(1) {
     animation: ${LoadEffect} 0.6s 0.1s linear infinite;

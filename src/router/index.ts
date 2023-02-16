@@ -11,9 +11,4 @@ export const pages: IPages[] = [
     path: '/about',
     title: 'About',
   },
-  {
-    id: '2',
-    path: '/work',
-    title: 'Work',
-  },
 ]

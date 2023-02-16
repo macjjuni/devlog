@@ -1,7 +1,7 @@
 import { FiGithub, FiInstagram } from 'react-icons/fi'
-import SNSItem from './SNSItem'
-import TistoryIcon from './TistoryIcon'
-import * as F from '../Footer.style'
+import SNSItem from '../SNSItem/SNSItem'
+import TistoryIcon from '../TistorySVG/TistoryIcon'
+import * as F from './SNSIcons.style'
 
 const SNSIcons = () => {
   return (

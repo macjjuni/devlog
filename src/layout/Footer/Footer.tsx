@@ -1,14 +1,11 @@
 import { memo } from 'react'
-import Text from 'components/common/Text'
 import * as F from './Footer.style'
-import SNSIcons from './components/SNSIcons'
+import SNSIcons from './components/SNSIcons/SNSIcons'
 
 const Footer = () => {
   return (
     <F.Footer>
-      <Text type="p" variant="text_lg">
-        © {new Date().getFullYear()} kkusaeng.
-      </Text>
+      © {new Date().getFullYear()} kkusaeng.
       <SNSIcons />
     </F.Footer>
   )

@@ -44,12 +44,6 @@ export const NavList = styled.ul<{ colorMode: ColorModeTypes }>`
     border-bottom: none;
   }
   transition: background-color 0.3s ease;
-  background-color: ${({ colorMode, theme }) => {
-    if (colorMode === dark) {
-      return theme.colors.gray.BLG700
-    }
-    return theme.colors.gray.BLG100
-  }};
 `
 
 export const NavItem = styled.li`
@@ -60,7 +54,9 @@ export const NavItem = styled.li`
   height: 54px;
 `
 export const NavLink = styled(Link)`
-  ${({ theme }) => theme.fontStyle.desktop.heading_lg}
   width: 100%;
   text-align: center;
+  ${({ theme }) => theme.fontStyle.desktop.heading_sm}
+  font-style: italic;
+  font-weight: bold;
 `

@@ -9,7 +9,7 @@ export const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   user-select: none;
-  z-index: 1;
+  z-index: 100;
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
 

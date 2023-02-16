@@ -1,24 +1,13 @@
-// import dynamic from 'next/dynamic'
-import Voxel from 'components/views/Voxel'
-import Spinner from 'components/views/Spinner'
-import { ReactNode, useEffect, useState, useCallback } from 'react'
+import { ReactNode, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
+import { useAppSelector } from 'redux/hook'
 import { pages } from 'router'
 import * as M from './Main.style'
 import { MainAnimation, xWidth } from './framer-motion'
 
-// const Voxel = dynamic(() => import('components/views/Voxel'), {
-//   ssr: false,
-// })
-
 const Main = ({ children }: { children: ReactNode }) => {
-  // 스피너랑 복셀 컴포넌트 렌더링
-  const [load, setLoad] = useState(false)
+  const colorMode = useAppSelector((state) => state.colorMode.theme)
   const { events, route } = useRouter()
-
-  const doneLoad = () => {
-    setLoad(true)
-  }
 
   const handleStart = useCallback((nextPath: string) => {
     const currentPath = window.location.pathname
@@ -29,17 +18,12 @@ const Main = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     events.on('routeChangeStart', handleStart)
+    return () => events.off('routeChangeStart', handleStart)
   }, [])
 
   return (
-    <M.Main>
-      <M.LeftWrap>
-        <Voxel load={load} doneLoad={doneLoad} />
-        {!load && <Spinner />}
-      </M.LeftWrap>
-      <M.RightWrap {...MainAnimation} key={route}>
-        {children}
-      </M.RightWrap>
+    <M.Main {...MainAnimation} key={route} colormode={colorMode}>
+      {children}
     </M.Main>
   )
 }
