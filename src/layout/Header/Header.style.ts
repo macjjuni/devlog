@@ -10,8 +10,8 @@ export const Header = styled.header`
   align-items: center;
   user-select: none;
   z-index: 100;
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 
   & > .mobile-nav {
     display: none;

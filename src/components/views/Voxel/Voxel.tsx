@@ -8,6 +8,9 @@ import * as V from './Voxel.style'
 // 트래픽을 줄이겠다는 강한 의지!
 const url = process.env.NEXT_PUBLIC_VOXEL_URL || '/voxel/juni-coding-voxel.gltf'
 
+// 해당 주소에서만 Voxel 보이기
+const accessRoutes = ['/about']
+
 const Voxel = ({ load, doneLoad }: { load: boolean; doneLoad: () => void }) => {
   const { route } = useRouter()
   const [isTransparent, setTransparent] = useState<boolean>(false)
@@ -17,7 +20,7 @@ const Voxel = ({ load, doneLoad }: { load: boolean; doneLoad: () => void }) => {
 
   // Voxel 회전
   const spinRotate = () => {
-    if (intervalId.current === null && route !== '/') {
+    if (intervalId.current === null && accessRoutes.includes(route)) {
       intervalId.current = setInterval(() => {
         setRotate((prev: number) => prev + 0.03)
       }, 100)
@@ -49,7 +52,7 @@ const Voxel = ({ load, doneLoad }: { load: boolean; doneLoad: () => void }) => {
   }, [])
 
   useEffect(() => {
-    if (route !== '/') {
+    if (accessRoutes.includes(route)) {
       spinRotate()
       setTransparent(false)
       return

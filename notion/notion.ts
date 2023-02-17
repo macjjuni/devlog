@@ -30,7 +30,8 @@ export const getDatabaseItems = async (databaseId: string, option?: DatabaseQuer
         {
           property: propertyTable.Published,
           status: {
-            equals: '비공개',
+            // 공개인 포스팅만 가져오기
+            equals: '공개',
           },
         },
         {
@@ -56,7 +57,6 @@ export const getPageItem = async (pageId: string) => {
   const pageItem = await notion.pages.retrieve({
     page_id: pageId,
   })
-
   return pageItem
 }
 
@@ -73,12 +73,10 @@ export const getSearchItems = async (query: string) => {
     },
     page_size: 12,
   })
-
   return searchItems.results as PageObjectResponse[]
 }
 
 export const getPageContent = async (pageId: string) => {
   const recordMap = await reactNotionApi.getPage(pageId)
-
   return recordMap
 }

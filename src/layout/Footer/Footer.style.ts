@@ -5,9 +5,7 @@ export const blinkEffect = keyframes`
   100% { opacity: 1;}
 `
 export const Footer = styled.footer`
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;

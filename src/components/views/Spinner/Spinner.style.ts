@@ -26,7 +26,7 @@ export const LoadWrap = styled.div`
   top: 46%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999;
+  z-index: 0;
 
   & > div > .dot:nth-last-child(1) {
     animation: ${LoadEffect} 0.6s 0.1s linear infinite;
@@ -44,5 +44,5 @@ export const Dot = styled.div`
   height: 15px;
   margin: 0 0.2rem;
   border-radius: 15px;
-  background-color: #3eda16;
+  background-color: ${({ theme }) => theme.colors.system.ERROR};
 `

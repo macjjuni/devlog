@@ -7,7 +7,7 @@ export const Main = styled(motion.main)<{ colormode: ColorModeTypes }>`
   min-height: calc(100vh - (${({ theme }) => theme.layout.desktop.header} + ${({ theme }) => theme.layout.desktop.footer}));
 
   & > section {
-    height: ${({ theme }) => theme.layout.desktop.main};
+    min-height: ${({ theme }) => theme.layout.desktop.main};
     padding: 16px;
   }
 
