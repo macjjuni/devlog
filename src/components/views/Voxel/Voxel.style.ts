@@ -16,9 +16,9 @@ export const VoxelWrap = styled.div`
 
 export const Voxel = styled.div`
   position: sticky;
-  top: calc((100vh / 2) - 300px);
-  width: 600px;
-  height: 600px;
+  top: calc((100vh / 2) - 250px);
+  width: 500px;
+  height: 500px;
 
   @media screen and (max-width: 1200px) {
     width: calc(100vw / 2);

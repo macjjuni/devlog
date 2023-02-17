@@ -42,14 +42,18 @@ export const GlobalCSS = createGlobalStyle<{ colorMode: ColorModeTypes }>`
   }
 
   /* box-shadow:rgba(0, 0, 33, 0.07) 0px 16px 22.4px 4.8px,rgba(0, 0, 33, 0.05) 0px 3.2px 16px 0px,rgba(0, 0, 33, 0.07) 0px 0px 1px 0px; */
+  
   /* 노션 스타일 */
   :root {
     --notion-max-width: 100%;
   }
 
   .notion-app {
-    font: inherit;
     min-height: auto;
+    font-size: 18px;
+    @media ${({ theme }) => theme.device.mobile} {
+      font-size: 16px;
+    }
   }
 
   .notion-page-cover-wrapper {
@@ -83,7 +87,7 @@ export const GlobalCSS = createGlobalStyle<{ colorMode: ColorModeTypes }>`
     transition: 0.3s ease;
 
     @media ${({ theme }) => theme.device.mobile} {
-      padding: 12px;
+      padding: 12px 12px 48px 12px;
     }
   }
   // 노션 상세페이지 다크모드 배경색
@@ -98,19 +102,33 @@ export const GlobalCSS = createGlobalStyle<{ colorMode: ColorModeTypes }>`
 
   .notion-aside-table-of-contents {
     min-width: 200px;
-    max-width: 300px;
+    max-width: 280px;
     padding: 6px;
     transition: background-color 0.3s ease;
   }
 
   .notion-aside-table-of-contents-header {
+    position: relative;
     display: block;
     width: 100%;
     font-size: 20px;
     font-weight: bold;
     padding: 4px 0;
-    text-align: left;
+    margin-bottom: 20px;
+    text-align: center;
     border-radius: 2px;
+  }
+  .notion-aside-table-of-contents-header::after {
+    content: '';
+    position: absolute;
+    bottom : -13px;
+    left:50%; 
+    width: 2px;
+    height: 12px;
+    background-color: #000;
+  }
+  .dark-mode .notion-aside-table-of-contents-header::after {
+    background-color: #fff;
   }
 
   .notion-table-of-contents > a > span {
@@ -120,5 +138,4 @@ export const GlobalCSS = createGlobalStyle<{ colorMode: ColorModeTypes }>`
     overflow: hidden;
     font-size: 16px;
   }
-
 `
