@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import Pagination from '../notion/components/common/Pagination'
 import { POSTS_PER_PAGE } from '../notion/config'
 import { getCachedDatabaseItems } from '../notion/utils/getCachedDatabaseItems'
+// import Category from '../notion/components/common/Category'
 import CardList from '../notion/components/card/CardList'
 import { CardData } from '../notion/types/types'
 import { parseDatabaseItems } from '../notion/utils/parseDatabaseItems'
@@ -26,7 +27,7 @@ const Home = ({ data }: IHome) => {
 
   return (
     <IndexStyled>
-      <aside>kku. DevLog</aside>
+      {/* <Category /> */}
       <CardList data={postData} />
       <Pagination current={currentPage} total={data.length} />
     </IndexStyled>

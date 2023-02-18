@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import * as P from './common.style'
+import * as P from './Common.style'
 import { PAGINATION_RANGE, POSTS_PER_PAGE } from '../../config'
 
 interface PaginationButtonProps {

@@ -2,27 +2,28 @@ import * as T from './Tag.style'
 import TagItem from './TagItem'
 import type { CardData } from '../../../types/types'
 
-interface TagListProps {
-  tags: CardData['tags']
+const MotionAnimation = {
+  initial: {
+    opacity: 0,
+    y: 8,
+  },
+  whileInView: {
+    opacity: 1,
+    y: 0,
+  },
+  viewport: { once: true },
 }
 
-const TagList = ({ tags }: TagListProps) => {
+const TagList = ({ tags }: { tags: CardData['tags'] }) => {
   return (
     <T.TagList>
       {tags.map(({ id, name, color }, index) => (
         <T.TagItem
           key={id}
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
+          {...MotionAnimation}
           transition={{
-            duration: 0.5,
-            delay: (index + 1) * 0.1,
-          }}
-          viewport={{
-            once: true,
+            duration: 0.3,
+            delay: (index + 1) * 0.08,
           }}
         >
           <TagItem name={name} color={color} />
