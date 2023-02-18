@@ -1,4 +1,4 @@
-import { MultiSelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import { MultiSelectPropertyItemObjectResponse, SelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 export type IconType =
   | {
@@ -16,9 +16,7 @@ export interface CardData {
   id: string
   cover: string
   title: string
-  description: string
+  category: SelectPropertyItemObjectResponse['select'] | null
   published: string
-  icon: IconType
   tags: MultiSelectPropertyItemObjectResponse['multi_select']
-  lastEditedTime: string
 }
