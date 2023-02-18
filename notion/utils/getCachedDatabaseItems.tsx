@@ -13,7 +13,7 @@ export const getCachedDatabaseItems = async (databaseId: string, option?: Databa
 
   const CACHE_PATH = path.join(__dirname, `.collection${cacheKey.has(OPTION_QUERY) ? `?${cacheKey.toString()}` : ''}.json`)
 
-  let cachedData: Awaited<ReturnType<typeof getDatabaseItems>>
+  let cachedData: Awaited<ReturnType<typeof getDatabaseItems>> = []
 
   try {
     const fileData = fs.readFileSync(CACHE_PATH, 'utf-8')
