@@ -36,7 +36,7 @@ export const Voxel = styled.div`
 
 export const Canvas = styled(CanvasFiber)`
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s ease;
   &.show-voxel {
     opacity: 1;
   }
