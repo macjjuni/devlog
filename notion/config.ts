@@ -1,6 +1,6 @@
 // 페이지별 검색 개수
 export const POSTS_PER_PAGE = 9
-export const PAGINATION_RANGE = 10
+export const PAGINATION_RANGE = 5
 
 // 노션태그 컬러 테이블
 export const COLOR_TABLE = {
