@@ -5,13 +5,12 @@ import type { CardData } from '../../../types/types'
 const MotionAnimation = {
   initial: {
     opacity: 0,
-    y: 8,
+    y: 30,
   },
   whileInView: {
     opacity: 1,
     y: 0,
   },
-  viewport: { once: true },
 }
 
 const TagList = ({ tags }: { tags: CardData['tags'] }) => {
@@ -23,7 +22,7 @@ const TagList = ({ tags }: { tags: CardData['tags'] }) => {
           {...MotionAnimation}
           transition={{
             duration: 0.3,
-            delay: (index + 1) * 0.08,
+            delay: (index + 1) * 0.03,
           }}
         >
           <TagItem name={name} color={color} />

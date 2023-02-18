@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps<IDetailsPage> = async ({ params }) =
 
     return {
       props: { recordMap },
-      revalidate: 60 * 60 * 1,
+      revalidate: 60 * 5,
     }
   } catch (e) {
     console.error(e)

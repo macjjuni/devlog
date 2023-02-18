@@ -1,3 +1,4 @@
+import { useAppSelector } from 'redux/hook'
 import { COLOR_TABLE } from '../../../config'
 import * as T from './Tag.style'
 
@@ -7,7 +8,12 @@ interface TagItemProps {
 }
 
 const TagItem = ({ name, color }: TagItemProps) => {
-  return <T.TagButton style={{ backgroundColor: COLOR_TABLE[color] }}>&#35;{name}</T.TagButton>
+  const colorMode = useAppSelector((state) => state.colorMode.theme)
+  return (
+    <T.TagButton colormode={colorMode} style={{ backgroundColor: COLOR_TABLE[color] }}>
+      &#35;{name}
+    </T.TagButton>
+  )
 }
 
 export default TagItem
