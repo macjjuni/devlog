@@ -76,7 +76,8 @@ export const GlobalCSS = createGlobalStyle<{ colorMode: ColorModeTypes }>`
   }
 
   .notion-title {
-    text-align: center;
+    text-align: left;
+    margin: 10px 0;
   }
 
   .notion-page {

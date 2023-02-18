@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import * as P from './common.style'
 import { PAGINATION_RANGE, POSTS_PER_PAGE } from '../../config'
 
 interface PaginationButtonProps {
@@ -6,19 +7,10 @@ interface PaginationButtonProps {
   disabled?: boolean
   to: number
 }
-
 const PaginationButton = ({ children, to, disabled = false }: PaginationButtonProps) => {
   return (
-    <Link
-      href={{
-        query: {
-          page: to,
-        },
-      }}
-    >
-      <button disabled={disabled} className="rounded-lg px-4 py-2 hover:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed">
-        {children}
-      </button>
+    <Link href={{ query: { page: to } }}>
+      <P.PageButton disabled={disabled}>{children}</P.PageButton>
     </Link>
   )
 }
@@ -27,12 +19,11 @@ interface PaginationProps {
   current: number
   total: number
 }
-
 const Pagination = ({ current, total }: PaginationProps) => {
   const lastPageNumber = Math.ceil(total / POSTS_PER_PAGE)
 
   return (
-    <div className="flex gap-1">
+    <P.PageWrap>
       <PaginationButton to={current - 1} disabled={current === 1}>
         &lt;
       </PaginationButton>
@@ -47,7 +38,7 @@ const Pagination = ({ current, total }: PaginationProps) => {
           ) : null
         )}
 
-      <button className="rounded-lg px-4 py-2 bg-gray-100">{current}</button>
+      <P.PageButton className="active">{current}</P.PageButton>
 
       {Array.from(Array(PAGINATION_RANGE), (_, index) => current + index + 1).map((pageIndex) =>
         pageIndex <= lastPageNumber ? (
@@ -60,7 +51,7 @@ const Pagination = ({ current, total }: PaginationProps) => {
       <PaginationButton to={current + 1} disabled={current === lastPageNumber}>
         &gt;
       </PaginationButton>
-    </div>
+    </P.PageWrap>
   )
 }
 

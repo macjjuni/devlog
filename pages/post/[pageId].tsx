@@ -1,18 +1,17 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
 import type { ExtendedRecordMap } from 'notion-types'
 import { useRouter } from 'next/router'
-
 // import Giscus from '@giscus/react'
 import NotionPageRenderer from '../../notion/components/notion/NotionPageRenderer'
 
 import { getCachedDatabaseItems } from '../../notion/utils/getCachedDatabaseItems'
 import { getPageContent } from '../../notion/notion'
 
-interface BlogDetailsPageProps {
+interface IDetailsPage {
   recordMap: ExtendedRecordMap
 }
 
-const BlogDetailsPage = ({ recordMap }: BlogDetailsPageProps) => {
+const DetailsPage = ({ recordMap }: IDetailsPage) => {
   const { isFallback } = useRouter()
 
   if (isFallback) return <>Loading...</>
@@ -41,13 +40,15 @@ const BlogDetailsPage = ({ recordMap }: BlogDetailsPageProps) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<BlogDetailsPageProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<IDetailsPage> = async ({ params }) => {
   const pageId = params?.pageId
   try {
+    if (!pageId) throw Error('PageId is not defined')
     const recordMap = await getPageContent(pageId.toString())
+
     return {
-      props: { recordMap: { ...recordMap } },
-      revalidate: 60,
+      props: { recordMap },
+      revalidate: 60 * 60 * 1,
     }
   } catch (e) {
     console.error(e)
@@ -70,4 +71,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export default BlogDetailsPage
+export default DetailsPage

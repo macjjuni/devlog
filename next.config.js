@@ -6,7 +6,7 @@ const nextConfig = {
   },
   swcMinify: true,
   images: {
-    domains: ['img1.daumcdn.net', 'www.notion.so', 's3.us-west-2.amazonaws.com', 'images.unsplash.com'],
+    domains: ['img1.daumcdn.net', 'www.notion.so', 's3.us-west-2.amazonaws.com', 'images.unsplash.com', 'kku.dev'],
   },
 }
 

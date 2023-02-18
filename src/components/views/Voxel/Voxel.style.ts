@@ -13,7 +13,6 @@ export const VoxelWrap = styled.div`
     height: calc(100% - ${({ theme }) => theme.layout.mobile.header});
   }
 `
-
 export const Voxel = styled.div`
   position: sticky;
   top: calc((100vh / 2) - 250px);
@@ -33,7 +32,6 @@ export const Voxel = styled.div`
     height: 300px;
   }
 `
-
 export const Canvas = styled(CanvasFiber)`
   opacity: 0;
   transition: opacity 0.2s ease;
