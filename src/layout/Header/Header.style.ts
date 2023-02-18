@@ -16,10 +16,10 @@ export const Header = styled.header`
   & > .mobile-nav {
     display: none;
   }
-  @media ${({ theme }) => theme.device.mobile} {
+  /* @media ${({ theme }) => theme.device.mobile} {
     height: ${({ theme }) => theme.layout.mobile.header};
     & > .mobile-nav {
       display: flex;
     }
-  }
+  } */
 `
