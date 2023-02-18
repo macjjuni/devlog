@@ -5,12 +5,12 @@ export type TypoVariantTypes = 'heading_xlg' | 'heading_lg' | 'heading_md' | 'he
 // 디바이스별 반응형 미디어쿼리 분기점
 export const deviceSizes = {
   mobile: '768px',
-  // tablet: "768px",
+  tablet: '960px',
   laptop: '1200px',
 }
 const device = {
   mobile: `screen and (max-width: ${deviceSizes.mobile})`,
-  // tablet: `screen and (max-width: ${deviceSizes.tablet})`,
+  tablet: `screen and (max-width: ${deviceSizes.tablet})`,
   laptop: `screen and (max-width: ${deviceSizes.laptop})`,
 }
 const layout = {
