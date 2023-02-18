@@ -3,6 +3,7 @@ import moment from 'moment'
 import { useAppSelector } from 'redux/hook'
 import * as C from './Card.style'
 import TagList from './tags/TagList'
+import { placeholderBase64 } from '../../config'
 import type { CardData } from '../../types/types'
 
 interface ICardItem {
@@ -12,12 +13,13 @@ interface ICardItem {
 const CardItem = ({ data }: ICardItem) => {
   const colorMode = useAppSelector((state) => state.colorMode.theme)
   const { id, title, published, category, tags, cover } = data
+
   return (
     <C.CardItem colormode={colorMode}>
       <C.CardArticle>
         <C.CardLink href={`/post/${id}`}>
           <C.CardImageWrap className="themeBgc">
-            <Image src={cover} alt={title} width="300" height="300" />
+            <Image src={cover} alt={title} width="300" height="300" placeholder="blur" blurDataURL={placeholderBase64} />
           </C.CardImageWrap>
           <C.DesWrap>
             <C.CardTitle>{title}</C.CardTitle>

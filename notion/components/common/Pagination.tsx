@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { PAGINATION_RANGE, POSTS_PER_PAGE } from '../../const/const'
+import { PAGINATION_RANGE, POSTS_PER_PAGE } from '../../config'
 
 interface PaginationButtonProps {
   children: React.ReactNode

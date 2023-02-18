@@ -16,7 +16,6 @@ interface NotionPageRendererProps {
 
 const NotionPageRenderer = ({ recordMap }: NotionPageRendererProps) => {
   const colorMode = useAppSelector((state) => state.colorMode.theme)
-
   return (
     <NotionRenderer
       recordMap={recordMap}
@@ -25,8 +24,10 @@ const NotionPageRenderer = ({ recordMap }: NotionPageRendererProps) => {
       darkMode={colorMode === dark}
       disableHeader
       previewImages={!!recordMap?.signed_urls[0]}
-      // previewImages={!!recordMap?.preview_images}
-      mapImageUrl={(url, block) => defaultMapImageUrl(url, block) ?? url}
+      minTableOfContentsItems={1}
+      mapImageUrl={(url, block) => {
+        return defaultMapImageUrl(url, block) ?? url
+      }}
       components={{
         nextImage: Image,
         nextLink: Link,

@@ -13,7 +13,7 @@ export const parseDatabaseItems = (databaseItems: Awaited<ReturnType<typeof getD
     // eslint-disable-next-line no-nested-ternary
     const cover = item.cover?.type === 'external' ? item.cover.external.url : item.cover?.file ? item.cover.file.url : ''
     const title = 이름?.type === 'title' ? 이름.title[0].plain_text : ''
-    const published = 작성일?.type === 'date' ? 작성일.date?.start ?? '' : ''
+    const published = 작성일?.type === 'created_time' ? 작성일.created_time : '' || ''
     const category = 카테고리?.type === 'select' ? 카테고리?.select : null
     const tags = 태그?.type === 'multi_select' ? 태그.multi_select : []
 

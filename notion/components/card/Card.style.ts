@@ -25,7 +25,7 @@ export const CardItem = styled.li<{ colormode: string }>`
   height: 300px;
   border-radius: 4px;
   overflow: hidden;
-  transition: 0.3s ease;
+  transition: box-shadow, transform 0.3s ease;
   box-shadow: ${({ colormode }) => {
     if (colormode === dark) {
       return 'rgb(240 240 240 / 10%) 0px 0px 0px 1px, rgb(240 240 240 / 10%) 0px 2px 4px'
@@ -96,7 +96,6 @@ export const CardSubWrap = styled.div`
 export const CardTitle = styled.h2`
   ${({ theme }) => theme.fontStyle.desktop.text_lg};
   font-weight: bold;
-  transition: 0.3s ease;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

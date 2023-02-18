@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion'
+import * as T from './Tag.style'
 import TagItem from './TagItem'
-import { CardData } from '../../../types/types'
+import type { CardData } from '../../../types/types'
 
 interface TagListProps {
   tags: CardData['tags']
@@ -8,9 +8,9 @@ interface TagListProps {
 
 const TagList = ({ tags }: TagListProps) => {
   return (
-    <ul className="flex flex-row flex-wrap gap-2">
+    <T.TagList>
       {tags.map(({ id, name, color }, index) => (
-        <motion.li
+        <T.TagItem
           key={id}
           initial={{ opacity: 0, y: 8 }}
           whileInView={{
@@ -26,9 +26,9 @@ const TagList = ({ tags }: TagListProps) => {
           }}
         >
           <TagItem name={name} color={color} />
-        </motion.li>
+        </T.TagItem>
       ))}
-    </ul>
+    </T.TagList>
   )
 }
 
