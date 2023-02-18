@@ -1,3 +1,7 @@
+// 페이지별 검색 개수
+export const POSTS_PER_PAGE = 9
+export const PAGINATION_RANGE = 10
+
 export const COLOR_TABLE = {
   purple: '#e9d5ff',
   yellow: '#fef9c3',
@@ -10,5 +14,3 @@ export const COLOR_TABLE = {
   gray: '#f3f4f6',
   default: '#c8d6e5',
 }
-export const POSTS_PER_PAGE = 9
-export const PAGINATION_RANGE = 2
