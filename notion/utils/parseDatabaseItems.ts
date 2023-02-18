@@ -1,49 +1,22 @@
 import { getDatabaseItems } from '../notion'
-import { CardData, IconType } from '../types/types'
+import { CardData } from '../types/types'
 
+// 노션 API로 받은 데이터 가공
 export const parseDatabaseItems = (databaseItems: Awaited<ReturnType<typeof getDatabaseItems>>) =>
   databaseItems.reduce<CardData[]>((acc, item) => {
     if (!('properties' in item)) return acc
 
     const { id } = item
-    console.log(item.properties)
+    const { 카테고리, 작성일, 이름, 태그 } = item.properties
 
-    const { Description, Published, Tags, 이름 } = item.properties
-
+    // 블로그 목록 데이터 가공
+    // eslint-disable-next-line no-nested-ternary
     const cover = item.cover?.type === 'external' ? item.cover.external.url : item.cover?.file ? item.cover.file.url : ''
-
     const title = 이름?.type === 'title' ? 이름.title[0].plain_text : ''
-    const description = Description?.type === 'rich_text' ? Description.rich_text[0]?.plain_text ?? '' : ''
-    const published = Published?.type === 'date' ? Published.date?.start ?? '' : ''
-    const tags = Tags?.type === 'multi_select' ? Tags.multi_select : []
+    const published = 작성일?.type === 'date' ? 작성일.date?.start ?? '' : ''
+    const category = 카테고리?.type === 'select' ? 카테고리?.select : null
+    const tags = 태그?.type === 'multi_select' ? 태그.multi_select : []
 
-    const lastEditedTime = item.last_edited_time
-
-    let parsedIcon: IconType = null
-
-    if (item.icon?.type === 'emoji') {
-      parsedIcon = { type: 'emoji', emoji: item.icon.emoji }
-    } else if (item.icon) {
-      parsedIcon = {
-        type: 'url',
-        url: item.icon?.type === 'external' ? item.icon.external.url : item.icon.file.url,
-        proxyUrl: `api/getImage/icon?${new URLSearchParams({
-          id,
-          lastEditedTime,
-        })}`,
-      }
-    }
-
-    acc.push({
-      id,
-      icon: parsedIcon,
-      cover,
-      title,
-      description,
-      published,
-      tags,
-      lastEditedTime,
-    })
-
+    acc.push({ id, cover, title, published, category, tags })
     return acc
   }, [])
