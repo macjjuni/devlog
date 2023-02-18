@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Link from 'next/link'
+import type { ColorModeTypes } from 'type/theme'
 import { dark } from 'redux/slice/colorMode'
 
 export const CardWrap = styled.ul`
@@ -19,7 +20,7 @@ export const CardWrap = styled.ul`
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 `
-export const CardItem = styled.li<{ colormode: string }>`
+export const CardItem = styled.li<{ colormode: ColorModeTypes }>`
   display: flex;
   align-items: flex-start;
   height: 300px;

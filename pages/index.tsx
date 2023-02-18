@@ -26,18 +26,9 @@ const Home = ({ data }: IHome) => {
 
   return (
     <IndexStyled>
-      <aside>
-        <div>
-          <h2>Tags</h2>
-        </div>
-      </aside>
-      <div>
-        <h3>Devlog</h3>
-        <CardList data={postData} />
-        <div>
-          <Pagination current={currentPage} total={data.length} />
-        </div>
-      </div>
+      <aside>kku. DevLog</aside>
+      <CardList data={postData} />
+      <Pagination current={currentPage} total={data.length} />
     </IndexStyled>
   )
 }
@@ -50,7 +41,7 @@ export const getStaticProps: GetStaticProps<IHome> = async () => {
 
   return {
     props: { data: parsedData },
-    // revalidate: 60,
+    revalidate: 60,
   }
 }
 
