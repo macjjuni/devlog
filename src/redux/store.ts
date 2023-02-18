@@ -1,8 +1,8 @@
-import storage from 'redux-persist/lib/storage'
 // import logger from 'redux-logger'
 import { persistStore, persistReducer } from 'redux-persist'
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { colorModeSlice } from './slice/colorMode'
+import storage from './persist'
 
 const persistConfig = {
   key: 'macjjuni',
