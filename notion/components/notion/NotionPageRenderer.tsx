@@ -19,10 +19,10 @@ const NotionPageRenderer = ({ recordMap }: NotionPageRendererProps) => {
   return (
     <NotionRenderer
       recordMap={recordMap}
-      showTableOfContents
       fullPage
-      darkMode={colorMode === dark}
+      showTableOfContents
       disableHeader
+      darkMode={colorMode === dark}
       previewImages={!!recordMap?.signed_urls[0]}
       minTableOfContentsItems={1}
       mapImageUrl={(url, block) => {
