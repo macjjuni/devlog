@@ -1,24 +1,28 @@
 import styled from 'styled-components'
 
-export const Banner = styled.div`
-  position: relative;
-`
+export const Banner = styled.div``
 
 export const TopWrap = styled.div`
   position: relative;
   width: 100%;
   height: 300px;
-  border-radius: 6px;
+  border-radius: 3px;
   overflow: hidden;
+  z-index: -1;
+  user-select: none;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 200px;
+  }
 
   & > img {
     position: absolute;
-    top: 50%;
+    bottom: 0;
     left: 50%;
-    width: auto;
+    width: 100%;
     height: auto;
     object-fit: 'cover';
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
   }
 `
 

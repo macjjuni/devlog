@@ -5,12 +5,12 @@ import { useRouter } from 'next/router'
 import Pagination from '../notion/components/common/Pagination'
 import { POSTS_PER_PAGE } from '../notion/config'
 import { getCachedDatabaseItems } from '../notion/utils/getCachedDatabaseItems'
-import Category from '../notion/components/common/Category'
+import Banner from '../notion/components/banner/Banner'
+// import Category from '../notion/components/common/Category'
 import CardList from '../notion/components/card/CardList'
 import type { ICard, IBlogData } from '../notion/types/types'
 import { parseDatabaseItems } from '../notion/utils/parseDatabaseItems'
 import { initGetInfo } from '../notion/notion'
-import Banner from '../notion/components/banner/Banner'
 
 interface IBlog {
   data: ICard[]
@@ -19,11 +19,7 @@ interface IBlog {
 const IndexStyled = styled.section``
 
 const Blog = ({ data, blogData }: IBlog) => {
-  console.log(data)
-  console.log(blogData)
-
   const { query } = useRouter()
-
   const currentPage = query.page ? parseInt(query.page.toString(), 10) : 1
   const [postData, setPostData] = useState(data.slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage))
 
@@ -34,7 +30,7 @@ const Blog = ({ data, blogData }: IBlog) => {
   return (
     <IndexStyled>
       <Banner data={blogData} />
-      <Category />
+      {/* <Category /> */}
       <CardList data={postData} />
       <Pagination current={currentPage} total={data.length} />
     </IndexStyled>

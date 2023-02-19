@@ -7,8 +7,10 @@ export const notionCSS = css`
   }
 
   .notion-app {
-    min-height: auto;
+    position: relative;
+    min-height: 100vh;
     font-size: 18px;
+    background: none;
     @media ${({ theme }) => theme.device.mobile} {
       font-size: 16px;
     }
@@ -96,5 +98,10 @@ export const notionCSS = css`
     text-overflow: ellipsis;
     overflow: hidden;
     font-size: 16px;
+  }
+
+  .medium-zoom--opened {
+    position: relative;
+    overflow: hidden;
   }
 `

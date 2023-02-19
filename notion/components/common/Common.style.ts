@@ -18,8 +18,9 @@ export const PageButton = styled.button`
   padding: 4px;
   border-radius: 50%;
   overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   ${({ theme }) => theme.fontStyle.desktop.text_lg};
-  border: 1px solid ${({ theme }) => theme.colors.gray.BLG400};
+
   color: ${({ theme }) => theme.colors.gray.BLG500};
 
   &.active {
