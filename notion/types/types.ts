@@ -1,6 +1,15 @@
 import { MultiSelectPropertyItemObjectResponse, SelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import { COLOR_TABLE } from '../config'
 
-export type IconType =
+type StringRequest = string
+type SelectColor = 'default' | 'gray' | 'brown' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple' | 'pink' | 'red'
+type SelectPropertyResponse = {
+  id: StringRequest
+  name: StringRequest
+  color: SelectColor
+}
+
+export type IIcon =
   | {
       type: 'emoji'
       emoji: string
@@ -12,11 +21,30 @@ export type IconType =
     }
   | null
 
-export interface CardData {
+export interface ICard {
   id: string
   cover: string
   title: string
   category: SelectPropertyItemObjectResponse['select'] | null
   published: string
   tags: MultiSelectPropertyItemObjectResponse['multi_select']
+}
+
+export interface ITag {
+  id?: string
+  name: string
+  color: keyof typeof COLOR_TABLE
+}
+
+export interface IBlogData {
+  title: string
+  description: string
+  coverURL: string
+  icon: string
+  tags: {
+    options: SelectPropertyResponse[]
+  } | null
+  category: {
+    options: SelectPropertyResponse[]
+  } | null
 }

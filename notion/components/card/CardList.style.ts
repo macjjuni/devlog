@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Link from 'next/link'
-import type { ColorModeTypes } from 'type/theme'
+import type { ColorModeTypes } from 'types/theme'
 import { dark } from 'redux/slice/colorMode'
 
 export const CardWrap = styled.ul`
@@ -72,7 +72,6 @@ export const CardImageWrap = styled.div`
     left: 50%;
     transform: scale(1) translate(-50%, -50%);
     width: 100%;
-    height: auto;
     object-fit: cover;
   }
 `

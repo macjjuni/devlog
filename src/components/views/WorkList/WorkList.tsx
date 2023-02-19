@@ -1,4 +1,4 @@
-import { type IWork } from 'type/work'
+import { type IWork } from 'types/work'
 import WorkItem from './components/WorkItem'
 import { WorkListWrap } from './WorkList.style'
 

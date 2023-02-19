@@ -1,11 +1,11 @@
 import { getDatabaseItems } from '../notion'
-import { CardData } from '../types/types'
+import { ICard } from '../types/types'
 
 const siteURL = process.env.SITE_URL || 'http://kku.dev/'
 
 // 노션 API로 받은 데이터 가공
 export const parseDatabaseItems = (databaseItems: Awaited<ReturnType<typeof getDatabaseItems>>) =>
-  databaseItems.reduce<CardData[]>((acc, item) => {
+  databaseItems.reduce<ICard[]>((acc, item) => {
     if (!('properties' in item)) return acc
 
     const { id } = item

@@ -1,6 +1,6 @@
 import * as T from './Tag.style'
 import TagItem from './TagItem'
-import type { CardData } from '../../../types/types'
+import type { ICard } from '../../../types/types'
 
 const MotionAnimation = {
   initial: {
@@ -13,7 +13,7 @@ const MotionAnimation = {
   },
 }
 
-const TagList = ({ tags }: { tags: CardData['tags'] }) => {
+const TagList = ({ tags }: { tags: ICard['tags'] }) => {
   return (
     <T.TagList>
       {tags.map(({ id, name, color }, index) => (

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import { dark } from 'redux/slice/colorMode'
-import type { ColorModeTypes } from 'type/theme'
+import type { ColorModeTypes } from 'types/theme'
 
 export const Nav = styled.nav``
 

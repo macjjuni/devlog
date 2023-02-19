@@ -1,4 +1,4 @@
-# [kkusaeng's Portfolio [Link]](https://kku.dev/)
+# [kkusaeng's DevLog [Link]](https://kku.dev/)
 
 <br>
 
@@ -42,6 +42,11 @@
 ```
 kkusaeng's Portfolio
 │
+├─ notion           (📖) => 노션 관련 모음
+│  ├─ components
+│  ├─ types
+│  └─ utils
+│
 ├─ pages            (📚) => 페이지 모음
 ├─ public           (🏛️) => 정적파일 모음
 ├─ src
@@ -50,7 +55,7 @@ kkusaeng's Portfolio
 │  │
 │  ├─ components    (🧩) => 컴포넌트 모음
 │  │  ├─ common     (🛞) => 기능형 컴포넌트
-│  │  └─ views      (🎨) => 레더형 컴포넌트
+│  │  └─ views      (🎨) => 렌더형 컴포넌트
 │  │
 │  ├─ hoc           (🕹️) => HOC 컴포넌트 모음
 │  ├─ hooks         (🪝) => 커스텀 훅 모음

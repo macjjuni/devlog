@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { type ColorModeTypes } from 'type/theme'
+import { type ColorModeTypes } from 'types/theme'
 import { dark } from 'redux/slice/colorMode'
 
 export const Tooltip = styled(motion.div)<{ colormode: ColorModeTypes }>`

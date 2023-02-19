@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { ColorModeTypes } from 'type/theme'
+import { ColorModeTypes } from 'types/theme'
 
 export const Main = styled(motion.main)<{ colormode: ColorModeTypes }>`
   position: relative;

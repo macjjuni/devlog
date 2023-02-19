@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ColorModeTypes } from 'type/theme'
+import { ColorModeTypes } from 'types/theme'
 
 export const light: ColorModeTypes = 'light'
 export const dark: ColorModeTypes = 'dark'

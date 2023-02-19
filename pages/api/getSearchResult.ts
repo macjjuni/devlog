@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import type { CardData } from '../../notion/types/types'
+import type { ICard } from '../../notion/types/types'
 
 import { getSearchItems } from '../../notion/notion'
 import { parseDatabaseItems } from '../../notion/utils/parseDatabaseItems'
 
 export interface SearchResultType {
-  data: CardData[]
+  data: ICard[]
 }
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<SearchResultType>) => {

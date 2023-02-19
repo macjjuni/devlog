@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { ColorModeTypes } from 'type/theme'
+import { ColorModeTypes } from 'types/theme'
 import { dark } from 'redux/slice/colorMode'
 
 export const TagList = styled.ul`

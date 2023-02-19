@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { type ColorModeTypes } from 'type/theme'
+import { type ColorModeTypes } from 'types/theme'
 import { dark } from 'redux/slice/colorMode'
 
 export const SNSList = styled.ul`

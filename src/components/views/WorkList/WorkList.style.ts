@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Text from 'components/common/Text'
-import { ColorModeTypes } from 'type/theme'
+import { ColorModeTypes } from 'types/theme'
 import { dark } from 'redux/slice/colorMode'
 
 export const WorkListWrap = styled.ul`

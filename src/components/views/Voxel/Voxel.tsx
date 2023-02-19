@@ -9,7 +9,7 @@ import * as V from './Voxel.style'
 const url = process.env.NEXT_PUBLIC_VOXEL_URL || '/voxel/juni-coding-voxel.gltf'
 
 // 해당 주소에서만 Voxel 보이기
-const accessRoutes = ['/about']
+const accessRoutes = ['/']
 
 const Voxel = ({ load, doneLoad }: { load: boolean; doneLoad: () => void }) => {
   const { route } = useRouter()

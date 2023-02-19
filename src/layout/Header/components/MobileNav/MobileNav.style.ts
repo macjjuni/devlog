@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import type { ColorModeTypes } from 'type/theme'
+import type { ColorModeTypes } from 'types/theme'
 import { dark } from 'redux/slice/colorMode'
 
 export const MobileNav = styled.div`

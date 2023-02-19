@@ -3,7 +3,6 @@ import type { ExtendedRecordMap } from 'notion-types'
 import { useRouter } from 'next/router'
 // import Giscus from '@giscus/react'
 import NotionPageRenderer from '../../notion/components/notion/NotionPageRenderer'
-
 import { getCachedDatabaseItems } from '../../notion/utils/getCachedDatabaseItems'
 import { getPageContent } from '../../notion/notion'
 

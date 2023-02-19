@@ -1,4 +1,4 @@
-import { type IProject } from 'type/work'
+import { type IProject } from 'types/work'
 import { useAppSelector } from 'redux/hook'
 import Text from 'components/common/Text'
 import * as Work from '../WorkList.style'
