@@ -9,7 +9,6 @@ import GoogleAnalystics from 'components/common/GoogleAnalytics'
 import WithNProgress from 'hoc/withNProgress'
 import { theme } from 'styles/theme'
 import Layout from 'layout'
-import Heads from 'components/common/Heads'
 
 import 'styles/reset.css'
 import 'react-notion-x/src/styles.css'
@@ -19,7 +18,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <Provider store={store}>
       {/* HTML title, meta 태그 컴포넌트 */}
-      <Heads />
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={theme}>
           {/* OS에 설정된 컬러모드 초기화 */}

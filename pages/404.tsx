@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import PageHead from 'components/common/PageHead'
 import Link from 'next/link'
 import Text from 'components/common/Text'
 import Lotties from 'components/common/Lotties'
@@ -35,20 +36,26 @@ const defaultOption = {
   },
 }
 
+const msg = '404 Not Found'
+
 const Error = () => {
   return (
-    <ErrorLayout>
-      <Lotties defaultOption={defaultOption} animationData={errorLottie} />
-      <Text type="h3" variant="heading_lg">
-        404 - Not Found
-      </Text>
-      <br />
-      <Link href="/">
-        <Text type="span" variant="text_lg">
-          Go Home
+    <>
+      <PageHead subTitle={msg} />
+
+      <ErrorLayout>
+        <Lotties defaultOption={defaultOption} animationData={errorLottie} />
+        <Text type="h3" variant="heading_lg">
+          {msg}
         </Text>
-      </Link>
-    </ErrorLayout>
+        <br />
+        <Link href="/">
+          <Text type="span" variant="text_lg">
+            Go Home
+          </Text>
+        </Link>
+      </ErrorLayout>
+    </>
   )
 }
 

@@ -6,6 +6,7 @@ export const propertyTable = {
   Date: '작성일',
   Published: '상태',
   Tags: '태그',
+  Category: '카테고리',
 }
 
 // 노션 API 초기화
@@ -21,7 +22,7 @@ export const reactNotionApi = new NotionAPI({
 })
 
 export interface DatabaseQueryOption {
-  tagName?: string
+  categoryName?: string
 }
 
 // 글 목록 조회
@@ -38,9 +39,9 @@ export const getDatabaseItems = async (databaseId: string, option?: DatabaseQuer
           },
         },
         {
-          property: propertyTable.Tags,
-          multi_select: {
-            contains: option?.tagName ?? '',
+          property: propertyTable.Category,
+          select: {
+            equals: option?.categoryName ? option?.categoryName : '',
           },
         },
       ],
@@ -53,6 +54,7 @@ export const getDatabaseItems = async (databaseId: string, option?: DatabaseQuer
       },
     ],
   })
+
   return databaseItems.results
 }
 
@@ -86,7 +88,7 @@ export const getSearchItems = async (query: string) => {
 //   icon: string
 // }
 
-export const initGetInfo = async (databaseId: string) => {
+export const initBlogInfo = async (databaseId: string) => {
   const database = (await notion.databases.retrieve({ database_id: databaseId })) as DatabaseObjectResponse
   const title = database.title[0]?.type === 'text' ? database.title[0].plain_text : ''
   const description = database.description[0]?.type === 'text' ? database.description[0].plain_text : ''

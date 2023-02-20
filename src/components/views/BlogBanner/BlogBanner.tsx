@@ -1,5 +1,5 @@
+import type { IBlogData } from 'notion/types/types'
 import Image from 'next/image'
-import { IBlogData } from '../../../notion/types/types'
 import * as B from './BlogBanner.style'
 
 const Banner = ({ data }: { data: IBlogData }) => {

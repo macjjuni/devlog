@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import { COLOR_TABLE } from 'styles/notion/notion.style'
+import type { ColorModeTypes } from 'types/theme'
+import { dark } from 'redux/slice/colorMode'
 
 export const CategoryWrap = styled.aside`
   margin-bottom: 20px;
@@ -12,8 +15,23 @@ export const Category = styled.ul`
   height: 60px;
 `
 
-export const CategoryItem = styled.li`
-  border: 1px solid #000;
-  padding: 8px;
+export const CategoryItem = styled.li<{ bgColor: string; colormode: ColorModeTypes }>`
+  padding: 0 8px;
   border-radius: 4px;
+  background-color: ${({ bgColor }) => bgColor};
+  ${({ theme }) => theme.fontStyle.desktop.text_strong};
+  color: ${({ theme }) => theme.colors.gray.BLG900};
+  box-shadow: ${({ colormode }) => {
+    if (colormode === dark) return 'rgba(255, 255, 255, 0.1) 0px 4px 6px -1px, rgba(255, 255, 255, 0.06) 0px 2px 4px -1px'
+    return 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px'
+  }};
+  user-select: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  &:hover {
+    box-shadow: ${({ colormode }) => {
+      if (colormode === dark) return 'rgba(255, 255, 255, 0.24) 0px 3px 8px;'
+      return 'rgba(0, 0, 0, 0.6) 0px 3px 8px;'
+    }};
+  }
 `

@@ -1,9 +1,9 @@
 import { MultiSelectPropertyItemObjectResponse, SelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints'
-import { COLOR_TABLE } from '../config'
+import { COLOR_TABLE } from 'styles/notion/notion.style'
 
 type StringRequest = string
 type SelectColor = 'default' | 'gray' | 'brown' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple' | 'pink' | 'red'
-type SelectPropertyResponse = {
+export type SelectPropertyResponse = {
   id: StringRequest
   name: StringRequest
   color: SelectColor

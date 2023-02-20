@@ -67,16 +67,17 @@ export const GlobalCSS = createGlobalStyle<{ colorMode: ColorModeTypes }>`
   .zIdx-1 {
     z-index: 1;
   }
-
   .transparent {
     opacity: 0 !important; 
   }
-
   .fsi {
     font-style: italic;
   }
   .fwb {
     font-weight: bold;
+  }
+  .nanum {
+    font-family: 'NanumBarunGothic';
   }
 
   ${notionCSS}

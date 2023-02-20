@@ -1,6 +1,6 @@
+import { PAGINATION_RANGE, POSTS_PER_PAGE } from 'notion/config'
 import Link from 'next/link'
 import * as P from './BlogPagination.style'
-import { PAGINATION_RANGE, POSTS_PER_PAGE } from '../../../notion/config'
 
 interface PaginationButtonProps {
   children: React.ReactNode

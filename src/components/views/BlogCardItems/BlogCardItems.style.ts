@@ -86,7 +86,7 @@ export const CardSubWrap = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  & > span {
+  & > p {
     ${({ theme }) => theme.fontStyle.mobile.text_sm};
   }
   & > time {

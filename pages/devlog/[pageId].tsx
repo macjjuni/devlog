@@ -1,10 +1,13 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
 import type { ExtendedRecordMap } from 'notion-types'
+import { getPageTitle } from 'notion-utils'
+import { getHeadDescription } from 'notion/utils/getHeadDescription'
 import { useRouter } from 'next/router'
+import PageHead from 'components/common/PageHead'
 // import Giscus from '@giscus/react'
 import NotionRender from 'components/common/NotionRender/NotionRender'
-import { getCachedDatabaseItems } from '../../src/notion/utils/getCachedDatabaseItems'
-import { getPageContent } from '../../src/notion/notion'
+import { getCachedDatabaseItems } from 'notion/utils/getCachedDatabaseItems'
+import { getPageContent } from 'notion/notion'
 
 interface IDetailsPage {
   recordMap: ExtendedRecordMap
@@ -12,11 +15,14 @@ interface IDetailsPage {
 
 const DetailsPage = ({ recordMap }: IDetailsPage) => {
   const { isFallback } = useRouter()
+  const pageTitle = getPageTitle(recordMap)
+  const description = getHeadDescription(recordMap)
 
   if (isFallback) return <>Loading...</>
 
   return (
     <>
+      <PageHead subTitle={pageTitle} description={description === '' ? pageTitle : description} />
       <NotionRender recordMap={recordMap} />
       {/* <div className="max-w-4xl mx-auto my-8">
         <Giscus
