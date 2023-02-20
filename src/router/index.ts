@@ -8,7 +8,7 @@ export const pages: IPages[] = [
   },
   {
     id: '1',
-    path: '/blog',
-    title: 'Blog',
+    path: '/devlog',
+    title: 'DevLog',
   },
 ]
