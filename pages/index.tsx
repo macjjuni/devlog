@@ -55,7 +55,7 @@ const Home = () => {
         <Text type="h2" variant="text_lg">
           저에게 관심이 있으시거나, 궁금한 점이 있다면,
           <br />
-          이력서 또는 언제든 메일 보내주세요!
+          이력서 또는 언제든 메일을 보내주세요!
         </Text>
         <Spacer />
         <Mail />

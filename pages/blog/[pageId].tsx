@@ -2,9 +2,9 @@ import type { GetStaticPaths, GetStaticProps } from 'next'
 import type { ExtendedRecordMap } from 'notion-types'
 import { useRouter } from 'next/router'
 // import Giscus from '@giscus/react'
-import NotionPageRenderer from '../../notion/components/notion/NotionPageRenderer'
-import { getCachedDatabaseItems } from '../../notion/utils/getCachedDatabaseItems'
-import { getPageContent } from '../../notion/notion'
+import NotionRender from 'components/common/NotionRender/NotionRender'
+import { getCachedDatabaseItems } from '../../src/notion/utils/getCachedDatabaseItems'
+import { getPageContent } from '../../src/notion/notion'
 
 interface IDetailsPage {
   recordMap: ExtendedRecordMap
@@ -17,7 +17,7 @@ const DetailsPage = ({ recordMap }: IDetailsPage) => {
 
   return (
     <>
-      <NotionPageRenderer recordMap={recordMap} />
+      <NotionRender recordMap={recordMap} />
       {/* <div className="max-w-4xl mx-auto my-8">
         <Giscus
           id="comments"

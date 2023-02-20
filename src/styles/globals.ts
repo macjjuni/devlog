@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 import { type ColorModeTypes } from 'types/theme'
 import { dark } from 'redux/slice/colorMode'
-import { notionCSS } from '../../notion/styles/notion.style'
+import { notionCSS } from './notion/notion.style'
 
 export const GlobalCSS = createGlobalStyle<{ colorMode: ColorModeTypes }>`
 

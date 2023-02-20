@@ -14,7 +14,7 @@ interface NotionPageRendererProps {
   recordMap: ExtendedRecordMap
 }
 
-const NotionPageRenderer = ({ recordMap }: NotionPageRendererProps) => {
+const NotionRender = ({ recordMap }: NotionPageRendererProps) => {
   const colorMode = useAppSelector((state) => state.colorMode.theme)
   return (
     <NotionRenderer
@@ -40,4 +40,4 @@ const NotionPageRenderer = ({ recordMap }: NotionPageRendererProps) => {
   )
 }
 
-export default NotionPageRenderer
+export default NotionRender

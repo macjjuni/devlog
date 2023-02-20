@@ -1,6 +1,6 @@
-import * as T from './Common.style'
+import * as T from './BlogCategory.style'
 
-const TopBanner = () => {
+const BlogCategory = () => {
   return (
     <T.CategoryWrap>
       <T.Category>
@@ -11,4 +11,4 @@ const TopBanner = () => {
   )
 }
 
-export default TopBanner
+export default BlogCategory

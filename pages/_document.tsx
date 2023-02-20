@@ -1,6 +1,5 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
-import Font from 'components/common/Font'
 import Favicon from 'components/common/Favicon'
 
 export default class CustomDocument extends Document {
@@ -13,7 +12,6 @@ export default class CustomDocument extends Document {
     return (
       <Html lang="ko">
         <Head>
-          <Font />
           <Favicon />
           {this.props.styles}
         </Head>

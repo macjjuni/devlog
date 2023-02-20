@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import type { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import Pagination from '../notion/components/common/Pagination'
-import { POSTS_PER_PAGE } from '../notion/config'
-import { getCachedDatabaseItems } from '../notion/utils/getCachedDatabaseItems'
-import Banner from '../notion/components/banner/Banner'
-// import Category from '../notion/components/common/Category'
-import CardList from '../notion/components/card/CardList'
-import type { ICard, IBlogData } from '../notion/types/types'
-import { parseDatabaseItems } from '../notion/utils/parseDatabaseItems'
-import { initGetInfo } from '../notion/notion'
+import BlogBanner from 'components/views/BlogBanner'
+// import Category from '/components/views/BlogCategory'
+import BlogCardItems from 'components/views/BlogCardItems'
+import BlogPagination from 'components/views/BlogPagination'
+import { POSTS_PER_PAGE } from '../src/notion/config'
+import { getCachedDatabaseItems } from '../src/notion/utils/getCachedDatabaseItems'
+
+import type { ICard, IBlogData } from '../src/notion/types/types'
+import { parseDatabaseItems } from '../src/notion/utils/parseDatabaseItems'
+import { initGetInfo } from '../src/notion/notion'
 
 interface IBlog {
   data: ICard[]
@@ -29,10 +30,10 @@ const Blog = ({ data, blogData }: IBlog) => {
 
   return (
     <IndexStyled>
-      <Banner data={blogData} />
-      {/* <Category /> */}
-      <CardList data={postData} />
-      <Pagination current={currentPage} total={data.length} />
+      <BlogBanner data={blogData} />
+      {/* <BlogCategory /> */}
+      <BlogCardItems data={postData} />
+      <BlogPagination current={currentPage} total={data.length} />
     </IndexStyled>
   )
 }

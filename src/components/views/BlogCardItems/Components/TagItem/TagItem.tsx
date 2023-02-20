@@ -1,7 +1,7 @@
 import { useAppSelector } from 'redux/hook'
-import { COLOR_TABLE } from '../../../config'
-import * as T from './Tag.style'
-import type { ITag } from '../../../types/types'
+import { COLOR_TABLE } from '../../../../../notion/config'
+import * as T from './TagItem.style'
+import type { ITag } from '../../../../../notion/types/types'
 
 const TagItem = ({ name, color }: ITag) => {
   const colorMode = useAppSelector((state) => state.colorMode.theme)

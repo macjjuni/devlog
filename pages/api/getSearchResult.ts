@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import type { ICard } from '../../notion/types/types'
+import type { ICard } from '../../src/notion/types/types'
 
-import { getSearchItems } from '../../notion/notion'
-import { parseDatabaseItems } from '../../notion/utils/parseDatabaseItems'
+import { getSearchItems } from '../../src/notion/notion'
+import { parseDatabaseItems } from '../../src/notion/utils/parseDatabaseItems'
 
 export interface SearchResultType {
   data: ICard[]

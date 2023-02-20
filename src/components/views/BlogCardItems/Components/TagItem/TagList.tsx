@@ -1,6 +1,6 @@
-import * as T from './Tag.style'
+import * as T from './TagItem.style'
 import TagItem from './TagItem'
-import type { ICard } from '../../../types/types'
+import type { ICard } from '../../../../../notion/types/types'
 
 const MotionAnimation = {
   initial: {

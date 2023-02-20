@@ -1,16 +1,16 @@
 import Image from 'next/image'
 import moment from 'moment'
 import { useAppSelector } from 'redux/hook'
-import * as C from './CardList.style'
-import TagList from './tags/TagList'
-import { ThumbnailPlaceholderBase64 } from '../../config'
-import type { ICard } from '../../types/types'
+import * as C from './BlogCardItems.style'
+import TagList from './Components/TagItem/TagList'
+import { ThumbnailPlaceholderBase64 } from '../../../notion/config'
+import type { ICard } from '../../../notion/types/types'
 
 interface ICardItem {
   data: ICard[]
 }
 
-const CardList = ({ data }: ICardItem) => {
+const BlogCardItems = ({ data }: ICardItem) => {
   const colorMode = useAppSelector((state) => state.colorMode.theme)
 
   return (
@@ -38,4 +38,4 @@ const CardList = ({ data }: ICardItem) => {
   )
 }
 
-export default CardList
+export default BlogCardItems
