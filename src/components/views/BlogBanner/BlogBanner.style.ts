@@ -31,7 +31,6 @@ export const BottomWrap = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 8px;
-  height: 100px;
   margin-top: 30px;
 `
 export const TextWrap = styled.div`
