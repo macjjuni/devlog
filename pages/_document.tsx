@@ -1,6 +1,7 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 import Favicon from 'components/common/Favicon'
+import GlobalStyle from 'components/common/GlobalStyle'
 
 export default class CustomDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -30,7 +31,13 @@ CustomDocument.getInitialProps = async (ctx: DocumentContext) => {
   try {
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+        enhanceApp: (App) => (props) =>
+          sheet.collectStyles(
+            <>
+              <GlobalStyle />
+              <App {...props} />
+            </>
+          ),
       })
     const initialProps = await Document.getInitialProps(ctx)
     return {
