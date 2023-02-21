@@ -19,7 +19,7 @@ export const Voxel = styled.div`
   width: 500px;
   height: 500px;
 
-  @media screen and (max-width: 1200px) {
+  @media ${({ theme }) => theme.device.laptop} {
     width: calc(100vw / 2);
   }
 

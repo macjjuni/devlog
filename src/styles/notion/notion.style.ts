@@ -30,6 +30,12 @@ export const notionCSS = css`
     }
   }
 
+  .notion-page-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
   .notion-page-cover-wrapper {
     margin-bottom: -60px;
   }
@@ -77,7 +83,7 @@ export const notionCSS = css`
 
   .notion-aside-table-of-contents {
     min-width: 200px;
-    max-width: 280px;
+    max-width: 240px;
     padding: 6px;
     transition: background-color 0.3s ease;
   }
@@ -121,5 +127,19 @@ export const notionCSS = css`
 
   .notion-property-multi_select-item {
     height: 22px;
+  }
+
+  @media screen and (max-width: 1100px) {
+    .notion-page-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    .notion-aside,
+    .notion-aside-table-of-contents {
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+    }
   }
 `

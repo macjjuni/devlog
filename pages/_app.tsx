@@ -11,7 +11,7 @@ import { theme } from 'styles/theme'
 import Layout from 'layout'
 
 import 'styles/reset.css'
-import 'react-notion-x/src/styles.css'
+import 'styles/notion/index.scss'
 import 'prismjs/themes/prism-tomorrow.css'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {

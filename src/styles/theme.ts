@@ -6,7 +6,7 @@ export type TypoVariantTypes = 'heading_xlg' | 'heading_lg' | 'heading_md' | 'he
 export const deviceSizes = {
   mobile: '768px',
   tablet: '960px',
-  laptop: '1200px',
+  laptop: '1100px',
 }
 const device = {
   mobile: `screen and (max-width: ${deviceSizes.mobile})`,

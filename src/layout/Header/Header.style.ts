@@ -17,7 +17,7 @@ export const Header = styled.header`
     display: none;
   }
 
-  @media screen and (max-width: 1200px) {
+  @media ${({ theme }) => theme.device.laptop} {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
 
