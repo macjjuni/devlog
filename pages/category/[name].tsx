@@ -13,6 +13,7 @@ import { getCachedDatabaseItems } from 'notion/utils/getCachedDatabaseItems'
 import type { ICard, IBlogData } from 'notion/types/types'
 import { parseDatabaseItems } from 'notion/utils/parseDatabaseItems'
 import { initBlogInfo } from 'notion/notion'
+import { checkKorean } from 'notion/utils/checkKorean'
 
 interface ICateory {
   data: ICard[]
@@ -21,8 +22,6 @@ interface ICateory {
 const IndexStyled = styled.section``
 
 const CategoryPage = ({ data, blogData }: ICateory) => {
-  console.log(data)
-
   const { query } = useRouter()
 
   const currentPage = query.page ? parseInt(query.page.toString(), 10) : 1
@@ -47,14 +46,16 @@ const CategoryPage = ({ data, blogData }: ICateory) => {
 }
 
 export const getStaticProps: GetStaticProps<ICateory> = async ({ params }) => {
-  const id = params?.id
-  if (!id) return { redirect: { destination: '/', permanent: false } }
+  const queryName = params?.name?.toString()
+  if (!queryName || queryName === '') return { redirect: { destination: '/', permanent: false } }
+
+  const isKorean = checkKorean(queryName)
+  const name = isKorean ? queryName : queryName.replace(/\b[a-z]/g, (char) => char.toUpperCase())
 
   try {
-    if (typeof id !== 'string') throw Error('params wrong!')
     const databaseId = process.env.NOTION_DATABASEID
     if (!databaseId) throw new Error('DATABASE_ID is not defined')
-    const databaseItems = await getCachedDatabaseItems(databaseId, { categoryName: id })
+    const databaseItems = await getCachedDatabaseItems(databaseId, { categoryName: name })
 
     const parsedData = parseDatabaseItems(databaseItems)
     const blogData = await initBlogInfo(databaseId)
@@ -75,15 +76,18 @@ export const getStaticProps: GetStaticProps<ICateory> = async ({ params }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const databaseId = process.env.NOTION_DATABASEID
   if (!databaseId) throw new Error('DATABASE_ID is not defined')
+  const { category } = await initBlogInfo(databaseId)
 
-  const databaseItems = await getCachedDatabaseItems(databaseId)
-  const paths = databaseItems.map(({ id }) => ({
-    params: { id },
+  const paths = category?.options.map(({ name: cateName }) => ({
+    params: { name: cateName },
   }))
+
+  if (!paths || paths.length === 0) throw new Error('No Categories')
 
   return {
     paths,
-    fallback: true,
+    // 등록된 카테고리 외에 없을경우 404 예외처리
+    fallback: false,
   }
 }
 

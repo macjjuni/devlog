@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { SelectPropertyResponse } from 'notion/types/types'
 import { COLOR_TABLE } from 'styles/notion/notion.style'
 import { useAppSelector } from 'redux/hook'
@@ -10,17 +11,16 @@ interface IBlogCategory {
 
 const BlogCategory = ({ postCount, category }: IBlogCategory) => {
   const colorMode = useAppSelector((state) => state.colorMode.theme)
-  console.log(category)
 
   return (
     <T.CategoryWrap>
       <T.Category>
         <T.CategoryItem bgColor={COLOR_TABLE.default} colormode={colorMode}>
-          전체 글 : {postCount}
+          <Link href="/devlog">전체 글({postCount})</Link>
         </T.CategoryItem>
         {category?.map((item) => (
           <T.CategoryItem key={item.id} bgColor={COLOR_TABLE[item.color]} colormode={colorMode}>
-            {item.name}
+            <Link href={`/category/${item.name}`}>{item.name}</Link>
           </T.CategoryItem>
         ))}
       </T.Category>

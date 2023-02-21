@@ -29,6 +29,7 @@ export const TopWrap = styled.div`
 export const BottomWrap = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 8px;
   height: 100px;
   margin-top: 30px;

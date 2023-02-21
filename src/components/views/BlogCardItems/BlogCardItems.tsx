@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import type { ICard } from 'notion/types/types'
 import Image from 'next/image'
 import moment from 'moment'
@@ -12,8 +11,6 @@ interface ICardItem {
 }
 
 const BlogCardItems = ({ data }: ICardItem) => {
-  const { asPath } = useRouter()
-
   const colorMode = useAppSelector((state) => state.colorMode.theme)
 
   return (
@@ -21,7 +18,7 @@ const BlogCardItems = ({ data }: ICardItem) => {
       {data.map((item) => (
         <C.CardItem key={item.id} colormode={colorMode}>
           <C.CardArticle>
-            <C.CardLink href={`${asPath}/${item.id}`}>
+            <C.CardLink href={`/devlog/${item.id}`}>
               <C.CardImageWrap className="themeBgc">
                 <Image src={item.cover} alt={item.title} width="300" height="245" placeholder="blur" blurDataURL={ThumbnailPlaceholderBase64} />
               </C.CardImageWrap>

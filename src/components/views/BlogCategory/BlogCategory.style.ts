@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { COLOR_TABLE } from 'styles/notion/notion.style'
 import type { ColorModeTypes } from 'types/theme'
 import { dark } from 'redux/slice/colorMode'
 
@@ -12,7 +11,7 @@ export const Category = styled.ul`
   justify-content: flex-start;
   align-items: center;
   gap: 12px;
-  height: 60px;
+  height: 50px;
 `
 
 export const CategoryItem = styled.li<{ bgColor: string; colormode: ColorModeTypes }>`

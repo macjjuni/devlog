@@ -41,7 +41,7 @@ export const getDatabaseItems = async (databaseId: string, option?: DatabaseQuer
         {
           property: propertyTable.Category,
           select: {
-            equals: option?.categoryName ? option?.categoryName : '',
+            equals: option?.categoryName ? option.categoryName : '',
           },
         },
       ],
