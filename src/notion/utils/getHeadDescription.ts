@@ -27,5 +27,6 @@ export const getHeadDescription = (recordMap: ExtendedRecordMap) => {
     const getBlcokText = getBlockTitle(cleanBlockArr[i].value, recordMap)
     contentText += `${getBlcokText} `
   }
+
   return contentText.substring(0, 100)
 }
