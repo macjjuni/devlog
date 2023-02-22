@@ -2,7 +2,6 @@ import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 import { theme } from 'styles/theme'
 import { GlobalStyles } from 'styles/globals'
-// import InitialColorMode from 'components/common/InitialColorMode'
 import GoogleAnalystics from 'components/common/GoogleAnalytics'
 
 import WithNProgress from 'hoc/withNProgress'

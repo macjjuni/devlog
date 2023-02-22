@@ -1,5 +1,4 @@
-import { dark, light } from 'redux/slice/colorMode'
-import { ColorModeTypes } from 'types/theme'
+import { ColorModeTypes, dark, light } from 'types/theme'
 
 type ThemeTypes = 'light' | 'dark'
 const key = 'colorMode'
