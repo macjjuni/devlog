@@ -1,19 +1,19 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { type ColorModeTypes } from 'types/theme'
-import { dark } from 'redux/slice/colorMode'
 
-export const Tooltip = styled(motion.div)<{ colormode: ColorModeTypes }>`
+export const Tooltip = styled(motion.div)`
   position: absolute;
   bottom: calc(100% + 5px);
   left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 30px;
   transform: translateX(-50%);
   padding: 2px 8px;
   border-radius: 4px;
-  background: ${({ theme, colormode }) => {
-    if (colormode === dark) return theme.colors.gray.BLG600
-    return theme.colors.gray.BLG200
-  }};
+  background: ${({ theme }) => theme.colors.gray.BLG200};
   z-index: 1;
 
   &::after {
@@ -23,11 +23,7 @@ export const Tooltip = styled(motion.div)<{ colormode: ColorModeTypes }>`
     height: 0;
     border-bottom: 8px solid transparent;
     border-top: 8px solid transparent;
-    border-left: 10px solid
-      ${({ theme, colormode }) => {
-        if (colormode === dark) return theme.colors.gray.BLG600
-        return theme.colors.gray.BLG200
-      }};
+    border-left: 10px solid ${({ theme }) => theme.colors.gray.BLG200};
     border-right: 10px solid transparent;
     left: 50%;
     top: 31px;
@@ -35,3 +31,5 @@ export const Tooltip = styled(motion.div)<{ colormode: ColorModeTypes }>`
     z-index: 0;
   }
 `
+
+export const TooltipText = styled.span``
