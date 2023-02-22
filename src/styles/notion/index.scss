@@ -144,6 +144,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
 }
 
 .notion-aside {
@@ -818,7 +819,8 @@ svg.notion-page-icon {
 .notion-code {
   position: relative;
   width: 100%;
-  padding: 1em;
+  min-height: 70px;
+  padding: 1.5em !important;
   margin: 4px 0;
   border-radius: 3px;
   tab-size: 2;
@@ -1322,7 +1324,7 @@ svg.notion-page-icon {
   align-items: center;
   padding: 0 6px;
   border-radius: 3px;
-  height: 18px;
+  height: 22px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -1,22 +1,27 @@
 import { useEffect, useLayoutEffect } from 'react'
-import { useAppDispatch, useAppSelector } from 'redux/hook'
-import { setDark, setLight } from 'redux/slice/colorMode'
-import { isDark } from 'utils/colorMode'
+import { useAppDispatch } from 'redux/hook'
+import { setDark, setLight, dark } from 'redux/slice/colorMode'
+import { theme } from 'utils/colorMode'
+import { GlobalCSRStyle } from 'styles/globals'
 
 const useMultiEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 const InitialColorMode = () => {
-  const colorMode = useAppSelector((state) => state.colorMode.theme)
   const dispatch = useAppDispatch()
+
   useMultiEffect(() => {
-    if (colorMode !== null) return
-    if (isDark()) {
+    const colorMode = theme.initialColorMode()
+    if (colorMode === dark) {
       dispatch(setDark())
       return
     }
     dispatch(setLight())
   }, [])
-  return null
+  return (
+    <>
+      <GlobalCSRStyle />
+    </>
+  )
 }
 
 export default InitialColorMode

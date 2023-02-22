@@ -1,8 +1,6 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useAppSelector } from 'redux/hook'
-import { dark } from 'redux/slice/colorMode'
 import { defaultMapImageUrl, NotionRenderer } from 'react-notion-x'
 import type { ExtendedRecordMap } from 'notion-types'
 
@@ -15,14 +13,12 @@ interface NotionPageRendererProps {
 }
 
 const NotionRender = ({ recordMap }: NotionPageRendererProps) => {
-  const colorMode = useAppSelector((state) => state.colorMode.theme)
   return (
     <NotionRenderer
       recordMap={recordMap}
       fullPage
       showTableOfContents
       disableHeader
-      darkMode={colorMode === dark}
       previewImages={!!recordMap?.signed_urls[0]}
       minTableOfContentsItems={1}
       mapImageUrl={(url, block) => {

@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { ColorModeTypes } from 'types/theme'
 
-export const Main = styled(motion.main)<{ colormode: ColorModeTypes }>`
+export const Main = styled(motion.main)`
   position: relative;
   min-height: calc(100vh - (${({ theme }) => theme.layout.desktop.header} + ${({ theme }) => theme.layout.desktop.footer}));
 

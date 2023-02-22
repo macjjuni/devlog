@@ -18,7 +18,7 @@ export const AboutStyled = styled.section`
   }
 `
 const Spacer = styled.div`
-  height: 32px;
+  height: 28px;
 `
 const BlankDiv = styled.div`
   height: 300px;
@@ -60,7 +60,6 @@ const Home = () => {
             <br />
             이력서 또는 언제든 메일을 보내주세요!
           </Text>
-          <Spacer />
           <Mail />
         </div>
       </AboutStyled>

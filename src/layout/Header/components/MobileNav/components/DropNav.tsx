@@ -1,11 +1,9 @@
 import { useRef, useEffect } from 'react'
 import { pages } from 'router'
-import { useAppSelector } from 'redux/hook'
 import { MobileNavAnimation } from '../framer-motion'
 import * as M from '../MobileNav.style'
 
 const DropNav = ({ closeNav }: { closeNav: () => void }) => {
-  const colorMode = useAppSelector((state) => state.colorMode.theme)
   const dropRef = useRef<HTMLDivElement>(null)
 
   const handleOtherClick = (e: MouseEvent) => {
@@ -22,7 +20,7 @@ const DropNav = ({ closeNav }: { closeNav: () => void }) => {
 
   return (
     <M.NavWrap ref={dropRef} {...MobileNavAnimation}>
-      <M.NavList className="themeBgc" colorMode={colorMode}>
+      <M.NavList className="themeBgc">
         {pages.map((page) => (
           <M.NavItem key={page.id}>
             <M.NavLink href={page.path}>{page.title}</M.NavLink>

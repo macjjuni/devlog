@@ -33,9 +33,14 @@ export const BottomWrap = styled.div`
   gap: 8px;
   margin-top: 30px;
 `
-export const TextWrap = styled.div`
+export const HeadText = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
+`
+export const HeadingWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 `
 

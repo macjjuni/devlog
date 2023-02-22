@@ -1,6 +1,6 @@
 import { PAGINATION_RANGE, POSTS_PER_PAGE } from 'notion/config'
 import Link from 'next/link'
-import * as P from './BlogPagination.style'
+import * as P from './Pagination.style'
 
 interface PaginationButtonProps {
   children: React.ReactNode
@@ -19,7 +19,7 @@ interface PaginationProps {
   current: number
   total: number
 }
-const BlogPagination = ({ current, total }: PaginationProps) => {
+const Pagination = ({ current, total }: PaginationProps) => {
   const lastPageNumber = Math.ceil(total / POSTS_PER_PAGE)
 
   return (
@@ -55,4 +55,4 @@ const BlogPagination = ({ current, total }: PaginationProps) => {
   )
 }
 
-export default BlogPagination
+export default Pagination

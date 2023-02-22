@@ -55,6 +55,7 @@
     "@typescript-eslint/no-misused-promises": "off",
     "no-restricted-exports": "off",
     "eslint-disable-next-line no-nested-ternary": "off",
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
+    "eslint-disable-next-line func-names, object-shorthand": "off"
   }
 }

@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import type { ColorModeTypes } from 'types/theme'
-import { dark } from 'redux/slice/colorMode'
 
 export const MobileNav = styled.div`
   position: relative;
@@ -29,16 +27,10 @@ export const NavWrap = styled(motion.div)`
   overflow: hidden;
 `
 
-export const NavList = styled.ul<{ colorMode: ColorModeTypes }>`
+export const NavList = styled.ul`
   & > li {
     transition: border 0.3s ease;
-    border-bottom: 1px solid
-      ${({ colorMode, theme }) => {
-        if (colorMode === dark) {
-          return theme.colors.gray.BLG600
-        }
-        return theme.colors.gray.BLG400
-      }};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.gray.BLG400};
   }
   & > li:last-child {
     border-bottom: none;

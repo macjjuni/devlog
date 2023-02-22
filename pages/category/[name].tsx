@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import type { GetStaticProps, GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import PageHead from 'components/common/PageHead'
-import BlogBanner from 'components/views/BlogBanner'
-import BlogCategory from 'components/views/BlogCategory'
-import BlogCardItems from 'components/views/BlogCardItems'
-import BlogPagination from 'components/views/BlogPagination'
+import Banner from 'components/views/Banner'
+import Category from 'components/views/Category'
+import PostList from 'components/views/PostList.tsx/PostList'
+import Pagination from 'components/views/Pagination'
 import { POSTS_PER_PAGE } from 'notion/config'
 import { getCachedDatabaseItems } from 'notion/utils/getCachedDatabaseItems'
 
@@ -36,10 +36,10 @@ const CategoryPage = ({ data, blogData }: ICateory) => {
     <>
       <PageHead subTitle="DevLog" />
       <IndexStyled>
-        <BlogBanner data={blogData} />
-        <BlogCategory postCount={postCount} category={blogData.category?.options} />
-        <BlogCardItems data={postData} />
-        <BlogPagination current={currentPage} total={data.length} />
+        <Banner data={blogData} />
+        <Category postCount={postCount} category={blogData.category?.options} />
+        <PostList data={postData} />
+        <Pagination current={currentPage} total={data.length} />
       </IndexStyled>
     </>
   )

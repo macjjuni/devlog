@@ -1,9 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
-import { type ColorModeTypes } from 'types/theme'
-import { dark } from 'redux/slice/colorMode'
-import { notionCSS } from './notion/notion.style'
 
-export const GlobalCSS = createGlobalStyle<{ colorMode: ColorModeTypes }>`
+// SSR 전용 스타일시트
+export const GlobalStyles = createGlobalStyle`
 
   @font-face {
   font-family: 'NanumBarunGothic';
@@ -36,18 +34,6 @@ export const GlobalCSS = createGlobalStyle<{ colorMode: ColorModeTypes }>`
   html,
   body {
     scroll-behavior: smooth;
-    color: ${({ theme, colorMode }) => {
-      if (colorMode === dark) {
-        return theme.colors.gray.BLG300
-      }
-      return theme.colors.gray.BLG900
-    }};
-    background: ${({ theme, colorMode }) => {
-      if (colorMode === dark) {
-        return theme.colors.gray.BLG800
-      }
-      return theme.colors.background.BASIC
-    }};
     padding: 0;
     margin: 0;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
@@ -55,15 +41,6 @@ export const GlobalCSS = createGlobalStyle<{ colorMode: ColorModeTypes }>`
     overflow-x: hidden;
     transition: 0.3s ease;
   }
-
-  .themeBgc {
-    transition: background-color 0.3s ease;
-    background-color: ${({ theme, colorMode }) => {
-      if (colorMode === dark) return theme.colors.gray.BLG800
-      return theme.colors.background.BASIC
-    }};
-  }
-  
   .zIdx-1 {
     z-index: 1;
   }
@@ -79,6 +56,4 @@ export const GlobalCSS = createGlobalStyle<{ colorMode: ColorModeTypes }>`
   .nanum {
     font-family: 'NanumBarunGothic';
   }
-
-  ${notionCSS}
 `

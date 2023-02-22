@@ -7,7 +7,7 @@ export const blinkEffect = keyframes`
 export const Footer = styled.footer`
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
   height: ${({ theme }) => theme.layout.desktop.footer};
