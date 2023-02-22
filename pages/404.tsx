@@ -49,9 +49,9 @@ const Error = () => {
           {msg}
         </Text>
         <br />
-        <Link href="/">
+        <Link href="/devlog">
           <Text type="span" variant="text_lg">
-            Go Home
+            Go DevLog
           </Text>
         </Link>
       </ErrorLayout>

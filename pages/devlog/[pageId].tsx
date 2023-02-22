@@ -10,20 +10,21 @@ import { getCachedDatabaseItems } from 'notion/utils/getCachedDatabaseItems'
 import { getPageContent } from 'notion/notion'
 
 interface IDetailsPage {
-  recordMap: ExtendedRecordMap
+  recordMap?: ExtendedRecordMap
 }
 
 const DetailsPage = ({ recordMap }: IDetailsPage) => {
   const { isFallback } = useRouter()
-  const pageTitle = getPageTitle(recordMap)
-  const description = getHeadDescription(recordMap)
+  const pageTitle = recordMap ? getPageTitle(recordMap) : ''
+  const description = recordMap ? getHeadDescription(recordMap) : ''
 
   if (isFallback) return <>Loading...</>
 
   return (
     <>
       <PageHead subTitle={pageTitle} description={description === '' ? pageTitle : description} />
-      <NotionRender recordMap={recordMap} />
+      {recordMap && <NotionRender recordMap={recordMap} />}
+
       {/* <div className="max-w-4xl mx-auto my-8">
         <Giscus
           id="comments"
@@ -66,8 +67,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   if (!databaseId) throw new Error('DATABASE_ID is not defined')
 
   const databaseItems = await getCachedDatabaseItems(databaseId)
-  console.log(databaseItems)
-
   const paths = databaseItems.map(({ id: pageId }) => ({
     params: { pageId },
   }))
