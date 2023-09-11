@@ -22,6 +22,7 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
+  "ignorePatterns": ["/src/theme/theme.d.ts"],
   "plugins": ["prettier", "@typescript-eslint", "import"],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
