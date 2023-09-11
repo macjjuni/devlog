@@ -9,14 +9,41 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
+    "framer-motion": "^10.16.4",
     "next": "13.4.19",
+    "nextjs-toploader": "^1.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.2.2"
+    "react-icons": "^4.11.0",
+    "react-lottie-player": "^1.5.5",
+    "typescript": "5.2.2",
+    "zustand": "^4.4.1"
+  },
+  "packageManager": "yarn@3.6.3",
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^13.4.19",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
+    "@yarnpkg/sdks": "^3.0.0-rc.50",
+    "airbnb": "^0.0.2",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-import": "^0.13.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-next": "^0.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.0.3"
   }
 }
