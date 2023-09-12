@@ -50,7 +50,7 @@ const theme = {
     max: '40px',
     header: '36px',
     main: '100dvh',
-    footer: '24px',
+    footer: '32px',
   },
   fontSize: {
     xs: '12px',
@@ -76,5 +76,19 @@ const theme = {
     mobile,
   },
 }
+
+export interface ICategoryTheme {
+  title: string
+  class: string
+}
+
+export const categoryTheme: ICategoryTheme[] = [
+  { title: 'dev', class: 'bg-[#7c42db]' },
+  { title: 'daily', class: 'bg-[#eae600]' },
+  { title: 'typescript', class: 'bg-[#007acc]' },
+  { title: 'react', class: 'bg-[#61dafb]' },
+  { title: 'vue', class: 'bg-[#42b983]' },
+  { title: 'bitcoin', class: 'bg-[#f7931a]' },
+]
 
 export default theme

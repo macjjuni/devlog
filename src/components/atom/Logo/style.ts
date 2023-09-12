@@ -6,6 +6,8 @@ const LogoStyled = styled.h1`
   font-style: italic;
   font-weight: bold;
   line-height: 1;
+  height: inherit;
+
   & > a {
     line-height: inherit;
     font-size: inherit;
