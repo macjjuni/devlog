@@ -1,5 +1,3 @@
-'use client'
-
 import { useLayoutEffect } from 'react'
 // import useStore from '@/store'
 // import setThemeColor from '@/utils/colorMode'

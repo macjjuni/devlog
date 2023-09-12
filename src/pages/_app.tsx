@@ -1,12 +1,21 @@
 import type { AppProps } from 'next/app'
-import Layout from '@/layout'
-import GlobalStyles from '@/theme/global'
+import { ThemeProvider } from '@emotion/react'
+import Layout from '@/layouts/Layout'
+import theme from '@/styles/theme'
+import GlobalStyles from '@/styles/global'
+import WithProgressBar from '@/components/hoc/ProgressBar'
+import HeaderObserver from '@/components/atom/HeaderObserver'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <GlobalStyles />
-      <Component {...pageProps} />
-    </Layout>
+    <ThemeProvider theme={theme}>
+      <WithProgressBar>
+        <GlobalStyles />
+        <Layout>
+          <HeaderObserver />
+          <Component {...pageProps} />
+        </Layout>
+      </WithProgressBar>
+    </ThemeProvider>
   )
 }
