@@ -34,6 +34,7 @@
     "react/require-default-props": "off",
     "react-hooks/rules-of-hooks": "off",
     "no-else-return": "off",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "react/destructuring-assignment": "off"
   }
 }
