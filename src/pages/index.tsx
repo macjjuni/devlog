@@ -14,5 +14,48 @@ const HomeStyled = styled.div`
 `
 
 export default function Home() {
-  return <HomeStyled>Home page</HomeStyled>
+  return (
+    <HomeStyled>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+      <h1>Home page</h1>
+    </HomeStyled>
+  )
 }

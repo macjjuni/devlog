@@ -12,7 +12,6 @@ const activeMenu = keyframes`
   to {
     font-size: 42px;
     font-weight: bold;
-    padding-left: 16px;
     text-decoration-line: underline;
     text-decoration-thickness: 4px;
     text-underline-offset: 4px;
@@ -23,14 +22,17 @@ const aniActive = css`
   animation: ${activeMenu} 0.4s ease forwards;
 `
 
-const CategoryItemStyled = styled(motion.li)<{ active: string }>`
+const CategoryItemStyled = styled(motion.li)<{ active: string; category: string }>`
   position: relative;
-  display: inline-block;
-  width: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   font-size: ${({ theme }) => theme.fontSize.category};
-  padding-left: 0;
+  line-height: 1.4;
   height: 60px;
+  padding-left: 0;
 
   ${({ active }) => (active === 'active' ? aniActive : 'none')};
 `
+
 export default CategoryItemStyled

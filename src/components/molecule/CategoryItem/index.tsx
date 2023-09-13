@@ -10,7 +10,7 @@ const CategoryItem = ({ text }: { text: string }) => {
   const lowText = text.toLowerCase()
 
   return (
-    <CategoryItemStyled variants={verticalPostCatItemMotion} active={query.id?.includes(lowText) ? 'active' : 'origin'}>
+    <CategoryItemStyled variants={verticalPostCatItemMotion} active={query.id?.includes(lowText) ? 'active' : 'origin'} category={lowText}>
       <Link href={`/blog/${menuText}/${lowText}`}>{text}</Link>
     </CategoryItemStyled>
   )

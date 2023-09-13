@@ -7,7 +7,7 @@ import WithProgressBar from '@/components/hoc/ProgressBar'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme('dark')}>
       <WithProgressBar>
         <GlobalStyles />
         <Layout>

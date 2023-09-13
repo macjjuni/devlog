@@ -19,26 +19,36 @@ const mobile = (style: string) => css`
     `}
   }
 `
+export const color = {
+  primary: '#1d74ff',
+  error: '',
+  success: '',
+  warning: '',
+  BLG0: '#ffffff',
+  BLG100: '#f1f3f5',
+  BLG200: '#e8ebed',
+  BLG300: '#dee2e6',
+  BLG400: '#c9cdd2',
+  BLG500: '#9ea4aa',
+  BLG600: '#72787f',
+  BLG700: '#454c53',
+  BLG800: '#26282b',
+  BLG900: '#1b1d1f',
+  BLG1000: '#000000',
+}
 
-const theme = {
-  color: {
-    primary: '#1d74ff',
-    error: '',
-    success: '',
-    warning: '',
-    BLG0: '#ffffff',
-    BLG100: '#f1f3f5',
-    BLG200: '#e8ebed',
-    BLG300: '#dee2e6',
-    BLG400: '#c9cdd2',
-    BLG500: '#9ea4aa',
-    BLG600: '#72787f',
-    BLG700: '#454c53',
-    BLG800: '#26282b',
-    BLG900: '#1b1d1f',
-    BLG1000: '#000000',
-    dark: '#26282b',
-  },
+const lightTheme = {
+  color: color.BLG800,
+  bg: color.BLG0,
+}
+const darkTheme = {
+  color: color.BLG800,
+  bg: color.BLG0,
+}
+
+const defaultTheme = {
+  color,
+  mode: {},
   size: {
     xs: '2px',
     sm: '6px',
@@ -86,6 +96,14 @@ const theme = {
     { key: 'bitcoin', color: '#f7931a' },
     { key: 'default', color: '#eee' },
   ],
+}
+
+type ThemeType = 'light' | 'dark'
+
+const theme = (theme: ThemeType) => {
+  if (theme === 'light') defaultTheme.mode = lightTheme
+  else defaultTheme.mode = darkTheme
+  return defaultTheme
 }
 
 export default theme

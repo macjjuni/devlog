@@ -13,7 +13,7 @@ const PostItemStyled = {
     justify-content: space-between;
     width: 300px;
     height: 440px;
-    padding: ${({ theme }) => theme.size.lg};
+    padding: ${({ theme }) => theme.size.xl};
     transition: transform ${({ theme }) => theme.trs.sm};
     box-shadow:
       rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
