@@ -100,8 +100,8 @@ const defaultTheme = {
 
 type ThemeType = 'light' | 'dark'
 
-const theme = (theme: ThemeType) => {
-  if (theme === 'light') defaultTheme.mode = lightTheme
+const theme = (themes: ThemeType) => {
+  if (themes === 'light') defaultTheme.mode = lightTheme
   else defaultTheme.mode = darkTheme
   return defaultTheme
 }

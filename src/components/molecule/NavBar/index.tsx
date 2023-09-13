@@ -1,7 +1,7 @@
-import NavbarStyled from './style'
 import Link from 'next/link'
 import routes from '@/route'
 import { useRouter } from 'next/router'
+import NavbarStyled from './style'
 
 const NavBar = () => {
   const { pathname } = useRouter()

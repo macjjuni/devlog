@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import PostList from '@/components/oraganisms/PostList'
 
 const HomeStyled = styled.div`
   // 메인 데스크탑 최소 높이

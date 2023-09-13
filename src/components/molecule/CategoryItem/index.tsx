@@ -1,7 +1,7 @@
-import CategoryItemStyled from './style'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { verticalPostCatItemMotion } from '@/utils/framer'
+import CategoryItemStyled from './style'
 
 const menuText = 'category'
 

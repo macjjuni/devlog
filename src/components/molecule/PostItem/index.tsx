@@ -1,13 +1,13 @@
-import PostItemStyled from './style'
+import { postItemMotion } from '@/utils/framer' // Framer Motion
 import { BiDotsVerticalRounded } from 'react-icons/bi'
 import { type IPost } from '@/types/notion'
 import Button from '@/components/atom/Button'
+import PostItemStyled from './style'
 
 import Title from './components/Title'
 import Date from './components/date'
 import Svg from './components/Svg'
 import Cate from './components/Cate'
-import { postItemMotion } from '@/utils/framer' // Framer Motion
 
 const PostItem = ({ post }: { post: IPost }) => {
   return (
