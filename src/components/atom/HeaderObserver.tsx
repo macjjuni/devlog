@@ -3,6 +3,8 @@ import styled from '@emotion/styled'
 import useStore from '@/store'
 
 const ToggleHeaderStyled = styled.div`
+  position: absolute;
+  top: 0;
   width: 1px;
   height: 1px;
   margin: 0;

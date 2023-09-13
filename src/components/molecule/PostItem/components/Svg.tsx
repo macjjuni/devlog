@@ -1,41 +1,43 @@
+import styled from '@emotion/styled'
 import DailySvg from '@/components/svg/DailySvg'
 import ReactSvg from '@/components/svg/ReactSvg'
 import VueSvg from '@/components/svg/VueSvg'
 import BtcSvg from '@/components/svg/BtcSvg'
+import DevSvg from '@/components/svg/DevSvg'
+import TypeScriptSvg from '@/components/svg/TypeScriptSvg'
 
-interface IBackSvg {
+interface ISvg {
   text: string
 }
 
 interface ICategorySvg {
-  title: string
+  key: string
   component: React.ReactNode
 }
 
-const commonClass = 'absolute bottom-0 right-0 m-0 opacity-[0.15] z-0'
+const SvgStyled = styled.div`
+  position: absolute;
+  bottom: ${({ theme }) => theme.size.md};
+  right: ${({ theme }) => theme.size.md};
+  margin: 0;
+  z-index: 0;
+  width: 150px;
+  height: 150px;
+`
 
 const categorySvg: ICategorySvg[] = [
-  {
-    title: 'daily',
-    component: <DailySvg className={`w-[150px] h-[150px] m-0 ${commonClass} bottom-[16px] right-[16px]`} />,
-  },
-  {
-    title: 'react',
-    component: <ReactSvg className={`w-[150px] h-[150px] m-0 ${commonClass} bottom-[16px] right-[16px]`} />,
-  },
-  {
-    title: 'vue',
-    component: <VueSvg className={`w-[150px] h-[150px] m-0 ${commonClass} bottom-[16px] right-[16px]`} />,
-  },
-  {
-    title: 'bitcoin',
-    component: <BtcSvg className={`w-[160px] h-[160px] m-0 ${commonClass} bottom-[16px] right-[16px]`} />,
-  },
+  { key: 'dev', component: <DevSvg /> },
+  { key: 'daily', component: <DailySvg /> },
+  { key: 'react', component: <ReactSvg /> },
+  { key: 'typescript', component: <TypeScriptSvg /> },
+  { key: 'vue', component: <VueSvg /> },
+  { key: 'bitcoin', component: <BtcSvg /> },
 ]
 
-const BackSvg = ({ text }: IBackSvg) => {
-  const target = categorySvg.find((cateSvg) => text.toLowerCase().includes(cateSvg.title))
-  if (target) return target.component
+const Svg = ({ text }: ISvg) => {
+  const target = categorySvg.find((cateSvg) => text.toLowerCase().includes(cateSvg.key))
+
+  if (target) return <SvgStyled>{target.component}</SvgStyled>
   return <>...</>
 }
-export default BackSvg
+export default Svg

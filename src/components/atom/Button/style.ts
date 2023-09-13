@@ -15,6 +15,7 @@ interface IButtun {
 const ButtonStyled = {
   Wrap: styled.div`
     position: relative;
+    margin: 0;
   `,
   Button: styled.button<IButtun>`
     position: relative;
@@ -38,6 +39,15 @@ const ButtonStyled = {
     user-select: none;
 
     transition: all 0.5s ease-in-out;
+
+    &.icon {
+      padding: ${({ theme }) => theme.size.sm};
+      background-color: transparent;
+    }
+    &.icon:is(:hover, :active) {
+      box-shadow: none;
+      background-color: transparent;
+    }
 
     &:hover {
       transition-duration: 0.3s !important;

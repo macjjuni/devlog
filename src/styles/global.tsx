@@ -32,6 +32,14 @@ const globalStyles = css`
   body {
     margin: 0;
   }
+
+  .no-scroll {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .no-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
 `
 
 const GlobalStyles = () => <Global styles={globalStyles} />

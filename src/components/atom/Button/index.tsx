@@ -3,7 +3,7 @@ import ButtonStyled from './style'
 import Tooltip from '../Tooltip'
 
 interface IButton {
-  children: React.ReactNode
+  children?: React.ReactNode
   className?: string
   fontSize?: number
   padding?: string
@@ -16,54 +16,42 @@ interface IButton {
   borderRadius?: number
   onClick?: () => void
   tooltipText?: string
+  icon?: React.ReactNode
 }
 
-const Button = ({
-  children,
-  className,
-  fontSize,
-  padding,
-  width,
-  height,
-  bg,
-  borderRadius,
-  borderColor,
-  borderWidth,
-  disabled,
-  onClick,
-  tooltipText,
-}: IButton) => {
+const Button = (props: IButton) => {
   const [isTT, setTT] = useState(false)
 
   const onMouseEnter = useCallback(() => {
-    if (!tooltipText) return
+    if (!props.tooltipText) return
     setTT(true)
   }, [])
   const onMouseLeave = useCallback(() => {
-    if (!tooltipText) return
+    if (!props.tooltipText) return
     setTT(false)
   }, [])
 
   return (
     <ButtonStyled.Wrap>
       <ButtonStyled.Button
-        className={className || ''}
-        onClick={onClick}
-        fontSize={fontSize}
-        padding={padding}
-        bg={bg}
-        disabled={disabled}
-        width={width}
-        height={height}
-        borderRadius={borderRadius}
-        borderColor={borderColor}
-        borderWidth={borderWidth}
+        className={`${props.className || ''} ${props.icon ? 'icon' : ''}`}
+        onClick={props.onClick}
+        fontSize={props.fontSize}
+        padding={props.padding}
+        bg={props.bg}
+        disabled={props.disabled}
+        width={props.width}
+        height={props.height}
+        borderRadius={props.borderRadius}
+        borderColor={props.borderColor}
+        borderWidth={props.borderWidth}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
-        {children}
+        {props.children}
+        {props.icon}
       </ButtonStyled.Button>
-      <Tooltip text={tooltipText || ''} show={isTT} />
+      <Tooltip text={props.tooltipText || ''} show={isTT} />
     </ButtonStyled.Wrap>
   )
 }

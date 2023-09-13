@@ -4,3 +4,8 @@ export interface IPost {
   category: string
   date: string
 }
+
+export interface ICategory {
+  id: string
+  title: string
+}

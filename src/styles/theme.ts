@@ -61,6 +61,8 @@ const theme = {
     xxl: '24px',
     xxxl: '28px',
     max: '34px',
+    category: '38px',
+    categoryActive: '42px',
   },
   trs: {
     sm: '0.33s ease',
@@ -75,20 +77,15 @@ const theme = {
     tablet,
     mobile,
   },
+  categoryColor: [
+    { key: 'dev', color: '#7c42db' },
+    { key: 'daily', color: '#eae600' },
+    { key: 'typescript', color: '#007acc' },
+    { key: 'react', color: '#61dafb' },
+    { key: 'vue', color: '#42b983' },
+    { key: 'bitcoin', color: '#f7931a' },
+    { key: 'default', color: '#eee' },
+  ],
 }
-
-export interface ICategoryTheme {
-  title: string
-  class: string
-}
-
-export const categoryTheme: ICategoryTheme[] = [
-  { title: 'dev', class: 'bg-[#7c42db]' },
-  { title: 'daily', class: 'bg-[#eae600]' },
-  { title: 'typescript', class: 'bg-[#007acc]' },
-  { title: 'react', class: 'bg-[#61dafb]' },
-  { title: 'vue', class: 'bg-[#42b983]' },
-  { title: 'bitcoin', class: 'bg-[#f7931a]' },
-]
 
 export default theme

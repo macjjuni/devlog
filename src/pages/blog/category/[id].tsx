@@ -35,7 +35,8 @@ const BlogStyled = styled.div`
     width: 70%;
   }
 `
-const BlogPage = () => {
+
+const CategoryPage = () => {
   return (
     <BlogStyled>
       <div className="left-wrap">
@@ -48,4 +49,4 @@ const BlogPage = () => {
   )
 }
 
-export default BlogPage
+export default CategoryPage

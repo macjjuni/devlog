@@ -8,18 +8,6 @@ export const colorModeAnimation = {
   },
 }
 
-export const catListMotion = {
-  visible: {
-    opacity: 1,
-    transition: { when: 'beforeChildren', staggerChildren: 0.1 },
-  },
-}
-
-export const catItemMotion = {
-  visible: { opacity: 1, x: 0 },
-  hidden: { opacity: 0, x: -100 },
-}
-
 export const projectListMotion = {
   visible: {
     opacity: 1,
@@ -35,13 +23,13 @@ export const projectItemMotion = {
 export const postListMotion = {
   visible: {
     opacity: 1,
-    transition: { when: 'beforeChildren', staggerChildren: 0.1, delay: 0.33 },
+    transition: { when: 'beforeChildren', staggerChildren: 0.08, delay: 0.36 },
   },
 }
 
 export const postItemMotion = {
-  visible: { opacity: 1, y: 0 },
-  hidden: { opacity: 0, y: 25 },
+  visible: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, x: -100 },
 }
 
 export const verticalPostCatListMotion = {
@@ -54,16 +42,4 @@ export const verticalPostCatListMotion = {
 export const verticalPostCatItemMotion = {
   visible: { opacity: 1, x: 0 },
   hidden: { opacity: 0, x: -25 },
-}
-
-export const verticalPostListMotion = {
-  visible: {
-    opacity: 1,
-    transition: { when: 'beforeChildren', staggerChildren: 0.08, delay: 0.36 },
-  },
-}
-
-export const verticalPostItemMotion = {
-  visible: { opacity: 1, x: 0 },
-  hidden: { opacity: 0, x: -100 },
 }

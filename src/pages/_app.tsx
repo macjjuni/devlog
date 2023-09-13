@@ -4,7 +4,6 @@ import Layout from '@/layouts/Layout'
 import theme from '@/styles/theme'
 import GlobalStyles from '@/styles/global'
 import WithProgressBar from '@/components/hoc/ProgressBar'
-import HeaderObserver from '@/components/atom/HeaderObserver'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -12,7 +11,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <WithProgressBar>
         <GlobalStyles />
         <Layout>
-          <HeaderObserver />
           <Component {...pageProps} />
         </Layout>
       </WithProgressBar>
