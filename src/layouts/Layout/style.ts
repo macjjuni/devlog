@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 const LayoutsTyled = styled.div`
   position: relative;
   padding: ${({ theme }) => theme.size.max};
+  overflow: hidden;
 
   // 반응형: 테블릿
   ${({ theme }) =>

@@ -17,6 +17,7 @@ interface IButton {
   onClick?: () => void
   tooltipText?: string
   icon?: React.ReactNode
+  noStyle?: boolean
 }
 
 const Button = (props: IButton) => {
@@ -34,7 +35,7 @@ const Button = (props: IButton) => {
   return (
     <ButtonStyled.Wrap>
       <ButtonStyled.Button
-        className={`${props.className || ''} ${props.icon ? 'icon' : ''}`}
+        className={`${props.className || ''} ${props.icon ? 'icon' : ''} ${props.noStyle ? 'no-style' : ''}`}
         onClick={props.onClick}
         fontSize={props.fontSize}
         padding={props.padding}

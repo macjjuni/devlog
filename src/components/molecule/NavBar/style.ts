@@ -5,7 +5,7 @@ const NavbarStyled = styled.nav`
   justify-content: center;
   align-items: center;
   gap: ${({ theme }) => theme.size.xxxl};
-  margin-right: ${({ theme }) => theme.size.xxxl};
+  margin-right: 56px;
 
   ${({ theme }) =>
     theme.response.tablet(`

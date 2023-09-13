@@ -40,7 +40,7 @@ const ButtonStyled = {
 
     transition: all 0.5s ease-in-out;
 
-    &.icon {
+    &:is(.icon, .no-style) {
       padding: ${({ theme }) => theme.size.sm};
       background-color: transparent;
     }

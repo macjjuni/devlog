@@ -13,6 +13,7 @@ const HeaderStyled = styled.header<IHeaderStyled>`
   transform: translateY(${({ isHide }) => (isHide ? '-100px' : '0')});
   transition: transform ${({ theme }) => theme.trs.sm};
   background: ${({ theme }) => theme.color.BLG0};
+  z-index: 100;
 
   ${({ theme }) =>
     theme.response.tablet(`

@@ -1,4 +1,5 @@
 import { css } from '@emotion/react'
+import { ColorTypes } from '@/types/theme'
 
 const breakPoint = {
   tablet: 1100,
@@ -42,8 +43,8 @@ const lightTheme = {
   bg: color.BLG0,
 }
 const darkTheme = {
-  color: color.BLG800,
-  bg: color.BLG0,
+  color: color.BLG300,
+  bg: color.BLG1000,
 }
 
 const defaultTheme = {
@@ -98,9 +99,7 @@ const defaultTheme = {
   ],
 }
 
-type ThemeType = 'light' | 'dark'
-
-const theme = (themes: ThemeType) => {
+const theme = (themes: ColorTypes | null) => {
   if (themes === 'light') defaultTheme.mode = lightTheme
   else defaultTheme.mode = darkTheme
   return defaultTheme

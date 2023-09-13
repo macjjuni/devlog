@@ -1,24 +1,42 @@
-'use client'
-
 import { AnimatePresence, motion } from 'framer-motion'
 import { light, type ColorTypes } from '@/types/theme'
 import { colorModeAnimation } from '@/utils/framer'
+import styled from '@emotion/styled'
 import BtcSvg from './BtcOriginSvg'
+
+const SunStyled = styled(motion.div)`
+  position: absolute;
+  top: -48px;
+  left: 0;
+
+  ${({ theme }) =>
+    theme.response.tablet(`
+    top: -36px;
+  `)}
+`
+
+const SvgStyled = styled.svg`
+  width: 125px;
+  height: 125px;
+
+  ${({ theme }) =>
+    theme.response.tablet(`
+    width: 96px;
+    height: 96px;
+  `)}
+`
 
 const SunSvg = ({ color }: { color: ColorTypes | null }) => {
   return (
     <AnimatePresence>
       {color === light && (
-        <motion.div {...colorModeAnimation} className="absolute top-[-32px] left-[0px] md:top-[-44px] md:left-0">
+        <SunStyled {...colorModeAnimation} className="absolute top-[-32px] left-[0px] md:top-[-44px] md:left-0">
           <BtcSvg />
-          <svg
-            className="w-[96px] h-[96px] md:w-[125px] md:h-[125px]"
+          <SvgStyled
             version="1.0"
             id="Layer_1"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
-            // width="125px"
-            // height="125px"
             viewBox="0 0 64 64"
             enableBackground="new 0 0 64 64"
             xmlSpace="preserve"
@@ -350,8 +368,8 @@ const SunSvg = ({ color }: { color: ColorTypes | null }) => {
                 />
               </g>
             </g>
-          </svg>
-        </motion.div>
+          </SvgStyled>
+        </SunStyled>
       )}
     </AnimatePresence>
   )

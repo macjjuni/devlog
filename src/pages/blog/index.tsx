@@ -25,7 +25,6 @@ const BlogStyled = styled.div`
   ${({ theme }) =>
     theme.response.tablet(`
       min-height: calc(${theme.size.main} - (${theme.size.header} + ${theme.size.footer} + ${theme.size.lg} + ${theme.size.lg} + ${theme.size.lg}));
-      padding-top: calc(${theme.size.header} + ${theme.size.lg});
     `)}
 
   & > .left-wrap {

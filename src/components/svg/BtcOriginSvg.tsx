@@ -1,9 +1,26 @@
-const desktopStyle = 'md:bottom-[35px] md:left-[35px] md:w-[54px] md:h-[54px]'
-const mobileStyle = 'bottom-[28px] left-[27px] w-[40px] h-[40px]'
+import styled from '@emotion/styled'
+
+const SvgStyled = styled.svg`
+  position: absolute;
+  bottom: 36px;
+  left: 34px;
+  width: 54px;
+  height: 54px;
+
+  ${({ theme }) =>
+    theme.response.tablet(`
+    bottom: 30px;
+    left: 27px;
+    width: 40px;
+    height: 40px;
+  `)}
+
+  z-index: 10;
+`
 
 const BtcSvg = () => {
   return (
-    <svg className={`absolute  ${desktopStyle} ${mobileStyle} z-10`} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+    <SvgStyled viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000">
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
       <g id="SVGRepo_iconCarrier">
@@ -16,7 +33,7 @@ const BtcSvg = () => {
           />
         </g>
       </g>
-    </svg>
+    </SvgStyled>
   )
 }
 

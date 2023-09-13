@@ -3,20 +3,35 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { ColorTypes, dark } from '@/types/theme'
 import { colorModeAnimation } from '@/utils/framer'
+import styled from '@emotion/styled'
+
+const MoonStyled = styled(motion.div)`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+`
+
+const SvgStyled = styled.svg`
+  width: 80px;
+  height: 80px;
+  transition: ${({ theme }) => theme.trs.sm};
+  &:hover {
+    transform: rotate(16deg);
+  }
+
+  ${({ theme }) =>
+    theme.response.tablet(`
+      width: 64px;
+      height: 64px;
+  `)}
+`
 
 const MoonSvg = ({ color }: { color: ColorTypes | null }) => {
   return (
     <AnimatePresence>
       {color === dark && (
-        <motion.div {...colorModeAnimation} className="absolute bottom-0 left-0">
-          <svg
-            className="hover:rotate-[16deg] ease duration-300 w-[62px] h-[62px] md:w-[80px] md:h-[80px]"
-            viewBox="0 0 24.00 24.00"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            stroke="#394240"
-            strokeWidth="0.72"
-          >
+        <MoonStyled {...colorModeAnimation}>
+          <SvgStyled viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#394240" strokeWidth="0.72">
             <g id="SVGRepo_bgCarrier" strokeWidth="0" />
             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" stroke="#CCCCCC" strokeWidth="1.2">
               <path
@@ -46,8 +61,8 @@ const MoonSvg = ({ color }: { color: ColorTypes | null }) => {
                 fill="#ffe229"
               />
             </g>
-          </svg>
-        </motion.div>
+          </SvgStyled>
+        </MoonStyled>
       )}
     </AnimatePresence>
   )
