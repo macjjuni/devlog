@@ -10,7 +10,7 @@ const PostStyled = {
     justify-content: start;
     align-items: center;
     overflow-y: auto;
-    gap: ${({ theme }) => theme.size.xxl};
+    gap: ${({ theme }) => theme.size.xxxl};
     margin-bottom: ${({ theme }) => theme.size.max};
     margin-right: -${({ theme }) => theme.size.max};
     padding: ${({ theme }) => theme.size.xl};

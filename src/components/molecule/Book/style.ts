@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import Link from 'next/link'
+import { type ICateColor } from '@/styles/theme'
 
 const BookStyled = {
   Item: styled.article`
@@ -6,6 +8,7 @@ const BookStyled = {
     width: 300px;
     height: 360px;
     margin: 0;
+    color: ${({ theme }) => theme.color.BLG0};
     transition: ${({ theme }) => theme.trs.md};
 
     &:hover {
@@ -19,13 +22,21 @@ const BookStyled = {
       transform: translateY(-50%) perspective(80px) rotateY(8deg);
     }
   `,
-  Body: styled.div`
+  Body: styled(Link)<{ category: string }>`
     position: relative;
-    width: 100%;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 300px;
+    height: 360px;
     padding: ${({ theme }) => theme.size.xl};
     padding-left: ${({ theme }) => theme.size.xxxl};
-    background-color: ${({ theme }) => theme.color.BLG300};
+    background-color: ${({ theme, category }) => {
+      const target = theme.categoryColor.find((cate: ICateColor) => cate.key === category.toLocaleLowerCase() || cate.key === 'default')
+      if (target) return target.color
+      return '#eee'
+    }};
     border-top-left-radius: ${({ theme }) => theme.size.md};
     border-bottom-left-radius: ${({ theme }) => theme.size.md};
     border-top-right-radius: ${({ theme }) => theme.size.sm};
@@ -73,7 +84,7 @@ const BookStyled = {
         );
     }
   `,
-  Side: styled.span`
+  Side: styled.span<{ category: string }>`
     &,
     &::after {
       content: '';
@@ -84,7 +95,11 @@ const BookStyled = {
     }
 
     right: 2px;
-    background-color: ${({ theme }) => theme.color.BLG300};
+    background-color: ${({ theme, category }) => {
+      const target = theme.categoryColor.find((cate: ICateColor) => cate.key === category.toLocaleLowerCase() || cate.key === 'default')
+      if (target) return target.color
+      return '#eee'
+    }};
     border-top-right-radius: ${({ theme }) => theme.size.sm};
     border-bottom-right-radius: ${({ theme }) => theme.size.sm};
     width: 50px;
@@ -99,16 +114,33 @@ const BookStyled = {
       transition: ${({ theme }) => theme.trs.md};
     }
   `,
-  Title: styled.h2`
-    font-size: ${({ theme }) => theme.fontSize.xxxl};
-    font-weight: bold;
-    line-height: 1.25;
-    color: ${({ theme }) => theme.color.BLG1000};
+  Title: styled.h3`
+    font-size: ${({ theme }) => theme.fontSize.xl};
+    line-height: 1.3;
+    margin-bottom: 140px;
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
+  `,
+  Cat: styled.h2`
+    position: relative;
+    font-size: ${({ theme }) => theme.fontSize.max};
+    font-weight: bold;
+    &::after {
+      /* content: ''; */
+      position: absolute;
+      bottom: -${({ theme }) => theme.size.xl};
+      left: 0;
+      width: 60px;
+      height: 1px;
+      background-color: ${({ theme }) => theme.color.BLG0};
+    }
+  `,
+  Date: styled.span`
+    font-size: ${({ theme }) => theme.fontSize.lg};
+    margin-bottom: ${({ theme }) => theme.size.md};
   `,
 }
 

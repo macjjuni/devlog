@@ -21,8 +21,8 @@ const SvgStyled = styled.div`
   right: ${({ theme }) => theme.size.md};
   margin: 0;
   z-index: 0;
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
 `
 
 const categorySvg: ICategorySvg[] = [
