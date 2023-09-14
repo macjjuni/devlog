@@ -1,8 +1,8 @@
 import NextTopLoader from 'nextjs-toploader'
-import { color } from '@/styles/theme'
+import { palette } from '@/styles/theme'
 
 const options = {
-  color: color.primary,
+  color: palette.primary,
   initialPosition: 0.1,
   crawlSpeed: 200,
   height: 4,

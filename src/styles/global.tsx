@@ -1,10 +1,16 @@
-import { Global, css } from '@emotion/react'
+import { createGlobalStyle } from 'styled-components'
+import reset from 'styled-reset'
+import { dark, light } from '@/types/theme'
+import theme from './theme'
 
-const globalStyles = css`
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,900;1,400;1,900&display=swap');
-
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+  * {
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
   :root {
-    font-family: 'Noto Sans', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: 'Noto Sans Korean', 'Noto Sans', system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
     font-synthesis: none;
@@ -21,26 +27,19 @@ const globalStyles = css`
     text-decoration: inherit;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    margin: 0;
-    padding: 0;
-  }
   body {
     margin: 0;
+    transition: color, background-color ${theme.trs.sm};
   }
 
-  .no-scroll {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+  html[data-theme="${light}"] > body {
+    color: ${theme.color.lightColor};
+    background-color: ${theme.color.lightBg};
   }
-  .no-scroll::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
+  html[data-theme="${dark}"] > body {
+    color: ${theme.color.darkColor};
+    background-color: ${theme.color.darkBg};
   }
 `
 
-const GlobalStyles = () => <Global styles={globalStyles} />
-export default GlobalStyles
+export default GlobalStyle

@@ -1,7 +1,10 @@
 import { dark, light } from '@/types/theme'
+import theme from '@/styles/theme'
 import useStore from '@/store'
 
 const { getState } = useStore
+const lightColor = theme.color.lightBg
+const darkColor = theme.color.darkBg
 
 const colorMode = {
   initColor: () => {
@@ -9,32 +12,38 @@ const colorMode = {
     const { color } = getState()
     if (color === null) {
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add(dark)
         getState().setColorMode(dark)
+        document.documentElement.dataset.theme = dark
+        colorMode.setMetaThemeColor(darkColor)
         return
       }
-      document.documentElement.classList.remove(dark)
-      getState().setColorMode(light)
+      // document.documentElement.classList.remove(dark)
+      document.documentElement.dataset.theme = light
+      colorMode.setMetaThemeColor(lightColor)
       return
     } else if (color === light) {
-      document.documentElement.classList.remove(dark)
       getState().setColorMode(light)
+      document.documentElement.dataset.theme = light
+      colorMode.setMetaThemeColor(lightColor)
       return
     }
-    document.documentElement.classList.add(dark)
     getState().setColorMode(dark)
+    document.documentElement.dataset.theme = dark
+    colorMode.setMetaThemeColor(darkColor)
   },
   toggleColorMode: () => {
     // 컬러모드 토글
     const { color, setColorMode } = getState()
 
     if (color === dark) {
-      document.documentElement.classList.remove(dark)
       getState().setColorMode(light)
+      document.documentElement.dataset.theme = light
+      colorMode.setMetaThemeColor(lightColor)
       return
     }
-    document.documentElement.classList.add(dark)
     setColorMode(dark)
+    document.documentElement.dataset.theme = dark
+    colorMode.setMetaThemeColor(darkColor)
   },
   setMetaThemeColor: (hexCode: string) => {
     const themeColor: HTMLMetaElement | null = document.querySelector("meta[name='theme-color']")

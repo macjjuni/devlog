@@ -1,5 +1,9 @@
-import { css } from '@emotion/react'
-import { ColorTypes } from '@/types/theme'
+import { css } from 'styled-components'
+
+export interface ICateColor {
+  key: string
+  color: string
+}
 
 const breakPoint = {
   tablet: 1100,
@@ -20,7 +24,8 @@ const mobile = (style: string) => css`
     `}
   }
 `
-export const color = {
+
+export const palette = {
   primary: '#1d74ff',
   error: '',
   success: '',
@@ -38,18 +43,16 @@ export const color = {
   BLG1000: '#000000',
 }
 
-const lightTheme = {
-  color: color.BLG800,
-  bg: color.BLG0,
-}
-const darkTheme = {
-  color: color.BLG300,
-  bg: color.BLG1000,
+const color = {
+  ...palette,
+  lightColor: palette.BLG800,
+  lightBg: palette.BLG0,
+  darkColor: palette.BLG0,
+  darkBg: palette.BLG800,
 }
 
-const defaultTheme = {
+const theme = {
   color,
-  mode: {},
   size: {
     xs: '2px',
     sm: '6px',
@@ -73,6 +76,7 @@ const defaultTheme = {
     xxxl: '28px',
     max: '34px',
     category: '38px',
+    postTitle: '30px',
     categoryActive: '42px',
   },
   trs: {
@@ -97,12 +101,6 @@ const defaultTheme = {
     { key: 'bitcoin', color: '#f7931a' },
     { key: 'default', color: '#eee' },
   ],
-}
-
-const theme = (themes: ColorTypes | null) => {
-  if (themes === 'light') defaultTheme.mode = lightTheme
-  else defaultTheme.mode = darkTheme
-  return defaultTheme
 }
 
 export default theme

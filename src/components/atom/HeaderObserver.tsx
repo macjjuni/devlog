@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 import useStore from '@/store'
 
 const ToggleHeaderStyled = styled.div`

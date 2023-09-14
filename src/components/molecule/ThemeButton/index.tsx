@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import useStore from '@/store'
 import colorMode from '@/utils/colorMode'
 
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 
 const MoonSvg = dynamic(() => import('@/components/svg/MoonSvg'), { ssr: false })
 const SunSvg = dynamic(() => import('@/components/svg/SunSvg'), { ssr: false })

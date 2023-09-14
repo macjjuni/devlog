@@ -1,7 +1,7 @@
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 
 interface IHeaderStyled {
-  isHide: boolean
+  $isHide: boolean
 }
 
 const HeaderStyled = styled.header<IHeaderStyled>`
@@ -10,9 +10,9 @@ const HeaderStyled = styled.header<IHeaderStyled>`
   align-items: center;
   width: 100%;
   height: ${({ theme }) => theme.size.header};
-  transform: translateY(${({ isHide }) => (isHide ? '-100px' : '0')});
+  transform: translateY(${({ $isHide }) => ($isHide ? '-100px' : '0')});
   transition: transform ${({ theme }) => theme.trs.sm};
-  background: ${({ theme }) => theme.color.BLG0};
+
   z-index: 100;
 
   ${({ theme }) =>

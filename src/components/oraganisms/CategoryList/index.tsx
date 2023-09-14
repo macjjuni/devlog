@@ -1,12 +1,10 @@
 import { useEffect } from 'react'
-import Link from 'next/link'
-import CategoryItemStyled from '@/components/molecule/CategoryItem/style'
 import { verticalPostCatListMotion } from '@/utils/framer'
-import CategoryItem from '@/components/molecule/CategoryItem'
 import { ICategory } from '@/types/notion'
 import { useRouter } from 'next/router'
 import { cates } from '@/route'
-import CategoryListStyled from './style'
+import CategoryItem from './components/CategoryItem'
+import CategoryStyled from './style'
 
 const CategoryList = ({ list }: { list: ICategory[] }) => {
   const { pathname, query, push, isReady } = useRouter()
@@ -30,16 +28,14 @@ const CategoryList = ({ list }: { list: ICategory[] }) => {
   }, [pathname, isReady])
 
   return (
-    <CategoryListStyled.Wrap>
-      <CategoryListStyled.List initial="hidden" animate="visible" variants={verticalPostCatListMotion}>
-        <CategoryItemStyled active={isBlog ? 'active' : ''} category="default">
-          <Link href="/blog">All</Link>
-        </CategoryItemStyled>
+    <CategoryStyled.Wrap>
+      <CategoryStyled.List initial="hidden" animate="visible" variants={verticalPostCatListMotion}>
+        <CategoryItem categoryName="All" path="/blog" />
         {list.map((item) => (
-          <CategoryItem key={item.id} text={item.title} />
+          <CategoryItem key={item.id} categoryName={item.title} path={`/blog/category/${item.title.toLowerCase()}`} />
         ))}
-      </CategoryListStyled.List>
-    </CategoryListStyled.Wrap>
+      </CategoryStyled.List>
+    </CategoryStyled.Wrap>
   )
 }
 

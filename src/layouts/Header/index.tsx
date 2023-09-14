@@ -8,7 +8,7 @@ const Header = () => {
   const { isHide } = useStore((state) => state)
 
   return (
-    <HeaderStyled isHide={isHide}>
+    <HeaderStyled $isHide={isHide}>
       <Logo />
       <NavBar />
       <ThemeButton />

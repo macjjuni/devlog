@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { ColorTypes, dark } from '@/types/theme'
 import { colorModeAnimation } from '@/utils/framer'
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 
 const MoonStyled = styled(motion.div)`
   position: absolute;

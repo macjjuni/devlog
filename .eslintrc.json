@@ -35,6 +35,7 @@
     "react-hooks/rules-of-hooks": "off",
     "no-else-return": "off",
     "react-hooks/exhaustive-deps": "off",
-    "react/destructuring-assignment": "off"
+    "react/destructuring-assignment": "off",
+    "import/no-cycle": "off"
   }
 }

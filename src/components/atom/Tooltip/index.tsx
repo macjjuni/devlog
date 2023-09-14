@@ -1,14 +1,14 @@
 import TooltipStyled from './style'
 
-interface ITooltip {
-  text: string
-  show: boolean
+export interface ITooltip {
+  $text: string
+  $show: boolean
 }
 
-const Tooltip = ({ text, show }: ITooltip) => {
+const Tooltip = ({ $text, $show }: ITooltip) => {
   return (
-    <TooltipStyled show={show} text={text} className={show ? 'active' : 'noActive'}>
-      {text}
+    <TooltipStyled $show={$show} $text={$text} className={$show ? 'active' : 'noActive'}>
+      {$text}
     </TooltipStyled>
   )
 }

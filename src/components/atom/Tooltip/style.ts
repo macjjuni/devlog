@@ -1,40 +1,9 @@
-import styled from '@emotion/styled'
-import { keyframes } from '@emotion/react'
+import { tooltipHoverFrames, tooltipUnHoverFrames } from '@/styles/keyframes'
+import styled from 'styled-components'
+import { ITooltip } from '.'
 
-interface ITooltipStyled {
-  show: boolean
-  text: string
-}
-
-const hoverEffect = keyframes`
-  0% {
-    top: 0%;
-  }
-  10% {
-    top: 90%;
-  }
-  100% {
-    top: 118%;
-    opacity: 1;
-  }
-`
-const unHoverEffect = keyframes`
-  0% {
-    top: 118%;
-    opacity: 1;
-  }
-  90% {
-    top: 90%;
-    opacity: 0;
-  }
-  100% {
-    top: 0%;
-    opacity: 0;
-  }
-`
-
-const TooltipStyled = styled.div<ITooltipStyled>`
-  display: ${({ text }) => (text !== '' ? 'block' : 'none')};
+const TooltipStyled = styled.div<ITooltip>`
+  display: ${({ $text }) => ($text !== '' ? 'block' : 'none')};
 
   position: absolute;
   top: 0%;
@@ -51,10 +20,10 @@ const TooltipStyled = styled.div<ITooltipStyled>`
   z-index: -1;
 
   &.active {
-    animation: ${hoverEffect} 0.2s ease-in-out forwards;
+    ${tooltipHoverFrames};
   }
   &.noActive {
-    animation: ${unHoverEffect} 0.16s ease-in-out forwards;
+    ${tooltipUnHoverFrames};
   }
 `
 

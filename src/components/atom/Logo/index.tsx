@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import LogoStyled from './style'
 
-const title = process.env.NEXT_PUBLIC_TITLE || 'KKU'
+const title = process.env.NEXT_PUBLIC_LOGO || 'KKU'
 
 const Logo = () => {
   return (

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 
 const LogoStyled = styled.h1`
   font-size: ${({ theme }) => theme.fontSize.max};

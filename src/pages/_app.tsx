@@ -1,22 +1,24 @@
 import type { AppProps } from 'next/app'
-import { ThemeProvider } from '@emotion/react'
 import Layout from '@/layouts/Layout'
-import theme from '@/styles/theme'
-import GlobalStyles from '@/styles/global'
 import WithProgressBar from '@/components/hoc/ProgressBar'
-import useStore from '@/store'
+import ThemeProvider from '@/components/ThemeProvider'
+import DefaultMeta from '@/components/seo/DefaultMeta'
+import '@/styles/index.css'
+
+import '@fontsource/noto-sans-kr' // Defaults to weight 400
+import '@fontsource/noto-sans-kr/400.css' // Specify weight
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { color } = useStore((state) => state)
-
   return (
-    <ThemeProvider theme={theme(color)}>
+    <>
+      <DefaultMeta />
       <WithProgressBar>
-        <GlobalStyles />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <ThemeProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
       </WithProgressBar>
-    </ThemeProvider>
+    </>
   )
 }

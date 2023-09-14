@@ -52,7 +52,7 @@ const Button = (props: IButton) => {
         {props.children}
         {props.icon}
       </ButtonStyled.Button>
-      <Tooltip text={props.tooltipText || ''} show={isTT} />
+      <Tooltip $text={props.tooltipText || ''} $show={isTT} />
     </ButtonStyled.Wrap>
   )
 }
