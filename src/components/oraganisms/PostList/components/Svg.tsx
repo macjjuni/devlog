@@ -7,7 +7,7 @@ import DevSvg from '@/components/svg/DevSvg'
 import TypeScriptSvg from '@/components/svg/TypeScriptSvg'
 
 interface ISvg {
-  text: string
+  $category?: string
 }
 
 interface ICategorySvg {
@@ -34,8 +34,9 @@ const categorySvg: ICategorySvg[] = [
   { key: 'bitcoin', component: <BtcSvg /> },
 ]
 
-const Svg = ({ text }: ISvg) => {
-  const target = categorySvg.find((cateSvg) => text.toLowerCase().includes(cateSvg.key))
+const Svg = ({ $category }: ISvg) => {
+  if (!$category) return <>...</>
+  const target = categorySvg.find((cateSvg) => $category.toLowerCase().includes(cateSvg.key))
 
   if (target) return <SvgStyled>{target.component}</SvgStyled>
   return <>...</>

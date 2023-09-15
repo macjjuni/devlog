@@ -1,17 +1,20 @@
-import { IPost } from '@/types/notion'
+import type { IPage } from '@/types/notion'
 import Svg from '@/components/oraganisms/PostList/components/Svg'
+import { postItemMotion } from '@/utils/framer'
 import BookStyled from './style'
 
-const Book = ({ post }: { post: IPost }) => {
+const Book = ({ page }: { page: IPage }) => {
   return (
-    <BookStyled.Item>
-      <BookStyled.Body href="#" category={post.category}>
-        <BookStyled.Cat>{post.category}</BookStyled.Cat>
-        <BookStyled.Title>{post.title}</BookStyled.Title>
-        <Svg text={post.category} />
-        <BookStyled.Date>{post.date}</BookStyled.Date>
-      </BookStyled.Body>
-      <BookStyled.Side category={post.category} />
+    <BookStyled.Item variants={postItemMotion}>
+      <BookStyled.Wrap>
+        <BookStyled.Body href="#" $category={page?.category?.name}>
+          <BookStyled.Cat>{page?.category?.name}</BookStyled.Cat>
+          <BookStyled.Title>{page?.title}</BookStyled.Title>
+          <Svg $category={page?.category?.name} />
+          <BookStyled.Date>{page?.published}</BookStyled.Date>
+        </BookStyled.Body>
+        <BookStyled.Side $category={page?.category?.name} />
+      </BookStyled.Wrap>
     </BookStyled.Item>
   )
 }

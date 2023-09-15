@@ -18,8 +18,8 @@ const CateStyled = styled.h4`
   }
 `
 
-const Cate = ({ text }: { text: string }) => {
-  return <CateStyled>{text}</CateStyled>
+const Cate = ({ $category }: { $category?: string }) => {
+  return <CateStyled>{$category}</CateStyled>
 }
 
 export default Cate

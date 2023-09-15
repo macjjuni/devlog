@@ -23,7 +23,7 @@ export const projectItemMotion = {
 export const postListMotion = {
   visible: {
     opacity: 1,
-    transition: { when: 'beforeChildren', staggerChildren: 0.08, delay: 0.36 },
+    transition: { when: 'beforeChildren', staggerChildren: 0.12, delay: 0.36 },
   },
 }
 

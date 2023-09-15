@@ -6,9 +6,8 @@ import { cates } from '@/route'
 import CategoryItem from './components/CategoryItem'
 import CategoryStyled from './style'
 
-const CategoryList = ({ list }: { list: ICategory[] }) => {
+const CategoryList = ({ list = null }: { list: ICategory }) => {
   const { pathname, query, push, isReady } = useRouter()
-
   const isBlog = !query.id && pathname.includes('blog')
 
   const pathChecker = () => {
@@ -31,9 +30,7 @@ const CategoryList = ({ list }: { list: ICategory[] }) => {
     <CategoryStyled.Wrap>
       <CategoryStyled.List initial="hidden" animate="visible" variants={verticalPostCatListMotion}>
         <CategoryItem categoryName="All" path="/blog" />
-        {list.map((item) => (
-          <CategoryItem key={item.id} categoryName={item.title} path={`/blog/category/${item.title.toLowerCase()}`} />
-        ))}
+        {list?.map((item) => <CategoryItem key={item.id} categoryName={item.name} path={`/blog/category/${item.name}`} />)}
       </CategoryStyled.List>
     </CategoryStyled.Wrap>
   )

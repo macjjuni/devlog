@@ -1,11 +1,38 @@
-export interface IPost {
+import type { MultiSelectPropertyItemObjectResponse, SelectPropertyItemObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+
+// 노션 색상 타입
+type SelectColor = 'default' | 'gray' | 'brown' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple' | 'pink' | 'red'
+export type SelectPropertyResponse = {
   id: string
-  title: string
-  category: string
-  date: string
+  name: string
+  color: SelectColor
 }
 
-export interface ICategory {
-  id: string
+export type ICategory = SelectPropertyResponse[] | null
+
+// 노전 정보 타입
+export interface INotionInfo {
   title: string
+  description: string
+  coverURL: string | null
+  icon: string
+  tags: {
+    options: SelectPropertyResponse[]
+  } | null
+  category: ICategory
+}
+
+// 노션 페이지 타입
+export interface IPage {
+  id: string
+  cover: string
+  title: string
+  category: SelectPropertyItemObjectResponse['select'] | null
+  published: string
+  tags: MultiSelectPropertyItemObjectResponse['multi_select']
+}
+
+export interface DatabaseQueryOption {
+  categoryName?: string
+  title?: string
 }

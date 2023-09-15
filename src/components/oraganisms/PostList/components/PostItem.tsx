@@ -1,6 +1,6 @@
 import { postItemMotion } from '@/utils/framer' // Framer Motion
 import { BiDotsVerticalRounded } from 'react-icons/bi'
-import { type IPost } from '@/types/notion'
+import { type IPage } from '@/types/notion'
 import Button from '@/components/atom/Button'
 import PostStyled from '../style'
 
@@ -9,17 +9,17 @@ import Date from './date'
 import Svg from './Svg'
 import Cate from './Cate'
 
-const PostItem = ({ post }: { post: IPost }) => {
+const PostItem = ({ page }: { page: IPage }) => {
   return (
     <PostStyled.Item variants={postItemMotion}>
-      <PostStyled.Link href="/#" category={post.category}>
+      <PostStyled.Link href="/#" $category={page?.category?.name}>
         <PostStyled.TopWrap>
-          <Cate text={post.category} />
+          <Cate $category={page?.category?.name} />
           <Button icon={<BiDotsVerticalRounded fontSize="32" color="#fff" />} />
         </PostStyled.TopWrap>
-        <Title text={post.title} />
-        <Date text={post.date} />
-        <Svg text={post.category} />
+        <Title text={page.title} />
+        <Date text={page.published} />
+        <Svg $category={page?.category?.name} />
       </PostStyled.Link>
     </PostStyled.Item>
   )

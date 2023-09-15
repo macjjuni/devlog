@@ -17,10 +17,10 @@ const PageStyled = {
     `)}
   `,
   Left: styled.div`
-    width: 30%;
+    width: 26%;
   `,
   Right: styled.div`
-    width: 70%;
+    width: 74%;
   `,
 }
 

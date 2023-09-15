@@ -10,10 +10,10 @@ const PostStyled = {
     justify-content: start;
     align-items: center;
     overflow-y: auto;
-    gap: ${({ theme }) => theme.size.xxxl};
+    gap: ${({ theme }) => theme.size.xxxxl};
     margin-bottom: ${({ theme }) => theme.size.max};
     margin-right: -${({ theme }) => theme.size.max};
-    padding: ${({ theme }) => theme.size.xl};
+    padding: ${({ theme }) => theme.size.xxxl};
   `,
   Item: styled(motion.article)`
     position: relative;
@@ -23,7 +23,7 @@ const PostStyled = {
     justify-content: space-between;
     align-items: flex-start;
   `,
-  Link: styled(Link)<{ category: string }>`
+  Link: styled(Link)<{ $category?: string }>`
     position: relative;
     display: flex;
     flex-direction: column;
@@ -36,8 +36,9 @@ const PostStyled = {
       rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
       rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     border-radius: ${({ theme }) => theme.size.sm};
-    background-color: ${({ theme, category }) => {
-      const target = theme.categoryColor.find((cate: ICateColor) => cate.key === category.toLocaleLowerCase() || cate.key === 'default')
+    background-color: ${({ theme, $category }) => {
+      if (!$category) return '#eee'
+      const target = theme.categoryColor.find((cate: ICateColor) => cate.key === $category.toLocaleLowerCase() || cate.key === 'default')
       if (target) return target.color
       return '#eee'
     }};

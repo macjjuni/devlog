@@ -36,6 +36,7 @@
     "no-else-return": "off",
     "react-hooks/exhaustive-deps": "off",
     "react/destructuring-assignment": "off",
-    "import/no-cycle": "off"
+    "import/no-cycle": "off",
+    "no-console": "off"
   }
 }

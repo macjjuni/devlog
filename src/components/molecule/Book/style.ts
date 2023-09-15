@@ -1,18 +1,30 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import { type ICateColor } from '@/styles/theme'
+import { motion } from 'framer-motion'
 
 const BookStyled = {
-  Item: styled.article`
+  Item: styled(motion.article)`
     position: relative;
     width: 300px;
     height: 360px;
+  `,
+  Wrap: styled.div`
+    position: relative;
     margin: 0;
     color: ${({ theme }) => theme.color.BLG0};
+    border-top-left-radius: ${({ theme }) => theme.size.md};
+    border-bottom-left-radius: ${({ theme }) => theme.size.md};
+    border-top-right-radius: ${({ theme }) => theme.size.sm};
+    border-bottom-right-radius: ${({ theme }) => theme.size.sm};
+    box-shadow:
+      rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     transition: ${({ theme }) => theme.trs.md};
 
     &:hover {
       transform: scale(1.06) perspective(80px) rotateY(-1.2deg);
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
     &:hover > span {
       right: -16px;
@@ -22,7 +34,7 @@ const BookStyled = {
       transform: translateY(-50%) perspective(80px) rotateY(8deg);
     }
   `,
-  Body: styled(Link)<{ category: string }>`
+  Body: styled(Link)<{ $category?: string }>`
     position: relative;
     display: flex;
     flex-direction: column;
@@ -32,19 +44,18 @@ const BookStyled = {
     height: 360px;
     padding: ${({ theme }) => theme.size.xl};
     padding-left: ${({ theme }) => theme.size.xxxl};
-    background-color: ${({ theme, category }) => {
-      const target = theme.categoryColor.find((cate: ICateColor) => cate.key === category.toLocaleLowerCase() || cate.key === 'default')
-      if (target) return target.color
-      return '#eee'
-    }};
     border-top-left-radius: ${({ theme }) => theme.size.md};
     border-bottom-left-radius: ${({ theme }) => theme.size.md};
     border-top-right-radius: ${({ theme }) => theme.size.sm};
     border-bottom-right-radius: ${({ theme }) => theme.size.sm};
+    overflow: hidden;
+    background-color: ${({ theme, $category }) => {
+      if (!$category) return '#eee'
+      const target = theme.categoryColor.find((cate: ICateColor) => cate.key === $category.toLocaleLowerCase() || cate.key === 'default')
+      if (target) return target.color
+      return '#eee'
+    }};
 
-    box-shadow:
-      rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     z-index: 10;
 
     &::after {
@@ -84,7 +95,7 @@ const BookStyled = {
         );
     }
   `,
-  Side: styled.span<{ category: string }>`
+  Side: styled.span<{ $category?: string }>`
     &,
     &::after {
       content: '';
@@ -95,8 +106,9 @@ const BookStyled = {
     }
 
     right: 2px;
-    background-color: ${({ theme, category }) => {
-      const target = theme.categoryColor.find((cate: ICateColor) => cate.key === category.toLocaleLowerCase() || cate.key === 'default')
+    background-color: ${({ theme, $category }) => {
+      if (!$category) return '#eee'
+      const target = theme.categoryColor.find((cate: ICateColor) => cate.key === $category.toLocaleLowerCase() || cate.key === 'default')
       if (target) return target.color
       return '#eee'
     }};
@@ -115,18 +127,18 @@ const BookStyled = {
     }
   `,
   Title: styled.h3`
-    font-size: ${({ theme }) => theme.fontSize.xl};
-    line-height: 1.3;
-    margin-bottom: 140px;
+    font-size: ${({ theme }) => theme.fontSize.xxl};
+    line-height: 1.45;
+    margin-bottom: 100px;
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
   `,
   Cat: styled.h2`
     position: relative;
-    font-size: ${({ theme }) => theme.fontSize.max};
+    font-size: ${({ theme }) => theme.fontSize.xxxl};
     font-weight: bold;
     &::after {
       /* content: ''; */

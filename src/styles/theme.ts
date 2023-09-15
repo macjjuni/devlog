@@ -61,6 +61,7 @@ const theme = {
     xl: '16px',
     xxl: '32px',
     xxxl: '48px',
+    xxxxl: '64px',
     max: '40px',
     header: '36px',
     main: '100dvh',
