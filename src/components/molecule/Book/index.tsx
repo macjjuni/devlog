@@ -8,12 +8,15 @@ const Book = ({ page }: { page: IPage }) => {
     <BookStyled.Item variants={postItemMotion}>
       <BookStyled.Wrap>
         <BookStyled.Body href="#" $category={page?.category?.name}>
-          <BookStyled.Cat>{page?.category?.name}</BookStyled.Cat>
-          <BookStyled.Title>{page?.title}</BookStyled.Title>
+          <BookStyled.LeftSide />
+          <BookStyled.TopWrap>
+            <BookStyled.Cat>{page?.category?.name}</BookStyled.Cat>
+            <BookStyled.Title>{page?.title}</BookStyled.Title>
+          </BookStyled.TopWrap>
           <Svg $category={page?.category?.name} />
           <BookStyled.Date>{page?.published}</BookStyled.Date>
         </BookStyled.Body>
-        <BookStyled.Side $category={page?.category?.name} />
+        <BookStyled.RightSide $category={page?.category?.name} />
       </BookStyled.Wrap>
     </BookStyled.Item>
   )

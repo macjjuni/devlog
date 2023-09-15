@@ -5,11 +5,10 @@ import CategoryStyled from '../style'
 
 const CategoryItem = ({ categoryName, path }: { categoryName: string; path: string }) => {
   const { query } = useRouter()
-
   // 현재 카테고리에 맞는 페이지인지 체크
   const activeChekcer = () => {
-    if (categoryName.toLowerCase() === 'all' && query.id === undefined) return 'active'
-    return query.id?.includes(categoryName.toLowerCase()) ? 'active' : 'origin'
+    if (categoryName.toLowerCase() === 'all' && query.name === undefined) return 'active'
+    return query.name?.includes(categoryName) ? 'active' : 'origin'
   }
 
   return (

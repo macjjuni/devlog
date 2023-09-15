@@ -14,7 +14,7 @@ const defaultDes = process.env.NEXT_PUBLIC_DESCRIPTION || 'not description in en
 const defaultURL = process.env.NEXT_PUBLIC_DOMAIN || 'https://kku.dev/'
 
 const NextHead = ({ title, des }: IHead) => {
-  const Title = `${defaultTitle}${title ? ` - ${title}` : ''}`
+  const Title = `${defaultTitle}${title ? ` :: ${title}` : ''}`
 
   return (
     <Head>

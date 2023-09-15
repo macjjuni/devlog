@@ -4,6 +4,7 @@ import type { IPage } from '@/types/notion'
 import notion from '@/lib/noiton'
 import { INotionInfo } from '@/types/notion'
 
+import { useRouter } from 'next/router'
 import PostList from '@/components/oraganisms/PostList'
 import CategoryList from '@/components/oraganisms/CategoryList'
 import NextHead from '@/components/seo/DefaultMeta'
@@ -69,9 +70,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 const CategoryPage = ({ pages, info }: IBlogPage) => {
+  const { query } = useRouter()
+
   return (
     <>
-      <NextHead title="Blog" />
+      <NextHead title={`Blog > ${query.name}`} />
       <PageStyled.Wrap>
         <PageStyled.Left>
           <CategoryList list={info.category} />

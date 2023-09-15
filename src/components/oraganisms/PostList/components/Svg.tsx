@@ -5,6 +5,7 @@ import VueSvg from '@/components/svg/VueSvg'
 import BtcSvg from '@/components/svg/BtcSvg'
 import DevSvg from '@/components/svg/DevSvg'
 import TypeScriptSvg from '@/components/svg/TypeScriptSvg'
+import JavaScript from '@/components/svg/JavaScript'
 
 interface ISvg {
   $category?: string
@@ -21,7 +22,7 @@ const SvgStyled = styled.div`
   right: ${({ theme }) => theme.size.md};
   margin: 0;
   z-index: 0;
-  width: 130px;
+  width: px;
   height: 130px;
 `
 
@@ -30,6 +31,7 @@ const categorySvg: ICategorySvg[] = [
   { key: 'daily', component: <DailySvg /> },
   { key: 'react', component: <ReactSvg /> },
   { key: 'typescript', component: <TypeScriptSvg /> },
+  { key: 'javascript', component: <JavaScript /> },
   { key: 'vue', component: <VueSvg /> },
   { key: 'bitcoin', component: <BtcSvg /> },
 ]

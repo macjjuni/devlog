@@ -31,7 +31,7 @@ export const palette = {
   success: '',
   warning: '',
   BLG0: '#ffffff',
-  BLG100: '#f1f3f5',
+  BLG100: '#f3f3f4',
   BLG200: '#e8ebed',
   BLG300: '#dee2e6',
   BLG400: '#c9cdd2',
@@ -94,13 +94,16 @@ const theme = {
     mobile,
   },
   categoryColor: [
-    { key: 'dev', color: '#7c42db' },
+    { key: 'dev', color: '#8f54ec' },
     { key: 'daily', color: '#eae600' },
     { key: 'typescript', color: '#007acc' },
+    { key: 'javascript', color: '#FFCA28' },
     { key: 'react', color: '#61dafb' },
     { key: 'vue', color: '#42b983' },
     { key: 'bitcoin', color: '#f7931a' },
-    { key: 'default', color: '#eee' },
+    { key: 'git', color: '#343434' },
+    { key: 'git', color: '#343434' },
+    { key: 'default', color: '#343434' },
   ],
 }
 

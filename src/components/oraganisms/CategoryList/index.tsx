@@ -28,7 +28,7 @@ const CategoryList = ({ list = null }: { list: ICategory }) => {
 
   return (
     <CategoryStyled.Wrap>
-      <CategoryStyled.List initial="hidden" animate="visible" variants={verticalPostCatListMotion}>
+      <CategoryStyled.List initial="hidden" animate="show" variants={verticalPostCatListMotion}>
         <CategoryItem categoryName="All" path="/blog" />
         {list?.map((item) => <CategoryItem key={item.id} categoryName={item.name} path={`/blog/category/${item.name}`} />)}
       </CategoryStyled.List>

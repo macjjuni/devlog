@@ -13,7 +13,7 @@ const PostList = ({ list }: { list: IPage[] }) => {
   }
 
   return (
-    <PostStyled.List initial="hidden" animate="visible" variants={postListMotion} ref={listRef} onWheel={onWheel} className="no-scroll">
+    <PostStyled.List initial="hidden" animate="show" variants={postListMotion} ref={listRef} onWheel={onWheel} className="no-scroll">
       {list.map((item) => (
         // <PostItem key={item.id} page={item} />
         <Book key={item.id} page={item} />

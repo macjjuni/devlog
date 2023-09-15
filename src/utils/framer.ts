@@ -9,37 +9,37 @@ export const colorModeAnimation = {
 }
 
 export const projectListMotion = {
-  visible: {
+  show: {
     opacity: 1,
     transition: { when: 'beforeChildren', staggerChildren: 0.1, delay: 0.3 },
   },
 }
 
 export const projectItemMotion = {
-  visible: { opacity: 1, x: 0 },
-  hidden: { opacity: 0, x: -100 },
+  show: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, x: -20 },
 }
 
 export const postListMotion = {
-  visible: {
+  show: {
     opacity: 1,
-    transition: { when: 'beforeChildren', staggerChildren: 0.12, delay: 0.36 },
+    transition: { when: 'beforeChildren', staggerChildren: 0.133, delay: 0.36 },
   },
 }
 
 export const postItemMotion = {
-  visible: { opacity: 1, x: 0 },
-  hidden: { opacity: 0, x: -100 },
+  show: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, x: -36 },
 }
 
 export const verticalPostCatListMotion = {
-  visible: {
+  show: {
     opacity: 1,
     transition: { when: 'beforeChildren', staggerChildren: 0.08 },
   },
 }
 
 export const verticalPostCatItemMotion = {
-  visible: { opacity: 1, x: 0 },
+  show: { opacity: 1, x: 0 },
   hidden: { opacity: 0, x: -25 },
 }

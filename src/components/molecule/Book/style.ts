@@ -24,7 +24,10 @@ const BookStyled = {
 
     &:hover {
       transform: scale(1.06) perspective(80px) rotateY(-1.2deg);
-      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+      box-shadow:
+        rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     }
     &:hover > span {
       right: -16px;
@@ -50,52 +53,48 @@ const BookStyled = {
     border-bottom-right-radius: ${({ theme }) => theme.size.sm};
     overflow: hidden;
     background-color: ${({ theme, $category }) => {
-      if (!$category) return '#eee'
+      if (!$category) return theme.categoryColor[theme.categoryColor.length - 1].color
       const target = theme.categoryColor.find((cate: ICateColor) => cate.key === $category.toLocaleLowerCase() || cate.key === 'default')
       if (target) return target.color
-      return '#eee'
+      return theme.categoryColor[theme.categoryColor.length - 1].color
     }};
 
     z-index: 10;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    &::after {
-      left: 0;
-      width: 30px;
-      height: 100%;
-      border-top-left-radius: ${({ theme }) => theme.size.md};
-      border-bottom-left-radius: ${({ theme }) => theme.size.md};
-      opacity: 0.5;
-      background: linear-gradient(
-          90deg,
-          hsla(0, 0%, 100%, 0),
-          hsla(0, 0%, 100%, 0) 12%,
-          hsla(0, 0%, 100%, 0.25) 29.25%,
-          hsla(0, 0%, 100%, 0) 50.5%,
-          hsla(0, 0%, 100%, 0) 75.25%,
-          hsla(0, 0%, 100%, 0.25) 91%,
-          hsla(0, 0%, 100%, 0)
-        ),
-        linear-gradient(
-          90deg,
-          rgba(0, 0, 0, 0.03),
-          rgba(0, 0, 0, 0.1) 12%,
-          transparent 30%,
-          rgba(0, 0, 0, 0.02) 50%,
-          rgba(0, 0, 0, 0.2) 73.5%,
-          rgba(0, 0, 0, 0.5) 75.25%,
-          rgba(0, 0, 0, 0.15) 85.25%,
-          transparent
-        );
-    }
   `,
-  Side: styled.span<{ $category?: string }>`
+  LeftSide: styled.span`
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 100%;
+    border-top-left-radius: ${({ theme }) => theme.size.md};
+    border-bottom-left-radius: ${({ theme }) => theme.size.md};
+    opacity: 0.3;
+    /* transition: background ${({ theme }) => theme.trs.md}; */
+    background: linear-gradient(
+        90deg,
+        hsla(0, 0%, 100%, 0),
+        hsla(0, 0%, 100%, 0) 12%,
+        hsla(0, 0%, 100%, 0.25) 29.25%,
+        hsla(0, 0%, 100%, 0) 50.5%,
+        hsla(0, 0%, 100%, 0) 75.25%,
+        hsla(0, 0%, 100%, 0.25) 91%,
+        hsla(0, 0%, 100%, 0)
+      ),
+      linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.03),
+        rgba(0, 0, 0, 0.1) 12%,
+        transparent 30%,
+        rgba(0, 0, 0, 0.02) 50%,
+        rgba(0, 0, 0, 0.2) 73.5%,
+        rgba(0, 0, 0, 0.2) 75.25%,
+        rgba(0, 0, 0, 0.15) 85.25%,
+        transparent
+      );
+  `,
+  RightSide: styled.span<{ $category?: string }>`
     &,
     &::after {
       content: '';
@@ -107,10 +106,10 @@ const BookStyled = {
 
     right: 2px;
     background-color: ${({ theme, $category }) => {
-      if (!$category) return '#eee'
+      if (!$category) return theme.categoryColor[theme.categoryColor.length - 1].color
       const target = theme.categoryColor.find((cate: ICateColor) => cate.key === $category.toLocaleLowerCase() || cate.key === 'default')
       if (target) return target.color
-      return '#eee'
+      return theme.categoryColor[theme.categoryColor.length - 1].color
     }};
     border-top-right-radius: ${({ theme }) => theme.size.sm};
     border-bottom-right-radius: ${({ theme }) => theme.size.sm};
@@ -126,20 +125,34 @@ const BookStyled = {
       transition: ${({ theme }) => theme.trs.md};
     }
   `,
+  TopWrap: styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: ${({ theme }) => theme.size.sm};
+  `,
   Title: styled.h3`
     font-size: ${({ theme }) => theme.fontSize.xxl};
+    color: ${({ theme }) => theme.color.BLG0};
+    font-weight: bold;
     line-height: 1.45;
-    margin-bottom: 100px;
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
+    /* text-shadow: 1px 1px 1px ${({ theme }) => theme.color.BLG600}; */
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.2);
   `,
   Cat: styled.h2`
     position: relative;
-    font-size: ${({ theme }) => theme.fontSize.xxxl};
+    font-size: ${({ theme }) => theme.fontSize.max};
     font-weight: bold;
+    line-height: 1.45;
+    text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.2);
+
     &::after {
       /* content: ''; */
       position: absolute;
@@ -153,6 +166,7 @@ const BookStyled = {
   Date: styled.span`
     font-size: ${({ theme }) => theme.fontSize.lg};
     margin-bottom: ${({ theme }) => theme.size.md};
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.2);
   `,
 }
 
