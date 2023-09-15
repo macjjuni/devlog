@@ -6,7 +6,7 @@ import PostStyled from '../style'
 
 import Title from './Title'
 import Date from './date'
-import Svg from './Svg'
+// import Svg from './Svg'
 import Cate from './Cate'
 
 const PostItem = ({ page }: { page: IPage }) => {
@@ -19,7 +19,7 @@ const PostItem = ({ page }: { page: IPage }) => {
         </PostStyled.TopWrap>
         <Title text={page.title} />
         <Date text={page.published} />
-        <Svg $category={page?.category?.name} />
+        {/* <Svg $category={page?.category?.name} /> */}
       </PostStyled.Link>
     </PostStyled.Item>
   )
