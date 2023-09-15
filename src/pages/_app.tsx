@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import Layout from '@/layouts/Layout'
 import WithProgressBar from '@/components/hoc/ProgressBar'
-import ThemeProvider from '@/components/ThemeProvider'
+import ThemeProvider from '@/components/hoc/ThemeProvider'
 import DefaultMeta from '@/components/seo/DefaultMeta'
 import '@/styles/index.css'
 

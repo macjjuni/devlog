@@ -1,8 +1,8 @@
 import { ISvg } from '@/types/svg'
 
-const ReactSvg = ({ color = '#ffffff' }: ISvg) => {
+const ReactSvg = ({ width = 100, height = 100, color = '#ffffff' }: ISvg) => {
   return (
-    <svg viewBox="0 0 32 32" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 32 32" width={`${width}px`} height={`${height}px`} fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
       <g id="SVGRepo_iconCarrier">

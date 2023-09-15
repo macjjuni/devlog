@@ -1,6 +1,6 @@
 import type { IPage } from '@/types/notion'
-import Svg from '@/components/oraganisms/PostList/components/Svg'
 import { postItemMotion } from '@/utils/framer'
+import CategorySvg from '@/components/molecule/CategorySvg'
 import BookStyled from './style'
 
 const Book = ({ page }: { page: IPage }) => {
@@ -10,11 +10,13 @@ const Book = ({ page }: { page: IPage }) => {
         <BookStyled.Body href="#" $category={page?.category?.name}>
           <BookStyled.LeftSide />
           <BookStyled.TopWrap>
-            <BookStyled.Cat>{page?.category?.name}</BookStyled.Cat>
+            <BookStyled.Cat $category={page?.category?.name}>{page?.category?.name}</BookStyled.Cat>
             <BookStyled.Title>{page?.title}</BookStyled.Title>
           </BookStyled.TopWrap>
-          <Svg $category={page?.category?.name} />
           <BookStyled.Date>{page?.published}</BookStyled.Date>
+          <BookStyled.Svg>
+            <CategorySvg category={page?.category?.name} />
+          </BookStyled.Svg>
         </BookStyled.Body>
         <BookStyled.RightSide $category={page?.category?.name} />
       </BookStyled.Wrap>

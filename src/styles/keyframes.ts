@@ -5,14 +5,10 @@ const activeMenu = SC.keyframes`
      font-size: 38px;
      font-weight: 400;
      padding-left: 0;
-     text-decoration-line: none;
    }
    to {
      font-size: 42px;
      font-weight: bold;
-     text-decoration-line: underline;
-     text-decoration-thickness: 4px;
-     text-underline-offset: 4px;
    }
  `
 

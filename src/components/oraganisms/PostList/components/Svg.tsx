@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import DailySvg from '@/components/svg/DailySvg'
-import ReactSvg from '@/components/svg/ReactSvg'
-import VueSvg from '@/components/svg/VueSvg'
-import BtcSvg from '@/components/svg/BtcSvg'
-import DevSvg from '@/components/svg/DevSvg'
-import TypeScriptSvg from '@/components/svg/TypeScriptSvg'
-import JavaScript from '@/components/svg/JavaScript'
+import DailySvg from '@/components/molecule/CategorySvg/components/svg/DailySvg'
+import ReactSvg from '@/components/molecule/CategorySvg/components/svg/ReactSvg'
+import VueSvg from '@/components/molecule/CategorySvg/components/VueSvg'
+import BtcSvg from '@/components/molecule/CategorySvg/components/svg/BtcSvg'
+import DevSvg from '@/components/molecule/CategorySvg/components/svg/DevSvg'
+import TypeScriptSvg from '@/components/molecule/CategorySvg/components/svg/TypeScriptSvg'
+import JavaScript from '@/components/molecule/CategorySvg/components/svg/JavaScript'
 
 interface ISvg {
   $category?: string

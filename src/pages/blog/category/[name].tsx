@@ -10,7 +10,7 @@ import CategoryList from '@/components/oraganisms/CategoryList'
 import NextHead from '@/components/seo/DefaultMeta'
 import PageStyled from '@/styles/common'
 
-import { checkKorean } from '@/utils/string'
+// import { checkKorean } from '@/utils/string'
 
 interface IBlogPage {
   info: INotionInfo
@@ -24,6 +24,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const { category } = await notion.getNotionInfo(databaseId)
 
     const paths = category?.map(({ name }) => ({ params: { name } }))
+
     if (!paths || paths.length === 0) throw new Error('No Categories')
 
     return { paths, fallback: false }
@@ -37,14 +38,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const queryId = params?.name?.toString()
   if (!queryId || queryId === '') return { redirect: { destination: '/', permanent: false } }
 
-  const isKorean = checkKorean(queryId)
-  const name = isKorean ? queryId : queryId.replace(/\b[a-z]/g, (char) => char.toUpperCase())
+  // const isKorean = checkKorean(queryId)
+  // const name = isKorean ? queryId : queryId.replace(/\b[a-z]/g, (char) => char.toUpperCase())
 
   try {
     const databaseId = process.env.NOTION_DATABASE_ID
     if (!databaseId) throw new Error('DATABASE_ID is not defined')
 
-    const pages = await notion.getAllPage(databaseId, { categoryName: name })
+    const pages = await notion.getAllPage(databaseId, { categoryName: queryId })
     const info = await notion.getNotionInfo(databaseId)
 
     const cateArr = info.category?.map((cate) => cate.name) || []

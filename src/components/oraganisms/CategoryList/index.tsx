@@ -30,7 +30,7 @@ const CategoryList = ({ list = null }: { list: ICategory }) => {
     <CategoryStyled.Wrap>
       <CategoryStyled.List initial="hidden" animate="show" variants={verticalPostCatListMotion}>
         <CategoryItem categoryName="All" path="/blog" />
-        {list?.map((item) => <CategoryItem key={item.id} categoryName={item.name} path={`/blog/category/${item.name}`} />)}
+        {list?.map((item) => <CategoryItem key={item.id} categoryName={item.name} path={`/blog/category/${encodeURIComponent(item.name)}`} />)}
       </CategoryStyled.List>
     </CategoryStyled.Wrap>
   )

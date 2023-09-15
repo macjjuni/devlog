@@ -41,6 +41,7 @@ export const palette = {
   BLG800: '#26282b',
   BLG900: '#1b1d1f',
   BLG1000: '#000000',
+  BookBg: '#464646',
 }
 
 const color = {
@@ -76,9 +77,9 @@ const theme = {
     xxl: '24px',
     xxxl: '28px',
     max: '34px',
-    category: '38px',
     postTitle: '30px',
-    categoryActive: '42px',
+    category: '32px',
+    categoryActive: '34px',
   },
   trs: {
     sm: '0.33s ease',
@@ -94,16 +95,15 @@ const theme = {
     mobile,
   },
   categoryColor: [
-    { key: 'dev', color: '#8f54ec' },
-    { key: 'daily', color: '#eae600' },
-    { key: 'typescript', color: '#007acc' },
-    { key: 'javascript', color: '#FFCA28' },
+    { key: 'dev', color: '#9a57ff' },
+    { key: 'bitcoin', color: '#f7931a' },
+    { key: 'js/ts', color: '#FFCA28' },
     { key: 'react', color: '#61dafb' },
     { key: 'vue', color: '#42b983' },
-    { key: 'bitcoin', color: '#f7931a' },
-    { key: 'git', color: '#343434' },
-    { key: 'git', color: '#343434' },
-    { key: 'default', color: '#343434' },
+    { key: 'cs', color: '#cf4040' },
+    { key: 'git', color: '#EE513B' },
+    { key: '일상', color: '#26b7f0' },
+    { key: 'default', color: '#3e3e3e' },
   ],
 }
 

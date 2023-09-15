@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { light, type ColorTypes } from '@/types/theme'
 import { colorModeAnimation } from '@/utils/framer'
 import styled from 'styled-components'
-import BtcSvg from './BtcOriginSvg'
+import BtcSvg from '../molecule/CategorySvg/components/BtcOriginSvg'
 
 const SunStyled = styled(motion.div)`
   position: absolute;
