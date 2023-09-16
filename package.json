@@ -21,6 +21,7 @@
     "next": "13.4.19",
     "nextjs-toploader": "^1.4.2",
     "notion-client": "^6.16.0",
+    "notion-utils": "^6.16.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
@@ -32,6 +33,7 @@
   },
   "packageManager": "yarn@3.6.3",
   "devDependencies": {
+    "@babel/runtime": "^7.22.15",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -42,6 +44,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "notion-types": "^6.16.0",
     "prettier": "^3.0.3"
   }
 }

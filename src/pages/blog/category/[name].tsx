@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import PostList from '@/components/oraganisms/PostList'
 import CategoryList from '@/components/oraganisms/CategoryList'
 import NextHead from '@/components/seo/DefaultMeta'
-import PageStyled from '@/styles/common'
+import { PageStyled } from '@/styles/common'
 
 // import { checkKorean } from '@/utils/string'
 

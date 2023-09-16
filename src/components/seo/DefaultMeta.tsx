@@ -1,12 +1,12 @@
 import Head from 'next/head'
 
-interface IDescription {
-  content: string
-}
+// interface IDescription {
+//   content: string
+// }
 
 interface IHead {
   title?: string
-  des?: IDescription
+  des?: string
 }
 
 const defaultTitle = process.env.NEXT_PUBLIC_TITLE || 'not title in env'
@@ -20,7 +20,7 @@ const NextHead = ({ title, des }: IHead) => {
     <Head>
       <title>{Title}</title>
       <meta name="theme-color" content="#ffffff" />
-      <meta name="description" content={des?.content || defaultDes} />
+      <meta name="description" content={des || defaultDes} />
       {/* Open Graph Tags */}
       {/* 웹사이트 이름 */}
       <meta name="og:site_name" content={defaultTitle} />
@@ -29,7 +29,7 @@ const NextHead = ({ title, des }: IHead) => {
       {/* 웹사이트 제목 */}
       <meta name="og:title" content={Title} />
       {/* 웹사이트 상세 설명 */}
-      <meta name="og:description" content={des?.content || defaultDes} />
+      <meta name="og:description" content={des || defaultDes} />
       {/* 웹사이트 유형 */}
       <meta name="og:type" content="website" />
       {/* 웹사이트 이미지 */}

@@ -7,7 +7,7 @@ import { INotionInfo } from '@/types/notion'
 import PostList from '@/components/oraganisms/PostList'
 import CategoryList from '@/components/oraganisms/CategoryList'
 import NextHead from '@/components/seo/DefaultMeta'
-import PageStyled from '@/styles/common'
+import { PageStyled } from '@/styles/common'
 
 interface IBlogPage {
   info: INotionInfo

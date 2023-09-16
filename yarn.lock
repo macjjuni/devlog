@@ -1446,7 +1446,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.2.0, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.2.0, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.22.15, @babel/runtime@npm:^7.8.4":
   version: 7.22.15
   resolution: "@babel/runtime@npm:7.22.15"
   dependencies:
@@ -3018,6 +3018,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "devlog_latest@workspace:."
   dependencies:
+    "@babel/runtime": ^7.22.15
     "@fontsource/noto-sans-kr": ^5.0.11
     "@notionhq/client": ^2.2.13
     "@types/node": 20.6.0
@@ -3040,6 +3041,8 @@ __metadata:
     next: 13.4.19
     nextjs-toploader: ^1.4.2
     notion-client: ^6.16.0
+    notion-types: ^6.16.0
+    notion-utils: ^6.16.0
     prettier: ^3.0.3
     react: 18.2.0
     react-dom: 18.2.0

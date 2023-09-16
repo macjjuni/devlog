@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@babel/runtime", "npm:7.22.15"],\
             ["@fontsource/noto-sans-kr", "npm:5.0.11"],\
             ["@notionhq/client", "npm:2.2.13"],\
             ["@types/node", "npm:20.6.0"],\
@@ -50,6 +51,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:13.4.19"],\
             ["nextjs-toploader", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:1.4.2"],\
             ["notion-client", "npm:6.16.0"],\
+            ["notion-types", "npm:6.16.0"],\
+            ["notion-utils", "npm:6.16.0"],\
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:18.2.0"],\
@@ -4597,6 +4600,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["devlog_latest", "workspace:."],\
+            ["@babel/runtime", "npm:7.22.15"],\
             ["@fontsource/noto-sans-kr", "npm:5.0.11"],\
             ["@notionhq/client", "npm:2.2.13"],\
             ["@types/node", "npm:20.6.0"],\
@@ -4619,6 +4623,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:13.4.19"],\
             ["nextjs-toploader", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:1.4.2"],\
             ["notion-client", "npm:6.16.0"],\
+            ["notion-types", "npm:6.16.0"],\
+            ["notion-utils", "npm:6.16.0"],\
             ["prettier", "npm:3.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:18.2.0"],\

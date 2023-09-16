@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const PageStyled = {
+export const PageStyled = {
   Wrap: styled.div`
     display: flex;
     justify-content: space-between;
@@ -24,4 +24,9 @@ const PageStyled = {
   `,
 }
 
-export default PageStyled
+export const DetailPageStyled = {
+  Wrap: styled.div`
+    max-width: 1100px;
+    margin: 0 auto;
+  `,
+}

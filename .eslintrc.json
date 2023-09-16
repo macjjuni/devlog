@@ -37,6 +37,12 @@
     "react-hooks/exhaustive-deps": "off",
     "react/destructuring-assignment": "off",
     "import/no-cycle": "off",
+    "@next/next/no-html-link-for-pages": ["error", "packages/my-app/pages/"],
+    "eslint-disable-next-line": "off",
+    "eslint-disable-next-line array-callback-return": "off",
+    "eslint-disable array-callback-return": "off",
+    "array-callback-return": "off",
+    "consistent-return": "off",
     "no-console": "off"
   }
 }

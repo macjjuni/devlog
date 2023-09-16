@@ -8,7 +8,7 @@ const Book = ({ page }: { page: IPage }) => {
   return (
     <BookStyled.Item variants={postItemMotion}>
       <BookStyled.Wrap>
-        <BookStyled.Body href="#" $category={page?.category?.name}>
+        <BookStyled.Body href={`/blog/${page?.id}`} $category={page?.category?.name}>
           <NewSvg published={page?.published} color="#FF6969" />
           <BookStyled.LeftSide />
 
