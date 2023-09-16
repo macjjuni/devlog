@@ -41,7 +41,7 @@ export const palette = {
   BLG800: '#26282b',
   BLG900: '#1b1d1f',
   BLG1000: '#000000',
-  BookBg: '#464646',
+  BookBg: '#F1EFEF',
 }
 
 const color = {

@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ICateColor } from '@/styles/theme'
 
 const BookStyled = {
   Item: styled(motion.article)`
@@ -12,7 +11,7 @@ const BookStyled = {
   Wrap: styled.div`
     position: relative;
     margin: 0;
-    color: ${({ theme }) => theme.color.BLG0};
+    color: ${({ theme }) => theme.color.BLG800};
     border-top-left-radius: ${({ theme }) => theme.size.md};
     border-bottom-left-radius: ${({ theme }) => theme.size.md};
     border-top-right-radius: ${({ theme }) => theme.size.sm};
@@ -54,8 +53,12 @@ const BookStyled = {
     border-bottom-right-radius: ${({ theme }) => theme.size.sm};
     overflow: hidden;
     background-color: ${({ theme }) => theme.color.BookBg};
-
     z-index: 10;
+  `,
+  NewIcon: styled.div`
+    position: absolute;
+    top: ${({ theme }) => theme.size.lg};
+    right: ${({ theme }) => theme.size.lg};
   `,
   LeftSide: styled.span`
     position: absolute;
@@ -126,8 +129,7 @@ const BookStyled = {
   `,
   Title: styled.h3`
     font-size: ${({ theme }) => theme.fontSize.xxl};
-    color: ${({ theme }) => theme.color.BLG0};
-    font-weight: bold;
+    font-weight: 500;
     line-height: 1.45;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -139,28 +141,13 @@ const BookStyled = {
   Cat: styled.h2<{ $category?: string }>`
     position: relative;
     font-size: ${({ theme }) => theme.fontSize.max};
-    font-weight: bold;
-    line-height: 1.45;
+    font-weight: 500;
+    line-height: 1.3;
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25);
-    color: ${({ theme, $category }) => {
-      if (!$category) return theme.categoryColor[theme.categoryColor.length - 1].color
-      const target = theme.categoryColor.find((cate: ICateColor) => cate.key === $category.toLocaleLowerCase() || cate.key === 'default')
-      if (target) return target.color
-      return theme.categoryColor[theme.categoryColor.length - 1].color
-    }};
-
-    &::after {
-      /* content: ''; */
-      position: absolute;
-      bottom: -${({ theme }) => theme.size.xl};
-      left: 0;
-      width: 60px;
-      height: 1px;
-      background-color: ${({ theme }) => theme.color.BLG0};
-    }
   `,
   Date: styled.span`
     font-size: ${({ theme }) => theme.fontSize.lg};
+    font-weight: 500;
     margin-bottom: ${({ theme }) => theme.size.md};
     text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.2);
   `,

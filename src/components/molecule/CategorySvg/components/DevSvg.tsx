@@ -1,6 +1,6 @@
 import { ISvg } from '@/types/svg'
 
-const DevSvg = ({ width = 100, height = 100, color = '#ffffff' }: ISvg) => {
+const DevSvg = ({ width = 80, height = 80, color = '#ffffff' }: ISvg) => {
   return (
     <svg viewBox="0 0 24 24" width={`${width}px`} height={`${height}px`} fill="none" xmlns="http://www.w3.org/2000/svg" stroke={color}>
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
