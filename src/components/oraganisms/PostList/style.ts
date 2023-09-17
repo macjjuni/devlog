@@ -1,50 +1,41 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ICateColor } from '@/styles/theme'
+// import { ICateColor } from '@/styles/theme'
 
 const PostStyled = {
   List: styled(motion.section)`
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: start;
-    align-items: center;
-    overflow-y: auto;
-    gap: ${({ theme }) => theme.size.xxxxl};
-    margin-bottom: ${({ theme }) => theme.size.max};
-    margin-right: -${({ theme }) => theme.size.max};
-    padding: ${({ theme }) => theme.size.xxl} 0 ${({ theme }) => theme.size.xxxl};
+    color: ${({ theme }) => theme.color.BLG90};
   `,
   Item: styled(motion.article)`
     position: relative;
-  `,
-  TopWrap: styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    width: 100%;
+    padding: ${({ theme }) => `${theme.size.xl} ${theme.size.xs}`};
+    border: 1px solid #000;
   `,
   Link: styled(Link)<{ $category?: string }>`
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 300px;
-    height: 440px;
-    padding: ${({ theme }) => theme.size.xl};
-    transition: transform ${({ theme }) => theme.trs.sm};
-    box-shadow:
-      rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    border-radius: ${({ theme }) => theme.size.sm};
-    background-color: ${({ theme, $category }) => {
-      if (!$category) return '#eee'
-      const target = theme.categoryColor.find((cate: ICateColor) => cate.key === $category.toLocaleLowerCase() || cate.key === 'default')
-      if (target) return target.color
-      return '#eee'
-    }};
-    &:hover {
-      transform: scale(1.03);
-    }
+  `,
+  Cat: styled.h2`
+    font-size: ${({ theme }) => theme.fontSize.xxl};
+    font-weight: 600;
+    line-height: 1.35;
+  `,
+  Title: styled.h3`
+    font-size: ${({ theme }) => theme.fontSize.xl};
+    line-height: 1.4;
+    margin-top: ${({ theme }) => theme.size.sm};
+  `,
+  Date: styled.p`
+    font-size: ${({ theme }) => theme.fontSize.md};
+    margin-top: ${({ theme }) => theme.size.lg};
+  `,
+  Tags: styled.ul`
+    padding: ${({ theme }) => theme.size.sm} 0;
+  `,
+  TagItem: styled.li`
+    font-size: ${({ theme }) => theme.fontSize.md};
+    display: inline-block;
   `,
 }
 

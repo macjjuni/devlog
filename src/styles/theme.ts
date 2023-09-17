@@ -79,8 +79,6 @@ const theme = {
     xxxl: '28px',
     max: '34px',
     postTitle: '30px',
-    category: '30px',
-    categoryActive: '34px',
   },
   trs: {
     sm: '0.33s ease',

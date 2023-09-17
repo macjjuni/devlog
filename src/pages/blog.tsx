@@ -50,13 +50,9 @@ const BlogPage = ({ pages, info }: IBlogPage) => {
     <>
       <NextHead title="Blog" />
       <PageStyled.Wrap>
-        <PageStyled.Left>
-          <CategoryList categories={info.category} pages={pages} />
-        </PageStyled.Left>
-        <PageStyled.Right>
-          <Pagination current={currentPage} total={pages.length} />
-          <PostList list={pageList} />
-        </PageStyled.Right>
+        <CategoryList categories={info.category} pages={pages} />
+        <PostList list={pageList} />
+        <Pagination current={currentPage} total={pages.length} />
       </PageStyled.Wrap>
     </>
   )

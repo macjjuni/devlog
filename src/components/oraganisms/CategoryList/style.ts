@@ -4,33 +4,23 @@ import { motion } from 'framer-motion'
 const CategoryStyled = {
   Wrap: styled.section`
     margin-bottom: ${({ theme }) => theme.size.max};
+    margin: 0;
   `,
   List: styled(motion.ul)`
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
+    gap: ${({ theme }) => theme.size.lg};
     padding: ${({ theme }) => theme.size.max} 0;
     list-style: none;
   `,
   Item: styled(motion.li)`
     position: relative;
-    font-size: ${({ theme }) => theme.fontSize.category};
+    font-size: ${({ theme }) => theme.fontSize.lg};
 
     &[data-active='active'] {
-      font-size: ${({ theme }) => theme.fontSize.categoryActive};
+      font-size: ${({ theme }) => theme.fontSize.xl};
       font-weight: bold;
-      ${({ theme }) =>
-        theme.response.tablet(`
-        font-size: ${theme.fontSize.max};
-      `)}
-    }
-
-    &[data-active='origin'] {
-      ${({ theme }) =>
-        theme.response.tablet(`
-        font-size: ${theme.fontSize.xxl};
-      `)}
     }
 
     & > a {
