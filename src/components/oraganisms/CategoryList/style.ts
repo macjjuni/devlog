@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { menuActiveFrames } from '@/styles/keyframes'
 
 const CategoryStyled = {
   Wrap: styled.section`
@@ -11,13 +10,28 @@ const CategoryStyled = {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: ${({ theme }) => theme.size.max};
+    padding: ${({ theme }) => theme.size.max} 0;
     list-style: none;
   `,
-  Item: styled(motion.li)<{ active: string }>`
+  Item: styled(motion.li)`
     position: relative;
     font-size: ${({ theme }) => theme.fontSize.category};
-    ${({ active }) => (active === 'active' ? menuActiveFrames : 'none')};
+
+    &[data-active='active'] {
+      font-size: ${({ theme }) => theme.fontSize.categoryActive};
+      font-weight: bold;
+      ${({ theme }) =>
+        theme.response.tablet(`
+        font-size: ${theme.fontSize.max};
+      `)}
+    }
+
+    &[data-active='origin'] {
+      ${({ theme }) =>
+        theme.response.tablet(`
+        font-size: ${theme.fontSize.xxl};
+      `)}
+    }
 
     & > a {
       display: flex;

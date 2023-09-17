@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { verticalPostCatListMotion } from '@/utils/framer'
-import { ICategory } from '@/types/notion'
+import { ICategory, IPage } from '@/types/notion'
 import { useRouter } from 'next/router'
 import { cates } from '@/route'
 import CategoryItem from './components/CategoryItem'
 import CategoryStyled from './style'
 
-const CategoryList = ({ list = null }: { list: ICategory }) => {
+const CategoryList = ({ categories = null, pages }: { categories: ICategory; pages: IPage[] }) => {
   const { pathname, query, push, isReady } = useRouter()
   const isBlog = !query.id && pathname.includes('blog')
 
@@ -22,6 +22,11 @@ const CategoryList = ({ list = null }: { list: ICategory }) => {
     }
   }
 
+  const pageCounter = (catName: string) => {
+    const group = pages.filter((page) => page?.category?.name.toLowerCase() === catName.toLowerCase())
+    return group.length
+  }
+
   useEffect(() => {
     pathChecker()
   }, [pathname, isReady])
@@ -29,8 +34,10 @@ const CategoryList = ({ list = null }: { list: ICategory }) => {
   return (
     <CategoryStyled.Wrap>
       <CategoryStyled.List initial="hidden" animate="show" variants={verticalPostCatListMotion}>
-        <CategoryItem categoryName="All" path="/blog" />
-        {list?.map((item) => <CategoryItem key={item.id} categoryName={item.name} path={`/blog/category/${encodeURIComponent(item.name)}`} />)}
+        <CategoryItem categoryName="All" count={pages.length} path="/blog" />
+        {categories?.map((item) => (
+          <CategoryItem key={item.id} categoryName={item.name} count={pageCounter(item.name)} path={`/blog/category/${encodeURIComponent(item.name)}`} />
+        ))}
       </CategoryStyled.List>
     </CategoryStyled.Wrap>
   )

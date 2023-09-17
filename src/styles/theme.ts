@@ -79,7 +79,7 @@ const theme = {
     xxxl: '28px',
     max: '34px',
     postTitle: '30px',
-    category: '32px',
+    category: '30px',
     categoryActive: '34px',
   },
   trs: {

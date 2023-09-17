@@ -13,7 +13,7 @@ const PostStyled = {
     gap: ${({ theme }) => theme.size.xxxxl};
     margin-bottom: ${({ theme }) => theme.size.max};
     margin-right: -${({ theme }) => theme.size.max};
-    padding: ${({ theme }) => theme.size.xxxl};
+    padding: ${({ theme }) => theme.size.xxl} 0 ${({ theme }) => theme.size.xxxl};
   `,
   Item: styled(motion.article)`
     position: relative;

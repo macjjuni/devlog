@@ -4,25 +4,15 @@ import type { PageObjectResponse, DatabaseObjectResponse } from '@notionhq/clien
 import type { DatabaseQueryOption, IPage, INotionInfo } from '@/types/notion'
 import { getPageContentBlockIds, getBlockTitle } from 'notion-utils'
 import type { ExtendedRecordMap, Role, Block } from 'notion-types'
+import config from '@/config/notion.config'
 
-// DB 속성 테이블
-export const propertyTable = {
-  Date: '작성일',
-  Published: '상태',
-  Tags: '태그',
-  Category: '카테고리',
-}
-const siteURL = process.env.SITE_URL || 'http://kku.dev'
-const defaultThumb = `${siteURL}/image/post-cover.webp`
+const { token, propertyTable, blog } = config
+const { activeUser, auth, authToken } = token
 
-// 노션 인증 정보
-const activeUser = process.env.NOTION_USER
-const auth = process.env.NOTION_TOKEN
-const authToken = process.env.NOTION_TOKEN_V2
+const defaultThumb = blog.siteURL + blog.defaultThumb
 
 // 공식 노션 객체 생성
 export const notionClient = new Client({ auth })
-
 // 비공식 노션 객체 생성
 export const notionApi = new NotionAPI({ activeUser, authToken, userLocale: 'ko-KR/autodetect' })
 
@@ -79,7 +69,7 @@ const notion = {
     })
   },
   // 특정 페이지 리스트 검색
-  getPages: async (id: string) => {
+  getPage: async (id: string) => {
     const page = await notionClient.pages.retrieve({ page_id: id })
     return page
   },

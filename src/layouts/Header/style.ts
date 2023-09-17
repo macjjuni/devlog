@@ -21,7 +21,6 @@ const HeaderStyled = styled.header<IHeaderStyled>`
       top: 0;
       left: 0;
       padding: ${theme.size.lg};
-      width: calc(100% - (${theme.size.lg} + ${theme.size.lg}));
     `)};
 `
 

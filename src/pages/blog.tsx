@@ -1,11 +1,14 @@
-import { type GetStaticProps } from 'next'
-import { type IPage } from '@/types/notion'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import type { GetStaticProps } from 'next'
+import type { IPage, INotionInfo } from '@/types/notion'
 
 import notion from '@/lib/noiton'
-import { INotionInfo } from '@/types/notion'
+import config from '@/config/notion.config'
 
-import PostList from '@/components/oraganisms/PostList'
 import CategoryList from '@/components/oraganisms/CategoryList'
+import PostList from '@/components/oraganisms/PostList'
+import Pagination from '@/components/molecule/Pagination'
 import NextHead from '@/components/seo/DefaultMeta'
 import { PageStyled } from '@/styles/common'
 
@@ -32,16 +35,27 @@ export const getStaticProps: GetStaticProps<IBlogPage> = async () => {
   }
 }
 
+const { POSTS_PER_PAGE } = config.post
+
 const BlogPage = ({ pages, info }: IBlogPage) => {
+  const { query } = useRouter()
+  const currentPage = query.page ? parseInt(query.page.toString(), 10) : 1
+  const [pageList, setPageList] = useState(pages.slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage))
+
+  useEffect(() => {
+    setPageList(pages.slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage))
+  }, [currentPage, pages])
+
   return (
     <>
       <NextHead title="Blog" />
       <PageStyled.Wrap>
         <PageStyled.Left>
-          <CategoryList list={info.category} />
+          <CategoryList categories={info.category} pages={pages} />
         </PageStyled.Left>
         <PageStyled.Right>
-          <PostList list={pages} />
+          <Pagination current={currentPage} total={pages.length} />
+          <PostList list={pageList} />
         </PageStyled.Right>
       </PageStyled.Wrap>
     </>

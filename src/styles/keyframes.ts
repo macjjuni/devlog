@@ -1,21 +1,5 @@
 import * as SC from 'styled-components'
 
-const activeMenu = SC.keyframes`
-   from {
-     font-size: 38px;
-     font-weight: 400;
-     padding-left: 0;
-   }
-   to {
-     font-size: 42px;
-     font-weight: bold;
-   }
- `
-
-export const menuActiveFrames = SC.css`
-  animation: ${activeMenu} 0.4s ease forwards;
-`
-
 const tooltipHover = SC.keyframes`
   \ 0% {
     top: 0%;
