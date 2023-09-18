@@ -77,5 +77,9 @@ a {
   text-decoration: inherit;
 }
 
+.no-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 @tailwind components;
 @tailwind utilities;

@@ -49,7 +49,7 @@ const BlogPage = ({ pages, info }: IBlogPage) => {
   return (
     <>
       <NextHead title="Blog" />
-      <aside className={`max-w-left w-full p-sm border-r ${common.borderColor}`}>
+      <aside className={`md:max-w-left w-full p-sm border-r ${common.borderColor}`}>
         <CategoryList categories={info.category} pages={pages} />
       </aside>
 

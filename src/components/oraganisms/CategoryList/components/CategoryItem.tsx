@@ -10,9 +10,9 @@ interface ICatItem {
   count: number
 }
 
-const defaultStyle = `flex py-sm ${common.textHover}`
+const defaultStyle = `flex py-sm whitespace-nowrap ${common.textHover}`
 const normalStyle = `${defaultStyle} text-category`
-const activeStyle = `${defaultStyle} text-categoryActive`
+const activeStyle = `${defaultStyle} text-categoryActive underline`
 
 const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
   const { query } = useRouter()
@@ -30,7 +30,7 @@ const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
   return (
     <motion.li variants={verticalPostCatItemMotion}>
       <Link href={path} className={activeChekcer()}>
-        {`${categoryName} (${count})`}
+        {`${categoryName}(${count})`}
       </Link>
     </motion.li>
   )

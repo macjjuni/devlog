@@ -77,7 +77,8 @@ module.exports = {
       },
       inset: {
         ...size,
-        headerEnd: `calc(${layout.header.height} / 2)`,
+        headerHalf: `calc(${layout.header.height} / 2)`,
+        header: layout.header.height,
       },
       gap: {
         ...size,
@@ -85,10 +86,10 @@ module.exports = {
       fontSize: {
         logo: ['32px', { fontWeight: '900', lineHeight: '34px' }],
         body: ['16px', { fontWeight: '400', lineHeight: '18px' }],
-        nav: ['20px', { fontWeight: '400', lineHeight: '22px' }],
-        navActive: ['22px', { fontWeight: 'bold', lineHeight: '24px' }],
-        category: ['20px', { lineHeight: 1.15 }],
-        categoryActive: ['20px', { fontWeight: 'bold', lineHeight: 1.15 }],
+        nav: ['20px', { fontWeight: '300', lineHeight: '22px' }],
+        navActive: ['22px', { fontWeight: '600', lineHeight: '24px' }],
+        category: ['20px', { fontWeight: '300', lineHeight: 1.15 }],
+        categoryActive: ['20px', { fontWeight: '600', lineHeight: 1.15 }],
         postCat: ['20px', { fontWeight: 'bold' }],
         postTitle: ['22px'],
         postDate: ['16px'],

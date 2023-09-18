@@ -10,7 +10,7 @@ const { blog } = config
 const PostItem = ({ page }: { page: IPage }) => {
   return (
     <motion.li variants={postItemMotion} className={`flex border-b ${common.borderColor} ${common.textColor}`}>
-      <Link href={`${blog.postPath}/${page?.id}`} className="relative w-full h-full p-md">
+      <Link href={`/${blog.postPath}/${page?.id}`} prefetch className="relative w-full h-full p-md">
         <h2 className="text-postCat">{page?.category?.name}</h2>
         <h3 className="text-postTitle">{page?.title}</h3>
         <div className="flex justify-start items-center gap-lg text-body mt-md">

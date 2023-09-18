@@ -2,7 +2,8 @@ import NavBar from '@/components/molecule/NavBar'
 import Logo from '@/components/atom/Logo'
 // import useStore from '@/store'
 
-const defaultStyle = 'fixed top-0 left-1/2 translate-x-[-50%] w-full h-header border-b border-BLG300 bg-BLG0 z-10 transition-header duration-header ease-header'
+const defaultStyle =
+  'fixed top-0 left-1/2 translate-x-[-50%] w-full h-header border-b border-BLG300 bg-BLG0 z-[200] transition-header duration-header ease-header'
 const toggleStyle = (isHide: boolean) => `${defaultStyle} ${isHide ? 'translate-y-[-100px]' : ''}`
 
 const Header = () => {
