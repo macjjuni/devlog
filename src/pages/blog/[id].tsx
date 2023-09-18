@@ -3,7 +3,6 @@ import type { ExtendedRecordMap } from 'notion-types'
 import notion, { getHeadDescription } from '@/lib/noiton'
 import { getPageTitle } from 'notion-utils'
 import NotionRender from '@/components/molecule/NotionRedner'
-import { DetailPageStyled } from '@/styles/common'
 import NextHead from '@/components/seo/DefaultMeta'
 
 interface IPost {
@@ -48,9 +47,7 @@ const PageDetail = ({ recordMap, title, des }: IPost) => {
   return (
     <>
       <NextHead title={title} des={des} />
-      <DetailPageStyled.Wrap>
-        <NotionRender recordMap={recordMap} />
-      </DetailPageStyled.Wrap>
+      <NotionRender recordMap={recordMap} />
     </>
   )
 }

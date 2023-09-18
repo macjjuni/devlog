@@ -1,13 +1,18 @@
 import { useRouter } from 'next/router'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { verticalPostCatItemMotion } from '@/utils/framer'
-import CategoryStyled from '../style'
+import common from '@/styles/common'
 
 interface ICatItem {
   categoryName: string
   path: string
   count: number
 }
+
+const defaultStyle = `flex py-sm ${common.textHover}`
+const normalStyle = `${defaultStyle} text-category`
+const activeStyle = `${defaultStyle} text-categoryActive`
 
 const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
   const { query } = useRouter()
@@ -17,17 +22,17 @@ const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
 
   // 현재 카테고리에 맞는 페이지인지 체크
   const activeChekcer = () => {
-    if (lowerCatName.includes('all') && catName === undefined) return 'active'
-    if (catName === undefined) return 'origin'
-    return lowerCatName.includes(catName.toLowerCase()) ? 'active' : 'origin'
+    if (lowerCatName.includes('all') && catName === undefined) return activeStyle
+    if (catName === undefined) return normalStyle
+    return lowerCatName.includes(catName.toLowerCase()) ? activeStyle : normalStyle
   }
 
   return (
-    <CategoryStyled.Item data-active={activeChekcer()} variants={verticalPostCatItemMotion}>
-      <Link href={path}>
-        {categoryName} ({count})
+    <motion.li variants={verticalPostCatItemMotion}>
+      <Link href={path} className={activeChekcer()}>
+        {`${categoryName} (${count})`}
       </Link>
-    </CategoryStyled.Item>
+    </motion.li>
   )
 }
 

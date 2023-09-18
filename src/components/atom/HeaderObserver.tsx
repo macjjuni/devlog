@@ -1,14 +1,5 @@
 import { useEffect, useRef } from 'react'
-import styled from 'styled-components'
 import useStore from '@/store'
-
-const ToggleHeaderStyled = styled.div`
-  position: absolute;
-  top: 0;
-  width: 1px;
-  height: 1px;
-  margin: 0;
-`
 
 const HeaderObserver = () => {
   const obsRef = useRef<HTMLDivElement | null>(null) // observer element
@@ -27,7 +18,7 @@ const HeaderObserver = () => {
     }
   }, [])
 
-  return <ToggleHeaderStyled ref={obsRef} />
+  return <div className="absolute top-headerEnd w-[1px] h-[1px] m-0" ref={obsRef} />
 }
 
 export default HeaderObserver

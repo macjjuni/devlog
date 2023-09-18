@@ -1,22 +1,7 @@
-import styled from 'styled-components'
-
-export const PageStyled = {
-  Wrap: styled.div`
-    // 메인 데스크탑 최소 높이
-    min-height: calc(
-      ${({ theme }) => theme.size.main} - (${({ theme }) => theme.size.header} + ${({ theme }) => theme.size.footer} + ${({ theme }) => theme.size.max})
-    );
-
-    ${({ theme }) =>
-      theme.response.tablet(`
-      min-height: calc(${theme.size.main} - (${theme.size.header} + ${theme.size.footer} + ${theme.size.lg} + ${theme.size.lg} + ${theme.size.lg}));
-    `)}
-  `,
+const common = {
+  textHover: 'hover:underline decoration-2 underline-offset-4',
+  borderColor: 'border-BLG300 dark:border-BLG700',
+  textColor: 'text-BLG800 dark:border-BLG200',
 }
 
-export const DetailPageStyled = {
-  Wrap: styled.div`
-    max-width: 1100px;
-    margin: 0 auto;
-  `,
-}
+export default common

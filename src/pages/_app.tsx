@@ -3,7 +3,7 @@ import Layout from '@/layouts/Layout'
 import WithProgressBar from '@/components/hoc/ProgressBar'
 import ThemeProvider from '@/components/hoc/ThemeProvider'
 import DefaultMeta from '@/components/seo/DefaultMeta'
-import '@/styles/index.css'
+import '@/styles/globals.css'
 import '@/styles/notion.styles.css'
 import '@/styles/prism.css'
 

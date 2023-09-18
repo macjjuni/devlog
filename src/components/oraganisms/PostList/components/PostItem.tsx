@@ -1,24 +1,29 @@
 import config from '@/config/notion.config'
 import { type IPage } from '@/types/notion'
+import { motion } from 'framer-motion'
 import { postItemMotion } from '@/utils/framer' // Framer Motion
-import PostStyled from '../style'
+import Link from 'next/link'
+import common from '@/styles/common'
 
 const { blog } = config
 
 const PostItem = ({ page }: { page: IPage }) => {
   return (
-    <PostStyled.Item variants={postItemMotion}>
-      <PostStyled.Link href={`${blog.postPath}/${page?.id}`} $category={page?.category?.name}>
-        <PostStyled.Cat>{page?.category?.name}</PostStyled.Cat>
-        <PostStyled.Title>{page?.title}</PostStyled.Title>
-        <PostStyled.Date>{page?.published}</PostStyled.Date>
-        <PostStyled.Tags>
-          {page.tags.map((tag) => (
-            <PostStyled.TagItem key={tag.id}>#{tag.name}</PostStyled.TagItem>
-          ))}
-        </PostStyled.Tags>
-      </PostStyled.Link>
-    </PostStyled.Item>
+    <motion.li variants={postItemMotion} className={`flex border-b ${common.borderColor} ${common.textColor}`}>
+      <Link href={`${blog.postPath}/${page?.id}`} className="relative w-full h-full p-md">
+        <h2 className="text-postCat">{page?.category?.name}</h2>
+        <h3 className="text-postTitle">{page?.title}</h3>
+        <div className="flex justify-start items-center gap-lg text-body mt-md">
+          <p>{page?.published}</p>
+          <ul className="">
+            {page.tags.map((tag) => (
+              <li key={tag.id} className="text-postTag">{`#${tag.name}`}</li>
+            ))}
+          </ul>
+        </div>
+        <p className="body mt-md">Read more</p>
+      </Link>
+    </motion.li>
   )
 }
 export default PostItem

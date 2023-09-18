@@ -10,7 +10,6 @@ import PostList from '@/components/oraganisms/PostList'
 import CategoryList from '@/components/oraganisms/CategoryList'
 import Pagination from '@/components/molecule/Pagination'
 import NextHead from '@/components/seo/DefaultMeta'
-import { PageStyled } from '@/styles/common'
 
 interface IBlogPage {
   info: INotionInfo
@@ -90,15 +89,9 @@ const CategoryPage = ({ pages, info }: IBlogPage) => {
   return (
     <>
       <NextHead title={`Blog > ${query.name}`} />
-      <PageStyled.Wrap>
-        <PageStyled.Left>
-          <CategoryList categories={info.category} pages={pages} />
-        </PageStyled.Left>
-        <PageStyled.Right>
-          <Pagination current={currentPage} total={filteredPages.length} />
-          <PostList list={pageList} />
-        </PageStyled.Right>
-      </PageStyled.Wrap>
+      <CategoryList categories={info.category} pages={pages} />
+      <PostList list={pageList} />
+      <Pagination current={currentPage} total={filteredPages.length} />
     </>
   )
 }

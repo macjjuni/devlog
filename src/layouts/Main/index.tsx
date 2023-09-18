@@ -1,12 +1,12 @@
 import HeaderObserver from '@/components/atom/HeaderObserver'
-import MainStyled from './style'
 
+const defaultStyle = 'flex flex-row flex-1 justify-center items-stretch gap-xxl relative max-w-main w-full pt-main'
 const Main = ({ children }: { children: React.ReactNode }) => {
   return (
-    <MainStyled>
+    <main className={defaultStyle}>
       <HeaderObserver />
       {children}
-    </MainStyled>
+    </main>
   )
 }
 

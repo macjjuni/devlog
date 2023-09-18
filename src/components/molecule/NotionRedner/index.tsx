@@ -37,8 +37,8 @@ const NotionRender = ({ recordMap }: INotionRender) => {
       fullPage
       pageAside={
         <div>
-          <a href="/">💬 댓글</a>
-          <a href="/" onClick={goBack}>
+          <a href="#">💬 댓글</a>
+          <a href="#" onClick={goBack}>
             📚 글 목록
           </a>
         </div>

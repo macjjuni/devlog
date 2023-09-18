@@ -1,0 +1,81 @@
+@tailwind base;
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 900;
+  font-display: swap;
+  src:
+    local('Pretendard Black'),
+    url('/assets/fonts/pretendard/woff2/Pretendard-Black.woff2') format('woff2'),
+    url('/assets/fonts/pretendard/woff/Pretendard-Black.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local('Pretendard Bold'),
+    url('/assets/fonts/pretendard/woff2/Pretendard-Bold.woff2') format('woff2'),
+    url('/assets/fonts/pretendard/woff/Pretendard-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Pretendard Regular'),
+    url('/assets/fonts/pretendard/woff2/Pretendard-Regular.woff2') format('woff2'),
+    url('/assets/fonts/pretendard/woff/Pretendard-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 300;
+  font-display: swap;
+  src:
+    local('Pretendard Light'),
+    url('/assets/fonts/pretendard/woff2/Pretendard-Light.woff2') format('woff2'),
+    url('/assets/fonts/pretendard/woff/Pretendard-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 100;
+  font-display: swap;
+  src:
+    local('Pretendard Thin'),
+    url('/assets/fonts/pretendard/woff2/Pretendard-Thin.woff2') format('woff2'),
+    url('/assets/fonts/pretendard/woff/Pretendard-Thin.woff') format('woff');
+}
+
+* {
+  box-sizing: border-box;
+  font-family:
+    'Pretendard Variable',
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    'Helvetica Neue',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    'Malgun Gothic',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
+}
+
+a {
+  box-sizing: border-box;
+  font-size: inherit;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+@tailwind components;
+@tailwind utilities;

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
-import PagiStyled from '../style'
+import Link from 'next/link'
+import common from '@/styles/common'
 
 interface IPagiButton {
   text?: string | number
@@ -9,13 +10,14 @@ interface IPagiButton {
   disabled?: boolean
 }
 
+const defaultStyle = `flex items-center justify-center w-[40px] h-[40px] p-sm ${common.textHover}`
+const originStyle = `${defaultStyle} text-BLG800`
+const activeStyle = `${defaultStyle} underline text-BLG1000 font-bold`
+const disabledStyle = 'text-BLG400 cursor-not-allowed'
+
 const PagiButton = ({ text, href, icon, active = false, disabled = false }: IPagiButton) => {
   const { query } = useRouter()
   const { name } = query || (null as string | null)
-
-  const enableCheck = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (disabled) e.preventDefault()
-  }
 
   const generateUrl = () => {
     if (!name) return `?page=${href.toString()}`
@@ -28,12 +30,22 @@ const PagiButton = ({ text, href, icon, active = false, disabled = false }: IPag
     if (icon) return icon
   }
 
-  if (disabled) return <PagiStyled.DisabledButton disabled>{children()}</PagiStyled.DisabledButton>
-  if (active) return <PagiStyled.ActiveButton disabled>{children()}</PagiStyled.ActiveButton>
+  if (disabled)
+    return (
+      <button type="button" className={disabledStyle} disabled>
+        {children()}
+      </button>
+    )
+  if (active)
+    return (
+      <button type="button" className={activeStyle} disabled>
+        {children()}
+      </button>
+    )
   return (
-    <PagiStyled.Button href={generateUrl()} onClick={enableCheck}>
+    <Link href={generateUrl()} className={originStyle}>
       {children()}
-    </PagiStyled.Button>
+    </Link>
   )
 }
 
