@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import common from '@/styles/common'
 import CategoryItem from './components/CategoryItem'
 
-const defaultStyle = `flex md:flex-col flex-row md:gap-0 gap-lg p-md md:p-sm whitespace-nowrap overflow-x-auto no-scroll border-b md:border-none ${common.borderColor}`
+const defaultStyle = `flex md:flex-col flex-row md:gap-0 gap-lg   whitespace-nowrap overflow-x-auto no-scroll border-b md:border-none ${common.borderColor}`
 
 const CategoryList = ({ categories = null, pages }: { categories: ICategory; pages: IPage[] }) => {
   const { pathname, query, push, replace, isReady } = useRouter()
@@ -36,8 +36,8 @@ const CategoryList = ({ categories = null, pages }: { categories: ICategory; pag
   }, [pathname, isReady])
 
   return (
-    <div>
-      <h3 className="text-categoryTitle py-md">📚 분류</h3>
+    <div className="my-xl">
+      <h3 className="text-categoryTitle py-sm mb-sm">📚 분류</h3>
       <motion.ul className={defaultStyle} initial="hidden" animate="show" variants={verticalPostCatListMotion}>
         <CategoryItem categoryName="All" count={pages.length} path="/blog" />
         {categories?.map((item) => (

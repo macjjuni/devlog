@@ -1,10 +1,21 @@
-const SearchSvg = ({ width = 50, height = 50, className = '' }: { width: number; height: number; className: string }) => {
+const SearchSvg = ({
+  width = 50,
+  height = 50,
+  className = '',
+  onClick = () => {},
+}: {
+  width: number
+  height: number
+  className: string
+  onClick: () => void
+}) => {
   return (
     <svg
       width={`${width}px`}
       height={`${height}px`}
       viewBox="0 0 1024 1024"
       className={className}
+      onClick={onClick}
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       fill="#000000"

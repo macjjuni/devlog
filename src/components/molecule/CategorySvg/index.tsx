@@ -15,14 +15,14 @@ interface ICatSvg {
 }
 
 const categories: ICatSvg[] = [
-  { key: 'dev', Component: (color) => <DevSvg width={85} height={85} color={color} /> },
-  { key: 'js/ts', Component: (color) => <JavaScript width={90} height={90} color={color} /> },
-  { key: 'react', Component: (color) => <ReactSvg width={90} height={90} color={color} /> },
-  { key: 'vue', Component: (color) => <VueSvg width={80} height={80} color={color} /> },
-  { key: 'bitcoin', Component: (color) => <BtcSvg width={80} height={80} color={color} /> },
-  { key: 'git', Component: (color) => <GitSvg width={80} height={80} color={color} /> },
-  { key: 'cs', Component: (color) => <CsSvg width={80} height={80} color={color} /> },
-  { key: '일상', Component: (color) => <DailySvg width={80} height={80} color={color} /> },
+  { key: 'dev', Component: (color) => <DevSvg width={28} height={28} color={color} /> },
+  { key: 'js/ts', Component: (color) => <JavaScript width={28} height={28} color={color} /> },
+  { key: 'react', Component: (color) => <ReactSvg width={28} height={28} color={color} /> },
+  { key: 'vue', Component: (color) => <VueSvg width={28} height={28} color={color} /> },
+  { key: 'bitcoin', Component: (color) => <BtcSvg width={28} height={28} color={color} /> },
+  { key: 'git', Component: (color) => <GitSvg width={28} height={28} color={color} /> },
+  { key: 'cs', Component: (color) => <CsSvg width={28} height={28} color={color} /> },
+  { key: '일상', Component: (color) => <DailySvg width={28} height={28} color={color} /> },
 ]
 
 const CategorySvg = ({ category }: { category?: string }) => {

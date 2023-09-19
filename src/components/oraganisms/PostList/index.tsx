@@ -7,11 +7,9 @@ interface IPostList {
   list: IPage[]
 }
 
-const defaultSttyle = `w-full`
-
 const PostList = ({ list }: IPostList) => {
   return (
-    <motion.div className={defaultSttyle} initial="hidden" animate="show" variants={postListMotion}>
+    <motion.div initial="hidden" animate="show" variants={postListMotion}>
       {list.map((item) => (
         <PostItem key={item.id} page={item} />
       ))}

@@ -81,5 +81,13 @@ a {
   display: none;
 }
 
+.page-item:hover .page-date {
+  text-decoration: underline;
+}
+
+#__next {
+  overflow: hidden;
+}
+
 @tailwind components;
 @tailwind utilities;

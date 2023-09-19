@@ -88,12 +88,12 @@ const CategoryPage = ({ pages, info }: IBlogPage) => {
   return (
     <>
       <NextHead title={`Blog > ${query.name}`} />
-      <aside className={`max-w-left w-full p-sm border-r ${common.borderColor}`}>
+      <aside className={`max-w-left w-full p-md ${common.borderColor}`}>
         <Profile info={info} />
         <CategoryList categories={info.category} pages={pages} />
       </aside>
 
-      <section className="max-w-right w-full p-sm">
+      <section className="max-w-right w-full p-md pl-xxxl border-l">
         <PageHeading title={query?.name} count={filteredPages.length} />
         <PostList list={pageList} />
         <Pagination current={currentPage} total={filteredPages.length} />
