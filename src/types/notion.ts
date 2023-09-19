@@ -36,3 +36,9 @@ export interface DatabaseQueryOption {
   categoryName?: string
   title?: string
 }
+
+// 글 목록 리스트 받는 페이지 Props 타입
+export interface IBlogPage {
+  info: INotionInfo
+  pages: IPage[]
+}

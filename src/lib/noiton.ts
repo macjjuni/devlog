@@ -4,9 +4,9 @@ import type { PageObjectResponse, DatabaseObjectResponse } from '@notionhq/clien
 import type { DatabaseQueryOption, IPage, INotionInfo } from '@/types/notion'
 import { getPageContentBlockIds, getBlockTitle } from 'notion-utils'
 import type { ExtendedRecordMap, Role, Block } from 'notion-types'
-import config from '@/config/notion.config'
+import config, { token } from '@/config/notion.config'
 
-const { token, propertyTable, blog } = config
+const { propertyTable, blog, post } = config
 const { activeUser, auth, authToken } = token
 
 const defaultThumb = blog.siteURL + blog.defaultThumb
@@ -28,6 +28,20 @@ const notion = {
     const tags = notionInfo.properties['태그'].type === 'multi_select' ? notionInfo.properties['태그'].multi_select : null
     const category = notionInfo.properties['카테고리'].type === 'select' ? notionInfo.properties['카테고리'].select.options : null
     return { title, description, coverURL, icon, tags, category }
+  },
+  // 블로그 리스트 데이터 가공
+  getParsePages: (pages: PageObjectResponse[]): IPage[] => {
+    return pages.map((page) => {
+      const { id } = page
+      const { 이름, 카테고리, 작성일, 태그 } = page.properties
+      const title = 이름?.type === 'title' ? 이름.title[0].plain_text : ''
+      const cover = defaultThumb
+      const published = 작성일?.type === 'date' && 작성일.date?.start ? 작성일.date.start : ''
+      const category = 카테고리?.type === 'select' ? 카테고리?.select : null
+      const tags = 태그?.type === 'multi_select' ? 태그.multi_select : []
+
+      return { id, title, category, published, tags, cover }
+    })
   },
   // 모든 페이지 리스트 검색
   getAllPage: async (datbaseId: string, option?: DatabaseQueryOption): Promise<IPage[]> => {
@@ -55,18 +69,8 @@ const notion = {
       ],
     })
     const pages = allPage.results as PageObjectResponse[]
-    // 블로그 목록 데이터 가공
-    return pages.map((page) => {
-      const { id } = page
-      const { 이름, 카테고리, 작성일, 태그 } = page.properties
-      const title = 이름?.type === 'title' ? 이름.title[0].plain_text : ''
-      const cover = defaultThumb
-      const published = 작성일?.type === 'date' && 작성일.date?.start ? 작성일.date.start : ''
-      const category = 카테고리?.type === 'select' ? 카테고리?.select : null
-      const tags = 태그?.type === 'multi_select' ? 태그.multi_select : []
-
-      return { id, title, category, published, tags, cover }
-    })
+    // 블로그 목록 데이터 가공 후 반환
+    return notion.getParsePages(pages)
   },
   // 특정 페이지 리스트 검색
   getPage: async (id: string) => {
@@ -85,10 +89,13 @@ const notion = {
         direction: 'descending',
         timestamp: 'last_edited_time',
       },
-      page_size: 12,
+      page_size: post.POSTS_PER_PAGE,
     })
-
-    return searchPages.results as PageObjectResponse[]
+    const pages = searchPages.results as PageObjectResponse[]
+    const currentPages = pages.filter((page) => page.parent.type === 'database_id') // 다른 노션 페이지 삭제
+    // 공개 페이지만 필터링
+    const filteredPages = currentPages.filter((item) => item.properties['상태'].type === 'status' && item.properties['상태'].status?.name === '공개')
+    return notion.getParsePages(filteredPages)
   },
   // 페이지 상세 조회
   getDetailPage: async (id: string) => notionApi.getPage(id), // recordMap

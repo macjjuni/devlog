@@ -5,6 +5,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    domains: ['www.notion.so', 's3.us-west-2.amazonaws.com', 'images.unsplash.com', 'kku.dev', 's3-us-west-2.amazonaws.com', 'github.com'],
+  },
 }
 
 module.exports = nextConfig

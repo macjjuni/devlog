@@ -10,9 +10,9 @@ interface ICatItem {
   count: number
 }
 
-const defaultStyle = `flex py-sm whitespace-nowrap ${common.textHover}`
+const defaultStyle = `flex px-lg py-sm rounded-md whitespace-nowrap ${common.trs} ${common.categoryItemHover}`
 const normalStyle = `${defaultStyle} text-category`
-const activeStyle = `${defaultStyle} text-categoryActive underline`
+const activeStyle = `${defaultStyle} text-categoryActive underline ${common.categoryItemActive}`
 
 const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
   const { query } = useRouter()
@@ -22,6 +22,7 @@ const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
 
   // 현재 카테고리에 맞는 페이지인지 체크
   const activeChekcer = () => {
+    if (query?.keyword) return normalStyle
     if (lowerCatName.includes('all') && catName === undefined) return activeStyle
     if (catName === undefined) return normalStyle
     return lowerCatName.includes(catName.toLowerCase()) ? activeStyle : normalStyle
