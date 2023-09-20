@@ -14,7 +14,7 @@ const Pagination = ({ current, total }: IPagination) => {
   const lastPageNumber = Math.ceil(total / POSTS_PER_PAGE)
 
   return (
-    <div className="flex items-center justify-center gap-md w-full py-md">
+    <div className="flex items-center justify-center gap-sm w-full py-md">
       <PagiButton href={current - 1} icon={<BiCaretLeft fontSize={20} />} disabled={current === 1} />
 
       {Array.from(Array(PAGINATION_RANGE), (_, index) => current - index - 1)

@@ -6,7 +6,10 @@ import { motion } from 'framer-motion'
 import common from '@/styles/common'
 import CategoryItem from './components/CategoryItem'
 
-const defaultStyle = `flex md:flex-col flex-row md:gap-0 gap-lg   whitespace-nowrap overflow-x-auto no-scroll border-b md:border-none ${common.borderColor}`
+const defaultStyle = `flex whitespace-nowrap overflow-x-auto no-scroll ${common.borderColor}`
+const mobileStyle = 'flex-row gap-sm border-b pb-md'
+const desktopStyle = 'md:flex-col md:gap-0 md:border-none'
+const mergeStyle = `${defaultStyle} ${mobileStyle} ${desktopStyle}`
 
 const CategoryList = ({ categories = null, pages }: { categories: ICategory; pages: IPage[] }) => {
   const { pathname, query, push, replace, isReady } = useRouter()
@@ -36,9 +39,9 @@ const CategoryList = ({ categories = null, pages }: { categories: ICategory; pag
   }, [pathname, isReady])
 
   return (
-    <div className="my-xl">
+    <div className="mt-xl md:my-xl">
       <h3 className="text-categoryTitle py-sm mb-sm">📚 분류</h3>
-      <motion.ul className={defaultStyle} initial="hidden" animate="show" variants={verticalPostCatListMotion}>
+      <motion.ul className={mergeStyle} initial="hidden" animate="show" variants={verticalPostCatListMotion}>
         <CategoryItem categoryName="All" count={pages.length} path="/blog" />
         {categories?.map((item) => (
           <CategoryItem key={item.id} categoryName={item.name} count={pageCounter(item.name)} path={`/blog/category/${encodeURIComponent(item.name)}`} />

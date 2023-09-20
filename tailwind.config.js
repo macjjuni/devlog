@@ -37,7 +37,7 @@ module.exports = {
       screens: {
         sm: '465px',
         md: '768px',
-        lg: '1100px',
+        lg: '1200px',
       },
       colors: {
         yellow: '#feca57',

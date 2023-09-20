@@ -5,14 +5,14 @@ import type { IPage, IBlogPage } from '@/types/notion'
 
 import notion from '@/lib/noiton'
 import config from '@/config/notion.config'
-import common from '@/styles/common'
 
+import ListPage from '@/layouts/Layout/ListPage'
 import NextHead from '@/components/seo/DefaultMeta'
 import Profile from '@/components/molecule/Profile'
 import CategoryList from '@/components/oraganisms/CategoryList'
 import PageHeading from '@/components/atom/PageHeading'
 import PostList from '@/components/oraganisms/PostList'
-import Pagination from '@/components/molecule/Pagination'
+import Pagination from '@/components/oraganisms/Pagination'
 
 // 카테고리에 맞는 페이지 필터링
 const pageFilter = (pages: IPage[], categoryName: string) => {
@@ -88,16 +88,22 @@ const CategoryPage = ({ pages, info }: IBlogPage) => {
   return (
     <>
       <NextHead title={`Blog > ${query.name}`} />
-      <aside className={`max-w-left w-full p-md ${common.borderColor}`}>
-        <Profile info={info} />
-        <CategoryList categories={info.category} pages={pages} />
-      </aside>
 
-      <section className="max-w-right w-full p-md pl-xxxl border-l">
-        <PageHeading title={query?.name} count={filteredPages.length} />
-        <PostList list={pageList} />
-        <Pagination current={currentPage} total={filteredPages.length} />
-      </section>
+      <ListPage
+        left={
+          <>
+            <Profile info={info} />
+            <CategoryList categories={info.category} pages={pages} />
+          </>
+        }
+        right={
+          <>
+            <PageHeading title={query?.name} count={filteredPages.length} />
+            <PostList list={pageList} />
+            <Pagination current={currentPage} total={filteredPages.length} />
+          </>
+        }
+      />
     </>
   )
 }

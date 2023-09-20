@@ -8,7 +8,10 @@ const NavBar = () => {
   const { pathname } = useRouter()
 
   const getNavStyle = (path: string) => {
-    if (path === pathname) return defaultStyle('text-navActive')
+    const filteredPathname = pathname.split('/')[1]
+
+    if (path === '/' && filteredPathname === '') return defaultStyle('text-navActive') // home
+    if (path.includes(filteredPathname)) return defaultStyle('text-navActive')
     return defaultStyle('text-nav')
   }
 

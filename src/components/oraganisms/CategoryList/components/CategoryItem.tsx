@@ -10,7 +10,7 @@ interface ICatItem {
   count: number
 }
 
-const defaultStyle = `flex px-lg py-sm rounded-md whitespace-nowrap ${common.trs} ${common.categoryItemHover}`
+const defaultStyle = `flex px-md md:px-lg py-sm rounded-md whitespace-nowrap ${common.trs} ${common.categoryItemHover}`
 const normalStyle = `${defaultStyle} text-category`
 const activeStyle = `${defaultStyle} text-categoryActive underline ${common.categoryItemActive}`
 

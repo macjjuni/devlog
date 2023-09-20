@@ -5,14 +5,14 @@ import type { IPage, INotionInfo } from '@/types/notion'
 
 import notion from '@/lib/noiton'
 import config from '@/config/notion.config'
-import common from '@/styles/common'
 
+import ListPage from '@/layouts/Layout/ListPage'
 import NextHead from '@/components/seo/DefaultMeta'
 import PageHeading from '@/components/atom/PageHeading'
 import Profile from '@/components/molecule/Profile'
 import CategoryList from '@/components/oraganisms/CategoryList'
 import PostList from '@/components/oraganisms/PostList'
-import Pagination from '@/components/molecule/Pagination'
+import Pagination from '@/components/oraganisms/Pagination'
 
 interface IBlogPage {
   info: INotionInfo
@@ -51,16 +51,21 @@ const BlogPage = ({ pages, info }: IBlogPage) => {
   return (
     <>
       <NextHead title="Blog" />
-      <aside className={`md:max-w-left w-full p-md ${common.borderColor}`}>
-        <Profile info={info} />
-        <CategoryList categories={info.category} pages={pages} />
-      </aside>
-
-      <section className="max-w-right w-full p-md pl-xxxl border-l">
-        <PageHeading title={query?.name} count={pages.length} />
-        <PostList list={pageList} />
-        <Pagination current={currentPage} total={pages.length} />
-      </section>
+      <ListPage
+        left={
+          <>
+            <Profile info={info} />
+            <CategoryList categories={info.category} pages={pages} />
+          </>
+        }
+        right={
+          <>
+            <PageHeading title={query?.name} count={pages.length} />
+            <PostList list={pageList} />
+            <Pagination current={currentPage} total={pages.length} />
+          </>
+        }
+      />
     </>
   )
 }

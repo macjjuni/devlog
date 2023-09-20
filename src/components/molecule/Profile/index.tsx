@@ -6,7 +6,7 @@ const defaultStyle = `border rounded-md mb-md ${common.borderColor}`
 
 const Profile = ({ info }: { info: INotionInfo }) => {
   return (
-    <div className="my-xl">
+    <div className="lg:my-xl">
       {info.coverURL && <Image src={info?.coverURL} alt={info?.title} width={300} height={300} className={`${defaultStyle}`} />}
       <h3 className="text-categoryTitle py-sm mb-sm">
         {info?.icon} {info?.title}

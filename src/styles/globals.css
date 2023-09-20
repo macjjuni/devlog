@@ -89,5 +89,17 @@ a {
   overflow: hidden;
 }
 
+@keyframes blinkEffect {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.new-icon {
+  animation: blinkEffect 1s ease-in-out infinite alternate;
+}
+
 @tailwind components;
 @tailwind utilities;

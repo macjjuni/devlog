@@ -1,5 +1,5 @@
 // import { motion, AnimatePresence } from 'framer-motion'
-import ThemeButton from '@/components/molecule/ThemeButton'
+// import ThemeButton from '@/components/molecule/ThemeButton'
 import Header from '../Header'
 import Main from '../Main'
 import Footer from '../Footer'
@@ -9,7 +9,7 @@ const defaultStyle = 'flex justify-center items-center flex-col relative max-w-l
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className={defaultStyle}>
-      <ThemeButton />
+      {/* <ThemeButton /> */}
       <Header />
       <Main>{children}</Main>
       <Footer />

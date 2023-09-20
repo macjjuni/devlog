@@ -13,7 +13,7 @@ interface IPagiButton {
 const defaultStyle = `flex items-center justify-center w-[40px] h-[40px] p-sm ${common.textHover}`
 const originStyle = `${defaultStyle} text-BLG800`
 const activeStyle = `${defaultStyle} underline text-BLG1000 font-bold`
-const disabledStyle = 'text-BLG400 cursor-not-allowed'
+const disabledStyle = `${defaultStyle} text-BLG400 cursor-not-allowed`
 
 const PagiButton = ({ text, href, icon, active = false, disabled = false }: IPagiButton) => {
   const { query } = useRouter()

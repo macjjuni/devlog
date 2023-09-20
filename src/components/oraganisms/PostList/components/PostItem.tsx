@@ -26,7 +26,7 @@ const PostItem = ({ page }: { page: IPage }) => {
             <CategorySvg category={page?.category?.name} />
             {page?.category?.name}
           </h2>
-          {isNew() && <NewSvg width={40} height={40} />}
+          {isNew() && <NewSvg className="new-icon" width={40} height={40} />}
         </div>
         <h3 className="text-postTitle ">{page?.title}</h3>
         <div className="flex justify-start items-center gap-lg mt-sm text-body">

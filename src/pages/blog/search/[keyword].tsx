@@ -5,15 +5,15 @@ import type { GetServerSideProps } from 'next'
 import type { IBlogPage, IPage } from '@/types/notion'
 
 import config from '@/config/notion.config'
-import common from '@/styles/common'
 import notion from '@/lib/noiton'
 
+import ListPage from '@/layouts/Layout/ListPage'
 import NextHead from '@/components/seo/DefaultMeta'
 import Profile from '@/components/molecule/Profile'
 import CategoryList from '@/components/oraganisms/CategoryList'
 import PageHeading from '@/components/atom/PageHeading'
 import PostList from '@/components/oraganisms/PostList'
-import Pagination from '@/components/molecule/Pagination'
+import Pagination from '@/components/oraganisms/Pagination'
 
 interface ISearch extends IBlogPage {
   searchPages: IPage[]
@@ -61,16 +61,21 @@ const SearchPage = ({ searchPages, pages, info }: ISearch) => {
   return (
     <>
       <NextHead title={`Blog > ${query.name}`} />
-      <aside className={`max-w-left w-full p-md ${common.borderColor}`}>
-        <Profile info={info} />
-        <CategoryList categories={info.category} pages={pages} />
-      </aside>
-
-      <section className="max-w-right w-full p-md pl-xxxl border-l">
-        <PageHeading title={`검색 키워드: ${keyword}`} count={searchPages.length} />
-        <PostList list={pageList} />
-        <Pagination current={currentPage} total={searchPages.length} />
-      </section>
+      <ListPage
+        left={
+          <>
+            <Profile info={info} />
+            <CategoryList categories={info.category} pages={pages} />
+          </>
+        }
+        right={
+          <>
+            <PageHeading title={`검색 키워드: ${keyword}`} count={searchPages.length} />
+            <PostList list={pageList} />
+            <Pagination current={currentPage} total={searchPages.length} />
+          </>
+        }
+      />
     </>
   )
 }

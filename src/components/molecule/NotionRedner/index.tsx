@@ -18,31 +18,47 @@ interface INotionRender {
 const NotionRender = ({ recordMap }: INotionRender) => {
   const { push } = useRouter()
 
-  const goBack = async (e: React.MouseEvent) => {
-    e.preventDefault()
+  const goBack = async () => {
     await push('/blog', '', { scroll: true })
   }
 
+  const appendTocLink = () => {
+    const tocWrap = document.getElementsByClassName('notion-aside-table-of-contents-header')[0] as HTMLDivElement
+    const tocList = document.getElementsByClassName('notion-table-of-contents')[0] as HTMLDivElement
+
+    if (!tocWrap || !tocList) return
+    tocWrap.textContent = '📋 목차'
+    const links = {
+      comment: document.createElement('a'),
+      pages: document.createElement('a'),
+    }
+    // key값 배열로 저장
+    const linkKeys = Object.keys(links) as Array<keyof typeof links>
+
+    links.comment.textContent = '💬 댓글'
+    links.pages.textContent = '📚 글 목록'
+    links.pages.onclick = goBack
+
+    linkKeys.forEach((key) => {
+      links[key].className = 'notion-table-of-contents-item notion-table-of-contents-item-indent-level-0'
+    })
+    tocList.appendChild(links.comment)
+    tocList.appendChild(links.pages)
+  }
+
   useEffect(() => {
-    const tocDom = document.getElementsByClassName('notion-aside-table-of-contents-header')[0] as HTMLElement
-    if (tocDom) tocDom.textContent = '📋 목차'
+    appendTocLink()
   }, [])
 
   return (
     <NotionRenderer
+      className="w-full px-md md:px-lg"
       pageCover={<></>}
       minTableOfContentsItems={1}
       disableHeader
       recordMap={recordMap}
       fullPage
-      pageAside={
-        <div>
-          <a href="#">💬 댓글</a>
-          <a href="#" onClick={goBack}>
-            📚 글 목록
-          </a>
-        </div>
-      }
+      showTableOfContents
       components={{
         propertyDateValue: (dateProperty) => dateProperty.data[0][1][0][1].start_date,
         nextImage: Image,
