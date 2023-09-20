@@ -85,10 +85,6 @@ a {
   text-decoration: underline;
 }
 
-#__next {
-  overflow: hidden;
-}
-
 @keyframes blinkEffect {
   0% {
     opacity: 0;
