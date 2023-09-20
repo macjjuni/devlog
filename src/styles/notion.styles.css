@@ -241,12 +241,11 @@
 .notion-aside-table-of-contents .notion-table-of-contents-item-indent-level-1 {
   font-size: 16px;
   font-weight: 500;
-  margin: 0 0 8px 12px;
-  width: calc(100% - 12px);
 }
 
 .notion-aside-table-of-contents .notion-table-of-contents-item-indent-level-2 {
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .notion-aside-table-of-contents .notion-table-of-contents-item-body {
@@ -1418,7 +1417,7 @@ html[data-theme='dark'] .notion-callout {
 .notion-property-multi_select {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 
 .notion-property-select-item,
@@ -1816,7 +1815,7 @@ html[data-theme='dark'] .notion-callout {
   line-height: 1.3;
   display: flex;
   align-items: center;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 .notion-table-of-contents-item > span {
   white-space: nowrap;

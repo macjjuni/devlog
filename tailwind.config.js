@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 const layout = {
-  width: '1100px',
+  width: '1200px',
   height: '100dvh',
   header: {
     height: '56px',
@@ -88,13 +88,14 @@ module.exports = {
         navActive: ['22px', { fontWeight: '600', lineHeight: '24px' }],
         categoryTitle: ['22px', { fontWeight: '600' }],
         category: ['18px', { fontWeight: '300', lineHeight: 1.15 }],
-        categoryActive: ['18px', { fontWeight: '600', lineHeight: 1.15 }],
+        categoryActive: ['18px', { fontWeight: '600', lineHeight: 1.4 }],
         pageHeading: ['26px', { fontWeight: '500', lineHeight: 1.15 }],
         postCat: ['20px', { fontWeight: 'bold' }],
         postTitle: ['20px'],
         postDate: ['16px'],
         postTag: ['16px'],
       },
+      borderRadius: { ...size },
       padding: {
         ...size,
         header: layout.header.height,

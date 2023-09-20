@@ -1,9 +1,13 @@
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import type { GetStaticProps, GetStaticPaths } from 'next'
 import type { ExtendedRecordMap } from 'notion-types'
 import notion, { getHeadDescription } from '@/lib/noiton'
 import { getPageTitle } from 'notion-utils'
 import NotionRender from '@/components/molecule/NotionRedner'
 import NextHead from '@/components/seo/DefaultMeta'
+
+import Fetch from '@/api/fetch'
 
 interface IPost {
   recordMap: ExtendedRecordMap
@@ -44,6 +48,14 @@ export const getStaticProps: GetStaticProps<IPost> = async ({ params }) => {
 }
 
 const PageDetail = ({ recordMap, title, des }: IPost) => {
+  const { query } = useRouter()
+  console.log(recordMap)
+
+  useEffect(() => {
+    if (typeof query.id !== 'string') return
+    Fetch(`/api/notion/getPageCover?id=${encodeURIComponent(query.id)}`)
+  }, [])
+
   return (
     <>
       <NextHead title={title} des={des} />

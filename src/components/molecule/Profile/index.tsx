@@ -2,7 +2,7 @@ import Image from 'next/image'
 import common from '@/styles/common'
 import type { INotionInfo } from '@/types/notion'
 
-const defaultStyle = `border rounded-md mb-md ${common.borderColor}`
+const defaultStyle = `border rounded-sm mb-md ${common.borderColor}`
 
 const Profile = ({ info }: { info: INotionInfo }) => {
   return (

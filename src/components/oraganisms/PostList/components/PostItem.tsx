@@ -19,7 +19,7 @@ const PostItem = ({ page }: { page: IPage }) => {
     <motion.article variants={postItemMotion} className={`flex ${common.textColor} ${common.borderColor}`}>
       <Link
         href={`/${blog.postPath}/${page?.id}`}
-        className={`page-item relative w-full h-full p-lg mb-lg rounded-lg overflow-hidden border border-BLG200 hover:bg-BLG50 ${common.trs}`}
+        className={`page-item relative w-full h-full p-lg mb-lg rounded-sm overflow-hidden border border-BLG200 hover:bg-BLG50 ${common.trs}`}
       >
         <div className="flex justify-between items-center gap-sm h-[40px] text-postCat">
           <h2 className="flex justify-center items-center gap-sm">
