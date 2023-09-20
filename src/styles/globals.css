@@ -50,6 +50,14 @@
     url('/assets/fonts/pretendard/woff/Pretendard-Thin.woff') format('woff');
 }
 
+@font-face {
+  font-family: 'Menlo';
+  font-weight: 300;
+  src:
+    url('/assets/fonts/menlo/MenloRegular.otf') format('woff2'),
+    url('/assets/fonts/menlo/MenloRegular.ttf') format('truetype');
+}
+
 * {
   box-sizing: border-box;
   font-family:

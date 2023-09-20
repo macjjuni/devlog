@@ -1,13 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 
 const layout = {
-  width: '1200px',
+  width: '1100px',
   height: '100dvh',
   header: {
     height: '56px',
-  },
-  main: {
-    width: '1200px',
   },
   footer: {
     height: '32px',

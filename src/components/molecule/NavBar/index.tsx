@@ -11,8 +11,8 @@ const NavBar = () => {
     const filteredPathname = pathname.split('/')[1]
 
     if (path === '/' && filteredPathname === '') return defaultStyle('text-navActive') // home
+    if (filteredPathname === '') return defaultStyle('')
     if (path.includes(filteredPathname)) return defaultStyle('text-navActive')
-    return defaultStyle('text-nav')
   }
 
   return (
