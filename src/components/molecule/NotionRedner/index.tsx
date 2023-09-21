@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 
 import type { ExtendedRecordMap } from 'notion-types'
+import type { ICoverImg } from '@/pages/blog/[id]'
 import { NotionRenderer } from 'react-notion-x'
 import PageCover from './components/PageCover'
 
@@ -14,10 +15,10 @@ const Equation = dynamic(() => import('react-notion-x/build/third-party/equation
 
 interface INotionRender {
   recordMap: ExtendedRecordMap
-  coverUrl: string
+  coverImg: ICoverImg
 }
 
-const NotionRender = ({ recordMap, coverUrl }: INotionRender) => {
+const NotionRender = ({ recordMap, coverImg }: INotionRender) => {
   const { push } = useRouter()
 
   const goBack = async () => {
@@ -50,7 +51,6 @@ const NotionRender = ({ recordMap, coverUrl }: INotionRender) => {
 
   useEffect(() => {
     appendTocLink()
-    // console.log(recordMap)
   }, [])
 
   return (
@@ -59,7 +59,7 @@ const NotionRender = ({ recordMap, coverUrl }: INotionRender) => {
       fullPage
       disableHeader
       showTableOfContents
-      pageCover={coverUrl !== '' && <PageCover url={coverUrl} alt="123" />}
+      pageCover={coverImg.url !== '' && <PageCover url={coverImg.url} alt={coverImg.alt} />}
       minTableOfContentsItems={1}
       recordMap={recordMap}
       components={{

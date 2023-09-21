@@ -15,6 +15,11 @@ interface IPost {
   des: string
 }
 
+export interface ICoverImg {
+  url: string
+  alt: string
+}
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const databaseId = process.env.NOTION_DATABASE_ID
 
@@ -49,23 +54,25 @@ export const getStaticProps: GetStaticProps<IPost> = async ({ params }) => {
 
 const PageDetail = ({ recordMap, title, des }: IPost) => {
   const { query } = useRouter()
-  const [coverUrl, setCoverUrl] = useState('')
+  const [coverImg, setCoverImg] = useState<ICoverImg>({
+    url: '',
+    alt: '',
+  })
 
   useEffect(() => {
     if (typeof query.id !== 'string') return
     Fetch(`/api/notion/getPageCover?id=${encodeURIComponent(query.id)}`).then((res) => {
-      setCoverUrl(res?.coverUrl)
+      setCoverImg({
+        url: res?.coverUrl,
+        alt: res?.alt,
+      })
     })
   }, [])
-
-  useEffect(() => {
-    console.log(coverUrl)
-  }, [coverUrl])
 
   return (
     <>
       <NextHead title={title} des={des} />
-      <NotionRender recordMap={recordMap} coverUrl={coverUrl} />
+      <NotionRender recordMap={recordMap} coverImg={coverImg} />
     </>
   )
 }

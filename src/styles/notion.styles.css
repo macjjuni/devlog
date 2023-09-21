@@ -192,7 +192,7 @@
 
 .notion-aside {
   position: sticky;
-  top: 76px;
+  top: 96px;
   align-self: flex-start;
   flex: 1;
   flex-direction: column;
@@ -2124,8 +2124,10 @@ html[data-theme='dark'] .notion-callout {
 .notion-collection-row {
   width: 100%;
   padding: 12px 0;
+  border-top: 1px solid var(--fg-color-0);
   border-bottom: 1px solid var(--fg-color-0);
-  margin-bottom: 12px;
+  border-radius: 4px;
+  margin-bottom: 40px;
 }
 
 .notion-collection-row-body {
