@@ -3,12 +3,11 @@ import { RequestInit } from 'next/dist/server/web/spec-extension/request'
 
 const fetchOptions: RequestInit = {
   method: 'GET',
-  cache: 'force-cache',
   headers: {
     'Content-Type': 'application/json',
     // 'Content-Type': 'application/x-www-form-urlencoded',
   },
-  next: { revalidate: 60 },
+  next: { revalidate: 5 },
 }
 
 const fatchCache = (url: string) => {
