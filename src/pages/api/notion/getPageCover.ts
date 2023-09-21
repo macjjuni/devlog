@@ -6,7 +6,6 @@ import generateCoverUrl from '@/utils/notion'
 type IGetPageCover = { coverUrl: string; alt: string }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<IGetPageCover>) {
-  console.log('요청 옴')
   const { id } = req.query
   if (typeof id !== 'string') throw Error('Error')
 
