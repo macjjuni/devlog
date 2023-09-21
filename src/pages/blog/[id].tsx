@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import type { GetStaticProps, GetStaticPaths } from 'next'
 import type { ExtendedRecordMap } from 'notion-types'
@@ -49,17 +49,23 @@ export const getStaticProps: GetStaticProps<IPost> = async ({ params }) => {
 
 const PageDetail = ({ recordMap, title, des }: IPost) => {
   const { query } = useRouter()
-  console.log(recordMap)
+  const [coverUrl, setCoverUrl] = useState('')
 
   useEffect(() => {
     if (typeof query.id !== 'string') return
-    Fetch(`/api/notion/getPageCover?id=${encodeURIComponent(query.id)}`)
+    Fetch(`/api/notion/getPageCover?id=${encodeURIComponent(query.id)}`).then((res) => {
+      setCoverUrl(res?.coverUrl)
+    })
   }, [])
+
+  useEffect(() => {
+    console.log(coverUrl)
+  }, [coverUrl])
 
   return (
     <>
       <NextHead title={title} des={des} />
-      <NotionRender recordMap={recordMap} />
+      <NotionRender recordMap={recordMap} coverUrl={coverUrl} />
     </>
   )
 }

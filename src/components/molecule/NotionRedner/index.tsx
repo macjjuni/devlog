@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 
 import type { ExtendedRecordMap } from 'notion-types'
 import { NotionRenderer } from 'react-notion-x'
+import PageCover from './components/PageCover'
 
 const Code = dynamic(() => import('react-notion-x/build/third-party/code').then((m) => m.Code), { ssr: false })
 const Collection = dynamic(() => import('react-notion-x/build/third-party/collection').then((m) => m.Collection))
@@ -13,9 +14,10 @@ const Equation = dynamic(() => import('react-notion-x/build/third-party/equation
 
 interface INotionRender {
   recordMap: ExtendedRecordMap
+  coverUrl: string
 }
 
-const NotionRender = ({ recordMap }: INotionRender) => {
+const NotionRender = ({ recordMap, coverUrl }: INotionRender) => {
   const { push } = useRouter()
 
   const goBack = async () => {
@@ -48,17 +50,18 @@ const NotionRender = ({ recordMap }: INotionRender) => {
 
   useEffect(() => {
     appendTocLink()
+    // console.log(recordMap)
   }, [])
 
   return (
     <NotionRenderer
       className="w-full px-md md:px-lg"
-      pageCover={<></>}
-      minTableOfContentsItems={1}
-      disableHeader
-      recordMap={recordMap}
       fullPage
+      disableHeader
       showTableOfContents
+      pageCover={coverUrl !== '' && <PageCover url={coverUrl} alt="123" />}
+      minTableOfContentsItems={1}
+      recordMap={recordMap}
       components={{
         propertyDateValue: (dateProperty) => dateProperty.data[0][1][0][1].start_date,
         nextImage: Image,

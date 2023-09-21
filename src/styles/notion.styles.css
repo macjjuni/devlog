@@ -144,10 +144,6 @@
   font-family: var(--notion-font);
 }
 
-.notion > * {
-  padding: 3px 0;
-}
-
 .notion * {
   margin-block-start: 0;
   margin-block-end: 0;
@@ -593,8 +589,8 @@
 }
 
 .notion-page-no-cover {
-  /* margin-top: 48px !important;
-  padding-top: 96px; */
+  margin-top: 48px !important;
+  /* padding-top: 96px; */
 }
 
 .notion-page-no-cover.notion-page-no-icon {

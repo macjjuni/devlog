@@ -11,7 +11,7 @@ import ListPage from '@/layouts/Layout/ListPage'
 import NextHead from '@/components/seo/DefaultMeta'
 import Profile from '@/components/molecule/Profile'
 import CategoryList from '@/components/oraganisms/CategoryList'
-import PageHeading from '@/components/atom/PageHeading'
+import PageHeading from '@/components/molecule/PageHeading'
 import PostList from '@/components/oraganisms/PostList'
 import Pagination from '@/components/oraganisms/Pagination'
 

@@ -8,7 +8,7 @@ import config from '@/config/notion.config'
 
 import ListPage from '@/layouts/Layout/ListPage'
 import NextHead from '@/components/seo/DefaultMeta'
-import PageHeading from '@/components/atom/PageHeading'
+import PageHeading from '@/components/molecule/PageHeading'
 import Profile from '@/components/molecule/Profile'
 import CategoryList from '@/components/oraganisms/CategoryList'
 import PostList from '@/components/oraganisms/PostList'
