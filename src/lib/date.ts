@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 dayjs.locale('ko')
 
 const defaultFormat = 'YYYY.MM.DD'
+const defaultDetailFormat = 'YYYY-MM-DD HH:mm'
 
 const now = dayjs()
 
@@ -15,6 +16,12 @@ const date = {
     return nowDate.diff(diffTargetDate, 'd')
   },
   format: (dateStr: string) => dayjs(dateStr).format(defaultFormat),
+  formatDetail: (dateStr: string) => dayjs(dateStr).format(defaultDetailFormat),
+  diff: (date1: string, date2: string) => {
+    const formatDate1 = dayjs(date1, defaultDetailFormat)
+    const formatDate2 = dayjs(date2, defaultDetailFormat)
+    return formatDate1.diff(formatDate2, 'second')
+  },
 }
 
 export default date
