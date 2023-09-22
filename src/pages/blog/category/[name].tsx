@@ -72,7 +72,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const { POSTS_PER_PAGE } = config.post
 
-const CategoryPage = ({ pages, info }: IBlogPage) => {
+export default function CategoryPage({ pages, info }: IBlogPage) {
   const { query } = useRouter()
   const categoryName = query.name as string
   // 카테고리 페이지에서는 pages를 필터링한 filteredPages를 사용해야 함.
@@ -107,5 +107,3 @@ const CategoryPage = ({ pages, info }: IBlogPage) => {
     </>
   )
 }
-
-export default CategoryPage

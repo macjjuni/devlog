@@ -7,7 +7,6 @@ const fetchOptions: RequestInit = {
     'Content-Type': 'application/json',
     // 'Content-Type': 'application/x-www-form-urlencoded',
   },
-  next: { revalidate: 5 },
 }
 
 const fatchCache = (url: string) => {

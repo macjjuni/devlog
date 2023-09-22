@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import routes from '@/route'
 import { useRouter } from 'next/router'
+// import { useSession } from 'next-auth/react'
 
 const defaultStyle = (style: string) => `${style} p-sm`
 
 const NavBar = () => {
+  // const { data: session } = useSession()
   const { pathname } = useRouter()
 
   const getNavStyle = (path: string) => {
@@ -24,6 +26,7 @@ const NavBar = () => {
             {route.title}
           </Link>
         ))}
+      {/* {session && <div>123</div>} */}
     </nav>
   )
 }

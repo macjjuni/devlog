@@ -7,7 +7,7 @@ import { getPageTitle } from 'notion-utils'
 import NotionRender from '@/components/molecule/NotionRedner'
 import NextHead from '@/components/seo/DefaultMeta'
 
-import Fetch from '@/api/fetch'
+import Fetch from '@/lib/fetch'
 
 interface IPost {
   recordMap: ExtendedRecordMap

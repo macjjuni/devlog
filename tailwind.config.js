@@ -83,7 +83,9 @@ module.exports = {
       fontSize: {
         ...size,
         logo: ['32px', { fontWeight: '900', lineHeight: '34px' }],
+        bodySm: ['14px', { fontWeight: '300', lineHeight: '16px' }],
         body: ['16px', { fontWeight: '300', lineHeight: '18px' }],
+        bodyLg: ['18px', { fontWeight: '500', lineHeight: '20px' }],
         nav: ['20px', { fontWeight: '300', lineHeight: '22px' }],
         navActive: ['22px', { fontWeight: '600', lineHeight: '24px' }],
         categoryTitle: ['22px', { fontWeight: '600' }],
@@ -108,6 +110,7 @@ module.exports = {
         newIcon: 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px',
         newIconDark: 'rgba(255, 255, 255, 0.05) 0px 6px 24px 0px, rgba(255, 255, 255, 0.08) 0px 0px 0px 1px',
         tag: 'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;',
+        modal: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
       },
       transitionProperty: { header: 'transform' },
       transitionDuration: { header: '0.2s' },

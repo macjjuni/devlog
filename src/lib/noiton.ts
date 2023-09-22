@@ -1,10 +1,17 @@
 import { Client } from '@notionhq/client'
 import { NotionAPI } from 'notion-client'
-import type { PageObjectResponse, DatabaseObjectResponse } from '@notionhq/client/build/src/api-endpoints'
-import type { DatabaseQueryOption, IPage, INotionInfo } from '@/types/notion'
 import { getPageContentBlockIds, getBlockTitle } from 'notion-utils'
+
+import type {
+  PageObjectResponse,
+  DatabaseObjectResponse,
+  ListBlockChildrenResponse,
+  ParagraphBlockObjectResponse,
+} from '@notionhq/client/build/src/api-endpoints'
+import type { DatabaseQueryOption, IPage, INotionInfo, ReadGuestBookType, SaveRequestGuestBookType } from '@/types/notion'
 import type { ExtendedRecordMap, Role, Block } from 'notion-types'
 import config, { token } from '@/config/notion.config'
+import date from './date'
 
 const { propertyTable, blog, post } = config
 const { activeUser, auth, authToken } = token
@@ -99,6 +106,60 @@ const notion = {
   },
   // 페이지 상세 조회
   getDetailPage: async (id: string) => notionApi.getPage(id), // recordMap
+  // 방명록 댓글 목록 조회해서 데이터 가공 후 반환
+  getGuestBookList: async (id: string): Promise<ReadGuestBookType[]> => {
+    const response = await notionClient.blocks.children.list({
+      block_id: id,
+      page_size: 50,
+    })
+    return notion.parseGuestbook(response)
+  },
+  // 방명록 목록 깔끔하게 정리해서 내보내기
+  parseGuestbook: (guestBooks: ListBlockChildrenResponse): ReadGuestBookType[] => {
+    const lists: ReadGuestBookType[] = []
+    if (guestBooks.results.length === 0) return []
+    guestBooks.results.forEach((item) => {
+      const target = item as ParagraphBlockObjectResponse
+      if (target.type !== 'paragraph') return
+      const paragraph = JSON.parse(target.paragraph.rich_text[0]?.plain_text)
+      if (!paragraph) return
+      lists.push({
+        id: target.id,
+        created: target.created_time,
+        content: !paragraph.secret ? paragraph.content : '', // 비밀글일 경우 내용 숨기기
+        name: paragraph.name,
+        email: paragraph.email,
+        image: paragraph.image,
+        secret: paragraph.secret,
+      })
+    })
+    return lists.sort((a, b) => date.diff(b.created, a.created)) // 작성일로 정렬
+  },
+  createGuestBook: async (id: string, body: SaveRequestGuestBookType) => {
+    try {
+      await notionClient.blocks.children.append({
+        block_id: id,
+        children: [
+          {
+            paragraph: {
+              rich_text: [
+                {
+                  text: {
+                    content: JSON.stringify(body),
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  },
+  removeGuestBook: async (block_id: string): Promise<void> => {
+    await notionClient.blocks.delete({ block_id })
+  },
 }
 
 interface ICleanBlock {

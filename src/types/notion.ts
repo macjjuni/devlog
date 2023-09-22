@@ -42,3 +42,22 @@ export interface IBlogPage {
   info: INotionInfo
   pages: IPage[]
 }
+
+// 방명록 타입
+export interface IGuestBook {
+  id: string // Notion Block 데이터에서 사용하고 렌더링 시 key값으로 사용
+  content: string // 댓글 내용
+  name: string // 작성자 이름
+  email: string
+  image: string // 작성자 프로필 이미지 주소
+  created: string // Notion Block 데이터에서 사용하고 작성 년월일시분
+  secret: boolean // 숨김 여부
+  ip: string // 작성자 IP
+}
+
+// 방명록 생성 파라미터 타입
+export type CreateRequestGuestBookType = Pick<IGuestBook, 'content' | 'name' | 'image' | 'secret' | 'email'>
+// 방명록 저장 할 때 파라미터 타입
+export type SaveRequestGuestBookType = Pick<IGuestBook, 'content' | 'name' | 'image' | 'secret' | 'ip' | 'email'>
+// 방명록 읽어올 때 파라미터 타입
+export type ReadGuestBookType = Pick<IGuestBook, 'id' | 'content' | 'name' | 'image' | 'secret' | 'created' | 'email'>
