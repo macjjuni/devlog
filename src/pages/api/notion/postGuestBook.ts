@@ -7,7 +7,7 @@ interface CreateCommentReq extends NextApiRequest {
   body: string
 }
 // 댓글용 Page ID
-const guestbookPageId = process.env.NOTION_COMMENT_PAGE_ID
+const guestbookPageId = process.env.NOTION_GUESTBOOK_PAGE_ID
 
 const handler = async (req: CreateCommentReq, res: NextApiResponse<{ list: ReadGuestBookType[] }>) => {
   try {

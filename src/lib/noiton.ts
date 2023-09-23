@@ -18,6 +18,8 @@ const { activeUser, auth, authToken } = token
 
 const defaultThumb = blog.siteURL + blog.defaultThumb
 
+const adminEmail = process.env.EMAIL
+
 // 공식 노션 객체 생성
 export const notionClient = new Client({ auth })
 // 비공식 노션 객체 생성
@@ -107,15 +109,15 @@ const notion = {
   // 페이지 상세 조회
   getDetailPage: async (id: string) => notionApi.getPage(id), // recordMap
   // 방명록 댓글 목록 조회해서 데이터 가공 후 반환
-  getGuestBookList: async (id: string): Promise<ReadGuestBookType[]> => {
+  getGuestBookList: async (id: string, email: string | null): Promise<ReadGuestBookType[]> => {
     const response = await notionClient.blocks.children.list({
       block_id: id,
       page_size: 50,
     })
-    return notion.parseGuestbook(response)
+    return notion.parseGuestbook(response, email)
   },
   // 방명록 목록 깔끔하게 정리해서 내보내기
-  parseGuestbook: (guestBooks: ListBlockChildrenResponse): ReadGuestBookType[] => {
+  parseGuestbook: (guestBooks: ListBlockChildrenResponse, email: string | null): ReadGuestBookType[] => {
     const lists: ReadGuestBookType[] = []
     if (guestBooks.results.length === 0) return []
     guestBooks.results.forEach((item) => {
@@ -123,17 +125,22 @@ const notion = {
       if (target.type !== 'paragraph') return
       const paragraph = JSON.parse(target.paragraph.rich_text[0]?.plain_text)
       if (!paragraph) return
+
+      const isAdmin = adminEmail === email
+      // 관리자 및 본인이 작성한 내용인 경우 체크해서 내용 저장
+      const authOrSecretCheckedContent = isAdmin || email === paragraph.email ? paragraph.content : !paragraph.secret ? paragraph.content : '비밀글 🔒'
+
       lists.push({
         id: target.id,
         created: target.created_time,
-        content: !paragraph.secret ? paragraph.content : '', // 비밀글일 경우 내용 숨기기
+        content: authOrSecretCheckedContent,
         name: paragraph.name,
         email: paragraph.email,
         image: paragraph.image,
         secret: paragraph.secret,
       })
     })
-    return lists.sort((a, b) => date.diff(b.created, a.created)) // 작성일로 정렬
+    return lists // 작성일로 정렬
   },
   createGuestBook: async (id: string, body: SaveRequestGuestBookType) => {
     try {
