@@ -1,6 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import type { ReadGuestBookType } from '@/types/notion'
+import type { Session } from 'next-auth'
+
+import { getServerSession } from 'next-auth/next'
 import notion from '@/lib/noiton'
+import NextAuth from '../auth/[...nextauth]'
 
 interface CreateCommentReq extends NextApiRequest {
   body: string
@@ -17,10 +21,12 @@ const handler = async (req: CreateCommentReq, res: NextApiResponse<{ list: ReadG
 
     if (!guestbookPageId) throw Error('Not found PageId 404!')
 
+    const session: Session | null = await getServerSession(req, res, NextAuth)
+
     // 방명록 저장
     await notion.removeGuestBook(req.body)
     // 방명록 재조회
-    const list = await notion.getGuestBookList(guestbookPageId)
+    const list = await notion.getGuestBookList(guestbookPageId, session?.user?.email || null)
 
     res.status(200).json({ list })
   } catch (err) {

@@ -11,14 +11,13 @@ import type {
 import type { DatabaseQueryOption, IPage, INotionInfo, ReadGuestBookType, SaveRequestGuestBookType } from '@/types/notion'
 import type { ExtendedRecordMap, Role, Block } from 'notion-types'
 import config, { token } from '@/config/notion.config'
-import date from './date'
 
 const { propertyTable, blog, post } = config
 const { activeUser, auth, authToken } = token
 
 const defaultThumb = blog.siteURL + blog.defaultThumb
 
-const adminEmail = process.env.EMAIL
+const adminEmail = process.env.ADMIN_EMAIL
 
 // 공식 노션 객체 생성
 export const notionClient = new Client({ auth })
