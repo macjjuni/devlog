@@ -68,6 +68,7 @@ module.exports = {
       height: {
         header: layout.header.height,
         footer: layout.footer.height,
+        guestbook: `calc(100vh - (${layout.header.height} + ${layout.footer.height} + 124px +  16px))`,
       },
       minHeight: {
         layout: layout.height,

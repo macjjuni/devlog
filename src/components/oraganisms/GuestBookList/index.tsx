@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
+import { useEffect, useRef, Dispatch, SetStateAction } from 'react'
 
 import type { ReadGuestBookType } from '@/types/notion'
 import type { Session } from 'next-auth'
@@ -14,6 +14,7 @@ interface IGuestBookForm {
 }
 
 const GuestBookList = ({ session, list, setGuestBooks }: IGuestBookForm) => {
+  const listRef = useRef<HTMLUListElement>(null)
   const isLeft = (email: string) => {
     return session?.user.email === email
   }
@@ -24,8 +25,15 @@ const GuestBookList = ({ session, list, setGuestBooks }: IGuestBookForm) => {
     setGuestBooks(resList)
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (!listRef.current) return
+      listRef.current.scrollTop = listRef.current.scrollHeight
+    }, 150)
+  }, [list])
+
   return (
-    <ul className="flex flex-col w-full gap-lg">
+    <ul ref={listRef} className="flex flex-col w-full gap-md h-guestbook px-sm overflow-y-auto">
       {list?.map((item) =>
         isLeft(item.email) ? (
           <MessageRight

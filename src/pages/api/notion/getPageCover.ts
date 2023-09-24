@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const alt = paegBlock.properties.title[0][0] // 페이지 타이틀 이미지 alt 속성으로 사용
 
     const coverUrl = generateCoverUrl(paegBlock) // 페이지 커버 이미지 주소
-    console.log('cover image 요청!')
+    // console.log('cover image 요청!')
     res.status(200).json({ coverUrl, alt })
   } catch (err) {
     console.error(err)

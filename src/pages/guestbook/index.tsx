@@ -8,7 +8,7 @@ import { Session } from 'next-auth'
 
 import FullPage from '@/layouts/Layout/FullPage'
 import LoginModal from '@/components/modal/LoginModal'
-import LoginButton from '@/components/molecule/LoginButton'
+// import LoginButton from '@/components/molecule/LoginButton'
 import GuestBookList from '@/components/oraganisms/GuestBookList'
 import GuestBookForm from '@/components/oraganisms/GuestBookForm'
 
@@ -45,7 +45,7 @@ export default function guestbook({ list }: IGuestBook) {
 
   return (
     <FullPage>
-      <LoginButton session={session} />
+      {/* <LoginButton session={session} /> */}
       <GuestBookList list={guestBooks} session={session} setGuestBooks={setGuestBooks} />
       <GuestBookForm session={session} setGuestBooks={setGuestBooks} />
       <LoginModal />

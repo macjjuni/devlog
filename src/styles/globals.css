@@ -58,6 +58,29 @@
     url('/assets/fonts/menlo/MenloRegular.ttf') format('truetype');
 }
 
+:root {
+  --yellow: #feca57;
+  --red: #ed2b2a;
+  --navy: #341f97;
+  --black: #222f3e;
+  --primary: #ee5253;
+  --secondary: #32d962;
+  --SUCCESS: #04cf52;
+  --WARNING: #ffab49;
+  --COLOR-BLG0: white;
+  --BLG50: #f8f9fa;
+  --BLG100: #f1f3f5;
+  --BLG200: #e8ebed;
+  --BLG300: #dee2e6;
+  --BLG400: #c9cdd2;
+  --BLG500: #9ea4aa;
+  --BLG600: #72787f;
+  --BLG700: #454c53;
+  --BLG800: #26282b;
+  --BLG900: #1b1d1f;
+  --BLG1000: black;
+}
+
 * {
   box-sizing: border-box;
   font-family:
@@ -77,6 +100,34 @@
     'Segoe UI Symbol',
     sans-serif;
 }
+
+/* ---------- Scrollbar Style ---------- */
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  transition: 0.3s ease;
+}
+/* Background Style */
+*::-webkit-scrollbar-track {
+  background: none;
+}
+/* Scrollbar Body Style */
+*::-webkit-scrollbar-thumb {
+  background-color: var(--BLG400);
+}
+.dark *::-webkit-scrollbar-thumb {
+  background-color: var(--BLG600);
+}
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--BLG400) var(--BLG400);
+}
+.dark * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--BLG600) var(--BLG600);
+}
+/* ---------- Scrollbar Style ---------- */
 
 a {
   box-sizing: border-box;

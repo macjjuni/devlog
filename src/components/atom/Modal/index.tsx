@@ -24,7 +24,7 @@ const modalMotion = {
   },
 }
 
-const wrapStyle = `fixed top-0 left-0 flex justify-center items-center w-full h-full bg-[rgba(0,0,0,0.2)] z-[1000]`
+const wrapStyle = `fixed top-0 left-0 flex justify-center items-center w-full h-full bg-[rgba(0,0,0,0.2)] z-[1000] select-none`
 const contentStyle = `flex flex-col justify-between max-w-[340px] w-full p-lg bg-BLG0 rounded-sm shadow-modal`
 
 const topWrapStyle = `flex justify-between items-center w-full`

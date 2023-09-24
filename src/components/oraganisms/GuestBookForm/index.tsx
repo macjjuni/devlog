@@ -1,5 +1,6 @@
-import { ChangeEvent, useCallback, useRef, Dispatch, SetStateAction } from 'react'
-import { CreateRequestGuestBookType, ReadGuestBookType } from '@/types/notion'
+import { ChangeEvent, useCallback, useRef, type Dispatch, type SetStateAction } from 'react'
+import type { CreateRequestGuestBookType, ReadGuestBookType } from '@/types/notion'
+import useStore from '@/store'
 import CheckBox from '@/components/atom/Checkbox'
 import { Session } from 'next-auth'
 import { BsFillSendFill } from 'react-icons/bs'
@@ -14,8 +15,16 @@ interface IGuestBookForm {
 }
 
 const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
+  const { setModal } = useStore((state) => state)
   const commentRef = useRef<HTMLTextAreaElement>(null)
   const secretRef = useRef<boolean>(false)
+
+  const authCheck = () => {
+    if (!session) {
+      commentRef.current?.blur()
+      setModal(true)
+    }
+  }
 
   // 숨김 라디오 버튼 값 적용
   const changeSecret = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +33,10 @@ const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
 
   // 방명록 등록 API 파라미터 반환
   const generateParams = (content: string): CreateRequestGuestBookType | undefined => {
-    if (!session) throw Error('no Session')
+    if (!session) {
+      setModal(true)
+      return
+    }
     return {
       content,
       name: session.user.name,
@@ -36,9 +48,10 @@ const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
 
   // 방명록 작성 API 호출
   const postGuestBook = async () => {
+    authCheck()
     const commentText = commentRef.current?.value.trim()
     if (!commentText) {
-      console.error('no txt')
+      commentRef.current?.focus()
       return
     }
     try {
@@ -55,7 +68,7 @@ const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
     <div className="py-sm">
       <CheckBox label="비밀글" onChange={changeSecret} />
       <div className="relative flex justify-between items-center gap-xl w-full">
-        <textarea ref={commentRef} rows={2} className={textAreaStyle} placeholder="✏️🙏🏻🙇🏻‍♂️" />
+        <textarea ref={commentRef} onFocus={authCheck} rows={2} className={textAreaStyle} placeholder="✏️🙏🏻🙇🏻‍♂️" />
         <button type="button" onClick={postGuestBook} className={buttonStyle}>
           <BsFillSendFill fontSize={18} />
         </button>
