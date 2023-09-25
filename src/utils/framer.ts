@@ -8,38 +8,44 @@ export const colorModeAnimation = {
   },
 }
 
-export const projectListMotion = {
-  show: {
+// 메인 레이아웃 페이징 모션
+export const xWidth = 10
+export const pagingAnimation = {
+  initial: {
+    opacity: 0,
+    x: xWidth,
+  },
+  animate: {
     opacity: 1,
-    transition: { when: 'beforeChildren', staggerChildren: 0.1, delay: 0.3 },
+    x: 0,
+  },
+  transition: {
+    type: 'spring',
+    stiffness: 100,
+    damping: 20,
   },
 }
 
-export const projectItemMotion = {
-  show: { opacity: 1, x: 0 },
-  hidden: { opacity: 0, x: -20 },
-}
-
+// 글 목록 모션
 export const postListMotion = {
-  show: {
-    opacity: 1,
-    transition: { when: 'beforeChildren', staggerChildren: 0.133, delay: 0.36 },
-  },
-}
-
-export const postItemMotion = {
-  show: { opacity: 1, x: 0 },
-  hidden: { opacity: 0, x: -36 },
-}
-
-export const verticalPostCatListMotion = {
   show: {
     opacity: 1,
     transition: { when: 'beforeChildren', staggerChildren: 0.08 },
   },
 }
+export const postItemMotion = {
+  show: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, x: -36 },
+}
 
-export const verticalPostCatItemMotion = {
+// 카테고리 목록 모션
+export const CategoryListMotion = {
+  show: {
+    opacity: 1,
+    transition: { when: 'beforeChildren', staggerChildren: 0.08 },
+  },
+}
+export const CategoryItemMotion = {
   show: { opacity: 1, x: 0 },
   hidden: { opacity: 0, x: -25 },
 }

@@ -1,4 +1,4 @@
-import { verticalPostCatListMotion } from '@/utils/framer'
+import { CategoryListMotion } from '@/utils/framer'
 import { ICategory, IPage } from '@/types/notion'
 import { motion } from 'framer-motion'
 import common from '@/styles/common'
@@ -18,7 +18,7 @@ const CategoryList = ({ categories = null, pages }: { categories: ICategory; pag
   return (
     <div className="mt-xl md:my-xl">
       <h3 className="text-categoryTitle py-sm mb-sm">📚 분류</h3>
-      <motion.ul className={mergeStyle} initial="hidden" animate="show" variants={verticalPostCatListMotion}>
+      <motion.ul className={mergeStyle} initial="hidden" animate="show" variants={CategoryListMotion}>
         <CategoryItem categoryName="All" count={pages.length} path="/blog" />
         {categories?.map((item) => (
           <CategoryItem key={item.id} categoryName={item.name} count={pageCounter(item.name)} path={`/blog/category/${encodeURIComponent(item.name)}`} />

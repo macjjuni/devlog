@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { verticalPostCatItemMotion } from '@/utils/framer'
+import { CategoryItemMotion } from '@/utils/framer'
 import common from '@/styles/common'
 
 interface ICatItem {
@@ -29,7 +29,7 @@ const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
   }
 
   return (
-    <motion.li variants={verticalPostCatItemMotion}>
+    <motion.li variants={CategoryItemMotion}>
       <Link href={path} className={activeChekcer()}>
         {`${categoryName}(${count})`}
       </Link>

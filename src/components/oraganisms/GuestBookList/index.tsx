@@ -29,7 +29,7 @@ const GuestBookList = ({ session, list, setGuestBooks }: IGuestBookForm) => {
     setTimeout(() => {
       if (!listRef.current) return
       listRef.current.scrollTop = listRef.current.scrollHeight
-    }, 150)
+    }, 24)
   }, [list])
 
   return (
