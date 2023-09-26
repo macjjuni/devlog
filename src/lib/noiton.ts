@@ -65,9 +65,7 @@ const notion = {
           },
           {
             property: propertyTable.Category,
-            select: {
-              equals: option?.categoryName ? option.categoryName : '',
-            },
+            select: { equals: option?.categoryName ? option.categoryName : '' },
           },
         ],
       },

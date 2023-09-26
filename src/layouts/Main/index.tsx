@@ -21,7 +21,7 @@ const Main = ({ children }: { children: React.ReactNode }) => {
     return () => events.off('routeChangeStart', handleStart)
   }, [])
   return (
-    <motion.main {...pagingAnimation} key={route} className={defaultStyle}>
+    <motion.main key={route} {...pagingAnimation} className={defaultStyle}>
       <HeaderObserver />
       {children}
     </motion.main>

@@ -3,7 +3,7 @@ import routes from '@/route'
 import { useRouter } from 'next/router'
 // import { useSession } from 'next-auth/react'
 
-const defaultStyle = (style: string) => `${style} p-sm`
+const defaultStyle = (style: string) => `${style} p-xs`
 
 const NavBar = () => {
   // const { data: session } = useSession()
@@ -15,6 +15,7 @@ const NavBar = () => {
     if (path === '/' && filteredPathname === '') return defaultStyle('text-navActive') // home
     if (filteredPathname === '') return defaultStyle('')
     if (path.includes(filteredPathname)) return defaultStyle('text-navActive')
+    return defaultStyle('')
   }
 
   return (

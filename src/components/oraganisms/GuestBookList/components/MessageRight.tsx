@@ -7,7 +7,7 @@ const MessageRight = ({ item, button }: { item: ReadGuestBookType; button: React
     <li className="flex justify-end">
       <div className="flex justify-start gap-md max-w-[700px] p-sm">
         <div className="flex flex-col gap-sm">
-          <span className="text-body text-right">{item.name}</span>
+          <span className="text-body text-right font-[600]">{item.name}</span>
 
           <div className="flex gap-sm items-start">
             {button}

@@ -29,7 +29,7 @@ export const getStaticProps: GetStaticProps<IBlogPage> = async () => {
 
     return {
       props: { info, pages },
-      revalidate: 60,
+      revalidate: 10,
     }
   } catch (e) {
     console.error(e)
