@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useRef, type Dispatch, type SetStateAction } from 'react'
+import { useState, useCallback, useRef, type Dispatch, type SetStateAction, type ChangeEvent } from 'react'
 import type { CreateRequestGuestBookType, ReadGuestBookType } from '@/types/notion'
 import useStore from '@/store'
 import CheckBox from '@/components/atom/Checkbox'
@@ -14,7 +14,10 @@ interface IGuestBookForm {
   setGuestBooks: Dispatch<SetStateAction<ReadGuestBookType[]>>
 }
 
+const maxLength = 255
+
 const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
+  const [text, setText] = useState('')
   const { setModal } = useStore((state) => state)
   const commentRef = useRef<HTMLTextAreaElement>(null)
   const secretRef = useRef<boolean>(false)
@@ -26,19 +29,26 @@ const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
     }
   }
 
+  const changeText = useCallback(
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
+      setText(e.target?.value)
+    },
+    [text],
+  )
+
   // 숨김 라디오 버튼 값 적용
   const changeSecret = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     secretRef.current = e.target.checked
   }, [])
 
   // 방명록 등록 API 파라미터 반환
-  const generateParams = (content: string): CreateRequestGuestBookType | undefined => {
+  const generateParams = (): CreateRequestGuestBookType | undefined => {
     if (!session) {
       setModal(true)
       return
     }
     return {
-      content,
+      content: text.trim(),
       name: session.user.name,
       email: session.user.email,
       image: session.user.image,
@@ -49,15 +59,15 @@ const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
   // 방명록 작성 API 호출
   const postGuestBook = async () => {
     authCheck()
-    const commentText = commentRef.current?.value.trim()
-    if (!commentText) {
+    if (text.trim() === '') {
       commentRef.current?.focus()
+      setText('')
       return
     }
     try {
-      const params = generateParams(commentText)
+      const params = generateParams()
       const { list: resList } = await fetch('/api/notion/postGuestBook', { method: 'POST', body: JSON.stringify(params) }).then((res) => res.json())
-      if (commentRef.current) commentRef.current.value = ''
+      setText('')
       setGuestBooks(resList)
     } catch (err) {
       console.error(err)
@@ -68,7 +78,19 @@ const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
     <div className="py-sm">
       <CheckBox label="비밀글" onChange={changeSecret} />
       <div className="relative flex justify-between items-center gap-xl w-full">
-        <textarea ref={commentRef} onFocus={authCheck} rows={2} className={textAreaStyle} placeholder="✏️🙏🏻🙇🏻‍♂️" />
+        <textarea
+          ref={commentRef}
+          value={text}
+          onChange={changeText}
+          onFocus={authCheck}
+          rows={2}
+          className={textAreaStyle}
+          maxLength={maxLength}
+          placeholder="✏️🙏🏻🙇🏻‍♂️"
+        />
+        <div className="alert absolute top-sm right-sm text-bodySm">
+          {text.length}/{maxLength}
+        </div>
         <button type="button" onClick={postGuestBook} className={buttonStyle}>
           <BsFillSendFill fontSize={18} />
         </button>

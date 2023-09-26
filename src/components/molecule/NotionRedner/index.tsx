@@ -60,7 +60,7 @@ const NotionRender = ({ recordMap, coverImg }: INotionRender) => {
       disableHeader
       showTableOfContents
       pageCover={coverImg.url !== '' && <PageCover url={coverImg.url} alt={coverImg.alt} />}
-      minTableOfContentsItems={1}
+      minTableOfContentsItems={0}
       recordMap={recordMap}
       components={{
         propertyDateValue: (dateProperty) => dateProperty.data[0][1][0][1].start_date,

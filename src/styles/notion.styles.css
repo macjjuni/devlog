@@ -192,7 +192,7 @@
 
 .notion-aside {
   position: sticky;
-  top: 96px;
+  top: 80px;
   align-self: flex-start;
   flex: 1;
   flex-direction: column;
@@ -200,7 +200,6 @@
   max-width: 300px;
   min-width: 280px;
   width: 100%;
-  margin-top: 4px;
 }
 
 .notion-aside-table-of-contents {
@@ -2127,7 +2126,7 @@ html[data-theme='dark'] .notion-callout {
   border-top: 1px solid var(--fg-color-0);
   border-bottom: 1px solid var(--fg-color-0);
   border-radius: 4px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
 .notion-collection-row-body {
