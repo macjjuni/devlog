@@ -1,33 +1,37 @@
-import { useState, useCallback, useRef, type Dispatch, type SetStateAction, type ChangeEvent } from 'react'
-import type { CreateRequestGuestBookType, ReadGuestBookType } from '@/types/notion'
+import { useState, useCallback, useRef, type ChangeEvent } from 'react'
+import type { CreateRequestGuestBookType } from '@/types/notion'
 import useStore from '@/store'
 import CheckBox from '@/components/atom/Checkbox'
 import { Session } from 'next-auth'
 import { BsFillSendFill } from 'react-icons/bs'
+import { IoIosRefresh } from 'react-icons/io'
+
 import common from '@/styles/common'
+import guestbookApi from '@/api/guestBook'
 
 const textAreaStyle = `w-full p-md pr-[52px] border outline-0 rounded-sm resize-none no-scroll`
 const buttonStyle = `absolute bottom-sm right-sm flex justify-center gap-sm text-primary p-sm border rounded-sm hover:border-primary hover:bg-BLG50 ${common.trs}`
 
 interface IGuestBookForm {
+  getList: () => void
   session?: Session | null
-  setGuestBooks: Dispatch<SetStateAction<ReadGuestBookType[]>>
 }
 
 const maxLength = 255
 
-const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
+const GuestBookForm = ({ getList, session }: IGuestBookForm) => {
+  const { setModal, disabled } = useStore((state) => state)
+
   const [text, setText] = useState('')
-  const { setModal } = useStore((state) => state)
   const commentRef = useRef<HTMLTextAreaElement>(null)
   const secretRef = useRef<boolean>(false)
 
-  const authCheck = () => {
+  const authCheck = useCallback(() => {
     if (!session) {
       commentRef.current?.blur()
       setModal(true)
     }
-  }
+  }, [session])
 
   const changeText = useCallback(
     (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -42,7 +46,7 @@ const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
   }, [])
 
   // 방명록 등록 API 파라미터 반환
-  const generateParams = (): CreateRequestGuestBookType | undefined => {
+  const generateParams = useCallback((): CreateRequestGuestBookType | undefined => {
     if (!session) {
       setModal(true)
       return
@@ -54,10 +58,10 @@ const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
       image: session.user.image,
       secret: secretRef.current,
     }
-  }
+  }, [text])
 
   // 방명록 작성 API 호출
-  const postGuestBook = async () => {
+  const postGuestBook = useCallback(async () => {
     authCheck()
     if (text.trim() === '') {
       commentRef.current?.focus()
@@ -66,13 +70,16 @@ const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
     }
     try {
       const params = generateParams()
-      const { list: resList } = await fetch('/api/notion/postGuestBook', { method: 'POST', body: JSON.stringify(params) }).then((res) => res.json())
-      setText('')
-      setGuestBooks(resList)
+      if (!params) return
+      const { status } = await guestbookApi.create(params)
+      if (status) {
+        getList()
+        setText('') // 입력창 초기화
+      }
     } catch (err) {
       console.error(err)
     }
-  }
+  }, [text])
 
   return (
     <div className="py-sm">
@@ -84,6 +91,7 @@ const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
           onChange={changeText}
           onFocus={authCheck}
           rows={2}
+          disabled={disabled}
           className={textAreaStyle}
           maxLength={maxLength}
           placeholder="✏️🙏🏻🙇🏻‍♂️"
@@ -91,8 +99,8 @@ const GuestBookForm = ({ session, setGuestBooks }: IGuestBookForm) => {
         <div className="alert absolute top-sm right-sm text-bodySm">
           {text.length}/{maxLength}
         </div>
-        <button type="button" onClick={postGuestBook} className={buttonStyle}>
-          <BsFillSendFill fontSize={18} />
+        <button type="button" disabled={disabled} onClick={postGuestBook} className={buttonStyle}>
+          {!disabled ? <BsFillSendFill fontSize={18} /> : <IoIosRefresh className="spin" fontSize={20} />}
         </button>
       </div>
     </div>

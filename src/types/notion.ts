@@ -55,6 +55,16 @@ export interface IGuestBook {
   ip: string // 작성자 IP
 }
 
+// 방명록 리스트 호출 결과 타입
+export interface IGuestBookResult {
+  list: ReadGuestBookType[]
+  status: boolean
+}
+// 방명록 생성, 삭제 결과 타입
+export interface IGuestBookPostResult {
+  status: boolean
+}
+
 // 방명록 생성 파라미터 타입
 export type CreateRequestGuestBookType = Pick<IGuestBook, 'content' | 'name' | 'image' | 'secret' | 'email'>
 // 방명록 저장 할 때 파라미터 타입

@@ -21,9 +21,9 @@ interface IBlogPage {
 
 export const getStaticProps: GetStaticProps<IBlogPage> = async () => {
   const databaseId = process.env.NOTION_DATABASE_ID
+
   try {
     if (!databaseId) throw new Error('DATABASE_ID is undefined.')
-
     const info = await notion.getNotionInfo(databaseId)
     const pages = await notion.getAllPage(databaseId)
 
@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps<IBlogPage> = async () => {
 
 const { POSTS_PER_PAGE } = config.post
 
-const BlogPage = ({ pages, info }: IBlogPage) => {
+const BlogPage = ({ info, pages }: IBlogPage) => {
   const { query } = useRouter()
   const currentPage = query.page ? parseInt(query.page.toString(), 10) : 1
   const [pageList, setPageList] = useState(pages.slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage))

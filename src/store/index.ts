@@ -14,6 +14,9 @@ interface IStore {
   // - Modal State
   isModal: boolean
   setModal: (isShow: boolean) => void
+  // - Input Disabled
+  disabled: boolean
+  setDisabled: (isDisabled: boolean) => void
 }
 
 const useStore = create<IStore>()(
@@ -30,6 +33,8 @@ const useStore = create<IStore>()(
     setHide: (hide) => set(() => ({ isHide: hide })),
     isModal: false,
     setModal: (isShow) => set(() => ({ isModal: isShow })),
+    disabled: false,
+    setDisabled: (isDisabled) => set(() => ({ disabled: isDisabled })),
   }),
   //   { name: 'macjjuni' },
   // ),

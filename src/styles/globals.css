@@ -156,5 +156,32 @@ a {
   animation: blinkEffect 1s ease-in-out infinite alternate;
 }
 
+.spin {
+  animation: rotate 1s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+.skeleton {
+  animation: skeletonMotion 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes skeletonMotion {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
 @tailwind components;
 @tailwind utilities;

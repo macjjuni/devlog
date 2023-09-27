@@ -4,6 +4,7 @@ import Layout from '@/layouts/Layout'
 import WithProgressBar from '@/components/hoc/ProgressBar'
 import ThemeProvider from '@/components/hoc/ThemeProvider'
 import DefaultMeta from '@/components/seo/DefaultMeta'
+
 import '@/styles/globals.css'
 import '@/styles/notion.styles.css'
 import '@/styles/prism.css'
@@ -15,15 +16,15 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   return (
     <>
       <DefaultMeta />
-      <SessionProvider session={session}>
+      <ThemeProvider>
         <WithProgressBar>
-          <ThemeProvider>
+          <SessionProvider session={session}>
             <Layout>
               <Component {...pageProps} />
             </Layout>
-          </ThemeProvider>
+          </SessionProvider>
         </WithProgressBar>
-      </SessionProvider>
+      </ThemeProvider>
     </>
   )
 }
