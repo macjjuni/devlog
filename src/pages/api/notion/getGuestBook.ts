@@ -9,7 +9,8 @@ import NextAuth from '../auth/[...nextauth]'
 interface CreateCommentReq extends NextApiRequest {}
 
 export default async function handler(req: CreateCommentReq, res: NextApiResponse<{ list: ReadGuestBookType[]; status: boolean }>) {
-  res.setHeader('Cache-Control', 'public, max-age=600, stale-while-revalidate=60')
+  const reqCacheControl = req.headers['cache-control']
+  if (typeof reqCacheControl === 'string') res.setHeader('Cache-Control', reqCacheControl)
   try {
     const guestbookPageId = process.env.NOTION_GUESTBOOK_PAGE_ID
     if (!guestbookPageId) throw Error('Not found pageId')

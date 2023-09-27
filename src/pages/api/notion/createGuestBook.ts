@@ -8,7 +8,7 @@ import requestIp from 'request-ip'
 import NextAuth from '../auth/[...nextauth]'
 
 interface CreateCommentReq extends NextApiRequest {
-  body: string
+  body: CreateRequestGuestBookType
 }
 // 댓글용 Page ID
 const guestbookPageId = process.env.NOTION_GUESTBOOK_PAGE_ID
@@ -16,7 +16,7 @@ const guestbookPageId = process.env.NOTION_GUESTBOOK_PAGE_ID
 const handler = async (req: CreateCommentReq, res: NextApiResponse<IGuestBookPostResult>) => {
   try {
     // 잘못된 호출 핸들링
-    if (req.method !== 'POST' || typeof req.body !== 'string' || req.body === '') {
+    if (req.method !== 'POST' || !req.body) {
       throw Error('Not Valid Request body or Not POST Method or body is empty')
     }
 
@@ -25,10 +25,8 @@ const handler = async (req: CreateCommentReq, res: NextApiResponse<IGuestBookPos
     const session: Session | null = await getServerSession(req, res, NextAuth)
     if (!session) throw new Error('No Auth') // 권한 체크
 
-    const bodyData: CreateRequestGuestBookType = JSON.parse(req.body)
-
     const params: SaveRequestGuestBookType = {
-      ...bodyData,
+      ...req.body,
       ip: requestIp.getClientIp(req) || 'unknown',
     }
     // 방명록 저장

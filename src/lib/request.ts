@@ -14,6 +14,10 @@ const request = <TResponse>(url: string, config: RequestInit = {}): Promise<TRes
   const result = fetch(url, config)
     .then((response) => response.json())
     .then((data) => data as TResponse)
+    .catch((err) => {
+      console.error(err)
+      return err
+    })
   return result
 }
 
