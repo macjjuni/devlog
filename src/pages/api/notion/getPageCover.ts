@@ -3,7 +3,10 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import notion from '@/lib/noiton'
 import generateCoverUrl from '@/utils/notion'
 
-type IGetPageCover = { coverUrl: string; alt: string }
+export interface IGetPageCover {
+  coverUrl: string
+  alt: string
+}
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<IGetPageCover>) {
   res.setHeader('Cache-Control', 'public, max-age=600, stale-while-revalidate=10')

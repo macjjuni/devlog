@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import type { GetStaticProps, GetStaticPaths } from 'next'
 import type { ExtendedRecordMap } from 'notion-types'
@@ -6,8 +6,7 @@ import notion, { getHeadDescription } from '@/lib/noiton'
 import { getPageTitle } from 'notion-utils'
 import NotionRender from '@/components/molecule/NotionRedner'
 import NextHead from '@/components/seo/DefaultMeta'
-
-import Fetch from '@/lib/request'
+import getPageCoverImage from '@/api/notion'
 
 interface IPost {
   recordMap: ExtendedRecordMap
@@ -54,19 +53,16 @@ export const getStaticProps: GetStaticProps<IPost> = async ({ params }) => {
 
 const PageDetail = ({ recordMap, title, des }: IPost) => {
   const { query } = useRouter()
-  const [coverImg, setCoverImg] = useState<ICoverImg>({
-    url: '',
-    alt: '',
-  })
+  const [coverImg, setCoverImg] = useState<ICoverImg>({ url: '', alt: '' })
+
+  const getPageCover = useCallback(async () => {
+    if (typeof query.id !== 'string') return
+    const { coverUrl, alt } = await getPageCoverImage(query.id)
+    setCoverImg({ url: coverUrl, alt })
+  }, [])
 
   useEffect(() => {
-    if (typeof query.id !== 'string') return
-    Fetch(`/api/notion/getPageCover?id=${encodeURIComponent(query.id)}`).then((res) => {
-      setCoverImg({
-        url: res?.coverUrl,
-        alt: res?.alt,
-      })
-    })
+    getPageCover()
   }, [])
 
   return (
