@@ -38,7 +38,7 @@ const useStore = create<IStore>()(
     setModal: (isShow) => set(() => ({ isModal: isShow })),
     disabled: false,
     setDisabled: (isDisabled) => set(() => ({ disabled: isDisabled })),
-    btc: 100000,
+    btc: '100000',
     setBtc: (price) => set(() => ({ btc: price })),
   }),
   //   { name: 'macjjuni' },
