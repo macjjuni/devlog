@@ -7,7 +7,7 @@ import NextHead from '@/components/seo/DefaultMeta'
 import GuestBookList from '@/components/oraganisms/GuestBookList'
 import GuestBookForm from '@/components/oraganisms/GuestBookForm'
 
-import guestbookApi from '@/api/guestBook'
+import guestbookApi from '@/api/notion/guestBook'
 import type { ReadGuestBookType } from '@/types/notion'
 
 // interface IGuestBook {

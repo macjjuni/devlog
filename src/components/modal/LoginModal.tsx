@@ -11,10 +11,10 @@ const LoginModal = () => {
   // 이미 로그인 중이라면 예외처리
   useEffect(() => {
     if (isModal && session) {
-      console.error('already Login!!!')
+      console.warn('already Login')
       setModal(false)
     }
-  }, [isModal])
+  }, [isModal, session])
 
   return (
     <Modal title="로그인">

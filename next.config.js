@@ -15,6 +15,10 @@ const nextConfig = {
       'github.com',
       'lh3.googleusercontent.com',
     ],
+    images: {
+      formats: ['image/webp'],
+      minimumCacheTTL: 1000 * 60 * 10,
+    },
   },
 }
 

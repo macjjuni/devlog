@@ -7,7 +7,7 @@ import { BsFillSendFill } from 'react-icons/bs'
 import { IoIosRefresh } from 'react-icons/io'
 
 import common from '@/styles/common'
-import guestbookApi from '@/api/guestBook'
+import guestbookApi from '@/api/notion/guestBook'
 
 const textAreaStyle = `w-full p-md pr-[52px] border outline-0 rounded-sm resize-none no-scroll`
 const buttonStyle = `absolute bottom-sm right-sm flex justify-center gap-sm text-primary p-sm border rounded-sm hover:border-primary hover:bg-BLG50 ${common.trs}`

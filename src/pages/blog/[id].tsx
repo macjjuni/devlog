@@ -6,7 +6,7 @@ import notion, { getHeadDescription } from '@/lib/noiton'
 import { getPageTitle } from 'notion-utils'
 import NotionRender from '@/components/molecule/NotionRedner'
 import NextHead from '@/components/seo/DefaultMeta'
-import getPageCoverImage from '@/api/notion'
+import getPageCoverImage from '@/api/notion/coverImage'
 
 interface IPost {
   recordMap: ExtendedRecordMap

@@ -10,6 +10,7 @@ import ListPage from '@/layouts/Layout/ListPage'
 import NextHead from '@/components/seo/DefaultMeta'
 import PageHeading from '@/components/molecule/PageHeading'
 import Profile from '@/components/molecule/Profile'
+import MarketPrice from '@/components/molecule/MarketPrice'
 import CategoryList from '@/components/oraganisms/CategoryList'
 import PostList from '@/components/oraganisms/PostList'
 import Pagination from '@/components/oraganisms/Pagination'
@@ -56,6 +57,7 @@ const BlogPage = ({ info, pages }: IBlogPage) => {
           <>
             <Profile info={info} />
             <CategoryList categories={info.category} pages={pages} />
+            <MarketPrice />
           </>
         }
         right={

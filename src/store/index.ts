@@ -17,6 +17,9 @@ interface IStore {
   // - Input Disabled
   disabled: boolean
   setDisabled: (isDisabled: boolean) => void
+  // - BitCoin Market PRice
+  btc: string
+  setBtc: (price: string) => void
 }
 
 const useStore = create<IStore>()(
@@ -35,6 +38,8 @@ const useStore = create<IStore>()(
     setModal: (isShow) => set(() => ({ isModal: isShow })),
     disabled: false,
     setDisabled: (isDisabled) => set(() => ({ disabled: isDisabled })),
+    btc: 100000,
+    setBtc: (price) => set(() => ({ btc: price })),
   }),
   //   { name: 'macjjuni' },
   // ),

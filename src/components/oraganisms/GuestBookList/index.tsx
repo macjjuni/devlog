@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react'
 
-import guestbookApi from '@/api/guestBook'
+import guestbookApi from '@/api/notion/guestBook'
 import type { Session } from 'next-auth'
 import type { ReadGuestBookType } from '@/types/notion'
 
