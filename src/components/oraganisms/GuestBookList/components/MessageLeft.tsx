@@ -9,7 +9,7 @@ const MessageLeft = ({ item, button }: { item: ReadGuestBookType; button: React.
         <Image src={item.image} alt={item.name} width={56} height={56} className="rounded-[50%] w-[56px] h-[56px]" />
 
         <div className="flex flex-col gap-sm">
-          <span className="text-body font-[600]">{item.name}</span>
+          <span className="text-body font-[500]">{item.name}</span>
 
           <div className="flex gap-sm items-start">
             <div className="flex flex-col gap-xs bg-BLG200 py-sm px-md rounded-sm">

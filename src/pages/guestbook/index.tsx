@@ -19,12 +19,14 @@ import type { ReadGuestBookType } from '@/types/notion'
 
 export default function guestbook() {
   const [list, setList] = useState<ReadGuestBookType[]>([])
+  const [status, setStatus] = useState<boolean>(true)
   const { data: session } = useSession()
 
   // API 호출(캐시 사용)
   const getGuestBookList = async () => {
-    const { list: guestBookList } = await guestbookApi.getList()
+    const { list: guestBookList, status: resStatus } = await guestbookApi.getList()
     setList(guestBookList)
+    setStatus(resStatus)
   }
   // no-store 강제 API 호출
   const getForceGuestBookList = async () => {
@@ -41,7 +43,7 @@ export default function guestbook() {
       <NextHead title="GuestBook" des="방명록 페이지" />
       <FullPage>
         {/* <LoginButton session={session} /> */}
-        <GuestBookList list={list} getList={getForceGuestBookList} session={session} />
+        <GuestBookList list={list} status={status} getList={getForceGuestBookList} session={session} />
         <GuestBookForm getList={getForceGuestBookList} session={session} />
         <LoginModal />
       </FullPage>
