@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import useStore from '@/store'
 
 import type { GetServerSideProps } from 'next'
 import type { IBlogPage, IPage } from '@/types/notion'
@@ -51,11 +52,13 @@ const { POSTS_PER_PAGE } = config.post
 const SearchPage = ({ searchPages, pages, info }: ISearch) => {
   const { query } = useRouter()
   const { keyword } = query
+  const { setSearch } = useStore((state) => state)
 
   const currentPage = query.page ? parseInt(query.page.toString(), 10) : 1
   const [pageList, setPageList] = useState(searchPages.slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage))
 
   useEffect(() => {
+    setSearch(false) // 검색 중 모션 제거
     setPageList(searchPages.slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage))
   }, [currentPage, searchPages])
   return (

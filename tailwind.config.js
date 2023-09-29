@@ -77,6 +77,7 @@ module.exports = {
         ...size,
         headerHalf: `calc(${layout.header.height} / 2)`,
         header: layout.header.height,
+        footer: layout.footer.height,
       },
       gap: {
         ...size,

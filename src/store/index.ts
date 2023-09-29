@@ -20,6 +20,9 @@ interface IStore {
   // - BitCoin Market PRice
   btc: string
   setBtc: (price: string) => void
+  // - Search Status
+  search: boolean
+  setSearch: (isSearch: boolean) => void
 }
 
 const useStore = create<IStore>()(
@@ -40,6 +43,8 @@ const useStore = create<IStore>()(
     setDisabled: (isDisabled) => set(() => ({ disabled: isDisabled })),
     btc: '100000',
     setBtc: (price) => set(() => ({ btc: price })),
+    search: false,
+    setSearch: (isSearch) => set(() => ({ search: isSearch })),
   }),
   //   { name: 'macjjuni' },
   // ),

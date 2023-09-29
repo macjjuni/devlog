@@ -27,9 +27,8 @@ function initBinance() {
 
   // eslint-disable-next-line func-names
   socket.onopen = function () {
-    console.log('on socket_Binance')
-    retryCount = 1
     console.info('서버에 연결되었습니다.(Binance)')
+    retryCount = 1
   }
   socket.onmessage = ({ data }) => {
     const json = JSON.parse(data)
@@ -46,7 +45,6 @@ function initBinance() {
 
   // 소켓 닫힘
   socket.onclose = (e) => {
-    console.dir(`비정상적 종료(Binance): ${e.code}`)
     if (e.wasClean || e.code === 1000) {
       console.log(`서버 연결 해제(Binance)`)
     } else if (e.code === 1006) {
