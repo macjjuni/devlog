@@ -1,25 +1,21 @@
-// import { motion, AnimatePresence } from 'framer-motion'
-// import ThemeButton from '@/components/molecule/ThemeButton'
-import useStore from '@/store'
-import SearchLoad from '@/components/load/search'
+import common from '@/styles/common'
+import Load from '@/components/atom/Load'
 import Header from '../Header'
 import Main from '../Main'
 import Footer from '../Footer'
 
-const defaultStyle = 'flex justify-center items-center flex-col relative max-w-layout min-h-layout mx-auto'
+const defaultStyle = `flex justify-center items-center flex-col relative min-h-layout mx-auto ${common.textColor} ${common.bgColor} transition-colors`
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const { search } = useStore((state) => state)
-
   return (
     <>
       <div className={defaultStyle}>
-        {/* <ThemeButton /> */}
         <Header />
         <Main>{children}</Main>
         <Footer />
       </div>
-      {search && <SearchLoad />}
+      {/* 로딩 모달 */}
+      <Load />
     </>
   )
 }

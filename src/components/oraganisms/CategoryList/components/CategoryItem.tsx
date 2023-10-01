@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { CategoryItemMotion } from '@/utils/framer'
-import common from '@/styles/common'
+import { categoryItemMotion } from '@/utils/framer'
 
 interface ICatItem {
   categoryName: string
@@ -10,9 +9,9 @@ interface ICatItem {
   count: number
 }
 
-const defaultStyle = `flex px-md py-sm md:px-lg rounded-xs whitespace-nowrap ${common.trs} ${common.categoryItemHover}`
-const normalStyle = `${defaultStyle} text-category`
-const activeStyle = `${defaultStyle} text-categoryActive underline ${common.categoryItemActive}`
+const defaultStyle = `cate-item flex px-md py-sm md:px-lg text-category rounded-xs whitespace-nowrap hover:border hover:border-BLG400 hover:bg-BLG50 dark:hover:border-BLG600 dark:hover:bg-BLG800`
+const normalStyle = `${defaultStyle}`
+const activeStyle = `${defaultStyle} underline font-bold border border-BLG400 dark:border-BLG600 bg-BLG50 dark:bg-BLG800`
 
 const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
   const { query } = useRouter()
@@ -29,7 +28,7 @@ const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
   }
 
   return (
-    <motion.li variants={CategoryItemMotion}>
+    <motion.li variants={categoryItemMotion}>
       <Link href={path} className={activeChekcer()}>
         {`${categoryName}(${count})`}
       </Link>

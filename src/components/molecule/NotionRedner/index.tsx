@@ -55,7 +55,7 @@ const NotionRender = ({ recordMap, coverImg }: INotionRender) => {
 
   return (
     <NotionRenderer
-      className="w-full px-md md:px-lg"
+      className="w-full max-w-layout px-md md:px-lg"
       fullPage
       disableHeader
       showTableOfContents

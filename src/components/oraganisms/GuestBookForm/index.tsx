@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef, type ChangeEvent } from 'react'
 import type { CreateRequestGuestBookType } from '@/types/notion'
+
 import useStore from '@/store'
 import CheckBox from '@/components/atom/Checkbox'
 import { Session } from 'next-auth'
@@ -9,8 +10,8 @@ import { IoIosRefresh } from 'react-icons/io'
 import common from '@/styles/common'
 import guestbookApi from '@/api/notion/guestBook'
 
-const textAreaStyle = `w-full p-md pr-[52px] border outline-0 rounded-sm resize-none no-scroll`
-const buttonStyle = `absolute bottom-sm right-sm flex justify-center gap-sm text-primary p-sm border rounded-sm hover:border-primary hover:bg-BLG50 ${common.trs}`
+const textAreaStyle = `w-full p-md pr-[52px] border outline-0 rounded-sm resize-none no-scroll dark:border-BLG700 dark:bg-BLG800 transition-colors ${common.trs}`
+const buttonStyle = `absolute bottom-sm right-sm flex justify-center gap-sm text-primary p-sm border rounded-sm border-primary ${common.trs}`
 
 interface IGuestBookForm {
   getList: () => void
@@ -82,7 +83,7 @@ const GuestBookForm = ({ getList, session }: IGuestBookForm) => {
   }, [text])
 
   return (
-    <div className="py-sm">
+    <div className={`sticky bottom-0 mx-md pb-md border-t border-BLG300 dark:border-BLG600 ${common.bgColor}`}>
       <CheckBox label="비밀글" onChange={changeSecret} />
       <div className="relative flex justify-between items-center gap-xl w-full">
         <textarea

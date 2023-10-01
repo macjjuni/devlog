@@ -7,7 +7,7 @@ const layout = {
     height: '56px',
   },
   footer: {
-    height: '32px',
+    height: '36px',
   },
   page: {
     left: '300px',
@@ -57,6 +57,10 @@ module.exports = {
         BLG800: '#26282B',
         BLG900: '#1B1D1F',
         BLG1000: '#000000',
+        lightColor: '#26282B',
+        lightBg: '#ffffff',
+        darkBg: '#1B1D1F',
+        darkColor: '#E8EBED',
       },
       maxWidth: {
         layout: layout.width,
@@ -68,10 +72,10 @@ module.exports = {
       height: {
         header: layout.header.height,
         footer: layout.footer.height,
-        guestbook: `calc(100vh - (${layout.header.height} + ${layout.footer.height} + 124px +  16px))`,
       },
       minHeight: {
         layout: layout.height,
+        guestBookList: `calc(100vh - (${layout.header.height} + ${layout.footer.height} + 134px))`,
       },
       inset: {
         ...size,
@@ -89,10 +93,8 @@ module.exports = {
         body: ['16px', { fontWeight: '300', lineHeight: '18px' }],
         bodyLg: ['18px', { fontWeight: '500', lineHeight: '20px' }],
         nav: ['20px', { fontWeight: '300', lineHeight: '22px' }],
-        navActive: ['22px', { fontWeight: '600', lineHeight: '24px' }],
         categoryTitle: ['22px', { fontWeight: '600' }],
         category: ['18px', { fontWeight: '300', lineHeight: 1.15 }],
-        categoryActive: ['18px', { fontWeight: '600', lineHeight: 1.4 }],
         pageHeading: ['26px', { fontWeight: '500', lineHeight: 1.15 }],
         postCat: ['20px', { fontWeight: 'bold' }],
         postTitle: ['20px'],
@@ -105,7 +107,10 @@ module.exports = {
         header: layout.header.height,
         footer: layout.footer.height,
       },
-      margin: size,
+      margin: {
+        ...size,
+        guestbook: '124px',
+      },
       boxShadow: {
         header: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px',
         headerDark: 'rgba(195, 191, 188, 0.3) 0px 1px 2px 0px, rgba(195, 191, 188, 0.15) 0px 2px 6px 2px',

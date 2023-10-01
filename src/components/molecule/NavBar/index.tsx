@@ -12,9 +12,9 @@ const NavBar = () => {
   const getNavStyle = (path: string) => {
     const filteredPathname = pathname.split('/')[1]
 
-    if (path === '/' && filteredPathname === '') return defaultStyle('text-navActive') // home
+    if (path === '/' && filteredPathname === '') return defaultStyle('font-[600]') // home
     if (filteredPathname === '') return defaultStyle('')
-    if (path.includes(filteredPathname)) return defaultStyle('text-navActive')
+    if (path.includes(filteredPathname)) return defaultStyle('font-[600]')
     return defaultStyle('')
   }
 

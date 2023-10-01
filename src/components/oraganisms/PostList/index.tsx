@@ -1,4 +1,5 @@
 import { type IPage } from '@/types/notion'
+
 import { motion } from 'framer-motion'
 import { postListMotion } from '@/utils/framer'
 import PostItem from './components/PostItem'

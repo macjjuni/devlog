@@ -1,10 +1,14 @@
 import Image from 'next/image'
 import date from '@/lib/date'
+import { motion } from 'framer-motion'
+import { guestbookLeftItemMotion } from '@/utils/framer'
+import { defaultTrs } from '@/styles/common'
+
 import type { ReadGuestBookType } from '@/types/notion'
 
 const MessageLeft = ({ item, button }: { item: ReadGuestBookType; button: React.ReactNode }) => {
   return (
-    <li className="flex justify-start">
+    <motion.li variants={guestbookLeftItemMotion} className="flex justify-start select-none">
       <div className="flex justify-start gap-md max-w-[700px] p-sm">
         <Image src={item.image} alt={item.name} width={56} height={56} className="rounded-[50%] w-[56px] h-[56px]" />
 
@@ -12,7 +16,9 @@ const MessageLeft = ({ item, button }: { item: ReadGuestBookType; button: React.
           <span className="text-body font-[500]">{item.name}</span>
 
           <div className="flex gap-sm items-start">
-            <div className="flex flex-col gap-xs bg-BLG200 py-sm px-md rounded-sm">
+            <div
+              className={`flex flex-col gap-xs border border-BLG300 bg-BLG200 dark:bg-BLG800 dark:border-BLG700 py-sm px-md rounded-sm transition-colors ${defaultTrs}`}
+            >
               <p>{item.content}</p>
 
               <p className="flex items-center gap-xs">
@@ -24,7 +30,7 @@ const MessageLeft = ({ item, button }: { item: ReadGuestBookType; button: React.
           </div>
         </div>
       </div>
-    </li>
+    </motion.li>
   )
 }
 

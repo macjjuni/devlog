@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 
 import FullPage from '@/layouts/Layout/FullPage'
@@ -10,9 +10,6 @@ import GuestBookForm from '@/components/oraganisms/GuestBookForm'
 import guestbookApi from '@/api/notion/guestBook'
 import type { ReadGuestBookType } from '@/types/notion'
 
-// interface IGuestBook {
-//   list: ReadGuestBookType[]
-// }
 // SEO를 고려할 필요가 없는 페이지임
 // export const getServerSideProps: GetServerSideProps<IGuestBook> = async (context) => {
 // }
@@ -22,17 +19,28 @@ export default function guestbook() {
   const [status, setStatus] = useState<boolean>(true)
   const { data: session } = useSession()
 
-  // API 호출(캐시 사용)
-  const getGuestBookList = async () => {
+  // API 호출(HTTP캐싱 적용)
+  const getGuestBookList = useCallback(async () => {
     const { list: guestBookList, status: resStatus } = await guestbookApi.getList()
     setList(guestBookList)
     setStatus(resStatus)
-  }
+  }, [])
   // no-store 강제 API 호출
-  const getForceGuestBookList = async () => {
+  const getForceGuestBookList = useCallback(async () => {
     const { list: guestBookList } = await guestbookApi.forceGetList()
     setList(guestBookList)
-  }
+  }, [])
+
+  // 스크롤 위치 하단으로 초기화
+  const initScroll = useCallback(() => {
+    setTimeout(() => {
+      document.documentElement.scrollTop = document.documentElement.scrollHeight
+    }, 10)
+  }, [])
+
+  useEffect(() => {
+    initScroll()
+  }, [list])
 
   useEffect(() => {
     getGuestBookList()
@@ -42,7 +50,6 @@ export default function guestbook() {
     <>
       <NextHead title="GuestBook" des="방명록 페이지" />
       <FullPage>
-        {/* <LoginButton session={session} /> */}
         <GuestBookList list={list} status={status} getList={getForceGuestBookList} session={session} />
         <GuestBookForm getList={getForceGuestBookList} session={session} />
         <LoginModal />

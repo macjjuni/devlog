@@ -1,5 +1,4 @@
 import { css } from 'styled-components'
-import { dark } from '@/types/theme'
 
 export interface ICateColor {
   key: string
@@ -42,15 +41,14 @@ export const palette = {
   BLG800: '#26282b',
   BLG900: '#1b1d1f',
   BLG1000: '#000000',
-  BookBg: '#F1EFEF',
 }
 
 const color = {
   ...palette,
   lightColor: palette.BLG800,
   lightBg: palette.BLG0,
-  darkColor: palette.BLG0,
-  darkBg: palette.BLG900,
+  darkBg: '#001429',
+  darkColor: palette.BLG200,
 }
 
 const theme = {
@@ -93,7 +91,6 @@ const theme = {
     tablet,
     mobile,
   },
-  darkMode: `html[data-theme='${dark}']`,
   categoryColor: [
     { key: 'dev', color: '#9a57ff' },
     { key: 'bitcoin', color: '#f7931a' },

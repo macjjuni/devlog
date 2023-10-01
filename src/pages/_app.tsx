@@ -1,8 +1,8 @@
 import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
 import Layout from '@/layouts/Layout'
+import ThemeInit from '@/components/atom/ThemeInit'
 import WithProgressBar from '@/components/hoc/ProgressBar'
-import ThemeProvider from '@/components/hoc/ThemeProvider'
 import DefaultMeta from '@/components/seo/DefaultMeta'
 
 import '@/styles/globals.css'
@@ -16,15 +16,14 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   return (
     <>
       <DefaultMeta />
-      <ThemeProvider>
-        <WithProgressBar>
-          <SessionProvider session={session}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </SessionProvider>
-        </WithProgressBar>
-      </ThemeProvider>
+      <ThemeInit />
+      <WithProgressBar>
+        <SessionProvider session={session}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </SessionProvider>
+      </WithProgressBar>
     </>
   )
 }

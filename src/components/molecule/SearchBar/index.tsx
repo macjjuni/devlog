@@ -1,11 +1,12 @@
 import { useRef, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import useStore from '@/store'
-import { CgArrowRightR } from 'react-icons/cg'
 import common from '@/styles/common'
 import SearchSvg from '@/components/svg/SearchSvg'
 
-const defaultStyle = `w-[200px] h-[38px] px-sm pl-[38px] pr-[36px] outline-0 border rounded-[6px] ${common.borderColor} ${common.trs} focus:w-[240px]`
+const defaultStyle = `search-input w-[160px] h-[38px] px-sm pl-[38px] pr-[36px] outline-0 border bg-[transparent] rounded-[6px] ${common.borderColor} ${common.trs} focus:w-[240px]`
+const darkStyle = 'dark:focus:bg-BLG800 dark:focus:border-BLG500'
+const styled = `${defaultStyle} ${darkStyle}`
 
 const SearchBar = () => {
   const searchRef = useRef<HTMLInputElement>(null)
@@ -37,11 +38,14 @@ const SearchBar = () => {
   }, [])
 
   return (
-    <form className="relative" onSubmit={onSubmit}>
+    <form className="relative overflow-hidden" onSubmit={onSubmit}>
       <SearchSvg onClick={onFocus} width={26} height={26} className="absolute top-[50%] translate-y-[-50%] left-[6px] cursor-pointer" />
-      <input ref={searchRef} type="text" className={defaultStyle} />
-      <button type="submit" className="absolute top-[50%] right-0 translate-y-[-50%] flex justify-center items-center w-[36px] h-[36px]">
-        <CgArrowRightR fontSize="30" className="text-BLG700" />
+      <input ref={searchRef} type="text" className={styled} />
+      <button
+        type="submit"
+        className={`search-btn absolute top-xs right-[-50px] flex justify-center items-center w-[30px] h-[30px] text-bodySm border border-BLG400 dark:border-BLG500 rounded-xs ${common.trs}`}
+      >
+        Go
       </button>
     </form>
   )

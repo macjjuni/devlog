@@ -39,13 +39,29 @@ export const postItemMotion = {
 }
 
 // 카테고리 목록 모션
-export const CategoryListMotion = {
+export const categoryListMotion = {
   show: {
     opacity: 1,
     transition: { when: 'beforeChildren', staggerChildren: 0.08 },
   },
 }
-export const CategoryItemMotion = {
+export const categoryItemMotion = {
   show: { opacity: 1, x: 0 },
   hidden: { opacity: 0, x: -25 },
+}
+
+// 방명록 말품선 모션
+export const guestbookListMotion = {
+  show: {
+    opacity: 1,
+    transition: { when: 'beforeChildren', staggerChildren: 0.08 },
+  },
+}
+export const guestbookLeftItemMotion = {
+  show: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, x: 50 },
+}
+export const guestbookRightItemMotion = {
+  show: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, x: -50 },
 }

@@ -1,7 +1,9 @@
 import useStore from '@/store'
+import common from '@/styles/common'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MouseEvent, useCallback } from 'react'
-import { AiOutlineCloseCircle } from 'react-icons/ai'
+import { IoMdClose } from 'react-icons/io'
+
 // import common from '@/styles/common'
 
 interface IModal {
@@ -20,12 +22,12 @@ const modalMotion = {
     initial: { opacity: 0, scale: 0.8 },
     animate: { opacity: 1, scale: 1 },
     exit: { opacity: 0 },
-    transition: { type: 'spring', duration: 0.24 },
+    transition: { type: 'spring', duration: 0.6 },
   },
 }
 
-const wrapStyle = `fixed top-0 left-0 flex justify-center items-center w-full h-full bg-[rgba(0,0,0,0.2)] z-[1000] select-none`
-const contentStyle = `flex flex-col justify-between max-w-[340px] w-full p-lg bg-BLG0 rounded-sm shadow-modal`
+const wrapStyle = `fixed top-0 left-0 flex justify-center items-center w-full h-full bg-[rgba(0,0,0,0.7)] z-[1000] select-none`
+const contentStyle = `flex flex-col justify-between max-w-[340px] w-full p-lg bg-BLG0 rounded-sm shadow-modal border ${common.borderColor} ${common.bgColor}`
 
 const topWrapStyle = `flex justify-between items-center w-full`
 const bottomWrapStyle = 'min-h-[60px] py-md'
@@ -46,7 +48,7 @@ const Modal = ({ children, title }: IModal) => {
             <div className={topWrapStyle}>
               <div className="text-lg">{title}</div>
               <button type="button" onClick={closeModal}>
-                <AiOutlineCloseCircle fontSize={24} />
+                <IoMdClose fontSize={24} />
               </button>
             </div>
             <div className={bottomWrapStyle}>{children}</div>

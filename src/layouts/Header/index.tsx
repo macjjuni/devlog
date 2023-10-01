@@ -1,9 +1,9 @@
 import NavBar from '@/components/molecule/NavBar'
 import Logo from '@/components/atom/Logo'
 import common from '@/styles/common'
-// import useStore from '@/store'
+import ThemeButton from '@/components/molecule/ThemeButton'
 
-const defaultStyle = `fixed top-0 left-1/2 translate-x-[-50%] w-full h-header border-b ${common.borderColor} bg-BLG0 z-[200] transition-header duration-header ease-header`
+const defaultStyle = `fixed top-0 left-1/2 translate-x-[-50%] w-full h-header border-b ${common.borderColor} ${common.bgColor} transition-all z-[200]`
 const toggleStyle = (isHide: boolean) => `${defaultStyle} ${isHide ? 'translate-y-[-100px]' : ''}`
 
 const Header = () => {
@@ -14,6 +14,7 @@ const Header = () => {
       <div className="flex justify-between items-center max-w-header w-full h-full px-lg mx-auto">
         <Logo />
         <NavBar />
+        <ThemeButton />
       </div>
     </header>
   )

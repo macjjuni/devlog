@@ -78,7 +78,11 @@
   --BLG700: #454c53;
   --BLG800: #26282b;
   --BLG900: #1b1d1f;
-  --BLG1000: black;
+  --BLG1000: #000000;
+  --lightColor: #26282b;
+  --lightBg: #ffffff;
+  --darkBg: #1b1d1f;
+  --darkColor: #e8ebed;
 }
 
 * {
@@ -113,10 +117,10 @@
 }
 /* Scrollbar Body Style */
 *::-webkit-scrollbar-thumb {
-  background-color: var(--BLG400);
+  background-color: var(--BLG500);
 }
 .dark *::-webkit-scrollbar-thumb {
-  background-color: var(--BLG600);
+  background-color: var(--BLG700);
 }
 /* Firefox */
 * {
@@ -142,6 +146,16 @@ a {
 
 .page-item:hover .page-date {
   text-decoration: underline;
+}
+
+.search-input:focus ~ .search-btn {
+  right: 4px;
+}
+
+.cate-item {
+  transition:
+    background,
+    color 0.3s ease !important;
 }
 
 @keyframes blinkEffect {
@@ -182,7 +196,7 @@ a {
     opacity: 0.1;
   }
   50% {
-    opacity: 1;
+    opacity: 0.9;
   }
   100% {
     opacity: 0.1;
