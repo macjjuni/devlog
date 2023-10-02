@@ -152,12 +152,6 @@ a {
   right: 4px;
 }
 
-.cate-item {
-  transition:
-    background,
-    color 0.3s ease !important;
-}
-
 @keyframes blinkEffect {
   0% {
     opacity: 0;

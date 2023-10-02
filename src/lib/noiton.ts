@@ -8,7 +8,7 @@ import type {
   ListBlockChildrenResponse,
   ParagraphBlockObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints'
-import type { DatabaseQueryOption, IPage, INotionInfo, ReadGuestBookType, SaveRequestGuestBookType } from '@/types/notion'
+import type { DatabaseQueryOption, IPage, INotionInfo, ReadGuestBookType, SaveRequestGuestBookType, IProjectPage } from '@/types/notion'
 import type { ExtendedRecordMap, Role, Block } from 'notion-types'
 import config, { token } from '@/config/notion.config'
 
@@ -25,10 +25,12 @@ export const notionClient = new Client({ auth })
 export const notionApi = new NotionAPI({ activeUser, authToken, userLocale: 'ko-KR/autodetect' })
 
 const notion = {
-  getNotionInfo: async (databaseId: string): Promise<INotionInfo> => {
+  getNotionInfo: async (databaseId: string): Promise<DatabaseObjectResponse> => {
     // 블로그 정보 조회
     const notionInfo = (await notionClient.databases.retrieve({ database_id: databaseId })) as DatabaseObjectResponse
-
+    return notionInfo
+  },
+  getParseNotionInfo: (notionInfo: DatabaseObjectResponse): INotionInfo => {
     const title = notionInfo.title[0]?.type === 'text' ? notionInfo.title[0].plain_text : ''
     const description = notionInfo.description[0]?.type === 'text' ? notionInfo.description[0].plain_text : ''
     const coverURL = notionInfo.description[1] !== undefined ? notionInfo.description[1]?.href : '' // 블로그 목록 썸네일
@@ -36,20 +38,6 @@ const notion = {
     const tags = notionInfo.properties['태그'].type === 'multi_select' ? notionInfo.properties['태그'].multi_select : null
     const category = notionInfo.properties['카테고리'].type === 'select' ? notionInfo.properties['카테고리'].select.options : null
     return { title, description, coverURL, icon, tags, category }
-  },
-  // 블로그 리스트 데이터 가공
-  getParsePages: (pages: PageObjectResponse[]): IPage[] => {
-    return pages.map((page) => {
-      const { id } = page
-      const { 이름, 카테고리, 작성일, 태그 } = page.properties
-      const title = 이름?.type === 'title' ? 이름.title[0].plain_text : ''
-      const cover = defaultThumb
-      const published = 작성일?.type === 'date' && 작성일.date?.start ? 작성일.date.start : ''
-      const category = 카테고리?.type === 'select' ? 카테고리?.select : null
-      const tags = 태그?.type === 'multi_select' ? 태그.multi_select : []
-
-      return { id, title, category, published, tags, cover }
-    })
   },
   // 모든 페이지 리스트 검색
   getAllPage: async (datbaseId: string, option?: DatabaseQueryOption): Promise<IPage[]> => {
@@ -77,6 +65,54 @@ const notion = {
     const pages = allPage.results as PageObjectResponse[]
     // 블로그 목록 데이터 가공 후 반환
     return notion.getParsePages(pages)
+  },
+  // 블로그 리스트 데이터 가공
+  getParsePages: (pages: PageObjectResponse[]): IPage[] => {
+    return pages.map((page) => {
+      const { id } = page
+      const { 이름, 카테고리, 작성일, 태그 } = page.properties
+      const title = 이름?.type === 'title' ? 이름.title[0].plain_text : ''
+      const cover = defaultThumb
+      const published = 작성일?.type === 'date' && 작성일.date?.start ? 작성일.date.start : ''
+      const category = 카테고리?.type === 'select' ? 카테고리?.select : null
+      const tags = 태그?.type === 'multi_select' ? 태그.multi_select : []
+
+      return { id, title, category, published, tags, cover }
+    })
+  },
+  getAllProject: async (datbaseId: string): Promise<IProjectPage[]> => {
+    // 모든 글 목록 가져오기
+    const allPage = await notionClient.databases.query({
+      database_id: datbaseId,
+      filter: {
+        and: [
+          {
+            property: propertyTable.Published,
+            // 공개인 포스팅만 가져오기
+            status: { equals: '공개' },
+          },
+        ],
+      },
+      sorts: [
+        // 작성일 기준 정렬
+        { property: propertyTable.Date, direction: 'descending' },
+      ],
+    })
+    const data = allPage.results as PageObjectResponse[]
+    return notion.getParseProjectPage(data)
+  },
+  // 프로젝트 리스트 데이터 가공
+  getParseProjectPage: (pages: PageObjectResponse[]): IProjectPage[] => {
+    return pages.map((page) => {
+      const { id } = page
+      const { 이름, 기술스택, 작성일 } = page.properties
+      const title = 이름?.type === 'title' ? 이름.title[0].plain_text : ''
+      const cover = defaultThumb
+      const stack = 기술스택?.type === 'multi_select' ? 기술스택.multi_select : []
+      const published = 작성일?.type === 'date' && 작성일.date?.start ? 작성일.date.start : ''
+
+      return { id, title, stack, published, cover }
+    })
   },
   // 특정 페이지 리스트 검색
   getPage: async (id: string) => {

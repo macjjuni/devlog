@@ -25,7 +25,8 @@ export const getStaticProps: GetStaticProps<IBlogPage> = async () => {
 
   try {
     if (!databaseId) throw new Error('DATABASE_ID is undefined.')
-    const info = await notion.getNotionInfo(databaseId)
+    const tempInfo = await notion.getNotionInfo(databaseId)
+    const info = notion.getParseNotionInfo(tempInfo) // 데이터 가공
     const pages = await notion.getAllPage(databaseId)
 
     return {
@@ -62,7 +63,7 @@ const BlogPage = ({ info, pages }: IBlogPage) => {
         }
         right={
           <>
-            <PageHeading title={query?.name} count={pages.length} />
+            <PageHeading title={query?.name} count={pages.length} isSearch />
             <PostList list={pageList} />
             <Pagination current={currentPage} total={pages.length} />
           </>

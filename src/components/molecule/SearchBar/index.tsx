@@ -4,7 +4,7 @@ import useStore from '@/store'
 import common from '@/styles/common'
 import SearchSvg from '@/components/svg/SearchSvg'
 
-const defaultStyle = `search-input w-[160px] h-[38px] px-sm pl-[38px] pr-[36px] outline-0 border bg-[transparent] rounded-[6px] ${common.borderColor} ${common.trs} focus:w-[240px]`
+const defaultStyle = `search-input w-[160px] h-[38px] px-sm pl-[38px] pr-[36px] outline-0 border bg-[transparent] rounded-[6px] ${common.borderColor} ${common.trs} transition-[width] focus:w-[240px]`
 const darkStyle = 'dark:focus:bg-BLG800 dark:focus:border-BLG500'
 const styled = `${defaultStyle} ${darkStyle}`
 
@@ -43,7 +43,7 @@ const SearchBar = () => {
       <input ref={searchRef} type="text" className={styled} />
       <button
         type="submit"
-        className={`search-btn absolute top-xs right-[-50px] flex justify-center items-center w-[30px] h-[30px] text-bodySm border border-BLG400 dark:border-BLG500 rounded-xs ${common.trs}`}
+        className={`search-btn absolute top-xs right-[-50px] flex justify-center items-center w-[30px] h-[30px] text-bodySm border border-BLG400 dark:border-BLG500 rounded-xs transition-[right] ${common.trs}`}
       >
         Go
       </button>

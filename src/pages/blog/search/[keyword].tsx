@@ -33,7 +33,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res, params }) =>
 
     const searchPages = await notion.getSelectPage(keyword)
     const pages = await notion.getAllPage(databaseId)
-    const info = await notion.getNotionInfo(databaseId)
+    const tempInfo = await notion.getNotionInfo(databaseId)
+    const info = notion.getParseNotionInfo(tempInfo) // 데이터 가공
 
     return { props: { searchPages, pages, info } }
   } catch (e) {

@@ -23,7 +23,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const databaseId = process.env.NOTION_BLOG_DATABASE_ID
   try {
     if (!databaseId) throw new Error('DATABASE_ID is undefined.')
-    const { category } = await notion.getNotionInfo(databaseId)
+    const tempInfo = await notion.getNotionInfo(databaseId)
+    const { category } = notion.getParseNotionInfo(tempInfo) // 데이터 가공
 
     const paths = category?.map(({ name }) => ({ params: { name } }))
 
@@ -46,7 +47,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     const pages = await notion.getAllPage(databaseId)
 
-    const info = await notion.getNotionInfo(databaseId)
+    const tempInfo = await notion.getNotionInfo(databaseId)
+    const info = notion.getParseNotionInfo(tempInfo) // 데이터 가공
 
     const cateArr = info.category?.map((cate) => cate.name) || []
     const currentName = cateArr.find((cate) => cate === queryId)

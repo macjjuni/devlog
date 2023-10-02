@@ -10,7 +10,7 @@ export type SelectPropertyResponse = {
 
 export type ICategory = SelectPropertyResponse[] | null
 
-// 노전 정보 타입
+// 노전 블로그 정보 타입
 export interface INotionInfo {
   title: string
   description: string
@@ -22,6 +22,12 @@ export interface INotionInfo {
   category: ICategory
 }
 
+// 노션 프로젝트 정보 타입
+export interface INotionProject {
+  title: string
+  emoji: string
+}
+
 // 노션 페이지 타입
 export interface IPage {
   id: string
@@ -30,6 +36,15 @@ export interface IPage {
   category: SelectPropertyItemObjectResponse['select'] | null
   published: string
   tags: MultiSelectPropertyItemObjectResponse['multi_select']
+}
+
+// 노션 페이지 타입
+export interface IProjectPage {
+  id: string
+  cover: string
+  title: string
+  published: string
+  stack: MultiSelectPropertyItemObjectResponse['multi_select']
 }
 
 export interface DatabaseQueryOption {

@@ -7,9 +7,10 @@ const defaultStyle = `text-pageHeading`
 interface IPageHeading {
   title?: string | string[]
   count: number
+  isSearch?: boolean
 }
 
-const PageHeading = ({ title, count }: IPageHeading) => {
+const PageHeading = ({ title, count, isSearch = false }: IPageHeading) => {
   const switchTitle = useCallback(() => {
     if (typeof title === 'object' && title.length > 0) return title[0]
     if (title) return title
@@ -19,7 +20,7 @@ const PageHeading = ({ title, count }: IPageHeading) => {
   return (
     <div className="flex justify-between items-center lg:py-md mb-md">
       <h1 className={defaultStyle}>{`${switchTitle()} (${count})`}</h1>
-      <SearchBar />
+      {isSearch && <SearchBar />}
     </div>
   )
 }

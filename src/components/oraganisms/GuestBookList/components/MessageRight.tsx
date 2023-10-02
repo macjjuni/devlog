@@ -2,7 +2,7 @@ import Image from 'next/image'
 import date from '@/lib/date'
 import { motion } from 'framer-motion'
 import { guestbookRightItemMotion } from '@/utils/framer'
-import { defaultTrs } from '@/styles/common'
+import common from '@/styles/common'
 
 import type { ReadGuestBookType } from '@/types/notion'
 
@@ -16,7 +16,7 @@ const MessageRight = ({ item, button }: { item: ReadGuestBookType; button: React
           <div className="flex gap-sm items-start">
             {button}
             <div
-              className={`flex flex-col gap-xs border border-BLG300 bg-BLG200 dark:bg-BLG800 dark:border-BLG700 py-sm px-md rounded-sm transition-colors ${defaultTrs}`}
+              className={`flex flex-col gap-xs border border-BLG300 bg-BLG200 dark:bg-BLG800 dark:border-BLG700 py-sm px-md rounded-sm transition-colors ${common.textColor}`}
             >
               <p>{item.content}</p>
 

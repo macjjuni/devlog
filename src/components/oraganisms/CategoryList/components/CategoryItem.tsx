@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { categoryItemMotion } from '@/utils/framer'
+import common from '@/styles/common'
 
 interface ICatItem {
   categoryName: string
@@ -9,8 +10,7 @@ interface ICatItem {
   count: number
 }
 
-const defaultStyle = `cate-item flex px-md py-sm md:px-lg text-category rounded-xs whitespace-nowrap hover:border hover:border-BLG400 hover:bg-BLG50 dark:hover:border-BLG600 dark:hover:bg-BLG800`
-const normalStyle = `${defaultStyle}`
+const defaultStyle = `flex px-md py-sm md:px-lg text-category rounded-xs whitespace-nowrap hover:border hover:border-BLG400 dark:hover:border-BLG600 ease transition-colors duration-300 ${common.textColor}`
 const activeStyle = `${defaultStyle} underline font-bold border border-BLG400 dark:border-BLG600 bg-BLG50 dark:bg-BLG800`
 
 const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
@@ -21,10 +21,10 @@ const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
 
   // 현재 카테고리에 맞는 페이지인지 체크
   const activeChekcer = () => {
-    if (query?.keyword) return normalStyle
+    if (query?.keyword) return defaultStyle
     if (lowerCatName.includes('all') && catName === undefined) return activeStyle
-    if (catName === undefined) return normalStyle
-    return lowerCatName.includes(catName.toLowerCase()) ? activeStyle : normalStyle
+    if (catName === undefined) return defaultStyle
+    return lowerCatName.includes(catName.toLowerCase()) ? activeStyle : defaultStyle
   }
 
   return (
