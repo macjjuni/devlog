@@ -20,7 +20,7 @@ export interface ICoverImg {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const databaseId = process.env.NOTION_DATABASE_ID
+  const databaseId = process.env.NOTION_BLOG_DATABASE_ID
 
   if (!databaseId) throw new Error('DATABASE_ID is not defined')
 

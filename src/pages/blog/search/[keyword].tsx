@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res, params }) =>
   res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=60')
 
   try {
-    const databaseId = process.env.NOTION_DATABASE_ID
+    const databaseId = process.env.NOTION_BLOG_DATABASE_ID
     if (!databaseId) throw new Error('DATABASE_ID is not defined')
     if (typeof keyword !== 'string') throw new Error('Keyword Type Error!')
 

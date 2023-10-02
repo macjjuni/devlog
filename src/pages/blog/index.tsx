@@ -21,7 +21,7 @@ interface IBlogPage {
 }
 
 export const getStaticProps: GetStaticProps<IBlogPage> = async () => {
-  const databaseId = process.env.NOTION_DATABASE_ID
+  const databaseId = process.env.NOTION_BLOG_DATABASE_ID
 
   try {
     if (!databaseId) throw new Error('DATABASE_ID is undefined.')

@@ -20,7 +20,7 @@ const pageFilter = (pages: IPage[], categoryName: string) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const databaseId = process.env.NOTION_DATABASE_ID
+  const databaseId = process.env.NOTION_BLOG_DATABASE_ID
   try {
     if (!databaseId) throw new Error('DATABASE_ID is undefined.')
     const { category } = await notion.getNotionInfo(databaseId)
@@ -41,7 +41,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!queryId || queryId === '') return { redirect: { destination: '/', permanent: false } }
 
   try {
-    const databaseId = process.env.NOTION_DATABASE_ID
+    const databaseId = process.env.NOTION_BLOG_DATABASE_ID
     if (!databaseId) throw new Error('DATABASE_ID is not defined')
 
     const pages = await notion.getAllPage(databaseId)
