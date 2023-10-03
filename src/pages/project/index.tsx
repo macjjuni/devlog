@@ -4,8 +4,8 @@ import type { IProjectPage } from '@/types/notion'
 import notion from '@/lib/noiton'
 
 import NextHead from '@/components/seo/DefaultMeta'
-import ProjectLayout from '@/layouts/Layout/ProjectLayout'
 import PageHeading from '@/components/molecule/PageHeading'
+import ProjectLayout from '@/layouts/PageLayout/ProjectLayout'
 
 interface IProject {
   title: string

@@ -19,7 +19,7 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="flex items-center gap-xxxl">
+    <nav className="flex items-center gap-xxxl select-none">
       {routes
         .filter((route) => route.show)
         .map((route) => (

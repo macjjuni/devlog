@@ -1862,6 +1862,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@splinetool/react-spline@npm:^2.2.6":
+  version: 2.2.6
+  resolution: "@splinetool/react-spline@npm:2.2.6"
+  dependencies:
+    lodash.debounce: ^4.0.8
+    react-merge-refs: ^2.0.1
+  peerDependencies:
+    "@splinetool/runtime": "*"
+    react: ">=17.0.0"
+    react-dom: ">=17.0.0"
+  checksum: 2a30aa2a0bdff358b54c77b2e2e5815c44e0bd4fe6492e579854c0a689bcc7a0942e644d641e2fa55f23c3dfac19f57709df4be23f892b39363d6b9fa9565737
+  languageName: node
+  linkType: hard
+
+"@splinetool/runtime@npm:^0.9.460":
+  version: 0.9.460
+  resolution: "@splinetool/runtime@npm:0.9.460"
+  dependencies:
+    on-change: ^4.0.0
+    semver-compare: ^1.0.0
+  checksum: a77e5df3b7b2911ee5c88b41a945230c4eab64b9a6bf6b0f58cb0205cbaeb225169d8791a06a57356bb7f7534c238b094c50d01da4a8aebd2bb1277cd38bd2d1
+  languageName: node
+  linkType: hard
+
 "@swc/helpers@npm:0.5.1":
   version: 0.5.1
   resolution: "@swc/helpers@npm:0.5.1"
@@ -3099,6 +3123,8 @@ __metadata:
     "@babel/runtime": ^7.22.15
     "@fontsource/noto-sans-kr": ^5.0.11
     "@notionhq/client": ^2.2.13
+    "@splinetool/react-spline": ^2.2.6
+    "@splinetool/runtime": ^0.9.460
     "@types/node": 20.6.0
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
@@ -5828,6 +5854,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"on-change@npm:^4.0.0":
+  version: 4.0.2
+  resolution: "on-change@npm:4.0.2"
+  checksum: 26cfab78a19426fcf45aa4f4e1995fb1a215ef5345a2ab32d98dfaf442e552dd89059bd28d5a07e85a0e7fca4c3f57bcfd37beca99015c653015bc15386a43d2
+  languageName: node
+  linkType: hard
+
 "once@npm:^1.3.0, once@npm:^1.3.1, once@npm:^1.4.0":
   version: 1.4.0
   resolution: "once@npm:1.4.0"
@@ -6372,6 +6405,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-merge-refs@npm:^2.0.1":
+  version: 2.1.1
+  resolution: "react-merge-refs@npm:2.1.1"
+  checksum: 40564bc4c16520ef830d4fe7a2bd298c23a42d644a8fcb2353cdc6cf16aa82eac681c554df4c849397b25af9dbe728086566e1a01f65f95d2301dc8fc8f6809f
+  languageName: node
+  linkType: hard
+
 "react-modal@npm:^3.14.3":
   version: 3.16.1
   resolution: "react-modal@npm:3.16.1"
@@ -6829,6 +6869,13 @@ __metadata:
   version: 5.2.0
   resolution: "screenfull@npm:5.2.0"
   checksum: 21eae33b780eb4679ea0ea2d14734b11168cf35049c45a2bf24ddeb39c67a788e7a8fb46d8b61ca6d8367fd67ce9dd4fc8bfe476489249c7189c2a79cf83f51a
+  languageName: node
+  linkType: hard
+
+"semver-compare@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "semver-compare@npm:1.0.0"
+  checksum: dd1d7e2909744cf2cf71864ac718efc990297f9de2913b68e41a214319e70174b1d1793ac16e31183b128c2b9812541300cb324db8168e6cf6b570703b171c68
   languageName: node
   linkType: hard
 

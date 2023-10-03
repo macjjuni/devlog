@@ -6,7 +6,7 @@ import type { IPage, IBlogPage } from '@/types/notion'
 import notion from '@/lib/noiton'
 import config from '@/config/notion.config'
 
-import ListPage from '@/layouts/Layout/ListPage'
+import BlogLayout from '@/layouts/PageLayout/BlogLayout'
 import NextHead from '@/components/seo/DefaultMeta'
 import Profile from '@/components/molecule/Profile'
 import CategoryList from '@/components/oraganisms/CategoryList'
@@ -91,7 +91,7 @@ export default function CategoryPage({ pages, info }: IBlogPage) {
     <>
       <NextHead title={`Blog > ${query.name}`} />
 
-      <ListPage
+      <BlogLayout
         left={
           <>
             <Profile info={info} />

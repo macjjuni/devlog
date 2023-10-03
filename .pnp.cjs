@@ -31,6 +31,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/runtime", "npm:7.22.15"],\
             ["@fontsource/noto-sans-kr", "npm:5.0.11"],\
             ["@notionhq/client", "npm:2.2.13"],\
+            ["@splinetool/react-spline", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:2.2.6"],\
+            ["@splinetool/runtime", "npm:0.9.460"],\
             ["@types/node", "npm:20.6.0"],\
             ["@types/react", "npm:18.2.21"],\
             ["@types/react-dom", "npm:18.2.7"],\
@@ -3145,6 +3147,49 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@splinetool/react-spline", [\
+        ["npm:2.2.6", {\
+          "packageLocation": "./.yarn/cache/@splinetool-react-spline-npm-2.2.6-449b9a43f4-2a30aa2a0b.zip/node_modules/@splinetool/react-spline/",\
+          "packageDependencies": [\
+            ["@splinetool/react-spline", "npm:2.2.6"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:2.2.6", {\
+          "packageLocation": "./.yarn/__virtual__/@splinetool-react-spline-virtual-bb49f00d1a/0/cache/@splinetool-react-spline-npm-2.2.6-449b9a43f4-2a30aa2a0b.zip/node_modules/@splinetool/react-spline/",\
+          "packageDependencies": [\
+            ["@splinetool/react-spline", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:2.2.6"],\
+            ["@splinetool/runtime", "npm:0.9.460"],\
+            ["@types/react", "npm:18.2.21"],\
+            ["@types/react-dom", "npm:18.2.7"],\
+            ["@types/splinetool__runtime", null],\
+            ["lodash.debounce", "npm:4.0.8"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:18.2.0"],\
+            ["react-merge-refs", "npm:2.1.1"]\
+          ],\
+          "packagePeers": [\
+            "@splinetool/runtime",\
+            "@types/react-dom",\
+            "@types/react",\
+            "@types/splinetool__runtime",\
+            "react-dom",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@splinetool/runtime", [\
+        ["npm:0.9.460", {\
+          "packageLocation": "./.yarn/cache/@splinetool-runtime-npm-0.9.460-70c5abe02a-a77e5df3b7.zip/node_modules/@splinetool/runtime/",\
+          "packageDependencies": [\
+            ["@splinetool/runtime", "npm:0.9.460"],\
+            ["on-change", "npm:4.0.2"],\
+            ["semver-compare", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@swc/helpers", [\
         ["npm:0.5.1", {\
           "packageLocation": "./.yarn/cache/@swc-helpers-npm-0.5.1-424376f311-71e0e27234.zip/node_modules/@swc/helpers/",\
@@ -4710,6 +4755,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/runtime", "npm:7.22.15"],\
             ["@fontsource/noto-sans-kr", "npm:5.0.11"],\
             ["@notionhq/client", "npm:2.2.13"],\
+            ["@splinetool/react-spline", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:2.2.6"],\
+            ["@splinetool/runtime", "npm:0.9.460"],\
             ["@types/node", "npm:20.6.0"],\
             ["@types/react", "npm:18.2.21"],\
             ["@types/react-dom", "npm:18.2.7"],\
@@ -7999,6 +8046,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["on-change", [\
+        ["npm:4.0.2", {\
+          "packageLocation": "./.yarn/cache/on-change-npm-4.0.2-20e678a22c-26cfab78a1.zip/node_modules/on-change/",\
+          "packageDependencies": [\
+            ["on-change", "npm:4.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["once", [\
         ["npm:1.4.0", {\
           "packageLocation": "./.yarn/cache/once-npm-1.4.0-ccf03ef07a-cd0a885013.zip/node_modules/once/",\
@@ -8779,6 +8835,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-merge-refs", [\
+        ["npm:2.1.1", {\
+          "packageLocation": "./.yarn/cache/react-merge-refs-npm-2.1.1-3e8fe7b3fd-40564bc4c1.zip/node_modules/react-merge-refs/",\
+          "packageDependencies": [\
+            ["react-merge-refs", "npm:2.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-modal", [\
         ["npm:3.16.1", {\
           "packageLocation": "./.yarn/cache/react-modal-npm-3.16.1-3ba7cf9e93-978936e932.zip/node_modules/react-modal/",\
@@ -9320,6 +9385,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["semver", "npm:7.5.4"],\
             ["lru-cache", "npm:6.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["semver-compare", [\
+        ["npm:1.0.0", {\
+          "packageLocation": "./.yarn/cache/semver-compare-npm-1.0.0-33f7033df0-dd1d7e2909.zip/node_modules/semver-compare/",\
+          "packageDependencies": [\
+            ["semver-compare", "npm:1.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\

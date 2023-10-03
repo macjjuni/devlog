@@ -7,7 +7,7 @@ interface IListPage {
   right: React.ReactNode
 }
 
-const ListPage = ({ left, right }: IListPage) => {
+const BlogLayout = ({ left, right }: IListPage) => {
   return (
     <div className="flex flex-col md:flex-row w-full max-w-layout">
       <aside className="md:max-w-[280px] lg:max-w-left w-full p-md">{left}</aside>
@@ -16,4 +16,4 @@ const ListPage = ({ left, right }: IListPage) => {
   )
 }
 
-export default ListPage
+export default BlogLayout

@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 
-import FullPage from '@/layouts/Layout/FullPage'
+import FullLayout from '@/layouts/PageLayout/FullLayout'
 import LoginModal from '@/components/modal/LoginModal'
 import NextHead from '@/components/seo/DefaultMeta'
 import GuestBookList from '@/components/oraganisms/GuestBookList'
@@ -49,11 +49,11 @@ export default function guestbook() {
   return (
     <>
       <NextHead title="GuestBook" des="방명록 페이지" />
-      <FullPage>
+      <FullLayout>
         <GuestBookList list={list} status={status} getList={getForceGuestBookList} session={session} />
         <GuestBookForm getList={getForceGuestBookList} session={session} />
         <LoginModal />
-      </FullPage>
+      </FullLayout>
     </>
   )
 }

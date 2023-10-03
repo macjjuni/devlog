@@ -1,4 +1,3 @@
-
 ```
 devlog_latest,
 ├─ .eslintrc.json,
@@ -4109,7 +4108,7 @@ devlog_latest,
 │  │  ├─ Header,
 │  │  │  └─ index.tsx,
 │  │  ├─ Layout,
-│  │  │  ├─ ListPage.tsx,
+│  │  │  ├─ BlogLayout.tsx,
 │  │  │  └─ index.tsx,
 │  │  └─ Main,
 │  │     └─ index.tsx,
