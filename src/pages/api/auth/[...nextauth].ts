@@ -5,10 +5,13 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
-      clientId: '747592602022-0bb58qass3j2v9habl21o1ee8vh66ckk.apps.googleusercontent.com',
-      clientSecret: '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',
+      clientId: process.env.NEXTAUTH_CLIENT_ID || '',
+      clientSecret: process.env.NEXTAUTH_CLIENT_SECRET || '',
     }),
   ],
+  session: {
+    maxAge: 2 * 60 * 60, // 2 hours
+  },
   callbacks: {
     redirect({ url, baseUrl }) {
       if (url.startsWith(baseUrl)) return url
@@ -16,7 +19,7 @@ export const authOptions: NextAuthOptions = {
       else if (url.startsWith('/')) return new URL(url, baseUrl).toString()
       return baseUrl
     },
-    session: async ({ session }) => {
+    session: ({ session }) => {
       return session
     },
   },
