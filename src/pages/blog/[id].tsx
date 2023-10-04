@@ -5,6 +5,7 @@ import type { ExtendedRecordMap } from 'notion-types'
 import notion, { getHeadDescription } from '@/lib/noiton'
 import { getPageTitle } from 'notion-utils'
 import NotionRender from '@/components/molecule/NotionRedner'
+import NotionSkeleton from '@/components/load/NotionSkeleton'
 import NextHead from '@/components/seo/DefaultMeta'
 import getPageCoverImage from '@/api/notion/coverImage'
 
@@ -52,7 +53,7 @@ export const getStaticProps: GetStaticProps<IPost> = async ({ params }) => {
 }
 
 const PageDetail = ({ recordMap, title, des }: IPost) => {
-  const { query } = useRouter()
+  const { query, isFallback } = useRouter()
   const [coverImg, setCoverImg] = useState<ICoverImg>({ url: '', alt: '' })
 
   const getPageCover = useCallback(async () => {
@@ -64,6 +65,8 @@ const PageDetail = ({ recordMap, title, des }: IPost) => {
   useEffect(() => {
     getPageCover()
   }, [])
+
+  if (isFallback) return <NotionSkeleton />
 
   return (
     <>

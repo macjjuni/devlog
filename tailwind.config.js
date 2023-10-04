@@ -92,7 +92,7 @@ module.exports = {
         bodySm: ['14px', { fontWeight: '300', lineHeight: '16px' }],
         body: ['16px', { fontWeight: '300', lineHeight: '18px' }],
         bodyLg: ['18px', { fontWeight: '500', lineHeight: '20px' }],
-        nav: ['20px', { fontWeight: '300', lineHeight: '22px' }],
+        nav: ['18px', { fontWeight: '300', lineHeight: '22px' }],
         categoryTitle: ['22px', { fontWeight: '600' }],
         category: ['18px', { fontWeight: '300', lineHeight: 1.15 }],
         pageHeading: ['26px', { fontWeight: '500', lineHeight: 1.15 }],

@@ -5,7 +5,7 @@ interface INewSvg {
   className?: string
 }
 
-const NewSvg = ({ width = 50, height = 50, color = '#000000', className = '' }: INewSvg) => {
+const NewSvg = ({ width = 50, height = 50, color = '#FE0000', className = '' }: INewSvg) => {
   return (
     <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill={color} width={`${width}px`} height={`${height}px`} className={className}>
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />

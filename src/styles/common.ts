@@ -1,4 +1,4 @@
-export const defaultTrs = 'ease duration-300 transition-colors'
+export const defaultTrs = 'ease duration-300 transition-all'
 
 const common = {
   textHover: 'hover:underline decoration-2 underline-offset-[4px]',

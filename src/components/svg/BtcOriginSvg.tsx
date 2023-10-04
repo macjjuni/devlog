@@ -1,31 +1,13 @@
-import styled from 'styled-components'
+import { ISvg } from '@/types/svg'
 
-const SvgStyled = styled.svg`
-  position: absolute;
-  bottom: 36px;
-  left: 34px;
-  width: 54px;
-  height: 54px;
-
-  ${({ theme }) =>
-    theme.response.tablet(`
-    bottom: 30px;
-    left: 27px;
-    width: 40px;
-    height: 40px;
-  `)}
-
-  z-index: 10;
-`
-
-const BtcSvg = () => {
+const BtcSvg = ({ width = 50, height = 50, color = 'F7931A' }: ISvg) => {
   return (
-    <SvgStyled viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000" width={width} height={height}>
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
       <g id="SVGRepo_iconCarrier">
         <g fill="none" fillRule="evenodd">
-          <circle cx="16" cy="16" r="16" fill="#F7931A" />
+          <circle cx="16" cy="16" r="16" fill={color} />
           <path
             fill="#FFF"
             fillRule="nonzero"
@@ -33,7 +15,7 @@ const BtcSvg = () => {
           />
         </g>
       </g>
-    </SvgStyled>
+    </svg>
   )
 }
 

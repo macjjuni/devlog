@@ -1,4 +1,7 @@
 import { dark, light, type ColorTypes } from '@/types/theme'
+import useStore from '@/store'
+
+const { getState } = useStore
 
 const storageKey = 'theme'
 
@@ -15,10 +18,12 @@ const colorMode = {
     if (theme === dark) {
       document.documentElement.classList.add(dark)
       colorMode.setMetaThemeColor(darkColor)
+      getState().setColorMode(dark)
       return
     }
     document.documentElement.classList.remove(dark)
     colorMode.setMetaThemeColor(lightColor)
+    getState().setColorMode(light)
   },
   initColor: () => {
     // 컬러모드 초기화

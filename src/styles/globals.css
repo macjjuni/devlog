@@ -144,12 +144,12 @@ a {
   display: none;
 }
 
-.page-item:hover .page-date {
-  text-decoration: underline;
+[id] {
+  scroll-margin-top: 1.36rem;
 }
 
-.search-input:focus ~ .search-btn {
-  right: 4px;
+.page-item:hover .page-date {
+  text-decoration: underline;
 }
 
 @keyframes blinkEffect {
@@ -171,6 +171,9 @@ a {
 
 .skeleton {
   animation: skeletonMotion 1.5s ease-in-out infinite;
+}
+.hide {
+  top: -150% !important;
 }
 
 .market-price {

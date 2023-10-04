@@ -615,15 +615,10 @@
 }
 
 .notion-page-icon-hero {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: none;
 }
 
-.notion-page-icon-hero.notion-page-icon-image {
+/* .notion-page-icon-hero.notion-page-icon-image {
   width: 124px;
   height: 124px;
   margin-left: -62px;
@@ -666,7 +661,7 @@
 
 .notion-page-icon-hero.notion-page-icon-image img {
   object-fit: cover;
-}
+} */
 
 .notion-page-icon {
   font-family: 'Apple Color Emoji', 'Segoe UI Emoji', NotoColorEmoji, 'Noto Color Emoji', 'Segoe UI Symbol', 'Android Emoji', EmojiSymbols;
@@ -2635,9 +2630,6 @@ svg.notion-page-icon {
   margin-bottom: 1em;
 }
 
-.notion-collection-group > summary {
-}
-
 .notion-collection-group > summary > div {
   transform: scale(0.85);
   transform-origin: 0% 50%;
@@ -2651,15 +2643,22 @@ svg.notion-page-icon {
   border-spacing: 0;
   font-size: 14px;
 }
+.dark .notion-simple-table {
+  border: 1px solid var(--fg-color-5);
+}
 
 .notion-simple-table tr:first-child td {
   background: var(--bg-color-0);
 }
 
 .notion-simple-table td {
-  border: 1px solid var(--fg-color-5);
+  border: 1px solid var(--fg-color-0);
   padding: 8px 8px;
   white-space: pre-wrap;
+}
+
+.dark .notion-simple-table td {
+  border: 1px solid #484a4f;
 }
 
 .notion-external {
