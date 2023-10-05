@@ -233,7 +233,9 @@
   margin-top: 0;
 }
 
-/* .notion-aside-table-of-contents .notion-table-of-contents-item-indent-level-0 {} */
+.notion-aside-table-of-contents .notion-table-of-contents-item-indent-level-0 {
+  font-weight: bold;
+}
 
 .notion-aside-table-of-contents .notion-table-of-contents-item-indent-level-1 {
   font-size: 16px;

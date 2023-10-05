@@ -1,0 +1,9 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+
+# Host
+Host: https://kku.dev
+
+# Sitemaps
+Sitemap: https://kku.dev/sitemap.xml

@@ -39,7 +39,7 @@ function generateSiteMap(pages?: IPage[], cate?: ICategory) {
           <loc>${`${domain}/blog/category/${encodeURIComponent(name)}`}</loc>
           <lastmod>2023-10-05</lastmod>
           <changefreq>monthly</changefreq>
-          <priority>0.8</priority>
+          <priority>0.6</priority>
       </url>
         `
         }) || ''

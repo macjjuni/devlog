@@ -145,7 +145,7 @@ a {
 }
 
 [id] {
-  scroll-margin-top: 1.36rem;
+  scroll-margin-top: 8px;
 }
 
 .page-item:hover .page-date {
