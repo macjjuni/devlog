@@ -7,7 +7,7 @@ import JavaScript from '@/components/molecule/CategorySvg/components/JavaScript'
 import theme, { palette } from '@/styles/theme'
 import CsSvg from './components/CsSvg'
 import GitSvg from './components/GitSvg'
-import DefaultSvg from './components/DefaultSvg'
+import NotionSvg from './components/NotionSvg'
 
 interface ICatSvg {
   key: string
@@ -30,7 +30,7 @@ const CategorySvg = ({ category }: { category?: string }) => {
   const categoryTheme = theme.categoryColor.find((cat) => cat.key === category?.toLowerCase()) || { color: palette.primary }
 
   if (Svg) return Svg.Component(categoryTheme.color)
-  return <DefaultSvg />
+  return <NotionSvg width={32} height={32} />
 }
 
 export default CategorySvg
