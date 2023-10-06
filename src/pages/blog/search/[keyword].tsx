@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import useStore from '@/store'
 
 import type { GetServerSideProps } from 'next'
-import type { IBlogPage, IPage } from '@/types/notion'
+import type { IBlogPage, IPage } from '@/@types/notion'
 
 import config from '@/config/notion.config'
 import notion from '@/lib/noiton'
@@ -12,6 +12,8 @@ import BlogLayout from '@/layouts/PageLayout/BlogLayout'
 import NextHead from '@/components/seo/DefaultMeta'
 import Profile from '@/components/widget/Profile'
 import CategoryList from '@/components/widget/CategoryList'
+import MarketPrice from '@/components/widget/MarketPrice'
+import SocialLink from '@/components/widget/SocialLink'
 import PageHeading from '@/components/molecule/PageHeading'
 import PostList from '@/components/oraganisms/PostList'
 import Pagination from '@/components/oraganisms/Pagination'
@@ -69,12 +71,14 @@ const SearchPage = ({ searchPages, pages, info }: ISearch) => {
         left={
           <>
             <Profile info={info} />
+            <SocialLink />
             <CategoryList categories={info.category} pages={pages} />
+            <MarketPrice />
           </>
         }
         right={
           <>
-            <PageHeading title={`검색 키워드: ${keyword}`} count={searchPages.length} />
+            <PageHeading title={`검색 키워드: ${keyword}`} count={searchPages.length} isSearch />
             <PostList list={pageList} />
             <Pagination current={currentPage} total={searchPages.length} />
           </>

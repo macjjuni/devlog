@@ -1,4 +1,4 @@
-import { ISvg } from '@/types/svg'
+import { ISvg } from '@/@types/svg'
 
 const NotionSvg = ({ width = 50, height = 50 }: ISvg) => {
   return (

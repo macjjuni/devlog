@@ -1,5 +1,5 @@
 import request from '@/lib/request'
-import type { IGuestBookResult, CreateRequestGuestBookType, IGuestBookPostResult } from '@/types/notion'
+import type { IGuestBookResult, CreateRequestGuestBookType, IGuestBookPostResult } from '@/@types/notion'
 import useStore from '@/store'
 
 // 생성, 삭제 처리할 동안 버튼 비활성화 처리

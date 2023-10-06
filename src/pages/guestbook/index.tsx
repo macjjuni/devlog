@@ -8,7 +8,7 @@ import GuestBookList from '@/components/oraganisms/GuestBookList'
 import GuestBookForm from '@/components/oraganisms/GuestBookForm'
 
 import guestbookApi from '@/api/notion/guestBook'
-import type { ReadGuestBookType } from '@/types/notion'
+import type { ReadGuestBookType } from '@/@types/notion'
 
 // SEO를 고려할 필요가 없는 페이지임
 // export const getServerSideProps: GetServerSideProps<IGuestBook> = async (context) => {

@@ -33,6 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@notionhq/client", "npm:2.2.13"],\
             ["@splinetool/react-spline", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:2.2.6"],\
             ["@splinetool/runtime", "npm:0.9.460"],\
+            ["@types/gtag.js", "npm:0.0.14"],\
             ["@types/node", "npm:20.6.0"],\
             ["@types/react", "npm:18.2.21"],\
             ["@types/react-dom", "npm:18.2.7"],\
@@ -3232,6 +3233,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/gtag.js", [\
+        ["npm:0.0.14", {\
+          "packageLocation": "./.yarn/cache/@types-gtag.js-npm-0.0.14-3f2b6837e3-fb269d2da0.zip/node_modules/@types/gtag.js/",\
+          "packageDependencies": [\
+            ["@types/gtag.js", "npm:0.0.14"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/http-cache-semantics", [\
         ["npm:4.0.1", {\
           "packageLocation": "./.yarn/cache/@types-http-cache-semantics-npm-4.0.1-90863c7a3e-1048aacf62.zip/node_modules/@types/http-cache-semantics/",\
@@ -4757,6 +4767,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@notionhq/client", "npm:2.2.13"],\
             ["@splinetool/react-spline", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:2.2.6"],\
             ["@splinetool/runtime", "npm:0.9.460"],\
+            ["@types/gtag.js", "npm:0.0.14"],\
             ["@types/node", "npm:20.6.0"],\
             ["@types/react", "npm:18.2.21"],\
             ["@types/react-dom", "npm:18.2.7"],\

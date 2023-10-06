@@ -38,6 +38,7 @@
   "packageManager": "yarn@3.6.3",
   "devDependencies": {
     "@babel/runtime": "^7.22.15",
+    "@types/gtag.js": "^0.0.14",
     "@types/request-ip": "^0.0.38",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",

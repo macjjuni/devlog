@@ -1,4 +1,3 @@
-import type { ILoad } from '@/types/common'
 import LottieItem from '@/components/atom/LottieItem'
 import SearchLottie from '@/assets/lottie/search.json'
 
@@ -9,7 +8,7 @@ const defaultOption = {
   style: { width: '400px', height: '500px' },
 }
 
-const SearchLoad = ({ isShow }: ILoad) => {
+const SearchLoad = ({ isShow }: { isShow: boolean }) => {
   if (isShow)
     return (
       <LottieItem className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]" defaultOption={defaultOption} animationData={SearchLottie} />

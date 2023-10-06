@@ -1,4 +1,4 @@
-import { ISvg } from '@/types/svg'
+import { ISvg } from '@/@types/svg'
 
 const DevSvg = ({ width = 80, height = 80, color = '#ffffff' }: ISvg) => {
   return (

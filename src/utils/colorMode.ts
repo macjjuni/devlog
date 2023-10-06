@@ -1,4 +1,4 @@
-import { dark, light, type ColorTypes } from '@/types/theme'
+import { dark, light, type ColorTypes } from '@/@types/theme'
 import useStore from '@/store'
 
 const { getState } = useStore

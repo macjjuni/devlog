@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 import guestbookApi from '@/api/notion/guestBook'
 import type { Session } from 'next-auth'
-import type { ReadGuestBookType } from '@/types/notion'
+import type { ReadGuestBookType } from '@/@types/notion'
 
 import LottieItem from '@/components/atom/LottieItem'
 import nofoundLottie from '@/assets/lottie/404.json'

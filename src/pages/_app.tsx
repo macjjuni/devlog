@@ -1,9 +1,9 @@
 import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
 import Layout from '@/layouts/Layout'
-import ThemeInit from '@/components/atom/ThemeInit'
 import WithProgressBar from '@/components/hoc/ProgressBar'
 import DefaultMeta from '@/components/seo/DefaultMeta'
+import Initialize from '@/components/initialize'
 
 import '@/styles/globals.css'
 import '@/styles/notion.styles.css'
@@ -16,7 +16,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   return (
     <>
       <DefaultMeta />
-      <ThemeInit />
+      <Initialize />
       <WithProgressBar>
         <SessionProvider session={session}>
           <Layout>

@@ -1,7 +1,7 @@
 import { NextApiResponse } from 'next'
 import notion from '@/lib/noiton'
 import routes from '@/route'
-import { IPage, ICategory } from '@/types/notion'
+import { IPage, ICategory } from '@/@types/notion'
 
 /**
  * 사이트맵 생성

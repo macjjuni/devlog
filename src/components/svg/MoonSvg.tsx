@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { colorModeAnimation } from '@/utils/framer'
-import { dark } from '@/types/theme'
+import { dark } from '@/@types/theme'
 import useStore from '@/store'
-import { ISvg } from '@/types/svg'
+import { ISvg } from '@/@types/svg'
 import BtcSvg from './BtcSvg'
 
 const MoonSvg = ({ width = 32, height = 32 }: ISvg) => {

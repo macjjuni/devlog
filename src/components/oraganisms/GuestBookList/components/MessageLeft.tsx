@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { guestbookLeftItemMotion } from '@/utils/framer'
 import common from '@/styles/common'
 
-import type { ReadGuestBookType } from '@/types/notion'
+import type { ReadGuestBookType } from '@/@types/notion'
 
 const MessageLeft = ({ item, button }: { item: ReadGuestBookType; button: React.ReactNode }) => {
   return (

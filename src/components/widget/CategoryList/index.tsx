@@ -1,5 +1,5 @@
 import { categoryListMotion } from '@/utils/framer'
-import { ICategory, IPage } from '@/types/notion'
+import { ICategory, IPage } from '@/@types/notion'
 import { motion } from 'framer-motion'
 import common from '@/styles/common'
 import CategoryItem from './components/CategoryItem'

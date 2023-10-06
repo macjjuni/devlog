@@ -1,6 +1,6 @@
 import type { Session } from 'next-auth'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import type { CreateRequestGuestBookType, SaveRequestGuestBookType, IGuestBookPostResult } from '@/types/notion'
+import type { CreateRequestGuestBookType, SaveRequestGuestBookType, IGuestBookPostResult } from '@/@types/notion'
 
 import { getServerSession } from 'next-auth/next'
 import notion from '@/lib/noiton'

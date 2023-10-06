@@ -1,5 +1,5 @@
 import type { GetStaticProps } from 'next'
-import type { IProjectPage } from '@/types/notion'
+import type { IProjectPage } from '@/@types/notion'
 
 import notion from '@/lib/noiton'
 

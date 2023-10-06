@@ -1,4 +1,4 @@
-import { ISvg } from '@/types/svg'
+import { ISvg } from '@/@types/svg'
 
 const BtcSvg = ({ width = 50, height = 50, color = 'F7931A' }: ISvg) => {
   return (

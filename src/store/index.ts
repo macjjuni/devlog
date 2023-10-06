@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 // import { persist } from 'zustand/middleware'
-import { type ColorTypes } from '@/types/theme'
-import { dark, light } from '@/types/theme'
+import { type ColorTypes } from '@/@types/theme'
+import { dark, light } from '@/@types/theme'
 
 interface IStore {
   // - Light & Dark Mode

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import type { GetStaticProps } from 'next'
-import type { IPage, INotionInfo } from '@/types/notion'
+import type { IPage, INotionInfo } from '@/@types/notion'
 
 import notion from '@/lib/noiton'
 import config from '@/config/notion.config'
@@ -10,8 +10,9 @@ import BlogLayout from '@/layouts/PageLayout/BlogLayout'
 import NextHead from '@/components/seo/DefaultMeta'
 import PageHeading from '@/components/molecule/PageHeading'
 import Profile from '@/components/widget/Profile'
-import MarketPrice from '@/components/widget/MarketPrice'
 import CategoryList from '@/components/widget/CategoryList'
+import MarketPrice from '@/components/widget/MarketPrice'
+import SocialLink from '@/components/widget/SocialLink'
 import PostList from '@/components/oraganisms/PostList'
 import Pagination from '@/components/oraganisms/Pagination'
 
@@ -57,6 +58,7 @@ const BlogPage = ({ info, pages }: IBlogPage) => {
         left={
           <>
             <Profile info={info} />
+            <SocialLink />
             <CategoryList categories={info.category} pages={pages} />
             <MarketPrice />
           </>

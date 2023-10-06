@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import colorMode from '@/utils/colorMode'
 
-const ThemeInit = () => {
+const ThemeInitializer = () => {
   useEffect(() => {
     colorMode.initColor()
   }, [])
@@ -9,4 +9,4 @@ const ThemeInit = () => {
   return null
 }
 
-export default ThemeInit
+export default ThemeInitializer

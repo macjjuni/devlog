@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { colorModeAnimation } from '@/utils/framer'
-import { light } from '@/types/theme'
-import { ISvg } from '@/types/svg'
+import { light } from '@/@types/theme'
+import { ISvg } from '@/@types/svg'
 import useStore from '@/store'
 import BtcSvg from './BtcSvg'
 

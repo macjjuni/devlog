@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import type { IGuestBookPostResult } from '@/types/notion'
+import type { IGuestBookPostResult } from '@/@types/notion'
 import type { Session } from 'next-auth'
 
 import { getServerSession } from 'next-auth/next'

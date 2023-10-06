@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import notion from '@/lib/noiton'
-import generateCoverUrl from '@/utils/notion'
 
 export interface IGetPageCover {
   coverUrl: string
@@ -25,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const alt = paegBlock.properties.title[0][0] // 페이지 타이틀 이미지 alt 속성으로 사용
 
-    const coverUrl = generateCoverUrl(paegBlock) // 페이지 커버 이미지 주소
+    const coverUrl = notion.generateCoverUrl(paegBlock) // 페이지 커버 이미지 주소
     // console.log('cover image 요청!')
     res.status(200).json({ coverUrl, alt })
   } catch (err) {

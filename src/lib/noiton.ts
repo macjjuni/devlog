@@ -8,7 +8,7 @@ import type {
   ListBlockChildrenResponse,
   ParagraphBlockObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints'
-import type { DatabaseQueryOption, IPage, INotionInfo, ReadGuestBookType, SaveRequestGuestBookType, IProjectPage } from '@/types/notion'
+import type { DatabaseQueryOption, IPage, INotionInfo, ReadGuestBookType, SaveRequestGuestBookType, IProjectPage } from '@/@types/notion'
 import type { ExtendedRecordMap, Role, Block } from 'notion-types'
 import config, { token } from '@/config/notion.config'
 
@@ -199,6 +199,16 @@ const notion = {
   },
   removeGuestBook: async (block_id: string): Promise<void> => {
     await notionClient.blocks.delete({ block_id })
+  },
+  generateCoverUrl: (block: Block) => {
+    if (!block.format) return ''
+    try {
+      const originUrl = block.format.page_cover
+      const filteredUrl = originUrl.charAt(0) === '/' ? `https://www.notion.so${originUrl}` : originUrl
+      return `https://www.notion.so/image/${encodeURIComponent(filteredUrl)}?table=block&id=${block?.id}&cache=v2`
+    } catch {
+      return ''
+    }
   },
 }
 

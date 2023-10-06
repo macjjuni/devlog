@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef, type ChangeEvent } from 'react'
-import type { CreateRequestGuestBookType } from '@/types/notion'
+import type { CreateRequestGuestBookType } from '@/@types/notion'
 
 import useStore from '@/store'
 import CheckBox from '@/components/atom/Checkbox'

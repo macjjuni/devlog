@@ -1923,6 +1923,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/gtag.js@npm:^0.0.14":
+  version: 0.0.14
+  resolution: "@types/gtag.js@npm:0.0.14"
+  checksum: fb269d2da04f83999502683f3f80a9245b7f0a7f71a76d6404649c3214130505d2c93fa27858b400ea94484cba50a0d1494dbce4fbcf1215f0800af5b04d7fe7
+  languageName: node
+  linkType: hard
+
 "@types/http-cache-semantics@npm:*":
   version: 4.0.1
   resolution: "@types/http-cache-semantics@npm:4.0.1"
@@ -3125,6 +3132,7 @@ __metadata:
     "@notionhq/client": ^2.2.13
     "@splinetool/react-spline": ^2.2.6
     "@splinetool/runtime": ^0.9.460
+    "@types/gtag.js": ^0.0.14
     "@types/node": 20.6.0
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
