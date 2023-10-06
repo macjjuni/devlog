@@ -4,7 +4,7 @@ export const colorModeAnimation = {
   exit: { y: -80, rotate: 60 },
   transition: {
     type: 'spring',
-    stiffness: 30,
+    stiffness: 180,
   },
 }
 

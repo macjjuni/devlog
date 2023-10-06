@@ -41,7 +41,7 @@ module.exports = {
         red: '#ED2B2A',
         navy: '#341f97',
         black: '#222f3e',
-        primary: '#228bf8',
+        primary: '#1d74ff',
         secondary: '#32D962',
         SUCCESS: '#04cf52',
         WARNING: '#FFAB49',

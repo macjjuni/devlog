@@ -1,5 +1,5 @@
-// import { AnimatePresence, motion } from 'framer-motion'
-// import { colorModeAnimation } from '@/utils/framer'
+import { AnimatePresence, motion } from 'framer-motion'
+import { colorModeAnimation } from '@/utils/framer'
 import { light } from '@/types/theme'
 import { ISvg } from '@/types/svg'
 import useStore from '@/store'
@@ -8,11 +8,9 @@ import BtcSvg from './BtcSvg'
 const SunSvg = ({ width = 40, height = 40 }: ISvg) => {
   const { color } = useStore((state) => state)
   return (
-    <>
-      {/* <AnimatePresence> */}
+    <AnimatePresence>
       {color === light && (
-        // <motion.div className="relative w-[44px] h-[44px] flex justify-center items-center" {...colorModeAnimation}>
-        <div className="relative w-[44px] h-[44px] flex justify-center items-center">
+        <motion.div {...colorModeAnimation} className="absolute top-1/2 left-1/2 ml-[-22px] mt-[-22px] w-[44px] h-[44px] flex justify-center items-center">
           <BtcSvg />
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width={width} height={height}>
             <g id="SVGRepo_bgCarrier" strokeWidth="0" />
@@ -29,11 +27,9 @@ const SunSvg = ({ width = 40, height = 40 }: ISvg) => {
               <path d="M5.32178 5.32227L4.92894 4.92943" stroke="#F7931A" strokeWidth="1.5" strokeLinecap="round" />
             </g>
           </svg>
-        </div>
+        </motion.div>
       )}
-      {/* </motion.div> */}
-      {/* </AnimatePresence> */}
-    </>
+    </AnimatePresence>
   )
 }
 
