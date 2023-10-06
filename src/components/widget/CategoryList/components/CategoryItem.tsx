@@ -10,7 +10,7 @@ interface ICatItem {
   count: number
 }
 
-const defaultStyle = `flex px-md py-sm md:px-lg text-category rounded-xs whitespace-nowrap hover:bg-BLG50 hover:underline dark:hover:bg-BLG800 ease transition-colors duration-300 ${common.textColor}`
+const defaultStyle = `flex px-md py-sm md:px-lg text-category rounded-xs whitespace-nowrap hover:underline ease transition-colors duration-300 ${common.textColor}`
 const activeStyle = `${defaultStyle} underline font-bold border border-BLG400 dark:border-BLG600 bg-BLG50 dark:bg-BLG800`
 
 const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
