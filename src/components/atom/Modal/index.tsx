@@ -1,7 +1,7 @@
+import { useEffect, MouseEvent, useCallback } from 'react'
 import useStore from '@/store'
 import common from '@/styles/common'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MouseEvent, useCallback } from 'react'
 import { IoMdClose } from 'react-icons/io'
 
 // import common from '@/styles/common'
@@ -19,14 +19,14 @@ const modalMotion = {
     transition: { type: 'spring', duration: 0.24 },
   },
   content: {
-    initial: { opacity: 0, scale: 0.8 },
+    initial: { opacity: 0, scale: 0.9 },
     animate: { opacity: 1, scale: 1 },
     exit: { opacity: 0 },
-    transition: { type: 'spring', duration: 0.6 },
+    transition: { type: 'spring', duration: 0.012 },
   },
 }
 
-const wrapStyle = `fixed top-0 left-0 flex justify-center items-center w-full h-full bg-[rgba(0,0,0,0.7)] z-[1000] select-none`
+const wrapStyle = `fixed top-0 left-0 flex justify-center items-center w-full h-full bg-[rgba(0,0,0,0.24)] z-[1000] select-none backdrop-blur-[3px]`
 const contentStyle = `flex flex-col justify-between max-w-[340px] w-full p-lg bg-BLG0 rounded-sm shadow-modal border ${common.borderColor} ${common.bgColor}`
 
 const topWrapStyle = `flex justify-between items-center w-full`
@@ -40,13 +40,21 @@ const Modal = ({ children, title }: IModal) => {
     setModal(false)
   }, [])
 
+  const onKeydown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') setModal(false)
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('keydown', onKeydown)
+  }, [])
+
   return (
     <AnimatePresence>
       {isModal && (
         <motion.div className={wrapStyle} onClick={closeModal} {...modalMotion.wrap}>
           <motion.div className={contentStyle} {...modalMotion.content}>
             <div className={topWrapStyle}>
-              <div className="text-lg">{title}</div>
+              <div className="text-lg font-bold">{title}</div>
               <button type="button" onClick={closeModal}>
                 <IoMdClose fontSize={24} />
               </button>
