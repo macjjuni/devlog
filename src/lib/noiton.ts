@@ -57,10 +57,8 @@ const notion = {
           },
         ],
       },
-      sorts: [
-        // 작성일 기준 정렬
-        { property: propertyTable.Date, direction: 'descending' },
-      ],
+      // 작성일 기준 정렬
+      sorts: [{ property: propertyTable.Date, direction: 'descending' }],
     })
     const pages = allPage.results as PageObjectResponse[]
     // 블로그 목록 데이터 가공 후 반환
@@ -93,10 +91,8 @@ const notion = {
           },
         ],
       },
-      sorts: [
-        // 작성일 기준 정렬
-        { property: propertyTable.Date, direction: 'descending' },
-      ],
+      // 작성일 기준 정렬
+      sorts: [{ property: propertyTable.Date, direction: 'descending' }],
     })
     const data = allPage.results as PageObjectResponse[]
     return notion.getParseProjectPage(data)
@@ -107,11 +103,10 @@ const notion = {
       const { id } = page
       const { 이름, 기술스택, 작성일 } = page.properties
       const title = 이름?.type === 'title' ? 이름.title[0].plain_text : ''
-      const cover = defaultThumb
       const stack = 기술스택?.type === 'multi_select' ? 기술스택.multi_select : []
       const published = 작성일?.type === 'date' && 작성일.date?.start ? 작성일.date.start : ''
 
-      return { id, title, stack, published, cover }
+      return { id, title, stack, published }
     })
   },
   // 특정 페이지 리스트 검색
@@ -179,19 +174,7 @@ const notion = {
     try {
       await notionClient.blocks.children.append({
         block_id: id,
-        children: [
-          {
-            paragraph: {
-              rich_text: [
-                {
-                  text: {
-                    content: JSON.stringify(body),
-                  },
-                },
-              ],
-            },
-          },
-        ],
+        children: [{ paragraph: { rich_text: [{ text: { content: JSON.stringify(body) } }] } }],
       })
     } catch (err) {
       console.error(err)

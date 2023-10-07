@@ -1,6 +1,6 @@
 import { ISvg } from '@/@types/svg'
 
-const BtcSvg = ({ width = 85, height = 85, color = '#ffffff' }: ISvg) => {
+export default function BtcSvg({ width = 85, height = 85, color = '#ffffff' }: ISvg) {
   return (
     <svg fill={color} width={`${width}px`} height={`${height}px`} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
@@ -14,5 +14,3 @@ const BtcSvg = ({ width = 85, height = 85, color = '#ffffff' }: ISvg) => {
     </svg>
   )
 }
-
-export default BtcSvg

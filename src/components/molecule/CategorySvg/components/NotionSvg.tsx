@@ -1,6 +1,6 @@
 import { ISvg } from '@/@types/svg'
 
-const NotionSvg = ({ width = 50, height = 50 }: ISvg) => {
+export default function NotionSvg({ width = 50, height = 50 }: ISvg) {
   return (
     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width={width} height={height}>
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
@@ -26,5 +26,3 @@ const NotionSvg = ({ width = 50, height = 50 }: ISvg) => {
     </svg>
   )
 }
-
-export default NotionSvg

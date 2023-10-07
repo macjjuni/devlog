@@ -160,6 +160,11 @@ a {
     rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
+.utterances {
+  margin: 0;
+  max-width: 100%;
+}
+
 @keyframes blinkEffect {
   0% {
     opacity: 0;

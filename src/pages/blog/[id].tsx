@@ -6,6 +6,7 @@ import notion, { getHeadDescription } from '@/lib/noiton'
 import { getPageTitle } from 'notion-utils'
 import NotionRender from '@/components/molecule/NotionRedner'
 import NotionSkeleton from '@/components/load/NotionSkeleton'
+import Comment from '@/components/molecule/Comment'
 import NextHead from '@/components/seo/DefaultMeta'
 import getPageCoverImage from '@/api/notion/coverImage'
 
@@ -69,10 +70,11 @@ const PageDetail = ({ recordMap, title, des }: IPost) => {
   if (isFallback) return <NotionSkeleton />
 
   return (
-    <>
+    <div className="flex flex-col items-center w-full">
       <NextHead title={title} des={des} />
       <NotionRender recordMap={recordMap} coverImg={coverImg} />
-    </>
+      <Comment />
+    </div>
   )
 }
 

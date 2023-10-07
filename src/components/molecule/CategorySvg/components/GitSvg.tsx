@@ -1,6 +1,6 @@
 import { ISvg } from '@/@types/svg'
 
-const GitSvg = ({ width = 90, height = 90, color = '#ffffff' }: ISvg) => {
+export default function GitSvg({ width = 90, height = 90, color = '#ffffff' }: ISvg) {
   return (
     <svg width={`${width}px`} height={`${height}px`} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill={color}>
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
@@ -19,5 +19,3 @@ const GitSvg = ({ width = 90, height = 90, color = '#ffffff' }: ISvg) => {
     </svg>
   )
 }
-
-export default GitSvg

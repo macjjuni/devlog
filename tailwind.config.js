@@ -35,6 +35,7 @@ module.exports = {
         sm: '465px',
         md: '768px',
         lg: '1200px',
+        notion: '940px',
       },
       colors: {
         yellow: '#feca57',

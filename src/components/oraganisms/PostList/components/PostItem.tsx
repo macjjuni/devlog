@@ -16,7 +16,7 @@ const PostItem = ({ page }: { page: IPage }) => {
   const isNew = useCallback(() => post.RECENT_DAY > date.nowDiff(page.published), [page.published])
 
   return (
-    <motion.article variants={postItemMotion} whileHover={{ scale: 1.005, rotate: 0.77 }} className="flex">
+    <motion.article variants={postItemMotion} whileHover={{ scale: 1.005, rotate: 0.55 }} className="flex">
       <Link
         href={`/${blog.postPath}/${page?.id}`}
         className={`page-item relative w-full h-full p-lg mb-lg rounded-xs overflow-hidden border border-BLG200 hover:border-BLG400 dark:hover:border-BLG600 ${common.textColor} ${common.borderColor} transition-all`}

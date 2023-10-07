@@ -23,7 +23,7 @@ const SocialLink = () => {
   if (githubUrl.includes('#')) console.error('Not Found Github Url')
 
   return (
-    <div className="relative flex gap-sm dark:text-white mt-xl md:my-xl">
+    <div className="relative flex gap-md dark:text-white mt-xl md:my-xl">
       <motion.a href={twitterUrl} target="_blank" title="트위터 링크 새탭으로 열기" {...motions} className="relative">
         <TwiiterSvg size={44} />
         <div className="shadow absolute top-[-6px] right-[-6px] flex justify-center items-center w-[22px] h-[22px] text-body text-white bg-red rounded-full">

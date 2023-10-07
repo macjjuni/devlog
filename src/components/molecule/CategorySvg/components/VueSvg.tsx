@@ -1,6 +1,6 @@
 import { ISvg } from '@/@types/svg'
 
-const VueSvg = ({ width = 85, height = 85, color = '#ffffff' }: ISvg) => {
+export default function VueSvg({ width = 85, height = 85, color = '#ffffff' }: ISvg) {
   return (
     <svg
       viewBox="0 -17.5 256 256"
@@ -20,5 +20,3 @@ const VueSvg = ({ width = 85, height = 85, color = '#ffffff' }: ISvg) => {
     </svg>
   )
 }
-
-export default VueSvg

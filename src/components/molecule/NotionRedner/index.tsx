@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
+import { commentElemetId } from '@/utils/utterances'
 
 import type { ExtendedRecordMap } from 'notion-types'
 import type { ICoverImg } from '@/pages/blog/[id]'
@@ -25,7 +26,7 @@ const NotionRender = ({ recordMap, coverImg }: INotionRender) => {
     await push('/blog', '', { scroll: true })
   }
 
-  const appendTocLink = () => {
+  const appendTocLinks = () => {
     const tocWrap = document.getElementsByClassName('notion-aside-table-of-contents-header')[0] as HTMLDivElement
     const tocList = document.getElementsByClassName('notion-table-of-contents')[0] as HTMLDivElement
 
@@ -39,6 +40,7 @@ const NotionRender = ({ recordMap, coverImg }: INotionRender) => {
     const linkKeys = Object.keys(links) as Array<keyof typeof links>
 
     links.comment.textContent = '💬 댓글'
+    links.comment.href = `#${commentElemetId}`
     links.pages.textContent = '📚 글 목록'
     links.pages.onclick = goBack
 
@@ -50,7 +52,7 @@ const NotionRender = ({ recordMap, coverImg }: INotionRender) => {
   }
 
   useEffect(() => {
-    appendTocLink()
+    appendTocLinks()
   }, [])
 
   return (

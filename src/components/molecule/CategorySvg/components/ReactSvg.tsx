@@ -1,6 +1,6 @@
 import { ISvg } from '@/@types/svg'
 
-const ReactSvg = ({ width = 100, height = 100, color = '#ffffff' }: ISvg) => {
+export default function ReactSvg({ width = 100, height = 100, color = '#ffffff' }: ISvg) {
   return (
     <svg viewBox="0 0 32 32" width={`${width}px`} height={`${height}px`} fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
@@ -20,5 +20,3 @@ const ReactSvg = ({ width = 100, height = 100, color = '#ffffff' }: ISvg) => {
     </svg>
   )
 }
-
-export default ReactSvg

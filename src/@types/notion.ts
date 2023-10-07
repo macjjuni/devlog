@@ -41,7 +41,6 @@ export interface IPage {
 // 노션 페이지 타입
 export interface IProjectPage {
   id: string
-  cover: string
   title: string
   published: string
   stack: MultiSelectPropertyItemObjectResponse['multi_select']

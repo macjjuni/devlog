@@ -1,6 +1,6 @@
 import { ISvg } from '@/@types/svg'
 
-const DailySvg = ({ width = 100, height = 70, color = '#ffffff' }: ISvg) => {
+export default function DailySvg({ width = 100, height = 70, color = '#ffffff' }: ISvg) {
   return (
     <svg
       fill={color}
@@ -26,5 +26,3 @@ const DailySvg = ({ width = 100, height = 70, color = '#ffffff' }: ISvg) => {
     </svg>
   )
 }
-
-export default DailySvg
