@@ -4,7 +4,8 @@ const layout = {
   width: '1200px',
   height: '100dvh',
   header: {
-    height: '56px',
+    height: '80px',
+    mini: '56px',
   },
   footer: {
     height: '36px',
@@ -72,6 +73,7 @@ module.exports = {
       width: {},
       height: {
         header: layout.header.height,
+        miniHeader: layout.header.mini,
         footer: layout.footer.height,
       },
       minHeight: {

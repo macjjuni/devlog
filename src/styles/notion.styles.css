@@ -183,6 +183,7 @@
   max-width: 300px;
   min-width: 240px;
   width: 100%;
+  transition: 0.3s ease;
 }
 
 @media screen and (max-width: 940px) {
@@ -227,6 +228,7 @@
 
 .notion-aside-table-of-contents .notion-table-of-contents-item {
   line-height: 1;
+  transition: 0.3s ease;
 }
 
 .notion-aside-table-of-contents .notion-table-of-contents-item-indent-level-0:first-of-type {

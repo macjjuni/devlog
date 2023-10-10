@@ -10,15 +10,14 @@ export default function Comment() {
     const commentDom = commentRef.current
     if (!commentDom || color === null) return
 
-    const isContain = isContainUtter(commentDom)
-    console.log(isContain)
-
-    if (isContain) {
+    if (isContainUtter(commentDom)) {
       toggleTheme(color) // 렌더링 후 테마 변경 됐을 때 로직 실행!
     } else {
       appendUtter(commentDom, color) // 렌더링 안 됐으면 스크립트 삽입 로직 실행!
     }
   }, [color])
 
-  return <section ref={commentRef} id={commentElemetId} className="flex justify-between items-center gap-xxl w-full min-h-[270px] px-sm mt-xxxxl" />
+  return (
+    <section ref={commentRef} id={commentElemetId} className="flex justify-between items-center gap-xxl max-w-layout w-full min-h-[270px] px-sm mt-xxxxl" />
+  )
 }

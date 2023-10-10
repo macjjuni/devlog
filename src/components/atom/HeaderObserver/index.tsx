@@ -3,11 +3,11 @@ import useStore from '@/store'
 
 const HeaderObserver = () => {
   const obsRef = useRef<HTMLDivElement | null>(null) // observer element
-  const { setHide } = useStore((state) => state)
+  const { setMiniHeader } = useStore((state) => state)
 
   const obsHandler: IntersectionObserverCallback = (entries) => {
     const isVisible = entries[0].isIntersecting
-    setHide(!isVisible)
+    setMiniHeader(!isVisible)
   }
 
   useEffect(() => {

@@ -9,8 +9,8 @@ interface IStore {
   toggleColor: () => void
   setColorMode: (color: ColorTypes) => void
   // - Header Show & Hide
-  isHide: boolean
-  setHide: (hide: boolean) => void
+  isMiniHeader: boolean
+  setMiniHeader: (hide: boolean) => void
   // - Modal State
   isModal: boolean
   setModal: (isShow: boolean) => void
@@ -35,8 +35,8 @@ const useStore = create<IStore>()(
         return { color: getColor }
       }),
     setColorMode: (color) => set(() => ({ color })),
-    isHide: false,
-    setHide: (hide) => set(() => ({ isHide: hide })),
+    isMiniHeader: false,
+    setMiniHeader: (isMini) => set(() => ({ isMiniHeader: isMini })),
     isModal: false,
     setModal: (isShow) => set(() => ({ isModal: isShow })),
     disabled: false,
