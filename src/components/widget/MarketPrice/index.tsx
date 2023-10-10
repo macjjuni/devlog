@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
+import CountUp from 'react-countup'
 import LottieItem from '@/components/atom/LottieItem'
-import BtcLocket from '@/assets/lottie/bitcoin_rocket.json'
+import BtcLocket from '@/assets/lottie/btcLottie.json'
 import initBinance, { closeBinance } from '@/api/bitcoin'
 import useStore from '@/store'
 
@@ -8,7 +9,7 @@ import useStore from '@/store'
 const defaultOption = {
   loop: true,
   play: true,
-  style: { width: '260px', height: '260px' },
+  style: { width: '33px', height: 'auto' },
 }
 
 const MarketPrice = () => {
@@ -20,13 +21,20 @@ const MarketPrice = () => {
     }
   }, [])
 
+  // 카운트다운 애니메이션 최소값
+  const convertToZero = useCallback((num: number) => {
+    const firstDigit = Math.floor(num / 10 ** Math.floor(Math.log10(num)))
+    const convertedNumber = firstDigit * 10 ** Math.floor(Math.log10(num))
+    return convertedNumber
+  }, [])
+
   return (
-    <div className="relative lg:my-xl p-md">
-      <span className="absolute top-[56px] left-[28px] z-[9999] rotate-[-42deg] text-postTitle market-price">
-        <span className="mr-xs">$</span>
-        {btc}
-      </span>
+    <div className="relative flex justify-start items-center gap-xs lg:my-xl rounded-xs">
       <LottieItem animationData={BtcLocket} defaultOption={defaultOption} />
+      <span className="text-bodyLg market-price">
+        <span className="mr-xs">$</span>
+        {!Number.isNaN(Number(btc)) ? <CountUp start={convertToZero(Number(btc))} end={Number(btc)} duration={1} /> : 'btc is NaN!'}
+      </span>
     </div>
   )
 }

@@ -1,5 +1,4 @@
 import useStore from '@/store'
-import { comma } from '@/utils/string'
 
 // Binance API URL
 const binanceURL = `wss://stream.binance.com:9443/ws/btcusdt@ticker`
@@ -33,7 +32,7 @@ function initBinance() {
   socket.onmessage = ({ data }) => {
     const json = JSON.parse(data)
     const usd = Math.ceil(Number(json.c)) // 현재 가격
-    getState().setBtc(comma(usd.toString()))
+    getState().setBtc(usd.toString())
   }
 
   // 소켓 에러 핸들링

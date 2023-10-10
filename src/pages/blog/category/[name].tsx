@@ -8,10 +8,7 @@ import config from '@/config/notion.config'
 
 import BlogLayout from '@/layouts/PageLayout/BlogLayout'
 import NextHead from '@/components/seo/DefaultMeta'
-import Profile from '@/components/widget/Profile'
-import CategoryList from '@/components/widget/CategoryList'
-import MarketPrice from '@/components/widget/MarketPrice'
-import SocialLink from '@/components/widget/SocialLink'
+import Widget from '@/components/widget'
 import PageHeading from '@/components/molecule/PageHeading'
 import PostList from '@/components/oraganisms/PostList'
 import Pagination from '@/components/oraganisms/Pagination'
@@ -94,14 +91,7 @@ export default function CategoryPage({ pages, info }: IBlogPage) {
       <NextHead title={`Blog > ${query.name}`} />
 
       <BlogLayout
-        left={
-          <>
-            <Profile info={info} />
-            <SocialLink />
-            <CategoryList categories={info.category} pages={pages} />
-            <MarketPrice />
-          </>
-        }
+        left={<Widget info={info} categories={info.category} pages={pages} />}
         right={
           <>
             <PageHeading title={query?.name} count={filteredPages.length} isSearch />

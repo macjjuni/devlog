@@ -10,10 +10,7 @@ import notion from '@/lib/noiton'
 
 import BlogLayout from '@/layouts/PageLayout/BlogLayout'
 import NextHead from '@/components/seo/DefaultMeta'
-import Profile from '@/components/widget/Profile'
-import CategoryList from '@/components/widget/CategoryList'
-import MarketPrice from '@/components/widget/MarketPrice'
-import SocialLink from '@/components/widget/SocialLink'
+import Widget from '@/components/widget'
 import PageHeading from '@/components/molecule/PageHeading'
 import PostList from '@/components/oraganisms/PostList'
 import Pagination from '@/components/oraganisms/Pagination'
@@ -68,14 +65,7 @@ const SearchPage = ({ searchPages, pages, info }: ISearch) => {
     <>
       <NextHead title={`Blog > ${query.name}`} />
       <BlogLayout
-        left={
-          <>
-            <Profile info={info} />
-            <SocialLink />
-            <CategoryList categories={info.category} pages={pages} />
-            <MarketPrice />
-          </>
-        }
+        left={<Widget info={info} categories={info.category} pages={pages} />}
         right={
           <>
             <PageHeading title={`검색 키워드: ${keyword}`} count={searchPages.length} isSearch />

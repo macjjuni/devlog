@@ -5,7 +5,7 @@ import colorMode from '@/utils/colorMode'
 const MoonSvg = dynamic(() => import('@/components/svg/MoonSvg'), { ssr: false })
 const SunSvg = dynamic(() => import('@/components/svg/SunSvg'), { ssr: false })
 
-const defaultStyle = 'relative w-[50px] h-[50px] pointer select-none overflow-hidden'
+const defaultStyle = 'relative w-[52px] h-[52px] pointer select-none'
 
 const ThemeButton = () => {
   const toggleTheme = useCallback(() => {
