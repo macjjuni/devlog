@@ -2121,6 +2121,10 @@ svg.notion-page-icon {
   border-bottom: 0 none;
 }
 
+.project-detail .notion-collection-row {
+  display: none !important;
+}
+
 .notion-collection-row {
   width: 100%;
   padding: 12px 0;

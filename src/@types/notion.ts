@@ -38,11 +38,10 @@ export interface IPage {
   tags: MultiSelectPropertyItemObjectResponse['multi_select']
 }
 
-// 노션 페이지 타입
+// 노션 프로젝트 페이지 타입
 export interface IProjectPage {
   id: string
   title: string
-  published: string
   stack: MultiSelectPropertyItemObjectResponse['multi_select']
 }
 

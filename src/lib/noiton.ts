@@ -89,6 +89,10 @@ const notion = {
             // 공개인 포스팅만 가져오기
             status: { equals: '공개' },
           },
+          {
+            property: propertyTable.Checkbox,
+            checkbox: { equals: true }, // 프로젝트 여부가 참인 것만 검색
+          },
         ],
       },
       // 작성일 기준 정렬
@@ -101,12 +105,11 @@ const notion = {
   getParseProjectPage: (pages: PageObjectResponse[]): IProjectPage[] => {
     return pages.map((page) => {
       const { id } = page
-      const { 이름, 기술스택, 작성일 } = page.properties
+      const { 이름, 태그 } = page.properties
       const title = 이름?.type === 'title' ? 이름.title[0].plain_text : ''
-      const stack = 기술스택?.type === 'multi_select' ? 기술스택.multi_select : []
-      const published = 작성일?.type === 'date' && 작성일.date?.start ? 작성일.date.start : ''
+      const stack = 태그?.type === 'multi_select' ? 태그.multi_select : []
 
-      return { id, title, stack, published }
+      return { id, title, stack }
     })
   },
   // 특정 페이지 리스트 검색
@@ -118,14 +121,8 @@ const notion = {
   getSelectPage: async (query: string) => {
     const searchPages = await notionClient.search({
       query,
-      filter: {
-        value: 'page',
-        property: 'object',
-      },
-      sort: {
-        direction: 'descending',
-        timestamp: 'last_edited_time',
-      },
+      filter: { value: 'page', property: 'object' },
+      sort: { direction: 'descending', timestamp: 'last_edited_time' },
       page_size: post.POSTS_PER_PAGE,
     })
     const pages = searchPages.results as PageObjectResponse[]

@@ -2,14 +2,12 @@ import Image from 'next/image'
 import common from '@/styles/common'
 import type { INotionInfo } from '@/@types/notion'
 
-const defaultStyle = `rounded-xs mb-md h-[270px] ${common.borderColor} shadow-profile`
+const defaultStyle = `rounded-xs mb-md h-[270px] ${common.borderColor} border border-BLG300 object-cover	`
 
 const Profile = ({ info }: { info: INotionInfo }) => {
   return (
-    <div className="lg:my-xl">
-      {info.coverURL && (
-        <Image src={info?.coverURL} alt={info?.title} width={1200} height={300} style={{ objectFit: 'cover' }} className={`${defaultStyle}`} priority />
-      )}
+    <div className="lg:mb-xl">
+      {info.coverURL && <Image src={info?.coverURL} alt={info?.title} width={1200} height={300} className={`${defaultStyle}`} priority />}
       <h3 className="text-categoryTitle py-sm mb-xs">
         {info?.icon} {info?.title}
       </h3>

@@ -18,7 +18,7 @@ const PageHeading = ({ title, count, isSearch = false }: IPageHeading) => {
   }, [title])
 
   return (
-    <div className="flex justify-between items-center lg:py-md mb-md">
+    <div className="flex justify-between items-center lg:pb-md mb-md">
       <h1 className={defaultStyle}>{`${switchTitle()} (${count})`}</h1>
       {isSearch && <SearchBar />}
     </div>

@@ -18,7 +18,7 @@ const HeaderObserver = () => {
     }
   }, [])
 
-  return <div className="absolute top-headerHalf w-[1px] h-[1px] m-0 opacity-0" ref={obsRef} />
+  return <div className="absolute top-0 w-[1px] h-[1px] m-0 opacity-0" ref={obsRef} />
 }
 
 export default HeaderObserver

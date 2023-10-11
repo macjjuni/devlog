@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from 'react'
 import CountUp from 'react-countup'
 import LottieItem from '@/components/atom/LottieItem'
-import BtcLocket from '@/assets/lottie/btcLottie.json'
+import btcLottie from '@/assets/lottie/btcLottie.json'
 import initBinance, { closeBinance } from '@/api/bitcoin'
 import useStore from '@/store'
 
@@ -29,13 +29,18 @@ const MarketPrice = () => {
   }, [])
 
   return (
-    <div className="relative flex justify-start items-center gap-xs lg:my-xl rounded-xs">
-      <LottieItem animationData={BtcLocket} defaultOption={defaultOption} />
+    <a
+      href="https://btc-price.web.app/"
+      target="_blank"
+      title="BTC-Price 새 탭에서 링크 열기"
+      className="relative flex justify-start items-center gap-xs lg:my-xl rounded-xs"
+    >
+      <LottieItem animationData={btcLottie} defaultOption={defaultOption} />
       <span className="text-bodyLg market-price">
         <span className="mr-xs">$</span>
         {!Number.isNaN(Number(btc)) ? <CountUp start={convertToZero(Number(btc))} end={Number(btc)} duration={1} /> : 'btc is NaN!'}
       </span>
-    </div>
+    </a>
   )
 }
 

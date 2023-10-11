@@ -8,7 +8,7 @@ import NotionRender from '@/components/molecule/NotionRedner'
 import NotionSkeleton from '@/components/load/NotionSkeleton'
 import Comment from '@/components/molecule/Comment'
 import NextHead from '@/components/seo/DefaultMeta'
-import getPageCoverImage from '@/api/notion/coverImage'
+import getPageCoverImage from '@/api/notion/pageCover'
 
 interface IPost {
   recordMap: ExtendedRecordMap
@@ -37,16 +37,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<IPost> = async ({ params }) => {
   const id = params?.id
   try {
-    if (!id || typeof id !== 'string') throw Error('id is not defined')
+    if (!id || typeof id !== 'string') throw Error('ID is not defined')
     // Get recordMap of detail page
     const recordMap = await notion.getDetailPage(id)
     const title = recordMap ? getPageTitle(recordMap) : ''
     const des = recordMap ? getHeadDescription(recordMap) : ''
 
-    return {
-      props: { recordMap, title, des },
-      revalidate: 10,
-    }
+    return { props: { recordMap, title, des }, revalidate: 10 }
   } catch (err) {
     console.error(err)
     return { notFound: true }

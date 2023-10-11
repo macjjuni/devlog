@@ -12,10 +12,11 @@ const config = {
     Published: '상태',
     Tags: '태그',
     Category: '카테고리',
+    Checkbox: '프로젝트',
   },
   blog: {
     siteURL: process.env.SITE_URL || 'http://kku.dev', // 도메인
-    defaultThumb: '/image/post-cover.webp',
+    defaultThumb: '/images/default.webp',
     postPath: 'blog', // 웹사이트에서 블로그 포스팅이 보여질 path
     catPath: 'category', // pages 폴더에 동일하게 디렉토리와 링크될 파일 만들어 줘야 함.
   },
