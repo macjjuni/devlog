@@ -11,7 +11,7 @@ import common from '@/styles/common'
 import guestbookApi from '@/api/notion/guestBook'
 
 const textAreaStyle = `w-full p-md pr-[52px] border outline-0 rounded-sm resize-none no-scroll dark:border-BLG700 dark:bg-BLG800 transition-colors ${common.trs}`
-const buttonStyle = `absolute bottom-sm right-sm flex justify-center gap-sm text-primary p-sm border rounded-sm border-primary ${common.trs}`
+const buttonStyle = `absolute bottom-sm right-sm flex justify-center gap-sm text-primary p-sm border rounded-full border-primary text-white bg-primary hover:bg-white hover:text-primary hover:rotate-45 ${common.trs}`
 
 interface IGuestBookForm {
   getList: () => void

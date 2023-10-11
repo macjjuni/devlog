@@ -202,7 +202,7 @@ a {
 }
 
 .fade-in {
-  animation: fadeIn 1s ease-out;
+  animation: fadeIn 0.77s ease-out;
 }
 
 @keyframes fadeIn {

@@ -8,7 +8,8 @@ export default function Home() {
   return (
     <HomeLayout>
       <NextHead />
-      <div className="w-[500px] h-[800px]">{/* <Spline scene="https://prod.spline.design/s3ZFesZFBZTU80TF/scene.splinecode" /> */}</div>
+      준비중...
+      {/* <div className="w-[500px] h-[800px]">{<Spline scene="https://prod.spline.design/s3ZFesZFBZTU80TF/scene.splinecode" />}</div> */}
     </HomeLayout>
   )
 }

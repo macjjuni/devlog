@@ -55,6 +55,10 @@ const notion = {
             property: propertyTable.Category,
             select: { equals: option?.categoryName ? option.categoryName : '' },
           },
+          {
+            property: propertyTable.Checkbox,
+            checkbox: { equals: false }, // 프로젝트 여부가 false인 것만 검색
+          },
         ],
       },
       // 작성일 기준 정렬
