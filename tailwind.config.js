@@ -91,6 +91,7 @@ module.exports = {
       fontSize: {
         ...size,
         logo: ['32px', { fontWeight: '900', lineHeight: '34px' }],
+        logoM: ['24px', { fontWeight: '900', lineHeight: '24px' }],
         bodySm: ['14px', { fontWeight: '300', lineHeight: '16px' }],
         body: ['16px', { fontWeight: '300', lineHeight: '18px' }],
         bodyLg: ['18px', { fontWeight: '500', lineHeight: '20px' }],

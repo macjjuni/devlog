@@ -5,8 +5,8 @@ import Header from '../Header'
 import Main from '../Main'
 import Footer from '../Footer'
 
-const defaultStyle = `flex justify-center items-center flex-col relative min-h-layout mx-auto ${common.textColor} ${common.bgColor} transition-colors`
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const defaultStyle = `flex justify-center items-center flex-col relative min-h-layout mx-auto overflow-hidden sm:overflow-visible ${common.textColor} ${common.bgColor} transition-colors`
   return (
     <>
       <div className={defaultStyle}>

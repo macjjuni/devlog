@@ -8,7 +8,7 @@ const Profile = ({ info }: { info: INotionInfo }) => {
   return (
     <div className="lg:mb-xl">
       {info.coverURL && <Image src={info?.coverURL} alt={info?.title} width={1200} height={300} className={`${defaultStyle}`} priority />}
-      <h3 className="text-categoryTitle py-sm mb-xs">
+      <h3 className="text-categoryTitle py-sm mb-sm">
         {info?.icon} {info?.title}
       </h3>
       <p className="px-sm py-xs">{info?.description}</p>

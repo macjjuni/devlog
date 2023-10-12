@@ -32,9 +32,11 @@ const colorMode = {
     if (savedTheme === null) {
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         colorMode.setColor(dark)
+        colorMode.setMetaThemeColor(darkColor)
         return
       } else {
         colorMode.setColor(light)
+        colorMode.setMetaThemeColor(lightColor)
       }
     }
     // 여러번 진입

@@ -9,7 +9,7 @@ const SocialLink = () => {
   if (githubUrl.includes('#')) console.error('Not Found Github Url')
 
   return (
-    <div className="relative flex flex-row justify-start items-center gap-lg dark:text-white mt-xl md:my-xl px-xs">
+    <div className="relative flex flex-row justify-start items-center gap-lg dark:text-white md:mt-xl md:my-xl px-xs">
       <a
         href={twitterUrl}
         target="_blank"

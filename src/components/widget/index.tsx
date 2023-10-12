@@ -14,8 +14,10 @@ const Widget = ({ pages, info, categories }: IWidget) => {
   return (
     <>
       <Profile info={info} />
-      <SocialLink />
-      <MarketPrice />
+      <div className="flex justify-between items-center md:block my-xl">
+        <MarketPrice />
+        <SocialLink />
+      </div>
       <CategoryList categories={categories} pages={pages} />
     </>
   )
