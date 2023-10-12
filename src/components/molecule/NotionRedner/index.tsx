@@ -6,7 +6,6 @@ import { useRouter } from 'next/router'
 import { commentElemetId } from '@/utils/utterances'
 
 import type { ExtendedRecordMap } from 'notion-types'
-import type { ICoverImg } from '@/pages/blog/[id]'
 import { NotionRenderer } from 'react-notion-x'
 import PageCover from './components/PageCover'
 
@@ -16,10 +15,11 @@ const Equation = dynamic(() => import('react-notion-x/build/third-party/equation
 
 interface INotionRender {
   recordMap: ExtendedRecordMap
-  coverImg: ICoverImg
+  coverUrl: string
+  alt: string
 }
 
-const NotionRender = ({ recordMap, coverImg }: INotionRender) => {
+const NotionRender = ({ recordMap, coverUrl, alt }: INotionRender) => {
   const { push } = useRouter()
 
   const goBack = async () => {
@@ -61,7 +61,7 @@ const NotionRender = ({ recordMap, coverImg }: INotionRender) => {
       fullPage
       disableHeader
       showTableOfContents
-      pageCover={coverImg.url !== '' && <PageCover url={coverImg.url} alt={coverImg.alt} />}
+      pageCover={<PageCover url={coverUrl} alt={alt} />}
       minTableOfContentsItems={0}
       recordMap={recordMap}
       components={{
