@@ -154,7 +154,19 @@ a {
   text-decoration-thickness: 1px;
 }
 
+.cate-underLine .text {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
 .hoverUnderline:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.cate-hover:hover .text {
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;

@@ -68,7 +68,7 @@ const PageDetail = ({ recordMap, title, des }: IPost) => {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <NextHead title={title} des={des} />
+      <NextHead title={title} des={des} image={coverImg.url} />
       <NotionRender recordMap={recordMap} coverImg={coverImg} />
       <Comment />
     </div>

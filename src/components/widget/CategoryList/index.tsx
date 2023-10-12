@@ -22,11 +22,12 @@ const CategoryList = ({ categories = null, pages }: { categories: ICategory; pag
     <div className="mt-xl md:my-xl">
       <h3 className="text-categoryTitle py-sm mb-sm">📚 분류</h3>
       <motion.ul className={mergeStyle} initial="hidden" animate="show" variants={categoryListMotion}>
-        <CategoryItem categoryName="📚 All" count={pages.length} path="/blog" />
+        <CategoryItem icon="📂" categoryName="All" count={pages.length} path="/blog" />
         {categories?.map((item) => (
           <CategoryItem
             key={item.id}
-            categoryName={item.name}
+            icon="📄"
+            categoryName={`${item.name}`}
             count={pageCounter(item.name)}
             path={`/${blog.POST_PATH}/${blog.CATEGORY_PATH}/${encodeURIComponent(item.name)}`}
           />

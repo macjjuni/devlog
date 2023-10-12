@@ -5,15 +5,16 @@ import { categoryItemMotion } from '@/utils/framer'
 import common from '@/styles/common'
 
 interface ICatItem {
+  icon?: string
   categoryName: string
   path: string
   count: number
 }
 
-const defaultStyle = `flex px-md py-sm md:px-lg text-category rounded-xs whitespace-nowrap hover:underline ease transition-colors duration-300 ${common.textColor}`
-const activeStyle = `${defaultStyle} underline font-bold border border-BLG400 dark:border-BLG600 bg-BLG50 dark:bg-BLG800`
+const defaultStyle = `cate-hover flex gap-xs px-md py-sm md:px-lg text-category rounded-xs whitespace-nowrap ease transition-colors duration-300 ${common.textColor}`
+const activeStyle = `${defaultStyle} cate-underLine font-bold border border-BLG400 dark:border-BLG600 bg-BLG50 dark:bg-BLG800`
 
-const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
+const CategoryItem = ({ icon, categoryName, path, count }: ICatItem) => {
   const { query } = useRouter()
 
   const catName = query?.name as string | undefined
@@ -30,7 +31,8 @@ const CategoryItem = ({ categoryName, path, count }: ICatItem) => {
   return (
     <motion.li variants={categoryItemMotion}>
       <Link href={path} className={activeChekcer()}>
-        {`${categoryName}(${count})`}
+        {icon && <span className="underline-no">{icon}</span>}
+        <span className="text">{`${categoryName}(${count})`}</span>
       </Link>
     </motion.li>
   )
