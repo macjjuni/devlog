@@ -7,7 +7,7 @@ import config from '@/config/notion.config'
 
 const { blog } = config
 
-const imgStyle = 'object-cover w-full h-[240px] hover:scale-105 transition-all duration-500'
+const imgStyle = 'object-cover w-full aspect-video hover:scale-105 transition-all duration-500'
 
 export default function ProjectItem({ page }: { page: IProjectPage }) {
   const [isRender, setRender] = useState(false)
@@ -18,7 +18,8 @@ export default function ProjectItem({ page }: { page: IProjectPage }) {
 
   const getCover = useCallback(async () => {
     const { coverUrl, alt } = await getPageCoverImage(page.id)
-    setImg({ url: coverUrl, alt })
+    const url = coverUrl === '' ? blog.defaultThumb : coverUrl
+    setImg({ url, alt })
   }, [])
 
   const onImageLoad = useCallback(() => {
@@ -30,8 +31,8 @@ export default function ProjectItem({ page }: { page: IProjectPage }) {
   }, [])
 
   return (
-    <Link href={`/project/${page.id}`} className=" md:w-[calc((100%-48px)/3)]">
-      <div className="w-full rounded-md overflow-hidden">
+    <Link href={`/project/${page.id}`} className="w-full md:w-[calc((100%-48px)/3)]">
+      <div className="w-full aspect-video rounded-md overflow-hidden shadow-project">
         <Image
           className={`${imgStyle} ${isRender ? 'fade-in' : ''}`}
           src={img.url}
