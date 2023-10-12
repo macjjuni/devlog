@@ -7,10 +7,14 @@ import notion from '@/lib/noiton'
 import requestIp from 'request-ip'
 import NextAuth from '../auth/[...nextauth]'
 
+/**
+ * 방명록 등록 API
+ */
+
 interface CreateCommentReq extends NextApiRequest {
   body: CreateRequestGuestBookType
 }
-// 댓글용 Page ID
+// 댓글전용 Notion Page ID
 const guestbookPageId = process.env.NOTION_GUESTBOOK_PAGE_ID
 
 const handler = async (req: CreateCommentReq, res: NextApiResponse<IGuestBookPostResult>) => {

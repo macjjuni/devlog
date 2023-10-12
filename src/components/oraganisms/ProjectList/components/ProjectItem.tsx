@@ -5,20 +5,20 @@ import Image from 'next/image'
 import getPageCoverImage from '@/api/notion/pageCover'
 import config from '@/config/notion.config'
 
-const { blog } = config
+const { post } = config
 
 const imgStyle = 'object-cover w-full aspect-video hover:scale-105 transition-all duration-500'
 
 export default function ProjectItem({ page }: { page: IProjectPage }) {
   const [isRender, setRender] = useState(false)
   const [img, setImg] = useState({
-    url: blog.defaultThumb,
+    url: post.DEFAULT_THUMB,
     alt: 'img description',
   })
 
   const getCover = useCallback(async () => {
     const { coverUrl, alt } = await getPageCoverImage(page.id)
-    const url = coverUrl === '' ? blog.defaultThumb : coverUrl
+    const url = coverUrl === '' ? post.DEFAULT_THUMB : coverUrl
     setImg({ url, alt })
   }, [])
 

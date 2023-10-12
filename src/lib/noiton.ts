@@ -15,7 +15,7 @@ import config, { token } from '@/config/notion.config'
 const { propertyTable, blog, post } = config
 const { activeUser, auth, authToken } = token
 
-const defaultThumb = blog.siteURL + blog.defaultThumb
+const defaultThumb = blog.SITE_URL + blog.defaultThumb
 
 const adminEmail = process.env.ADMIN_EMAIL
 

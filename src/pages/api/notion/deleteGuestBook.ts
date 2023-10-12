@@ -6,6 +6,10 @@ import { getServerSession } from 'next-auth/next'
 import notion from '@/lib/noiton'
 import NextAuth from '../auth/[...nextauth]'
 
+/**
+ * 방명록 삭제 API
+ */
+
 interface CreateCommentReq extends NextApiRequest {
   body: string
 }

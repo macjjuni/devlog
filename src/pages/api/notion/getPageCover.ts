@@ -2,6 +2,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import notion from '@/lib/noiton'
 
+/**
+ * 노션 페이지 커버 이미지 URL 가져오는 몌ㅑ
+ */
+
 export interface IGetPageCover {
   coverUrl: string
   alt: string

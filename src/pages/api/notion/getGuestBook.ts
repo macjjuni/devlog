@@ -6,6 +6,10 @@ import { getServerSession } from 'next-auth/next'
 import notion from '@/lib/noiton'
 import NextAuth from '../auth/[...nextauth]'
 
+/**
+ * 방명록 대화목록 조회 API
+ */
+
 interface CreateCommentReq extends NextApiRequest {}
 
 export default async function handler(req: CreateCommentReq, res: NextApiResponse<{ list: ReadGuestBookType[]; status: boolean }>) {

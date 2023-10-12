@@ -1,20 +1,23 @@
 import Head from 'next/head'
-
-// interface IDescription {
-//   content: string
-// }
+import config from '@/config/notion.config'
 
 interface IHead {
   title?: string
   des?: string
+  image?: string
 }
 
-const defaultTitle = process.env.NEXT_PUBLIC_TITLE || 'not title in env'
-const defaultDes = process.env.NEXT_PUBLIC_DESCRIPTION || 'not description in env'
-const defaultURL = process.env.NEXT_PUBLIC_DOMAIN || 'https://kku.dev/'
+const defaultTitle = process.env.NEXT_PUBLIC_TITLE || ''
+const defaultDes = process.env.NEXT_PUBLIC_DESCRIPTION || ''
+const defaultURL = process.env.NEXT_PUBLIC_DOMAIN || ''
+const defaultImage = config.blog.SITE_IMAGE
 
-const NextHead = ({ title, des }: IHead) => {
+const NextHead = ({ title, des, image = defaultImage }: IHead) => {
   const Title = `${defaultTitle}${title ? ` :: ${title}` : ''}`
+
+  if (defaultTitle === '') console.error('Not found title in env')
+  if (defaultDes === '') console.error('Not found description in env')
+  if (defaultURL === '') console.error('Not found Domain Url in env')
 
   return (
     <Head>
@@ -33,7 +36,7 @@ const NextHead = ({ title, des }: IHead) => {
       {/* 웹사이트 유형 */}
       <meta name="og:type" content="website" />
       {/* 웹사이트 이미지 */}
-      <meta name="og:image" content="/" />
+      <meta name="og:image" content={image} />
     </Head>
   )
 }
