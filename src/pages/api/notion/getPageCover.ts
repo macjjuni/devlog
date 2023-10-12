@@ -3,7 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import notion from '@/lib/noiton'
 
 /**
- * 노션 페이지 커버 이미지 URL 가져오는 몌ㅑ
+ * 노션 페이지 커버 이미지 URL 가져오는 API
+ * 클라이언트에서 호출해 사용하지만, 아직 사용 안함
  */
 
 export interface IGetPageCover {
@@ -18,16 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const { id } = req.query
     if (typeof id !== 'string') throw Error('Error')
     const recordMap = await notion.getDetailPage(id)
-    // page 타입인 블럭의 키값 찾기
-    let pageKey = ''
-    Object.keys(recordMap.block).forEach((key) => {
-      if (recordMap.block[key].value.type === 'page') pageKey = key
-    })
-
-    const paegBlock = recordMap.block[pageKey].value
-    const alt = paegBlock.properties.title[0][0] // 페이지 타이틀 이미지 alt 속성으로 사용
-
-    const coverUrl = notion.generateCoverUrl(paegBlock) // 페이지 커버 이미지 주소
+    const { coverUrl, alt } = notion.generateCoverUrl(recordMap) // 페이지 커버 이미지 주소
     // console.log('cover image 요청!')
     res.status(200).json({ coverUrl, alt })
   } catch (err) {

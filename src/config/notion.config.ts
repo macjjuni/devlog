@@ -25,7 +25,8 @@ const config = {
     RECENT_DAY: 3, // 최근 포스팅 날짜 기한
     POSTS_PER_PAGE: 8, // 한 페이지에 보여지는 글수
     PAGINATION_RANGE: 5, // 페이지네이션 표시 수
-    DEFAULT_THUMB: '/images/default_thumb.webp', // 아직 미사용(개발 예정...)
+    DEFAULT_THUMB: '/images/default_thumb.webp',
+    DEFAULT_ALT: 'kkussaeng',
   },
 }
 

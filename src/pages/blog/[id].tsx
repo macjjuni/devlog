@@ -37,15 +37,7 @@ export const getStaticProps: GetStaticProps<IPost> = async ({ params }) => {
     const recordMap = await notion.getDetailPage(id)
     const title = recordMap ? getPageTitle(recordMap) : ''
     const des = recordMap ? getHeadDescription(recordMap) : ''
-
-    // page 타입인 블럭의 키값 찾기(리팩토링 필요)
-    let pageKey = ''
-    Object.keys(recordMap.block).forEach((key) => {
-      if (recordMap.block[key].value.type === 'page') pageKey = key
-    })
-    const paegBlock = recordMap.block[pageKey].value
-    const alt = paegBlock.properties.title[0][0] // 페이지 타이틀 이미지 alt 속성으로 사용
-    const coverUrl = notion.generateCoverUrl(paegBlock) // 페이지 커버 이미지 주소
+    const { coverUrl, alt } = notion.generateCoverUrl(recordMap) // 페이지 커버 이미지 주소
 
     return { props: { recordMap, title, des, coverUrl, alt }, revalidate: 10 }
   } catch (err) {

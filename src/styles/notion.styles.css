@@ -2137,6 +2137,11 @@ svg.notion-page-icon {
   border-bottom: 1px solid var(--bg-color-0);
 }
 
+/* 프로젝트 여부 숨김 */
+.notion-collection-row-body > div:nth-child(4) {
+  display: none;
+}
+
 .notion-collection-row-body {
   display: flex;
   flex-direction: column;

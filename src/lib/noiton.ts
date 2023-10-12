@@ -9,7 +9,7 @@ import type {
   ParagraphBlockObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints'
 import type { DatabaseQueryOption, IPage, INotionInfo, ReadGuestBookType, SaveRequestGuestBookType, IProjectPage } from '@/@types/notion'
-import type { ExtendedRecordMap, Role, Block } from 'notion-types'
+import type { ExtendedRecordMap, Role, Block, RecordMap } from 'notion-types'
 import config, { token } from '@/config/notion.config'
 
 const { propertyTable, blog, post } = config
@@ -184,14 +184,24 @@ const notion = {
   removeGuestBook: async (block_id: string): Promise<void> => {
     await notionClient.blocks.delete({ block_id })
   },
-  generateCoverUrl: (block: Block) => {
-    if (!block.format) return ''
+  // 노션 페이지 커버 이미지 주소 가져오는 함수
+  generateCoverUrl: (recordMap: RecordMap) => {
+    // page 타입인 블럭의 키값 찾기
+    let pageKey = ''
+    Object.keys(recordMap.block).forEach((key) => {
+      if (recordMap.block[key].value.type === 'page') pageKey = key
+    })
+
+    const paegBlock = recordMap.block[pageKey].value
+    const alt = paegBlock.properties.title[0][0] // 페이지 타이틀 이미지 alt 속성으로 사용
     try {
-      const originUrl = block.format.page_cover
+      if (!paegBlock.format) throw Error('Not found pageBlock!')
+      const originUrl = paegBlock.format.page_cover
       const filteredUrl = originUrl.charAt(0) === '/' ? `https://www.notion.so${originUrl}` : originUrl
-      return `https://www.notion.so/image/${encodeURIComponent(filteredUrl)}?table=block&id=${block?.id}&cache=v2`
+      const coverUrl = `https://www.notion.so/image/${encodeURIComponent(filteredUrl)}?table=block&id=${paegBlock?.id}&cache=v2`
+      return { coverUrl, alt }
     } catch {
-      return ''
+      return { coverUrl: '', alt: config.post.DEFAULT_ALT }
     }
   },
 }

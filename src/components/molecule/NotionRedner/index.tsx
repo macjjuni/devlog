@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
@@ -26,7 +26,8 @@ const NotionRender = ({ recordMap, coverUrl, alt }: INotionRender) => {
     await push('/blog', '', { scroll: true })
   }
 
-  const appendTocLinks = () => {
+  // TOC 리스트에 댓글, 목차 항목 추가
+  const appendTocLinks = useCallback(() => {
     const tocWrap = document.getElementsByClassName('notion-aside-table-of-contents-header')[0] as HTMLDivElement
     const tocList = document.getElementsByClassName('notion-table-of-contents')[0] as HTMLDivElement
 
@@ -49,7 +50,7 @@ const NotionRender = ({ recordMap, coverUrl, alt }: INotionRender) => {
     })
     tocList.appendChild(links.comment)
     tocList.appendChild(links.pages)
-  }
+  }, [])
 
   useEffect(() => {
     appendTocLinks()
@@ -61,7 +62,7 @@ const NotionRender = ({ recordMap, coverUrl, alt }: INotionRender) => {
       fullPage
       disableHeader
       showTableOfContents
-      pageCover={<PageCover url={coverUrl} alt={alt} />}
+      pageCover={coverUrl !== '' && <PageCover url={coverUrl} alt={alt} />}
       minTableOfContentsItems={0}
       recordMap={recordMap}
       components={{
