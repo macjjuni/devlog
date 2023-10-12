@@ -15,7 +15,7 @@ import config, { token } from '@/config/notion.config'
 const { propertyTable, blog, post } = config
 const { activeUser, auth, authToken } = token
 
-const defaultThumb = blog.SITE_URL + blog.defaultThumb
+const defaultThumb = blog.SITE_URL + post.DEFAULT_THUMB
 
 const adminEmail = process.env.ADMIN_EMAIL
 
@@ -74,7 +74,7 @@ const notion = {
       const { id } = page
       const { 이름, 카테고리, 작성일, 태그 } = page.properties
       const title = 이름?.type === 'title' ? 이름.title[0].plain_text : ''
-      const cover = defaultThumb
+      const cover = defaultThumb // 블로그 목록에서 썸네일 사용 안함
       const published = 작성일?.type === 'date' && 작성일.date?.start ? 작성일.date.start : ''
       const category = 카테고리?.type === 'select' ? 카테고리?.select : null
       const tags = 태그?.type === 'multi_select' ? 태그.multi_select : []
