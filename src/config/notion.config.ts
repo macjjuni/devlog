@@ -15,10 +15,10 @@ const config = {
     Checkbox: '프로젝트',
   },
   blog: {
-    siteURL: process.env.SITE_URL || 'http://kku.dev', // 도메인
-    defaultThumb: '/images/default.webp',
-    postPath: 'blog', // 웹사이트에서 블로그 포스팅이 보여질 path
-    catPath: 'category', // pages 폴더에 동일하게 디렉토리와 링크될 파일 만들어 줘야 함.
+    SITE_URL: process.env.SITE_URL || 'http://kku.dev', // 도메인
+    SITE_IMAGE: '/api/notion/getSiteImage', // 노션 DB 설명란에 작성된 링크 주소를 가져옴
+    POST_PATH: 'blog', // 블로그 페이지로 사용할 경로
+    CATEGORY_PATH: 'category', // 블로그에 카테고리 페이지로 사용할 경로('./src/pages' 폴더에 동일한 이름에 디렉토리와 링크될 파일 만들어 줘야 함)
   },
   // 포스팅 관련 설정
   post: {

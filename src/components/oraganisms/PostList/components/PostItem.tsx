@@ -18,7 +18,7 @@ const PostItem = ({ page }: { page: IPage }) => {
   return (
     <motion.article variants={postItemMotion} whileHover={{ scale: 1.005, rotate: 0.55 }} className="flex">
       <Link
-        href={`/${blog.postPath}/${page?.id}`}
+        href={`/${blog.POST_PATH}/${page?.id}`}
         className={`page-item relative w-full h-full p-lg mb-lg rounded-xs overflow-hidden border border-BLG200 hover:border-BLG700 dark:hover:border-BLG300 ${common.textColor} ${common.borderColor} transition-all`}
       >
         <div className="flex justify-between items-center gap-sm h-[40px] text-postCat">
