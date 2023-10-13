@@ -22,7 +22,6 @@ const NextHead = ({ title, des, image = defaultImage }: IHead) => {
   return (
     <Head>
       <title>{Title}</title>
-      <meta name="theme-color" content="#ffffff" />
       <meta name="description" content={des || defaultDes} />
       {/* Open Graph Tags */}
       {/* 웹사이트 이름 */}

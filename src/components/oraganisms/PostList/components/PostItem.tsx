@@ -6,8 +6,8 @@ import common from '@/styles/common'
 import { motion } from 'framer-motion'
 import { postItemMotion } from '@/utils/framer' // Framer Motion
 import date from '@/lib/date'
-import NewSvg from '@/components/svg/NewSvg'
 import CategorySvg from '@/components/molecule/CategorySvg'
+import NewSvg from '@/components/svg/NewSvg'
 
 const { blog, post } = config
 
@@ -16,10 +16,10 @@ const PostItem = ({ page }: { page: IPage }) => {
   const isNew = useCallback(() => post.RECENT_DAY > date.nowDiff(page.published), [page.published])
 
   return (
-    <motion.article variants={postItemMotion} whileHover={{ scale: 1.005, rotate: 0.55 }} className="flex">
+    <motion.article variants={postItemMotion} className="flex">
       <Link
         href={`/${blog.POST_PATH}/${page?.id}`}
-        className={`page-item relative w-full h-full p-lg mb-lg rounded-xs overflow-hidden border border-BLG200 hover:border-BLG700 dark:hover:border-BLG300 ${common.textColor} ${common.borderColor} transition-all`}
+        className={`page-item relative w-full h-full px-md py-sm md:p-lg mb-lg rounded-xs overflow-hidden border border-BLG200 hover:border-BLG700 dark:hover:border-BLG300 hover:scale-[1.005] hover:rotate-[0.55deg] ${common.textColor} ${common.borderColor} transition-all`}
       >
         <div className="flex justify-between items-center gap-sm h-[40px] text-postCat">
           <h2 className={`flex justify-center items-center gap-sm ${common.textColor}`}>

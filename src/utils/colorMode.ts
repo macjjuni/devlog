@@ -17,13 +17,13 @@ const colorMode = {
     localStorage.setItem(storageKey, theme)
     if (theme === dark) {
       document.documentElement.classList.add(dark)
-      colorMode.setMetaThemeColor(darkColor)
       getState().setColorMode(dark)
+      colorMode.setMetaThemeColor(darkColor)
       return
     }
     document.documentElement.classList.remove(dark)
-    colorMode.setMetaThemeColor(lightColor)
     getState().setColorMode(light)
+    colorMode.setMetaThemeColor(lightColor)
   },
   initColor: () => {
     // 컬러모드 초기화
@@ -32,11 +32,9 @@ const colorMode = {
     if (savedTheme === null) {
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         colorMode.setColor(dark)
-        colorMode.setMetaThemeColor(darkColor)
         return
       } else {
         colorMode.setColor(light)
-        colorMode.setMetaThemeColor(lightColor)
       }
     }
     // 여러번 진입
@@ -56,8 +54,9 @@ const colorMode = {
     }
   },
   setMetaThemeColor: (hexCode: string) => {
-    const themeColor: HTMLMetaElement | null = document.querySelector("meta[name='theme-color']")
-    if (themeColor !== null) themeColor.content = hexCode
+    const themeColorEle: HTMLMetaElement | null = document.querySelector("meta[name='theme-color']")
+    if (themeColorEle == null) return
+    themeColorEle.setAttribute('content', hexCode)
   },
 }
 

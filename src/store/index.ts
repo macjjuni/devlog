@@ -11,6 +11,9 @@ interface IStore {
   // - Header Show & Hide
   isMiniHeader: boolean
   setMiniHeader: (hide: boolean) => void
+  // - Navigation Show & Hide (only Mobile)
+  isNav: boolean
+  setNav: (hide: boolean) => void
   // - Modal State
   isModal: boolean
   setModal: (isShow: boolean) => void
@@ -37,6 +40,8 @@ const useStore = create<IStore>()(
     setColorMode: (color) => set(() => ({ color })),
     isMiniHeader: false,
     setMiniHeader: (isMini) => set(() => ({ isMiniHeader: isMini })),
+    isNav: false,
+    setNav: (isNav) => set(() => ({ isNav })),
     isModal: false,
     setModal: (isShow) => set(() => ({ isModal: isShow })),
     disabled: false,

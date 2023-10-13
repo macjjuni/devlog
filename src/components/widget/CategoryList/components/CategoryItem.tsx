@@ -11,7 +11,7 @@ interface ICatItem {
   count: number
 }
 
-const defaultStyle = `cate-hover flex gap-xs px-md py-sm md:px-lg text-category rounded-xs whitespace-nowrap ease transition-colors duration-300 ${common.textColor}`
+const defaultStyle = `cate-hover flex gap-xs py-sm px-md text-category rounded-xs whitespace-nowrap ease transition-colors duration-300 ${common.textColor}`
 const activeStyle = `${defaultStyle} cate-underLine font-bold border border-BLG400 dark:border-BLG600 bg-BLG50 dark:bg-BLG800`
 
 const CategoryItem = ({ icon, categoryName, path, count }: ICatItem) => {

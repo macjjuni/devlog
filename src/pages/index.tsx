@@ -10,8 +10,8 @@ export default function Home() {
       <NextHead />
       <a href="https://spline.design/" target="_blank" className="underline font-bold">
         Spline
-      </a>
-      으로 준비중...
+      </a>{' '}
+      공부중...
       {/* <div className="w-[500px] h-[800px]">{<Spline scene="https://prod.spline.design/s3ZFesZFBZTU80TF/scene.splinecode" />}</div> */}
     </HomeLayout>
   )

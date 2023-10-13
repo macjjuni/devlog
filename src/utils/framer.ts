@@ -1,10 +1,10 @@
 export const colorModeAnimation = {
-  initial: { y: -60, rotate: 60 },
+  initial: { y: -80, rotate: 120 },
   animate: { y: 0, rotate: 0 },
-  exit: { y: -60, rotate: 60 },
+  exit: { y: -80, rotate: 120 },
   transition: {
     type: 'spring',
-    stiffness: 120,
+    stiffness: 280,
   },
 }
 
