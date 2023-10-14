@@ -6,6 +6,7 @@ import useStore from '@/store'
 const { getState } = useStore
 
 const headers = { 'Cache-Control': 'public, max-age=600, stale-while-revalidate=10' }
+const noCacheHeaders = { 'Cache-Control': 'no-cache' }
 
 const guestbookApi = {
   getList: async () => {
@@ -16,7 +17,7 @@ const guestbookApi = {
   },
   forceGetList: async () => {
     const url = '/api/notion/getGuestBook'
-    const res: IGuestBookResult = await request(url, { cache: 'no-cache', headers })
+    const res: IGuestBookResult = await request(url, { headers: noCacheHeaders })
     getState().setDisabled(false)
     return res
   },
