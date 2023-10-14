@@ -1,7 +1,7 @@
 import { NextApiResponse } from 'next'
 import notion from '@/lib/noiton'
 import routes from '@/route'
-import { IPage, ICategory, IProjectPages } from '@/@types/notion'
+import { IPage, ICategory, IProjectPage } from '@/@types/notion'
 
 /**
  * 사이트맵 생성
@@ -14,7 +14,7 @@ import { IPage, ICategory, IProjectPages } from '@/@types/notion'
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || ''
 
-function generateSiteMap(cate?: ICategory, pages?: IPage[], projects?: IProjectPages[]) {
+function generateSiteMap(cate?: ICategory, pages?: IPage[], projects?: IProjectPage[]) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      <url>
