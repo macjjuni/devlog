@@ -109,11 +109,12 @@ const notion = {
   getParseProjectPage: (pages: PageObjectResponse[]): IProjectPage[] => {
     return pages.map((page) => {
       const { id } = page
-      const { 이름, 태그 } = page.properties
+      const { 이름, 태그, 작성일 } = page.properties
       const title = 이름?.type === 'title' ? 이름.title[0].plain_text : ''
+      const published = 작성일?.type === 'date' && 작성일.date?.start ? 작성일.date.start : ''
       const stack = 태그?.type === 'multi_select' ? 태그.multi_select : []
 
-      return { id, title, stack }
+      return { id, title, published, stack }
     })
   },
   // 특정 페이지 리스트 검색

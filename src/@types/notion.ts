@@ -42,6 +42,7 @@ export interface IPage {
 export interface IProjectPage {
   id: string
   title: string
+  published: string
   stack: MultiSelectPropertyItemObjectResponse['multi_select']
 }
 

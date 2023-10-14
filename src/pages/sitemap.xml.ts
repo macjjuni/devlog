@@ -1,7 +1,7 @@
 import { NextApiResponse } from 'next'
 import notion from '@/lib/noiton'
 import routes from '@/route'
-import { IPage, ICategory } from '@/@types/notion'
+import { IPage, ICategory, IProjectPages } from '@/@types/notion'
 
 /**
  * 사이트맵 생성
@@ -14,7 +14,7 @@ import { IPage, ICategory } from '@/@types/notion'
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || ''
 
-function generateSiteMap(pages?: IPage[], cate?: ICategory) {
+function generateSiteMap(cate?: ICategory, pages?: IPage[], projects?: IProjectPages[]) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      <url>
@@ -60,6 +60,22 @@ function generateSiteMap(pages?: IPage[], cate?: ICategory) {
               .join('')
           : ''
       }
+      ${
+        projects
+          ? projects
+              .map(({ id, published }) => {
+                return `
+      <url>
+          <loc>${`${domain}/project/${id}`}</loc>
+          <lastmod>${published}</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.6</priority>
+      </url>
+    `
+              })
+              .join('')
+          : ''
+      }
    </urlset>
  `
 }
@@ -73,10 +89,11 @@ export async function getServerSideProps({ res }: { res: NextApiResponse }) {
   try {
     if (databaseId === '') throw Error('Not found database ID!')
 
-    const pages = await notion.getAllPage(databaseId)
     const { category } = notion.getParseNotionInfo(await notion.getNotionInfo(databaseId))
+    const pages = await notion.getAllPage(databaseId)
+    const projects = await notion.getAllProject(databaseId)
 
-    const sitemap = generateSiteMap(pages, category)
+    const sitemap = generateSiteMap(category, pages, projects)
     res.write(sitemap)
   } catch (err) {
     const sitemap = generateSiteMap()
