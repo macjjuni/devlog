@@ -2,10 +2,11 @@ import { useEffect, useState, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 
 import FullLayout from '@/layouts/PageLayout/FullLayout'
-import LoginModal from '@/components/modal/LoginModal'
 import NextHead from '@/components/seo/DefaultMeta'
 import GuestBookList from '@/components/oraganisms/GuestBookList'
 import GuestBookForm from '@/components/oraganisms/GuestBookForm'
+import LoginModal from '@/components/modal/LoginModal'
+import ConfirmModal from '@/components/modal/ConfirmModal'
 
 import guestbookApi from '@/api/notion/guestBook'
 import type { ReadGuestBookType } from '@/@types/notion'
@@ -53,6 +54,7 @@ export default function guestbook() {
         <GuestBookList list={list} status={status} getList={getForceGuestBookList} session={session} />
         <GuestBookForm getList={getForceGuestBookList} session={session} />
         <LoginModal />
+        <ConfirmModal />
       </FullLayout>
     </>
   )

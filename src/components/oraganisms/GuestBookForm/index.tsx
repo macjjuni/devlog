@@ -27,10 +27,14 @@ const GuestBookForm = ({ getList, session }: IGuestBookForm) => {
   const commentRef = useRef<HTMLTextAreaElement>(null)
   const secretRef = useRef<boolean>(false)
 
+  const onModal = useCallback(() => {
+    setModal({ key: 'login' })
+  }, [])
+
   const authCheck = useCallback(() => {
     if (!session) {
       commentRef.current?.blur()
-      setModal(true)
+      onModal()
     }
   }, [session])
 
@@ -49,7 +53,7 @@ const GuestBookForm = ({ getList, session }: IGuestBookForm) => {
   // 방명록 등록 API 파라미터 반환
   const generateParams = useCallback((): CreateRequestGuestBookType | undefined => {
     if (!session) {
-      setModal(true)
+      onModal()
       return
     }
     return {

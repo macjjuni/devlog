@@ -2,6 +2,7 @@ import { create } from 'zustand'
 // import { persist } from 'zustand/middleware'
 import { type ColorTypes } from '@/@types/theme'
 import { dark, light } from '@/@types/theme'
+import type { IModal } from '@/@types/common'
 
 interface IStore {
   // - Light & Dark Mode
@@ -15,8 +16,8 @@ interface IStore {
   isNav: boolean
   setNav: (hide: boolean) => void
   // - Modal State
-  isModal: boolean
-  setModal: (isShow: boolean) => void
+  modal: IModal
+  setModal: (modal: IModal) => void
   // - Input Disabled
   disabled: boolean
   setDisabled: (isDisabled: boolean) => void
@@ -42,8 +43,8 @@ const useStore = create<IStore>()(
     setMiniHeader: (isMini) => set(() => ({ isMiniHeader: isMini })),
     isNav: false,
     setNav: (isNav) => set(() => ({ isNav })),
-    isModal: false,
-    setModal: (isShow) => set(() => ({ isModal: isShow })),
+    modal: { key: null, func: undefined },
+    setModal: (modal) => set(() => ({ modal })),
     disabled: false,
     setDisabled: (isDisabled) => set(() => ({ disabled: isDisabled })),
     btc: '100000',

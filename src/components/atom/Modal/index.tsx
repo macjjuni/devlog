@@ -30,18 +30,18 @@ const wrapStyle = `fixed top-0 left-0 flex justify-center items-center w-full h-
 const contentStyle = `flex flex-col justify-between max-w-[340px] w-full p-lg bg-BLG0 rounded-sm shadow-modal border ${common.borderColor} ${common.bgColor}`
 
 const topWrapStyle = `flex justify-between items-center w-full`
-const bottomWrapStyle = 'min-h-[60px] py-md'
+const bottomWrapStyle = 'flex flex-col justify-between min-h-[60px] mt-lg'
 
 const Modal = ({ children, title }: IModal) => {
-  const { isModal, setModal } = useStore((state) => state)
+  const { modal, setModal } = useStore((state) => state)
 
   const closeModal = useCallback((e: MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
     if (e.currentTarget?.tagName !== 'BUTTON' && e.target !== e.currentTarget) return
-    setModal(false)
+    setModal({ key: null })
   }, [])
 
   const onKeydown = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Escape') setModal(false)
+    if (e.key === 'Escape') setModal({ key: null })
   }, [])
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const Modal = ({ children, title }: IModal) => {
 
   return (
     <AnimatePresence>
-      {isModal && (
+      {modal !== null && (
         <motion.div className={wrapStyle} onClick={closeModal} {...modalMotion.wrap}>
           <motion.div className={contentStyle} {...modalMotion.content}>
             <div className={topWrapStyle}>

@@ -1,5 +1,6 @@
-import { useCallback } from 'react'
+import { useCallback, useRef } from 'react'
 import { useRouter } from 'next/router'
+import useStore from '@/store'
 
 import guestbookApi from '@/api/notion/guestBook'
 import type { Session } from 'next-auth'
@@ -26,7 +27,9 @@ interface IGuestBookForm {
 const defaultListStyle = 'flex flex-col w-full gap-md min-h-guestBookList p-md overflow-y-auto overflow-x-hidden'
 
 const GuestBookList = ({ list, status, session, getList }: IGuestBookForm) => {
+  const { setModal } = useStore((state) => state)
   const { reload } = useRouter()
+  const idRef = useRef<null | string>(null)
 
   // 말풍선 좌우 위치 체크
   const isLeft = (email: string) => session?.user.email === email
@@ -36,6 +39,11 @@ const GuestBookList = ({ list, status, session, getList }: IGuestBookForm) => {
     const { status: deleteStatus } = await guestbookApi.delete(id)
     if (deleteStatus) getList()
   }, [])
+
+  const onConfirm = async (id: string) => {
+    idRef.current = id
+    setModal({ key: 'confirm', func: () => removeGuestBook(idRef.current!) })
+  }
 
   // 로딩 스켈레톤
   if (list.length === 0)
@@ -71,7 +79,7 @@ const GuestBookList = ({ list, status, session, getList }: IGuestBookForm) => {
                   <RemoveButton
                     isShow={!!(session && session?.user?.email === item.email)}
                     onClick={() => {
-                      removeGuestBook(item.id)
+                      onConfirm(item.id)
                     }}
                   />
                 }
@@ -84,7 +92,7 @@ const GuestBookList = ({ list, status, session, getList }: IGuestBookForm) => {
                   <RemoveButton
                     isShow={!!(session && session?.user?.email === item.email)}
                     onClick={() => {
-                      removeGuestBook(item.id)
+                      onConfirm(item.id)
                     }}
                   />
                 }
