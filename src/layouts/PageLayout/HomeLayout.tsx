@@ -1,5 +1,15 @@
-const HomeLayout = ({ children }: { children: React.ReactNode }) => {
-  return <div className="w-full max-w-layout p-md">{children}</div>
+interface IHomeLayout {
+  left: React.ReactNode
+  right: React.ReactNode
 }
 
-export default HomeLayout
+const innerStyle = 'w-1/2 p-sm'
+
+export default function HomeLayout({ left, right }: IHomeLayout) {
+  return (
+    <div className="flex justify-between items-center w-full max-w-layout p-md">
+      <div className={innerStyle}>{left}</div>
+      <div className={innerStyle}>{right}</div>
+    </div>
+  )
+}
