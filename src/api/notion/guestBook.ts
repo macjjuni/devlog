@@ -4,8 +4,7 @@ import useStore from '@/store'
 
 // 생성, 삭제 처리할 동안 버튼 비활성화 처리
 const { getState } = useStore
-
-const headers = { 'Cache-Control': 'public, max-age=60, stale-while-revalidate=10' }
+const headers = { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=10' }
 const noCacheHeaders = { 'Cache-Control': 'no-cache' }
 
 const guestbookApi = {
