@@ -2,9 +2,6 @@ import NextHead from '@/components/seo/DefaultMeta'
 import HomeLayout from '@/layouts/PageLayout/HomeLayout'
 import SocialLink from '@/components/widget/SocialLink'
 
-const twitterUrl = process.env.NEXT_PUBLIC_TWITTER
-const githubUrl = process.env.NEXT_PUBLIC_GITHUB
-
 // import Spline from '@splinetool/react-spline'
 
 // const url = 'https://prod.spline.design/rriMA8DWkPMhaNEn/scene.splinecode'
