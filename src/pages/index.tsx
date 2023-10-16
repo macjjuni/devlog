@@ -31,9 +31,9 @@ export default function Home() {
               &#39;꾸준함이 생명&#39;이라는 인생 모토를 가지고 있으며 개발 공부나 취미 등 기록하기 위해 노력하고 있습니다.
             </p>
             <p className={`${textStyle} pb-xxxl`}>세심한 성격으로 사소한 디테일에 신경을 쓰며 프로젝트 완성도를 높이는 데 열정적입니다.</p>
-            <p className="flex justify-end items-center">
+            <div className="flex justify-end items-center">
               <SocialLink />
-            </p>
+            </div>
           </>
         }
       />
