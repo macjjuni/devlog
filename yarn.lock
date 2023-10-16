@@ -1911,13 +1911,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@splinetool/runtime@npm:^0.9.460":
-  version: 0.9.460
-  resolution: "@splinetool/runtime@npm:0.9.460"
+"@splinetool/runtime@npm:^0.9.482":
+  version: 0.9.482
+  resolution: "@splinetool/runtime@npm:0.9.482"
   dependencies:
     on-change: ^4.0.0
     semver-compare: ^1.0.0
-  checksum: a77e5df3b7b2911ee5c88b41a945230c4eab64b9a6bf6b0f58cb0205cbaeb225169d8791a06a57356bb7f7534c238b094c50d01da4a8aebd2bb1277cd38bd2d1
+  checksum: 6e5d2cb7c89ac83f017e3b94fffb9912398d071cc5329b620aadda8093d1bb8b6014aa13a98f8383a4f9a15351c75dfb125d3def9203fc36634f1d1ee62de0f4
   languageName: node
   linkType: hard
 
@@ -3180,7 +3180,7 @@ __metadata:
     "@fontsource/noto-sans-kr": ^5.0.11
     "@notionhq/client": ^2.2.13
     "@splinetool/react-spline": ^2.2.6
-    "@splinetool/runtime": ^0.9.460
+    "@splinetool/runtime": ^0.9.482
     "@types/gtag.js": ^0.0.14
     "@types/node": 20.6.0
     "@types/react": 18.2.21

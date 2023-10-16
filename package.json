@@ -12,7 +12,7 @@
     "@fontsource/noto-sans-kr": "^5.0.11",
     "@notionhq/client": "^2.2.13",
     "@splinetool/react-spline": "^2.2.6",
-    "@splinetool/runtime": "^0.9.460",
+    "@splinetool/runtime": "^0.9.482",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",

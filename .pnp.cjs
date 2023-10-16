@@ -32,7 +32,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@fontsource/noto-sans-kr", "npm:5.0.11"],\
             ["@notionhq/client", "npm:2.2.13"],\
             ["@splinetool/react-spline", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:2.2.6"],\
-            ["@splinetool/runtime", "npm:0.9.460"],\
+            ["@splinetool/runtime", "npm:0.9.482"],\
             ["@types/gtag.js", "npm:0.0.14"],\
             ["@types/node", "npm:20.6.0"],\
             ["@types/react", "npm:18.2.21"],\
@@ -3214,7 +3214,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/__virtual__/@splinetool-react-spline-virtual-bb49f00d1a/0/cache/@splinetool-react-spline-npm-2.2.6-449b9a43f4-2a30aa2a0b.zip/node_modules/@splinetool/react-spline/",\
           "packageDependencies": [\
             ["@splinetool/react-spline", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:2.2.6"],\
-            ["@splinetool/runtime", "npm:0.9.460"],\
+            ["@splinetool/runtime", "npm:0.9.482"],\
             ["@types/react", "npm:18.2.21"],\
             ["@types/react-dom", "npm:18.2.7"],\
             ["@types/splinetool__runtime", null],\
@@ -3235,10 +3235,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@splinetool/runtime", [\
-        ["npm:0.9.460", {\
-          "packageLocation": "./.yarn/cache/@splinetool-runtime-npm-0.9.460-70c5abe02a-a77e5df3b7.zip/node_modules/@splinetool/runtime/",\
+        ["npm:0.9.482", {\
+          "packageLocation": "./.yarn/cache/@splinetool-runtime-npm-0.9.482-e0184ea6b3-6e5d2cb7c8.zip/node_modules/@splinetool/runtime/",\
           "packageDependencies": [\
-            ["@splinetool/runtime", "npm:0.9.460"],\
+            ["@splinetool/runtime", "npm:0.9.482"],\
             ["on-change", "npm:4.0.2"],\
             ["semver-compare", "npm:1.0.0"]\
           ],\
@@ -4838,7 +4838,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@fontsource/noto-sans-kr", "npm:5.0.11"],\
             ["@notionhq/client", "npm:2.2.13"],\
             ["@splinetool/react-spline", "virtual:ee0242ab81aec690f65cb0f42914f974eb290aac59a02c76af229ed85782cce78b680fd1baeb459ac33563de0ffda67e5199e6fd60f4f008ffe991a0c5221268#npm:2.2.6"],\
-            ["@splinetool/runtime", "npm:0.9.460"],\
+            ["@splinetool/runtime", "npm:0.9.482"],\
             ["@types/gtag.js", "npm:0.0.14"],\
             ["@types/node", "npm:20.6.0"],\
             ["@types/react", "npm:18.2.21"],\
