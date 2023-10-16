@@ -28,6 +28,18 @@ const config = {
     DEFAULT_THUMB: '/images/default_thumb.webp',
     DEFAULT_ALT: 'kkussaeng',
   },
+  categoryColor: [
+    { key: 'dev', color: '#9a57ff' },
+    { key: 'bitcoin', color: '#f7931a' },
+    { key: 'javascript', color: '#FFCA28' },
+    { key: 'typescript', color: '#3178c6' },
+    { key: 'react', color: '#61dafb' },
+    { key: 'vue', color: '#42b983' },
+    { key: 'cs', color: '#cf4040' },
+    { key: 'git', color: '#EE513B' },
+    { key: '일상', color: '#26b7f0' },
+    { key: 'default', color: '#3e3e3e' },
+  ],
 }
 
 export default config

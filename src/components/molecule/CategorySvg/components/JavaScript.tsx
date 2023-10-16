@@ -1,6 +1,6 @@
 import { ISvg } from '@/@types/svg'
 
-export default function JavaScriptSvg({ width = 100, height = 100, color = '#ffffff' }: ISvg) {
+export default function JavaScriptSvg({ width = 100, height = 100, color = '#F0DB4F' }: ISvg) {
   return (
     <svg width={`${width}px`} height={`${height}px`} viewBox="0 0 32.00 32.00" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
