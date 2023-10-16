@@ -30,7 +30,7 @@ const CategoryItem = ({ icon, categoryName, path, count }: ICatItem) => {
 
   return (
     <motion.li variants={categoryItemMotion}>
-      <Link href={path} className={activeChekcer()}>
+      <Link href={path} className={activeChekcer()} scroll={false}>
         {icon && <span className="underline-no">{icon}</span>}
         <span className="text">{`${categoryName}(${count})`}</span>
       </Link>
