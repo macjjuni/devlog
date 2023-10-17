@@ -1,9 +1,9 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, memo } from 'react'
 import Spline from '@splinetool/react-spline'
 
 const sceneUrl = 'https://prod.spline.design/wDppaG99uxF-mPel/scene.splinecode'
 
-export default function Scene() {
+const Scene = () => {
   const [isLoad, setLoad] = useState(false)
 
   const onLoad = useCallback(() => {
@@ -17,3 +17,5 @@ export default function Scene() {
     </>
   )
 }
+
+export default memo(Scene)

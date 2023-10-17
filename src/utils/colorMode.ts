@@ -3,7 +3,7 @@ import useStore from '@/store'
 
 const { getState } = useStore
 
-const storageKey = 'theme'
+export const storageKey = 'theme'
 
 const lightColor = '#ffffff'
 const darkColor = '#1B1D1F'

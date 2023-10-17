@@ -22,9 +22,14 @@ export default function guestbook() {
 
   // API 호출(HTTP캐싱 적용)
   const getGuestBookList = useCallback(async () => {
-    const { list: guestBookList, status: resStatus } = await guestbookApi.getList()
-    setList(guestBookList)
-    setStatus(resStatus)
+    try {
+      const { list: guestBookList, status: resStatus } = await guestbookApi.getList()
+      setList(guestBookList)
+      setStatus(resStatus)
+    } catch (err) {
+      console.error(err)
+      setStatus(false)
+    }
   }, [])
   // no-store 강제 API 호출
   const getForceGuestBookList = useCallback(async () => {
