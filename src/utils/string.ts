@@ -31,3 +31,9 @@ export const comma = (num: string): string => {
   console.error('숫자 이외에 문자열이 포함됨', num)
   return '0'
 }
+
+/* ---------- 날짜 형식 변환 정규식 ---------- */
+export const dateReg = (str: string, targetStr: string, replaceTxt: string) => {
+  const reg = new RegExp(targetStr, 'g')
+  return str.replace(reg, replaceTxt)
+}
