@@ -165,6 +165,10 @@
   gap: 24px;
 }
 
+/* .project-detail .notion-page-content-inner {
+  max-width: 100%;
+} */
+
 .notion-page-content-inner {
   display: flex;
   flex-direction: column;
@@ -1781,6 +1785,10 @@ svg.notion-page-icon {
   height: 180px;
 }
 
+.project-detail .notion-collection-page-properties {
+  display: none;
+}
+
 .notion-collection-page-properties {
   width: 100%;
   display: flex;
@@ -2119,10 +2127,6 @@ svg.notion-page-icon {
 /* removes double underline with links */
 .notion-link .notion-page-title-text {
   border-bottom: 0 none;
-}
-
-.project-detail .notion-collection-row {
-  display: none !important;
 }
 
 .notion-collection-row {

@@ -20,6 +20,7 @@ export default function ProjectRender({ recordMap }: INotionRender) {
       fullPage
       disableHeader
       pageCover={<></>}
+      showTableOfContents
       minTableOfContentsItems={0}
       recordMap={recordMap}
       components={{
