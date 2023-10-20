@@ -208,8 +208,9 @@ a {
 }
 
 .market-price {
-  color: #f2a900;
-  text-shadow: 1px 1px 1px rgba(255, 83, 83, 0.5);
+  /* color: #f2a900; */
+  font-size: 20px;
+  text-shadow: 1px 1px 1px #ff3831;
   font-weight: bold;
 }
 

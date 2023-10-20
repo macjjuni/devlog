@@ -36,7 +36,7 @@ const MarketPrice = () => {
       className="relative flex justify-start items-center gap-xs lg:my-xl rounded-xs"
     >
       <LottieItem animationData={btcLottie} defaultOption={defaultOption} />
-      <span className="text-bodyLg market-price">
+      <span className="market-price">
         <span className="mr-xs">$</span>
         {!Number.isNaN(Number(btc)) ? <CountUp start={convertToZero(Number(btc))} end={Number(btc)} duration={1} /> : 'btc is NaN!'}
       </span>
