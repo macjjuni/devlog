@@ -8,7 +8,7 @@ const defaultStyle = `search-input w-[160px] h-[38px] px-sm pl-[38px] outline-0 
 const darkStyle = 'dark:focus:bg-BLG800 dark:focus:border-BLG500'
 const styled = `${defaultStyle} ${darkStyle}`
 
-const SearchBar = () => {
+export default function SearchBar() {
   const searchRef = useRef<HTMLInputElement>(null)
   const { push, query } = useRouter()
   const { setSearch } = useStore((state) => state)
@@ -37,15 +37,13 @@ const SearchBar = () => {
   }, [])
 
   return (
-    <form id="search-form" className="relative overflow-hidden" onSubmit={onSubmit}>
+    <form className="relative overflow-hidden" onSubmit={onSubmit}>
       <MdManageSearch
         onClick={onSubmit}
         fontSize={26}
         className="absolute top-[50%] translate-y-[-50%] left-[6px] cursor-pointer text-BLG600 dark:text-BLG400"
       />
-      <input ref={searchRef} type="text" className={styled} />
+      <input id="search-input" aria-label="Search" ref={searchRef} type="text" className={styled} />
     </form>
   )
 }
-
-export default SearchBar
