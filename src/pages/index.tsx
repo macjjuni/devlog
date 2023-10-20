@@ -1,10 +1,10 @@
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 import NextHead from '@/components/seo/DefaultMeta'
 import HomeLayout from '@/layouts/PageLayout/HomeLayout'
 import SocialLink from '@/components/widget/SocialLink'
-// import Scene from '@/components/atom/Scene'
+import Scene from '@/components/atom/Scene'
 
-const Scene = dynamic(() => import('@/components/atom/Scene'))
+// const Scene = dynamic(() => import('@/components/atom/Scene'), { ssr: true })
 
 const textStyle = 'text-[18px] lg:text-[24px] pb-xxl lg:pb-xxxl'
 

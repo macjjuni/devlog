@@ -4,7 +4,7 @@ import useStore from '@/store'
 import common from '@/styles/common'
 import { MdManageSearch } from 'react-icons/md'
 
-const defaultStyle = `search-input w-[160px] h-[38px] px-sm pl-[38px] outline-0 border bg-[transparent] rounded-xs ${common.borderColor} ${common.textColor} focus:w-[240px]`
+const defaultStyle = `search-input w-[160px] h-[38px] px-sm pl-[38px] outline-0 border bg-[transparent] rounded-xs ${common.borderColor} ${common.textColor} focus:w-[240px] focus:border-BLG1000 dark:focus:border-BLG0`
 const darkStyle = 'dark:focus:bg-BLG800 dark:focus:border-BLG500'
 const styled = `${defaultStyle} ${darkStyle}`
 
