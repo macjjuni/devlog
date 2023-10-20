@@ -45,6 +45,7 @@ const NavBar = () => {
         <ThemeButton />
         <motion.button
           type="button"
+          aria-label="Mobile Navigation"
           className="relative flex flex-col justify-center items-center gap-[4px] w-[38px] h-[38px] text-BLG400 border border-BLG600 dark:border-BLG300 rounded-full"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}

@@ -32,18 +32,18 @@ const PagiButton = ({ text, href, icon, active = false, disabled = false }: IPag
 
   if (disabled)
     return (
-      <button type="button" className={disabledStyle} disabled>
+      <button type="button" aria-label="Page Disabled" className={disabledStyle} disabled>
         {children()}
       </button>
     )
   if (active)
     return (
-      <button type="button" className={activeStyle} disabled>
+      <button type="button" aria-label="Page Disabled" className={activeStyle} disabled>
         {children()}
       </button>
     )
   return (
-    <Link href={generateUrl()} className={originStyle}>
+    <Link href={generateUrl()} aria-label="Page Move" className={originStyle}>
       {children()}
     </Link>
   )

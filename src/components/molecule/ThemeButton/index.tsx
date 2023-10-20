@@ -13,7 +13,7 @@ const ThemeButton = () => {
   }, [])
 
   return (
-    <button type="button" onClick={toggleTheme} className={defaultStyle}>
+    <button type="button" aria-label="Theme Toggle" onClick={toggleTheme} className={defaultStyle}>
       <SunSvg />
       <MoonSvg />
     </button>
