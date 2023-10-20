@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps<IBlogPage> = async () => {
 
 const { POSTS_PER_PAGE } = config.post
 
-const BlogPage = ({ info, pages }: IBlogPage) => {
+export default function BlogPage({ info, pages }: IBlogPage) {
   const { query } = useRouter()
   const currentPage = query.page ? parseInt(query.page.toString(), 10) : 1
   const [pageList, setPageList] = useState(pages.slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage))
@@ -65,5 +65,3 @@ const BlogPage = ({ info, pages }: IBlogPage) => {
     </>
   )
 }
-
-export default BlogPage

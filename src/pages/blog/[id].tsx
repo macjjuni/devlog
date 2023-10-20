@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps<IPost> = async ({ params }) => {
   }
 }
 
-const PageDetail = ({ recordMap, title, des, coverUrl, alt }: IPost) => {
+export default function PageDetail({ recordMap, title, des, coverUrl, alt }: IPost) {
   const { isFallback } = useRouter()
 
   if (isFallback) return <NotionSkeleton />
@@ -59,5 +59,3 @@ const PageDetail = ({ recordMap, title, des, coverUrl, alt }: IPost) => {
     </div>
   )
 }
-
-export default PageDetail

@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res, params }) =>
 
 const { POSTS_PER_PAGE } = config.post
 
-const SearchPage = ({ searchPages, pages, info }: ISearch) => {
+export default function SearchPage({ searchPages, pages, info }: ISearch) {
   const { query } = useRouter()
   const { keyword } = query
   const { setSearch } = useStore((state) => state)
@@ -77,5 +77,3 @@ const SearchPage = ({ searchPages, pages, info }: ISearch) => {
     </>
   )
 }
-
-export default SearchPage
