@@ -37,7 +37,7 @@ const SearchBar = () => {
   }, [])
 
   return (
-    <form className="relative overflow-hidden" onSubmit={onSubmit}>
+    <form id="search-form" className="relative overflow-hidden" onSubmit={onSubmit}>
       <MdManageSearch
         onClick={onSubmit}
         fontSize={26}
