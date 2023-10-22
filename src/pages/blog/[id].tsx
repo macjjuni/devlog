@@ -4,7 +4,8 @@ import type { ExtendedRecordMap } from 'notion-types'
 import notion, { getHeadDescription } from '@/lib/noiton'
 import { getPageTitle } from 'notion-utils'
 import NotionRender from '@/components/molecule/NotionRedner'
-import NotionSkeleton from '@/components/load/NotionSkeleton'
+// import NotionSkeleton from '@/components/load/NotionSkeleton'
+import SkeletonBox from '@/components/atom/SkeletonBox'
 import Comment from '@/components/molecule/Comment'
 import NextHead from '@/components/seo/DefaultMeta'
 
@@ -49,7 +50,13 @@ export const getStaticProps: GetStaticProps<IPost> = async ({ params }) => {
 export default function PageDetail({ recordMap, title, des, coverUrl, alt }: IPost) {
   const { isFallback } = useRouter()
 
-  if (isFallback) return <NotionSkeleton />
+  if (isFallback)
+    return (
+      <div className="flex flex-col w-full gap-xxl max-w-layout">
+        <SkeletonBox width="100%" height="300px" />
+        <SkeletonBox width="100%" height="600px" />
+      </div>
+    )
 
   return (
     <div className="flex flex-col items-center w-full">

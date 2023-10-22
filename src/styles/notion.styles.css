@@ -546,7 +546,7 @@
 .notion-page-cover {
   display: block;
   object-fit: cover;
-  width: 100%;
+  width: 100% !important;
   height: 300px !important;
   min-height: 300px !important;
   max-height: 300px !important;
@@ -593,9 +593,9 @@
   max-width: 100%;
 }
 
-.notion-full-page {
-  /* padding-bottom: calc(max(10vh, 120px)); */
-}
+/* .notion-full-page {
+  padding-bottom: calc(max(10vh, 120px));
+} */
 
 .notion-page-no-cover {
   margin-top: 48px !important;
@@ -611,7 +611,7 @@
 }
 
 .notion-page-has-cover.notion-page-no-icon {
-  padding-top: 48px;
+  padding-top: 32px;
 }
 
 .notion-page-has-cover {
