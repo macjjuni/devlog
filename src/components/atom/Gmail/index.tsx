@@ -3,6 +3,8 @@ import GmailSvg from '@/components/svg/GmailSvg'
 import useStore from '@/store'
 import { dark } from '@/@types/theme'
 
+const emailUrl = process.env.NEXT_PUBLIC_EMAIL || ''
+
 export default function Gmail() {
   const { color } = useStore((state) => state)
 
@@ -11,7 +13,7 @@ export default function Gmail() {
   //   }, [])
 
   return (
-    <a href="mailto:macjjuni@gmail.com" className="flex items-center gap-sm text-body font-normal hoverUnderline">
+    <a href={`mailto:${emailUrl}`} className="flex items-center gap-sm text-body font-normal hoverUnderline">
       <GmailSvg width={25} height={25} color={color === dark ? '#fff' : '#000'} />
       <span>Email</span>
     </a>
