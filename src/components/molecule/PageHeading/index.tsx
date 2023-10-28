@@ -4,7 +4,8 @@ import dynamic from 'next/dynamic'
 
 const CategorySvg = dynamic(() => import('@/components/molecule/CategorySvg'), { ssr: false })
 
-const defaultStyle = `flex justoify-start items-center gap-sm text-pageHeading`
+const defaultStyle = `flex justoify-start items-center gap-xs md:gap-sm text-[20px] md:text-pageHeading`
+const svgStyle = 'scale-[0.8] md:scale-[1]'
 
 interface IPageHeading {
   title?: string | string[]
@@ -22,8 +23,10 @@ const PageHeading = ({ title, count, isSearch = false }: IPageHeading) => {
   return (
     <div className="flex justify-between items-center lg:pb-md mb-md">
       <h1 className={defaultStyle}>
-        <CategorySvg category={switchTitle()} size={36} />
-        {`${switchTitle()} (${count})`}
+        <div className={svgStyle}>
+          <CategorySvg category={switchTitle()} size={36} />
+        </div>
+        {`${switchTitle()}(${count})`}
       </h1>
       {isSearch && <SearchBar />}
     </div>
