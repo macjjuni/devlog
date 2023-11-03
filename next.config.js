@@ -14,6 +14,7 @@ const nextConfig = {
       's3-us-west-2.amazonaws.com',
       'github.com',
       'lh3.googleusercontent.com',
+      'tistory1.daumcdn.net',
     ],
     images: {
       formats: ['image/webp'],
