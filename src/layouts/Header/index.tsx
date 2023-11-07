@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <header className={toggleStyle(isMiniHeader)}>
-      <div className="flex justify-between items-center max-w-header w-full h-full px-lg mx-auto overflow-hidden">
+      <div className="flex justify-between items-center max-w-header w-full h-full px-lg mx-auto">
         <Logo />
         <NavBar />
       </div>
