@@ -1,8 +1,8 @@
 import { ISvg } from '@/@types/svg'
 
-export default function BtcSvg({ width = 85, height = 85, color = '#ffffff' }: ISvg) {
+export default function BtcSvg({ width = 85, height = 85, color = '#f7931a', className = '' }: ISvg) {
   return (
-    <svg fill={color} width={`${width}px`} height={`${height}px`} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <svg fill={color} width={`${width}px`} height={`${height}px`} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" className={className}>
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
       <g id="SVGRepo_iconCarrier">

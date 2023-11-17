@@ -8,7 +8,7 @@ const defaultOption = {
   style: { width: '400px', height: '500px' },
 }
 
-const SearchLoad = ({ isShow }: { isShow: boolean }) => {
+const LoadSearch = ({ isShow }: { isShow: boolean }) => {
   if (isShow)
     return (
       <LottieItem className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]" defaultOption={defaultOption} animationData={SearchLottie} />
@@ -17,4 +17,4 @@ const SearchLoad = ({ isShow }: { isShow: boolean }) => {
   return null
 }
 
-export default SearchLoad
+export default LoadSearch

@@ -22,7 +22,7 @@ export default function PostItem({ page }: { page: IPage }) {
     <motion.article variants={postItemMotion} className="flex">
       <Link
         href={`/${blog.POST_PATH}/${page?.id}`}
-        className={`page-item relative w-full h-full px-md py-sm md:p-lg mb-lg rounded-xs overflow-hidden border border-BLG200 hover:border-BLG700 dark:hover:border-BLG300 hover:scale-[1.005] hover:rotate-[0.55deg] ${common.textColor} ${common.borderColor} transition-all`}
+        className={`page-item relative w-full px-md py-sm md:p- lg mb-lg rounded-xs overflow-hidden border border-BLG200 hover:border-BLG700 dark:hover:border-BLG300 hover:scale-[1.005] hover:rotate-[0.55deg] ${common.textColor} ${common.borderColor} transition-all`}
       >
         <div className="flex justify-between items-center gap-sm mb-xs text-postCat">
           <h2

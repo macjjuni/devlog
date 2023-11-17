@@ -78,7 +78,7 @@ module.exports = {
       },
       minHeight: {
         layout: layout.height,
-        guestBookList: `calc(100vh - (${layout.header.height} + ${layout.footer.height} + 134px))`,
+        guestBookList: `calc(100vh - (${layout.header.height} + ${layout.footer.height} + 160px))`,
       },
       inset: {
         ...size,

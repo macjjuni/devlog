@@ -109,7 +109,6 @@
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 8px;
-  transition: 0.3s ease;
 }
 /* Background Style */
 *::-webkit-scrollbar-track {
@@ -120,16 +119,16 @@
   background-color: var(--BLG500);
 }
 .dark *::-webkit-scrollbar-thumb {
-  background-color: var(--BLG700);
+  background-color: var(--BLG500);
 }
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--BLG400) var(--BLG400);
+  scrollbar-color: var(--BLG500) var(--BLG500);
 }
 .dark * {
   scrollbar-width: thin;
-  scrollbar-color: var(--BLG600) var(--BLG600);
+  scrollbar-color: var(--BLG500) var(--BLG500);
 }
 /* ---------- Scrollbar Style ---------- */
 
