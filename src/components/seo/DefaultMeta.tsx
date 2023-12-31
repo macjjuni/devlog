@@ -37,6 +37,11 @@ const NextHead = ({ title, des, image = defaultImage }: IHead) => {
       <meta name="og:type" content="website" />
       {/* 웹사이트 이미지 */}
       <meta name="og:image" content={image} />
+      {/* 트위터 메타 태그 */}
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content={defaultTitle} />
+      <meta name="twitter:description" content={des || defaultDes} />
+      <meta name="twitter:image" content={image} />
     </Head>
   )
 }
