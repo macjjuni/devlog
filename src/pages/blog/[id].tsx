@@ -49,6 +49,7 @@ export const getStaticProps: GetStaticProps<IPost> = async ({ params }) => {
 
 export default function PageDetail({ recordMap, title, des, coverUrl, alt }: IPost) {
   const { isFallback } = useRouter()
+  const coverImageUrl = coverUrl !== '' ? coverUrl : undefined
 
   if (isFallback)
     return (
@@ -60,7 +61,7 @@ export default function PageDetail({ recordMap, title, des, coverUrl, alt }: IPo
 
   return (
     <div className="flex flex-col items-center w-full">
-      <NextHead title={title} des={des} image={coverUrl} />
+      <NextHead title={title} des={des} image={coverImageUrl} />
       <NotionRender recordMap={recordMap} coverUrl={coverUrl} alt={alt} />
       <Comment />
     </div>

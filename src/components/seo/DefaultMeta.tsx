@@ -10,7 +10,7 @@ interface IHead {
 const defaultTitle = process.env.NEXT_PUBLIC_TITLE || ''
 const defaultDes = process.env.NEXT_PUBLIC_DESCRIPTION || ''
 const defaultURL = process.env.NEXT_PUBLIC_DOMAIN || ''
-const defaultImage = config.blog.SITE_IMAGE
+const defaultImage = config.blog.SITE_IMAGE || ''
 
 const NextHead = ({ title, des, image = defaultImage }: IHead) => {
   const Title = `${defaultTitle}${title ? ` :: ${title}` : ''}`
@@ -18,6 +18,7 @@ const NextHead = ({ title, des, image = defaultImage }: IHead) => {
   if (defaultTitle === '') console.error('Not found title in env')
   if (defaultDes === '') console.error('Not found description in env')
   if (defaultURL === '') console.error('Not found Domain Url in env')
+  if (defaultImage === '') console.error('Not Found Default Image Url')
 
   return (
     <Head>
