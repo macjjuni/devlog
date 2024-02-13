@@ -39,35 +39,47 @@ const notion = {
     const category = notionInfo.properties['카테고리'].type === 'select' ? notionInfo.properties['카테고리'].select.options : null
     return { title, description, coverURL, icon, tags, category }
   },
-  // 모든 페이지 리스트 검색
   getAllPage: async (datbaseId: string, option?: DatabaseQueryOption): Promise<IPage[]> => {
-    // 모든 글 목록 가져오기
-    const allPage = await notionClient.databases.query({
-      database_id: datbaseId,
-      filter: {
-        and: [
-          {
-            property: propertyTable.Published,
-            // 공개인 포스팅만 가져오기
-            status: { equals: '공개' },
-          },
-          {
-            property: propertyTable.Category,
-            select: { equals: option?.categoryName ? option.categoryName : '' },
-          },
-          {
-            property: propertyTable.Checkbox,
-            checkbox: { equals: false }, // 프로젝트 여부가 false인 것만 검색
-          },
-        ],
-      },
-      // 작성일 기준 정렬
-      sorts: [{ property: propertyTable.Date, direction: 'descending' }],
-    })
-    const pages = allPage.results as PageObjectResponse[]
+    let allPage = [] as PageObjectResponse[]
+    let nextCursor: string | undefined | null
+
+    do {
+      // 모든 글 목록 가져오기
+      // eslint-disable-next-line no-await-in-loop
+      const response = await notionClient.databases.query({
+        database_id: datbaseId,
+        start_cursor: nextCursor || undefined,
+        filter: {
+          and: [
+            {
+              property: propertyTable.Published,
+              // 공개인 포스팅만 가져오기
+              status: { equals: '공개' },
+            },
+            {
+              property: propertyTable.Category,
+              select: { equals: option?.categoryName ? option.categoryName : '' },
+            },
+            {
+              property: propertyTable.Checkbox,
+              checkbox: { equals: false }, // 프로젝트 여부가 false인 것만 검색
+            },
+          ],
+        },
+        // 작성일 기준 정렬
+        sorts: [{ property: propertyTable.Date, direction: 'descending' }],
+      })
+
+      const results = response.results as PageObjectResponse[]
+
+      allPage = [...allPage, ...results]
+      nextCursor = response.next_cursor
+    } while (nextCursor) // 수정된 부분
+
     // 블로그 목록 데이터 가공 후 반환
-    return notion.getParsePages(pages)
+    return notion.getParsePages(allPage as PageObjectResponse[])
   },
+
   // 블로그 리스트 데이터 가공
   getParsePages: (pages: PageObjectResponse[]): IPage[] => {
     return pages.map((page) => {
