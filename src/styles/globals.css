@@ -112,7 +112,7 @@
 }
 /* Background Style */
 *::-webkit-scrollbar-track {
-  background: none;
+  background-color: var(--BLG300);
 }
 /* Scrollbar Body Style */
 *::-webkit-scrollbar-thumb {
@@ -120,15 +120,6 @@
 }
 .dark *::-webkit-scrollbar-thumb {
   background-color: var(--BLG500);
-}
-/* Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--BLG500) var(--BLG500);
-}
-.dark * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--BLG500) var(--BLG500);
 }
 /* ---------- Scrollbar Style ---------- */
 
