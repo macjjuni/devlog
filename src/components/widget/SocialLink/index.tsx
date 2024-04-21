@@ -18,14 +18,14 @@ const SocialLink = () => {
       >
         <GithubSvg size={28} /> Github
       </a>
-      <a
-        href={twitterUrl}
-        target="_blank"
-        title="트위터 새 탭에서 링크 열기"
-        className="relative flex justify-start gap-sm items-center text-body font-normal hoverUnderline"
-      >
-        <TwiiterSvg size={28} /> X(Twitter)
-      </a>
+      {/* <a */}
+      {/*   href={twitterUrl} */}
+      {/*   target="_blank" */}
+      {/*   title="트위터 새 탭에서 링크 열기" */}
+      {/*   className="relative flex justify-start gap-sm items-center text-body font-normal hoverUnderline" */}
+      {/* > */}
+      {/*   <TwiiterSvg size={28} /> X(Twitter) */}
+      {/* </a> */}
     </div>
   )
 }
