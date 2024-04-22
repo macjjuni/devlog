@@ -1,4 +1,4 @@
-import TwiiterSvg from '@/components/svg/TwiiterSvg'
+// import TwiiterSvg from '@/components/svg/TwiiterSvg'
 import GithubSvg from '@/components/svg/GithubSvg'
 
 const twitterUrl = process.env.NEXT_PUBLIC_TWITTER || '#'
