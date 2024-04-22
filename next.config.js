@@ -15,6 +15,7 @@ const nextConfig = {
       'github.com',
       'lh3.googleusercontent.com',
       'tistory1.daumcdn.net',
+      "pbs.twimg.com",
     ],
     images: {
       formats: ['image/webp'],
