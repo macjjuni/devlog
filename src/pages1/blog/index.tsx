@@ -1,53 +1,53 @@
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
-import type { GetStaticProps } from 'next'
-import type { IPage, INotionInfo } from '@/@types/notion'
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import type { GetStaticProps } from "next";
+import type { IPage, INotionInfo } from "@/@types/notion";
 
-import notion from '@/lib/noiton'
-import config from '@/config/notion.config'
+import notion from "@/lib/noiton";
+import config from "@/config/notion.config";
 
-import BlogLayout from '@/layouts/PageLayout/BlogLayout'
-import NextHead from '@/component/seo/DefaultMeta'
-import PageHeading from '@/component/molecule/PageHeading'
-import Widget from '@/component/widget'
+import BlogLayout from "@/layouts/PageLayout/BlogLayout";
+import NextHead from "@/component/seo/DefaultMeta";
+import PageHeading from "@/component/molecule/PageHeading";
+import Widget from "@/component/widget";
 
-import PostList from '@/component/oraganisms/PostList'
-import Pagination from '@/component/oraganisms/Pagination'
+import PostList from "@/component/oraganisms/PostList";
+import Pagination from "@/component/oraganisms/Pagination";
 
 interface IBlogPage {
-  info: INotionInfo
-  pages: IPage[]
+  info: INotionInfo;
+  pages: IPage[];
 }
 
 export const getStaticProps: GetStaticProps<IBlogPage> = async () => {
-  const databaseId = process.env.NOTION_BLOG_DATABASE_ID
+  const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
 
   try {
-    if (!databaseId) throw new Error('DATABASE_ID is undefined.')
-    const tempInfo = await notion.getNotionInfo(databaseId)
-    const info = notion.getParseNotionInfo(tempInfo) // 데이터 가공
-    const pages = await notion.getAllPage(databaseId)
+    if (!databaseId) throw new Error("DATABASE_ID is undefined.");
+    const tempInfo = await notion.getNotionInfo(databaseId);
+    const info = notion.getParseNotionInfo(tempInfo); // 데이터 가공
+    const pages = await notion.getAllPage(databaseId);
 
     return {
       props: { info, pages },
       revalidate: 10,
-    }
+    };
   } catch (e) {
-    console.error(e)
-    return { notFound: true }
+    console.error(e);
+    return { notFound: true };
   }
-}
+};
 
-const { POSTS_PER_PAGE } = config.post
+const { POSTS_PER_PAGE } = config.post;
 
 export default function BlogPage({ info, pages }: IBlogPage) {
-  const { query } = useRouter()
-  const currentPage = query.page ? parseInt(query.page.toString(), 10) : 1
-  const [pageList, setPageList] = useState(pages.slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage))
+  const { query } = useRouter();
+  const currentPage = query.page ? parseInt(query.page.toString(), 10) : 1;
+  const [pageList, setPageList] = useState(pages.slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage));
 
   useEffect(() => {
-    setPageList(pages.slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage))
-  }, [currentPage, pages])
+    setPageList(pages.slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage));
+  }, [currentPage, pages]);
 
   return (
     <>
@@ -63,5 +63,5 @@ export default function BlogPage({ info, pages }: IBlogPage) {
         }
       />
     </>
-  )
+  );
 }

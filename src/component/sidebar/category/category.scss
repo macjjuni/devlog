@@ -4,7 +4,6 @@
 
     .category__card__list {
         position: relative;
-        max-width: 240px;
         width: 100%;
         padding: $kku-padding-lg;
         border: 0.5px solid #424242;
@@ -101,8 +100,7 @@
         .category__card__scroll-action-icon-start, .category__card__scroll-action-icon-end {
             @include flex-center;
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 0;
             width: 24px;
             height: 34px;
             padding: $kku-padding-sm;
