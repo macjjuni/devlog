@@ -1,0 +1,43 @@
+.search__card {
+    padding: $kku-padding-lg;
+    border: 0.5px solid $kku-border-color;
+    border-radius: 4px;
+
+
+    .k-text-field.search__card__input {
+        min-width: auto;
+        width: 100%;
+        gap: 0;
+
+        .k-text-field__input__container {
+            border-width: 0.5px;
+            border-color: $kku-border-color;
+            border-radius: 4px;
+            background: $kku-background-color;
+        }
+
+        .k-text-field__input__container {
+            padding: $kku-padding-sm $kku-padding-md;
+            background: $kku-background-color;
+        }
+        .k-text-field__input {
+            color: $kku-white-color;
+            caret-color: $kku-white-color;
+            @include font-body;
+            font-weight: 300;
+        }
+    }
+}
+
+@media screen and (max-width: $kku-layout-medium) {
+    .search__card {
+        padding: 0;
+        border: none;
+
+        .k-text-field.search__card__input {
+            .k-text-field__input__container {
+                padding: $kku-padding-md $kku-padding-md;
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+@import 'fonts.scss';
+@import 'reset.scss';
+@import 'variables';
+@import 'animation.scss';
+@import 'mixins.scss';
+
+body {
+    font-family: $kku-default-font-family;
+    font-weight: 300;
+    color: $kku-white-color;
+    background: $kku-background-color;
+}
+*:after, *:before {
+    font-family: $kku-default-font-family;
+    font-weight: 300;
+    color: $kku-white-color;
+}
+
+
+// region [Scrollbar]
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+/* Background Style */
+*::-webkit-scrollbar-track {
+    background-color: $kku-border-color;
+}
+/* Scrollbar Body Style */
+*::-webkit-scrollbar-thumb {
+    background-color: $kku-white-color;
+}
+.dark *::-webkit-scrollbar-thumb {
+    background-color: $kku-white-color;
+}
+
+// endregion

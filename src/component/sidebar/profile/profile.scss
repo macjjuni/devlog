@@ -1,0 +1,31 @@
+.profile__card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    padding: $kku-padding-lg;
+    border: 0.5px solid $kku-border-color;
+    border-radius: 4px;
+
+    .profile__card__image {
+        width: 64px;
+        height: 64px;
+        border-radius: 4px;
+    }
+
+    .profile__card__content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+
+        .profile__card__content__name{
+            @include font-element;
+            font-weight: bold;
+        }
+
+        .profile__card__content__status-message {
+            @include font-small;
+        }
+    }
+}

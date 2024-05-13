@@ -1,0 +1,74 @@
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin absolute-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin text-ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@mixin skeleton-animation {
+    animation: skeleton 1s ease-in-out infinite alternate;
+}
+
+// region [Typography]
+
+@mixin font-heading-1 {
+    font-size: $kku-font-size-heading-1;
+    line-height: $kku-line-height-heading-1;
+}
+
+@mixin font-heading-2 {
+    font-size: $kku-font-size-heading-2;
+    line-height: $kku-line-height-heading-2;
+}
+
+@mixin font-heading-3 {
+    font-size: $kku-font-size-heading-3;
+    line-height: $kku-line-height-heading-3;
+}
+
+@mixin font-heading-4 {
+    font-size: $kku-font-size-heading-4;
+    line-height: $kku-line-height-heading-4;
+}
+
+@mixin font-sub-title-1 {
+    font-size: $kku-font-size-sub-title-1;
+    line-height: $kku-line-height-sub-title-1;
+}
+
+@mixin font-sub-title-2 {
+    font-size: $kku-font-size-sub-title-2;
+    line-height: $kku-line-height-sub-title-2;
+}
+
+@mixin font-sub-title-3 {
+    font-size: $kku-font-size-sub-title-3;
+    line-height: $kku-line-height-sub-title-3;
+}
+
+@mixin font-body {
+    font-size: $kku-font-size-body;
+    line-height: $kku-line-height-body;
+}
+@mixin font-element {
+    font-size: $kku-font-size-element;
+    line-height: $kku-line-height-element;
+}
+@mixin font-small {
+    font-size: $kku-font-size-small;
+    line-height: $kku-line-height-small;
+}
+
+
+// endregion

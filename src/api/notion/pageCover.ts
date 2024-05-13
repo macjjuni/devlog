@@ -1,5 +1,5 @@
 import request from '@/lib/request'
-import type { IGetPageCover } from '@/pages/api/notion/getPageCover'
+import type { IGetPageCover } from '@/pages1/api/notion/getPageCover'
 
 const getPageCoverImage = async (id: string) => {
   const result = await request<IGetPageCover>(`/api/notion/getPageCover?id=${encodeURIComponent(id)}`)
