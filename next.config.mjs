@@ -5,7 +5,8 @@ const nextConfig = {
   },
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "pbs.twimg.com" }
+      { protocol: "https", hostname: "pbs.twimg.com" },
+      { protocol: "https", hostname: "www.notion.so", pathname: "/image/**", port: "" }
     ]
   }
 };
