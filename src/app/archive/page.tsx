@@ -3,34 +3,24 @@ import Category from "@/component/sidebar/category/category";
 import Profile from "@/component/sidebar/profile/profile";
 import Search from "@/component/sidebar/search/search";
 import ArchiveList from "@/component/archiveList/archiveList";
-import notion from "@/lib/noiton";
 import type { INotionInfo, IPage } from "@/@types/notion";
+import { Suspense } from "react";
+import Fallback from "./fallBack";
+
+const localDomain = process.env.NEXT_PUBLIC_DOMAIN;
+const revalidate = 60;
 
 async function getPosts(): Promise<{ info: INotionInfo; pages: IPage[]; error: boolean }> {
-  const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
+  const res = await fetch(`${localDomain}/api/archive/list`, { next: { revalidate } });
 
-  try {
-    if (!databaseId) throw new Error("DATABASE_ID is undefined.");
-    const tempInfo = await notion.getNotionInfo(databaseId);
-    const info = notion.getParseNotionInfo(tempInfo); // 데이터 가공
-    const pages = await notion.getAllPage(databaseId);
-
-    return { info, pages, error: false };
-  } catch (e) {
-    return {
-      info: { title: "Not Found", description: "Not Found", category: [], icon: "", tags: null, coverURL: null },
-      pages: [],
-      error: true,
-    };
-  }
+  return res.json();
 }
 
 export default async function ArchivePage() {
   const { info, pages } = await getPosts();
-  console.log(info);
 
   return (
-    <>
+    <Suspense fallback={<Fallback />}>
       <ArchiveLayoutSidebar>
         <Profile description={info.description} imageUrl={info.coverURL} />
         <Search />
@@ -39,6 +29,6 @@ export default async function ArchivePage() {
       <ArchiveLayoutContent>
         <ArchiveList list={pages} />
       </ArchiveLayoutContent>
-    </>
+    </Suspense>
   );
 }
