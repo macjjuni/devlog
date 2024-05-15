@@ -10,7 +10,7 @@
     .profile__card__image {
         width: 64px;
         height: 64px;
-        border-radius: 4px;
+        border-radius: 3px;
     }
 
     .profile__card__content {
@@ -20,12 +20,35 @@
         gap: 4px;
 
         .profile__card__content__name{
-            @include font-element;
+            @include font-body;
             font-weight: bold;
         }
 
         .profile__card__content__status-message {
-            @include font-small;
+            @include font-element;
+        }
+    }
+}
+
+@media screen and (max-width: $kku-layout-medium) {
+
+    .profile__card {
+        padding: 0;
+        border: none;
+
+        .profile__card__image {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+        }
+
+        .profile__card__content {
+            .profile__card__content__name {
+                @include font-body;
+            }
+            .profile__card__content__status-message {
+                @include font-element;
+            }
         }
     }
 }
