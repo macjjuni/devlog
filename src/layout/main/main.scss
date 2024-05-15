@@ -26,9 +26,6 @@
 }
 
 @media screen and (max-width: $kku-layout-small) {
-    .main {
-        padding: calc($kku-padding-md + $kku-padding-sm);
-    }
     .main > .kku_spline__wrapper__render-off + .about__layout {
         margin-top: calc((100dvh - 128px) / 2);
     }

@@ -1,19 +1,19 @@
 @import 'fonts.scss';
 @import 'reset.scss';
-@import 'variables';
+@import 'variables.scss';
 @import 'animation.scss';
 @import 'mixins.scss';
+
 
 body {
     font-family: $kku-default-font-family;
     font-weight: 300;
-    color: $kku-white-color;
+    color: $kku-font-color;
     background: $kku-background-color;
 }
 *:after, *:before {
     font-family: $kku-default-font-family;
     font-weight: 300;
-    color: $kku-white-color;
 }
 
 

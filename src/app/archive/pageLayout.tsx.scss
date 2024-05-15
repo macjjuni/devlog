@@ -1,14 +1,14 @@
 
 .archive__layout {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
     gap: 16px;
 
     .archive__layout__sidebar {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 18px;
 
         max-width: 256px;
         min-width: 220px;
@@ -16,6 +16,9 @@
     }
 
     .archive__layout__content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
         max-width: calc(100% - 220px);
         width: 100%;
     }
@@ -27,6 +30,7 @@
         flex-direction: column;
 
         .archive__layout__sidebar { max-width: 100%; }
+        .archive__layout__content {max-width: 100%;}
     }
 }
 
