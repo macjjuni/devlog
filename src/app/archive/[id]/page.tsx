@@ -1,6 +1,6 @@
 import type { ExtendedRecordMap } from "notion-types";
 import NextHead from "@/component/seo/DefaultMeta";
-import NotionRender from "@/component/notionRenderer/notionRenderer";
+import NotionViewer from "@/component/notionViewer/notionViewer";
 
 interface ArchiveDetailPageProps {
   params: { id: string };
@@ -36,7 +36,7 @@ export default async function ArchiveDetailPage({ params }: ArchiveDetailPagePro
   return (
     <>
       <NextHead title={title} des={des} image={pageCoverUrl} />
-      <NotionRender recordMap={recordMap} coverUrl={pageCoverUrl} alt={alt} />
+      <NotionViewer recordMap={recordMap} coverUrl={pageCoverUrl} alt={alt} />
       {/* <Comment /> */}
     </>
   );

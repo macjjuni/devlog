@@ -21,7 +21,7 @@ interface INotionRender {
   alt: string;
 }
 
-export default function NotionRender({ recordMap, coverUrl, alt }: INotionRender) {
+export default function NotionViewer({ recordMap, coverUrl, alt }: INotionRender) {
   const { push } = useRouter();
 
   const goBack = () => {
