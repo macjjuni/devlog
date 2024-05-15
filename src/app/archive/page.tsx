@@ -1,4 +1,3 @@
-import { ArchiveLayoutContent, ArchiveLayoutSidebar } from "@/app/archive/layout";
 import Category from "@/component/sidebar/category/category";
 import Profile from "@/component/sidebar/profile/profile";
 import Search from "@/component/sidebar/search/search";
@@ -21,14 +20,14 @@ export default async function ArchivePage() {
 
   return (
     <Suspense fallback={<Fallback />}>
-      <ArchiveLayoutSidebar>
+      <section className="archive__layout__sidebar">
         <Profile description={info.description} imageUrl={info.coverURL} />
         <Search />
         <Category list={info.category} />
-      </ArchiveLayoutSidebar>
-      <ArchiveLayoutContent>
+      </section>
+      <section className="archive__layout__content">
         <ArchiveList list={pages} />
-      </ArchiveLayoutContent>
+      </section>
     </Suspense>
   );
 }
