@@ -1,24 +1,24 @@
-import Head from 'next/head'
-import config from '@/config/notion.config'
+import Head from "next/head";
+import config from "@/config/notion.config";
 
 interface IHead {
-  title?: string
-  des?: string
-  image?: string
+  title?: string;
+  des?: string;
+  image?: string;
 }
 
-const defaultTitle = process.env.NEXT_PUBLIC_TITLE || ''
-const defaultDes = process.env.NEXT_PUBLIC_DESCRIPTION || ''
-const defaultURL = process.env.NEXT_PUBLIC_DOMAIN || ''
-const defaultImage = config.blog.SITE_IMAGE || ''
+const defaultTitle = process.env.NEXT_PUBLIC_TITLE || "";
+const defaultDes = process.env.NEXT_PUBLIC_DESCRIPTION || "";
+const defaultURL = process.env.NEXT_PUBLIC_DOMAIN || "";
+const defaultImage = config.blog.SITE_IMAGE || "";
 
 const NextHead = ({ title, des, image = defaultImage }: IHead) => {
-  const Title = `${defaultTitle}${title ? ` :: ${title}` : ''}`
+  const Title = `${defaultTitle}${title ? ` :: ${title}` : ""}`;
 
-  if (defaultTitle === '') console.error('Not found title in env')
-  if (defaultDes === '') console.error('Not found description in env')
-  if (defaultURL === '') console.error('Not found Domain Url in env')
-  if (defaultImage === '') console.error('Not Found Default Image Url')
+  if (defaultTitle === "") console.error("Not found title in env");
+  if (defaultDes === "") console.error("Not found description in env");
+  if (defaultURL === "") console.error("Not found Domain Url in env");
+  if (defaultImage === "") console.error("Not Found Default Image Url");
 
   return (
     <Head>
@@ -43,7 +43,7 @@ const NextHead = ({ title, des, image = defaultImage }: IHead) => {
       <meta name="twitter:description" content={des || defaultDes} />
       <meta name="twitter:image" content={image} />
     </Head>
-  )
-}
+  );
+};
 
-export default NextHead
+export default NextHead;

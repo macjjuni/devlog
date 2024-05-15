@@ -1,6 +1,6 @@
-export type TypeModalKey = 'login' | 'confirm' | null
+export type TypeModalKey = "login" | "confirm" | null;
 
 export interface IModal {
-  key: TypeModalKey
-  func?: () => void
+  key: TypeModalKey;
+  func?: () => void;
 }

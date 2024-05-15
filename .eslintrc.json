@@ -48,6 +48,7 @@
     "@typescript-eslint/comma-dangle": "off",
     "import/prefer-default-export": "off",
     "max-len": ["error", { "code": 250 }],
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "arrow-body-style": "off"
   }
 }

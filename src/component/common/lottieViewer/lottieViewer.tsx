@@ -1,4 +1,4 @@
-import Lottie, { type LottieProps } from 'react-lottie-player';
+import Lottie, { type LottieProps } from "react-lottie-player";
 
 export interface ILottieItem {
   defaultOption: LottieProps;
@@ -6,6 +6,6 @@ export interface ILottieItem {
   className?: string;
 }
 
-export default function Lottie({ defaultOption, animationData, className = '' }: ILottieItem) {
+export default function LottieViewer({ defaultOption, animationData, className = "" }: ILottieItem) {
   return <Lottie {...defaultOption} animationData={animationData} className={className} />;
 }

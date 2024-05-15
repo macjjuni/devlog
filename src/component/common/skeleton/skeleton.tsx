@@ -1,5 +1,5 @@
-import './skeleton.scss';
-import { memo } from 'react';
+import "./skeleton.scss";
+import { memo } from "react";
 
 function Skeleton() {
   return <div className="kku-skeleton" />;

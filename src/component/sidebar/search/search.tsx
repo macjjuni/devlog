@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { memo, useCallback, useState } from 'react';
-import { KTextField } from 'kku-ui';
-import './search.scss';
+import { memo, useCallback, useState } from "react";
+import { KTextField } from "kku-ui";
+import "./search.scss";
 
 function Search() {
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
 
   const onChangeSearch = useCallback((text: string) => {
     setSearchText(text);

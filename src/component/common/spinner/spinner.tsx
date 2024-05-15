@@ -1,8 +1,8 @@
-import { CSSProperties, useMemo } from 'react';
-import './spinner.scss';
-import { SpinnerProps } from '@/component/common/spinner/spinner.interface';
+import { CSSProperties, useMemo } from "react";
+import "./spinner.scss";
+import { SpinnerProps } from "@/component/common/spinner/spinner.interface";
 
-const color = '#eee';
+const color = "#eee";
 
 function Spinner({ borderWidth = 3, size = 48 }: SpinnerProps) {
   // region [Styles]

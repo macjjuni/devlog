@@ -11,7 +11,7 @@ const revalidate = 60;
 
 async function getPosts(): Promise<{ info: INotionInfo; pages: IPage[]; error: boolean }> {
   const res = await fetch(`${localDomain}/api/archive/list`, { next: { revalidate } });
-
+  console.log("여기서 에러?");
   return res.json();
 }
 

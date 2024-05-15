@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import routes from '@/route';
-import Link from 'next/link';
-import './navigation.scss';
-import { useCallback } from 'react';
-import { usePathname } from 'next/navigation';
+import routes from "@/route";
+import Link from "next/link";
+import "./navigation.scss";
+import { useCallback } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -13,14 +13,14 @@ export default function Navigation() {
 
   const getActiveClass = useCallback(
     (path: string) => {
-      if (pathname === '/' && path === '/') {
-        return 'navigation__link-active';
+      if (pathname === "/" && path === "/") {
+        return "navigation__link-active";
       }
 
-      if (pathname.includes(path) && path !== '/') {
-        return 'navigation__link-active';
+      if (pathname.includes(path) && path !== "/") {
+        return "navigation__link-active";
       }
-      return '';
+      return "";
     },
     [pathname],
   );

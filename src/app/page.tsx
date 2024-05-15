@@ -1,5 +1,5 @@
-import PageLayout from '@/app/page/layout';
-import SocialLink from '@/component/socialLink/socialLink';
+import PageLayout from "@/app/page/layout";
+import SocialLink from "@/component/socialLink/socialLink";
 
 export default function AboutPage() {
   return (

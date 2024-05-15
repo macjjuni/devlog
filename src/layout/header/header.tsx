@@ -1,7 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
-import Navigation from '@/component/navigation/navigation';
-import './header.scss';
+import React from "react";
+import Link from "next/link";
+import Navigation from "@/component/navigation/navigation";
+import "./header.scss";
 
 export default function Header() {
   return (

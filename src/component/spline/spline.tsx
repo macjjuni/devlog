@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import Spline from '@splinetool/react-spline';
-import './spline.scss';
-import { usePathname } from 'next/navigation';
-import Spinner from '@/component/common/spinner/spinner';
+import { useCallback, useEffect, useMemo, useState } from "react";
+import Spline from "@splinetool/react-spline";
+import "./spline.scss";
+import { usePathname } from "next/navigation";
+import Spinner from "@/component/common/spinner/spinner";
 
-const sceneUrl = 'https://prod.spline.design/wDppaG99uxF-mPel/scene.splinecode';
+const sceneUrl = "https://prod.spline.design/wDppaG99uxF-mPel/scene.splinecode";
 
 export default function SplineWrapper() {
   // region [Hooks]
@@ -21,9 +21,9 @@ export default function SplineWrapper() {
 
   const rootClass = useMemo(() => {
     if (isRenderOnPath) {
-      return 'kku_spline__wrapper__render-on';
+      return "kku_spline__wrapper__render-on";
     }
-    return 'kku_spline__wrapper__render-off';
+    return "kku_spline__wrapper__render-off";
   }, [isRenderOnPath]);
 
   // endregion
@@ -43,7 +43,7 @@ export default function SplineWrapper() {
   // region [Effects]
 
   useEffect(() => {
-    if (pathname === '/') {
+    if (pathname === "/") {
       onRender();
     } else if (isRenderOnPath) {
       setIsRenderOnPath(false);

@@ -1,27 +1,27 @@
-import Script from 'next/script'
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
-import * as gtag from '@/utils/gtag'
+import Script from "next/script";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import * as gtag from "@/utils/gtag";
 
-const isDev = process.env.NODE_ENV === 'development'
+const isDev = process.env.NODE_ENV === "development";
 
 export default function GAScript() {
-  const { events } = useRouter()
+  const { events } = useRouter();
 
   useEffect(() => {
-    if (isDev) return
+    if (isDev) return;
     const handleRouteChange = (url: URL) => {
-      gtag.pageview(url)
-    }
-    events.on('routeChangeComplete', handleRouteChange)
-    events.on('hashChangeComplete', handleRouteChange)
+      gtag.pageview(url);
+    };
+    events.on("routeChangeComplete", handleRouteChange);
+    events.on("hashChangeComplete", handleRouteChange);
     return () => {
-      events.off('routeChangeComplete', handleRouteChange)
-      events.off('hashChangeComplete', handleRouteChange)
-    }
-  }, [events])
+      events.off("routeChangeComplete", handleRouteChange);
+      events.off("hashChangeComplete", handleRouteChange);
+    };
+  }, [events]);
 
-  if (isDev) return null
+  if (isDev) return null;
 
   return (
     <>
@@ -41,5 +41,5 @@ export default function GAScript() {
         }}
       />
     </>
-  )
+  );
 }
