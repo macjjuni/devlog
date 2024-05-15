@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
@@ -10,6 +10,8 @@ import { commentElemetId } from "@/utils/utterances";
 import type { ExtendedRecordMap } from "notion-types";
 import { NotionRenderer } from "react-notion-x";
 import PageCover from "./pageCover";
+import "@/style/notion.scss";
+import "@/style/prism.css";
 
 const Code = dynamic(() => import("react-notion-x/build/third-party/code").then((m) => m.Code), { ssr: true });
 const Collection = dynamic(() => import("react-notion-x/build/third-party/collection").then((m) => m.Collection));
@@ -25,7 +27,7 @@ export default function NotionViewer({ recordMap, coverUrl, alt }: INotionRender
   const { push } = useRouter();
 
   const goBack = () => {
-    push("/blog", { scroll: true });
+    push("/archive", { scroll: true });
   };
 
   // TOC 리스트에 댓글, 목차 항목 추가
@@ -39,7 +41,8 @@ export default function NotionViewer({ recordMap, coverUrl, alt }: INotionRender
       comment: document.createElement("a"),
       pages: document.createElement("a"),
     };
-    // key값 배열로 저장
+
+    // key 값 배열로 저장
     const linkKeys = Object.keys(links) as Array<keyof typeof links>;
 
     links.comment.textContent = "💬 댓글";
@@ -60,7 +63,6 @@ export default function NotionViewer({ recordMap, coverUrl, alt }: INotionRender
 
   return (
     <NotionRenderer
-      className="w-full max-w-layout px-md md:px-lg"
       fullPage
       disableHeader
       showTableOfContents
