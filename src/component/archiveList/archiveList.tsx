@@ -1,18 +1,30 @@
-import { memo } from "react";
+"use client";
+
+import { memo, useMemo } from "react";
 import "./archiveList.scss";
 import Link from "next/link";
 import type { IPage } from "@/@types/notion";
+import config from "@/config/notion.config";
+import usePageSize from "@/hook/usePageSize";
 
 interface ArchiveListProps {
   list: IPage[];
 }
 
+const { POSTS_PER_PAGE } = config.post;
+
 function ArchiveList({ list }: ArchiveListProps) {
+  const page = usePageSize("page");
+
+  const pageList = useMemo(() => {
+    return list.slice(POSTS_PER_PAGE * (page - 1), POSTS_PER_PAGE * page);
+  }, [page, list]);
+
   return (
     <>
       <h2 className="archive__title">All</h2>
       <ul className="archive__list">
-        {list.map((listItem) => (
+        {pageList.map((listItem) => (
           <li key={listItem.id} className="archive__list__item">
             <Link href={`/archive/${listItem.id}`} className="archive__list__item__link">
               <h3 className="archive__list__item__title">{listItem.title}</h3>
