@@ -2,6 +2,7 @@ import Category from "@/component/sidebar/category/category";
 import Profile from "@/component/sidebar/profile/profile";
 import Search from "@/component/sidebar/search/search";
 import ArchiveList from "@/component/archiveList/archiveList";
+import Pagination from "@/component/pagination/pagination";
 import type { INotionInfo, IPage } from "@/@types/notion";
 import { Suspense } from "react";
 import Fallback from "./fallBack";
@@ -11,12 +12,14 @@ const revalidate = 60;
 
 async function getPosts(): Promise<{ info: INotionInfo; pages: IPage[]; error: boolean }> {
   const res = await fetch(`${localDomain}/api/archive/list`, { next: { revalidate } });
-  console.log("여기서 에러?");
+
   return res.json();
 }
 
-export default async function ArchivePage() {
+export default async function ArchivePage({ searchParams }: { searchParams: { page: string } }) {
+  console.log("searchParams", searchParams.page);
   const { info, pages } = await getPosts();
+  // const currentPage = query.page ? parseInt(query.page.toString(), 10) : 1
 
   return (
     <Suspense fallback={<Fallback />}>
@@ -27,6 +30,7 @@ export default async function ArchivePage() {
       </section>
       <section className="archive__layout__content">
         <ArchiveList list={pages} />
+        <Pagination current={1} total={pages.length} />
       </section>
     </Suspense>
   );

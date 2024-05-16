@@ -33,7 +33,7 @@ const notion = {
     const category = notionInfo.properties["카테고리"].type === "select" ? notionInfo.properties["카테고리"].select.options : null;
     return { title, description, coverURL, icon, tags, category };
   },
-  getAllPage: async (datbaseId: string, option?: DatabaseQueryOption): Promise<IPage[]> => {
+  getPages: async (databasedId: string, option?: DatabaseQueryOption): Promise<IPage[]> => {
     let allPage = [] as PageObjectResponse[];
     let nextCursor: string | undefined | null;
 
@@ -41,7 +41,7 @@ const notion = {
       // 모든 글 목록 가져오기
       // eslint-disable-next-line no-await-in-loop
       const response = await notionClient.databases.query({
-        database_id: datbaseId,
+        database_id: databasedId,
         start_cursor: nextCursor || undefined,
         filter: {
           and: [
@@ -88,10 +88,10 @@ const notion = {
       return { id, title, category, published, tags, cover };
     });
   },
-  getAllProject: async (datbaseId: string): Promise<IProjectPage[]> => {
+  getAllProject: async (databasedId: string): Promise<IProjectPage[]> => {
     // 모든 글 목록 가져오기
     const allPage = await notionClient.databases.query({
-      database_id: datbaseId,
+      database_id: databasedId,
       filter: {
         and: [
           {

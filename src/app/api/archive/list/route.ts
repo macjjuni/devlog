@@ -9,7 +9,7 @@ export async function GET() {
     if (!databaseId) throw new Error("DATABASE_ID is undefined.");
     const tempInfo = await notion.getNotionInfo(databaseId);
     const info = notion.getParseNotionInfo(tempInfo); // 데이터 가공
-    const pages = await notion.getAllPage(databaseId);
+    const pages = await notion.getPages(databaseId);
 
     return NextResponse.json({ info, pages, error: false });
   } catch (e) {
