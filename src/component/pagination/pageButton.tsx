@@ -1,22 +1,21 @@
 "use client";
 
-import { ReactNode, useCallback } from "react";
+import { memo, ReactNode, useCallback } from "react";
 import Link from "next/link";
 
-interface IPagiButton {
+interface IPageButton {
   text?: string | number;
+  className?: string;
   icon?: ReactNode;
   href: number | string;
   active?: boolean;
   disabled?: boolean;
 }
 
-export default function PageButton({ text, href, icon, active = false, disabled = false }: IPagiButton) {
-
+const PageButton = ({ text, href, icon, active = false, disabled = false, className }: IPageButton) => {
   const generateUrl = useCallback(() => {
     return `?page=${href}`;
-    // return `${encodeURIComponent(pathname)}/?page=${href.toString()}`;
-  }, []);
+  }, [href]);
 
   const children = () => {
     if (text?.toString()) return text;
@@ -25,21 +24,24 @@ export default function PageButton({ text, href, icon, active = false, disabled 
 
   if (disabled) {
     return (
-      <button type="button" name="link" aria-label="Page move Disabled" className={""} disabled>
+      <button type="button" name="link" aria-label="Page move Disabled" className={className} disabled>
         {children()}
       </button>
     );
   }
   if (active) {
     return (
-      <button type="button" name="link" aria-label={text?.toString()} className={""} disabled>
+      <button type="button" name="link" aria-label={text?.toString()} className={`pagination__number-button--active`} disabled>
         {children()}
       </button>
     );
   }
+
   return (
-    <Link href={generateUrl()} role="link" aria-label={text?.toString() || "Next page in the list"} className={""}>
+    <Link href={generateUrl()} role="link" aria-label={text?.toString() || "Next page in the list"} className={className}>
       {children()}
     </Link>
   );
 }
+
+export default memo(PageButton);

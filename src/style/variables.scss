@@ -63,6 +63,11 @@ $kku-background-color: #1a1e24;
 $kku-background-smooth-color: #e0e0e0;
 
 $kku-hover-background-color: #2a2d33;
+$kku-disabled-color: darken($kku-font-color, 64%);
+$kku-disabled-background-color: lighten($kku-background-color, 4%);
+
+$kku-active-background-color: lighten($kku-background-color, 24%);
+
 
 // endregion
 
