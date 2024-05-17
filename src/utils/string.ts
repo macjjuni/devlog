@@ -36,3 +36,6 @@ export const dateReg = (str: string, targetStr: string, replaceTxt: string) => {
   const reg = new RegExp(targetStr, "g");
   return str.replace(reg, replaceTxt);
 };
+
+/* ---------- 숫자 형식 판별 정규식 ---------- */
+export const isNumber = (str: string) => /^\d+$/.test(str);
