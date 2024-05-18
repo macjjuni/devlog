@@ -35,8 +35,6 @@ const config = {
     { key: "typescript", color: "#3178c6" },
     { key: "react", color: "#61dafb" },
     { key: "vue", color: "#42b983" },
-    { key: "cs", color: "#cf4040" },
-    { key: "git", color: "#EE513B" },
     { key: "일상", color: "#26b7f0" },
     { key: "default", color: "#3e3e3e" },
   ],

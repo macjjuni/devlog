@@ -5,20 +5,23 @@ const routes: IRoutes[] = [
     id: 0,
     title: "About",
     path: "/",
-    show: true
+    show: true,
   },
   {
     id: 1,
     title: "Archive",
     path: "/archive",
-    show: true
+    show: true,
   },
   {
     id: 2,
     title: "Project",
     path: "/project",
-    show: true
-  }
+    show: true,
+  },
 ];
+
+export const getCategoryPageUrl = (category: string) => `/archive/category/${encodeURIComponent(category)}`;
+export const getSearchPageUrl = (searchText: string) => `?search=${encodeURIComponent(searchText)}`;
 
 export default routes;

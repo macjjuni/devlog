@@ -40,7 +40,7 @@
                 border-radius: 4px;
                 @include font-body;
 
-                .category__card__item__link__active-character {
+                .category__card__item__link__hover-character {
                     position: relative;
                     width: 0;
                     height: 24px;
@@ -54,9 +54,17 @@
                     }
                 }
 
+                .category__card__item__link__active-character {
+                    color: #fff;
+                    margin: 0;
+                }
+
                 &:hover { background: $kku-hover-background-color; }
-                &:hover {
-                    .category__card__item__link__active-character { width: 16px; }
+                &:hover .category__card__item__link__hover-character { width: 16px; }
+
+                .category__card__item__link__active-character + .category__card__item__link__hover-character {
+                    width: 0;
+                    &:after { content: none; }
                 }
             }
         }
@@ -93,7 +101,7 @@
                     padding: $kku-padding-sm $kku-padding-md;
 
                     &:hover {
-                        .category__card__item__link__active-character { width: 10px; }
+                        .category__card__item__link__hover-character { width: 10px; }
                     }
                 }
             }

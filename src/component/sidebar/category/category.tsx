@@ -1,9 +1,12 @@
 "use client";
 
 import { memo, useCallback, useEffect, useMemo, useRef, useState, UIEvent } from "react";
-import "./category.scss";
 import Link from "next/link";
 import { ICategory } from "@/@types/notion";
+import ActiveCheckSvg from "@/component/sidebar/category/ActiveCheckSvg";
+import { getCategoryPageUrl } from "@/route";
+import "./category.scss";
+import useCategoryName from "@/hook/useCategoryName";
 
 type ScrollPositionType = "left" | "between" | "right";
 type ScrollDirectionType = Omit<ScrollPositionType, "between">;
@@ -27,6 +30,7 @@ function Category({ list }: CategoryProps) {
   const [isScroll, setIsScroll] = useState(false);
   // const [scrollWidth, setScrollWidth] = useState<number>(0);
   const [scrollPosition, setScrollPosition] = useState<ScrollPositionType>("left");
+  const categoryName = useCategoryName();
 
   // endregion
 
@@ -102,8 +106,10 @@ function Category({ list }: CategoryProps) {
       <ul ref={categoryRef} className="category__card__list" onScroll={onScroll}>
         {initialCategoryList.concat(list || []).map((listItem) => (
           <li key={listItem.id} className="category__card__item">
-            <Link href={listItem.name === "All" ? "/archive" : `/archive/category/${listItem.name}`} className="category__card__item__link">
-              <div className="category__card__item__link__active-character" />
+            <Link href={listItem.name === "All" ? "/archive" : getCategoryPageUrl(listItem.name)} className="category__card__item__link">
+              {listItem.name.toLowerCase() === categoryName?.toLowerCase() && <ActiveCheckSvg className="category__card__item__link__active-character" />}
+              {categoryName === null && listItem.name === "All" && <ActiveCheckSvg className="category__card__item__link__active-character" />}
+              <div className="category__card__item__link__hover-character" />
               {listItem.name}
             </Link>
           </li>

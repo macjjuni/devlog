@@ -8,8 +8,8 @@ import Search from "@/component/sidebar/search/search";
 import ArchiveList from "@/component/archiveList/archiveList";
 import Pagination from "@/component/pagination/pagination";
 import type { INotionInfo, IPage } from "@/@types/notion";
-import Fallback from "./fallBack";
 import { isNumber } from "@/utils/string";
+import Fallback from "./fallBack";
 
 const localDomain = process.env.NEXT_PUBLIC_DOMAIN;
 const revalidate = 60;
@@ -21,8 +21,10 @@ async function getPosts(): Promise<{ info: INotionInfo; pages: IPage[]; error: b
 }
 
 export default async function ArchivePage({ searchParams }: { searchParams: { page: string | undefined } }) {
+  const { page } = searchParams;
+
   // 숫자 형식이 아닌 페이지 사이즈 접근 에러 핸들링(use server)
-  if (searchParams.page !== undefined && !isNumber(searchParams.page)) {
+  if (page !== undefined && !isNumber(page)) {
     redirect("/404");
   }
 
