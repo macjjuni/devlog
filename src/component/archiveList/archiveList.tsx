@@ -24,15 +24,17 @@ function ArchiveList({ list }: ArchiveListProps) {
 
   // region [Privates]
 
-  const pageList = useMemo(() => {
-    return list.slice(POSTS_PER_PAGE * (page - 1), POSTS_PER_PAGE * page);
-  }, [page, list]);
+  const pageList = useMemo(() => list.slice(POSTS_PER_PAGE * (page - 1), POSTS_PER_PAGE * page), [page, list]);
+
+  const categoryPageCount = useMemo(() => list.length, [list]);
 
   // endregion
 
   return (
     <>
-      <h2 className="archive__title">{categoryName || "All"}</h2>
+      <h2 className="archive__title">
+        {categoryName || "All"}({categoryPageCount})
+      </h2>
       <ul className="archive__list">
         {pageList.map((listItem) => (
           <li key={listItem.id} className="archive__list__item">
