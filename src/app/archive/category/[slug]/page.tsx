@@ -45,7 +45,8 @@ export default async function CategoryPage({ params }: { params: { slug: string 
     <Suspense fallback={<Fallback />}>
       <section className="archive__layout__sidebar">
         <Profile description={info.description} imageUrl={info.coverURL} />
-        <Search />
+        {/* TODO. 검색 기능 개발 해야함! */}
+        {/* <Search /> */}
         <Category list={info.category} />
       </section>
       <section className="archive__layout__content">

@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import Category from "@/component/sidebar/category/category";
 import Profile from "@/component/sidebar/profile/profile";
-import Search from "@/component/sidebar/search/search";
+// import Search from "@/component/sidebar/search/search";
 import ArchiveList from "@/component/archiveList/archiveList";
 import Pagination from "@/component/pagination/pagination";
 import type { INotionInfo, IPage } from "@/@types/notion";
@@ -34,7 +34,8 @@ export default async function ArchivePage({ searchParams }: { searchParams: { pa
     <Suspense fallback={<Fallback />}>
       <section className="archive__layout__sidebar">
         <Profile description={info.description} imageUrl={info.coverURL} />
-        <Search />
+        {/* TODO. 검색 기능 개발 해야함! */}
+        {/* <Search /> */}
         <Category list={info.category} />
       </section>
       <section className="archive__layout__content">
