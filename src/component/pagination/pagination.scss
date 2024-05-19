@@ -43,6 +43,10 @@
     &:disabled {
       color: $kku-disabled-color;
       cursor: not-allowed;
+
+      &:hover {
+        background: none;
+      }
     }
   }
 

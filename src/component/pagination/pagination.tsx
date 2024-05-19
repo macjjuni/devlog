@@ -27,11 +27,14 @@ const Pagination = ({ total }: IPagination) => {
   }
 
   const current = Number(pageSize);
-
   const lastPageNumber = Math.ceil(total / POSTS_PER_PAGE);
 
-  // endregion
+  // 페이지네이션 오버될 때 에러 핸들링
+  if (pageSize > lastPageNumber) {
+    replace("/404");
+  }
 
+  // endregion
 
   // region [Templates]
 
@@ -41,18 +44,15 @@ const Pagination = ({ total }: IPagination) => {
   const prevIcon = useMemo(() => <KIcon size={18} icon="keyboard_arrow_down" color={"inherit"} />, []);
   const nextIcon = useMemo(() => <KIcon size={18} icon="keyboard_arrow_down" color={"inherit"} />, []);
 
-
   const extraButton = useMemo(() => <PageButton href={"#"} active={false} disabled text={"··"} className={"pagination__extra-button"} />, []);
 
   const prevPageNumbers = useMemo(() => Array.from(Array(PAGINATION_RANGE), (_, index) => current - index - 1).reverse(), [PAGINATION_RANGE, current]);
   const nextPageNumbers = useMemo(() => Array.from(Array(PAGINATION_RANGE), (_, index) => current + index + 1), [PAGINATION_RANGE, current]);
 
-  const firstEllipsis = useMemo(()=> !prevPageNumbers.includes(1) && current !== 1 && extraButton,[prevPageNumbers, current, extraButton])
-  const lastEllipsis = useMemo(()=> !nextPageNumbers.includes(lastPageNumber) && current !== lastPageNumber && extraButton,[nextPageNumbers, lastPageNumber, extraButton])
-
+  const firstEllipsis = useMemo(() => !prevPageNumbers.includes(1) && current !== 1 && extraButton, [prevPageNumbers, current, extraButton]);
+  const lastEllipsis = useMemo(() => !nextPageNumbers.includes(lastPageNumber) && current !== lastPageNumber && extraButton, [nextPageNumbers, lastPageNumber, extraButton]);
 
   // endregion
-
 
   return (
     <div className="pagination">
