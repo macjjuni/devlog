@@ -8,7 +8,7 @@
     .archive__layout__sidebar {
         display: flex;
         flex-direction: column;
-        gap: 18px;
+        gap: 16px;
 
         max-width: 256px;
         min-width: 220px;
@@ -18,7 +18,7 @@
     .archive__layout__content {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 16px;
         max-width: calc(100% - 220px);
         width: 100%;
     }
