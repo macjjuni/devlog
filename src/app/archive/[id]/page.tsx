@@ -1,6 +1,7 @@
 import type { ExtendedRecordMap } from "notion-types";
 import NextHead from "@/component/common/seo/DefaultMeta";
 import NotionViewer from "@/component/content/notionViewer/notionViewer";
+import ErrorPage from "@/app/404/page";
 
 interface ArchiveDetailPageProps {
   params: { id: string };
@@ -30,7 +31,7 @@ export default async function ArchiveDetailPage({ params }: ArchiveDetailPagePro
   const pageCoverUrl = coverUrl || undefined;
 
   if (error) {
-    return <>error</>;
+    return <ErrorPage/>;
   }
 
   return (

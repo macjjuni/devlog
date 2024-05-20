@@ -1,0 +1,15 @@
+.error-page__layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .error__back__button {
+    color: $kku-white-color;
+    background: $kku-button-background-color;
+
+    &:hover {
+      background: $kku-button-hover-background-color;
+    }
+  }
+}

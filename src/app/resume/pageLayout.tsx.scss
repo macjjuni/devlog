@@ -1,4 +1,27 @@
 
 .resume__layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
+  .resume__lottie {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .resume__ready-text {
+    @include font-sub-title-3;
+  }
+}
+
+
+@media screen and (max-width: $kku-layout-small) {
+  .resume__layout {
+
+    .resume__lottie {
+      max-width: 320px;
+      width: 100%;
+    }
+  }
 }
