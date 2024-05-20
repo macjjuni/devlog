@@ -15,8 +15,8 @@ const routes: IRoutes[] = [
   },
   {
     id: 2,
-    title: "Project",
-    path: "/project",
+    title: "Resume",
+    path: "/resume",
     show: true,
   },
 ];
