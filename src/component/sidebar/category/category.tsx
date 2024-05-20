@@ -15,12 +15,7 @@ interface CategoryProps {
   list: ICategory;
 }
 
-const initialCategoryList = [
-  {
-    id: "all",
-    name: "All",
-  },
-];
+const initialCategoryList = [{ id: "all", name: "All" }];
 
 function Category({ list }: CategoryProps) {
   // region [Hooks]
@@ -28,7 +23,6 @@ function Category({ list }: CategoryProps) {
   const categoryRef = useRef<HTMLUListElement>(null);
   const [scrollMaxWidth, setScrollMaxWidth] = useState(0);
   const [isScroll, setIsScroll] = useState(false);
-  // const [scrollWidth, setScrollWidth] = useState<number>(0);
   const [scrollPosition, setScrollPosition] = useState<ScrollPositionType>("left");
   const categoryName = useCategoryName();
 
@@ -79,9 +73,9 @@ function Category({ list }: CategoryProps) {
 
   // endregion
 
-  // region [Effects]
+  // region [Privates]
 
-  useEffect(() => {
+  const initializeWidth = useCallback(() => {
     const { innerWidth: fullWidth } = window;
     const { scrollWidth } = categoryRef.current!;
 
@@ -94,7 +88,17 @@ function Category({ list }: CategoryProps) {
 
   // endregion
 
-  // TODO. PC 상태에서 모바일 사이즈로 줄였을 때 화살표 버튼 표시 오류 수정하기
+  // region [Effects]
+
+  useEffect(() => {
+    initializeWidth();
+
+    window.addEventListener("resize", initializeWidth);
+    return () => window.removeEventListener("resize", initializeWidth);
+  }, []);
+
+  // endregion
+
 
   return (
     <div className="category__card">
