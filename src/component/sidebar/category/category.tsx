@@ -2,6 +2,7 @@
 
 import { memo, useCallback, useEffect, useMemo, useRef, useState, UIEvent } from "react";
 import Link from "next/link";
+import { throttle, debounce } from "lodash-es";
 import { ICategory } from "@/@types/notion";
 import ActiveCheckSvg from "@/component/sidebar/category/ActiveCheckSvg";
 import { getCategoryPageUrl } from "@/route";
@@ -30,6 +31,10 @@ function Category({ list }: CategoryProps) {
 
   // region [Privates]
 
+  const checkCurrentCategory = useCallback((name: string) => {
+    return name.toLowerCase() === categoryName?.toLowerCase();
+  }, []);
+
   const isLeftScrollIcon = useMemo(() => isScroll && scrollPosition !== "left", [isScroll, scrollPosition]);
   const isRightScrollIcon = useMemo(() => isScroll && scrollPosition !== "right", [isScroll, scrollPosition]);
 
@@ -41,12 +46,50 @@ function Category({ list }: CategoryProps) {
     categoryRef.current!.scroll({ top: 0, left: scrollValue, behavior: "smooth" });
   }, []);
 
+  const sanitizedList = useMemo(() => {
+
+    const filteredList = list || [];
+    const lowerCaseCategoryName = categoryName?.toLowerCase();
+
+    const currentCategoryIdx =
+      filteredList.findIndex((item) => {
+        return item?.name.toLowerCase() === lowerCaseCategoryName;
+      }) || -1;
+
+    if (currentCategoryIdx === -1) {
+      return initialCategoryList.concat(filteredList);
+    }
+
+    const currentCategory = { ...filteredList[currentCategoryIdx] };
+    const remainingCategories = filteredList?.filter(item => {
+      return item.name.toLowerCase() !== lowerCaseCategoryName
+    })
+
+    return initialCategoryList.concat(currentCategory, remainingCategories);
+  }, [list, categoryName, initialCategoryList]);
+
+  const initializeWidth = useCallback(
+    debounce(() => {
+      const { innerWidth: fullWidth } = window;
+      const { scrollWidth } = categoryRef.current!;
+
+      setScrollMaxWidth(scrollWidth - fullWidth + 12 * 2); // 16 is padding
+
+      if (scrollWidth > fullWidth + 32) {
+        setIsScroll(true);
+      } else {
+        setIsScroll(false);
+      }
+    }, 160),
+    [],
+  );
+
   // endregion
 
   // region [Events]
 
   const onScroll = useCallback(
-    (e: UIEvent<HTMLUListElement>) => {
+    throttle((e: UIEvent<HTMLUListElement>) => {
       const { scrollLeft } = e.target as HTMLElement;
 
       if (scrollLeft < 2) {
@@ -60,7 +103,7 @@ function Category({ list }: CategoryProps) {
       if (scrollLeft > 0) {
         setScrollPosition("between");
       }
-    },
+    }, 120),
     [scrollMaxWidth],
   );
 
@@ -70,21 +113,6 @@ function Category({ list }: CategoryProps) {
     },
     [scrollAction],
   );
-
-  // endregion
-
-  // region [Privates]
-
-  const initializeWidth = useCallback(() => {
-    const { innerWidth: fullWidth } = window;
-    const { scrollWidth } = categoryRef.current!;
-
-    setScrollMaxWidth(scrollWidth - fullWidth + 12 * 2); // 16 is padding
-
-    if (scrollWidth > fullWidth) {
-      setIsScroll(true);
-    }
-  }, []);
 
   // endregion
 
@@ -99,7 +127,6 @@ function Category({ list }: CategoryProps) {
 
   // endregion
 
-
   return (
     <div className="category__card">
       {isLeftScrollIcon && (
@@ -108,10 +135,10 @@ function Category({ list }: CategoryProps) {
         </button>
       )}
       <ul ref={categoryRef} className="category__card__list" onScroll={onScroll}>
-        {initialCategoryList.concat(list || []).map((listItem) => (
+        {sanitizedList.map((listItem) => (
           <li key={listItem.id} className="category__card__item">
             <Link href={listItem.name === "All" ? "/archive" : getCategoryPageUrl(listItem.name)} className="category__card__item__link">
-              {listItem.name.toLowerCase() === categoryName?.toLowerCase() && <ActiveCheckSvg className="category__card__item__link__active-character" />}
+              {checkCurrentCategory(listItem.name) && <ActiveCheckSvg className="category__card__item__link__active-character" />}
               {categoryName === null && listItem.name === "All" && <ActiveCheckSvg className="category__card__item__link__active-character" />}
               <div className="category__card__item__link__hover-character" />
               {listItem.name}
