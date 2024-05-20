@@ -50,6 +50,10 @@ export default function NotionViewer({ recordMap, coverUrl, alt }: INotionRender
     links.pages.textContent = "📚 글 목록";
     links.pages.onclick = goBack;
 
+    const paddingStyle = '4px 8px';
+    links.comment.style.setProperty('padding', paddingStyle);
+    links.pages.style.setProperty('padding', paddingStyle);
+
     linkKeys.forEach((key) => {
       links[key].className = "notion-table-of-contents-item notion-table-of-contents-item-indent-level-0";
     });
