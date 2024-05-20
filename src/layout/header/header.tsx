@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Navigation from "@/component/navigation/navigation";
+import Navigation from "@/component/common/navigation/navigation";
 import "./header.scss";
 
 const logoText = process.env.NEXT_PUBLIC_LOGO || 'kku';

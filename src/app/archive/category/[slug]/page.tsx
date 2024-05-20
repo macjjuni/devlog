@@ -5,8 +5,8 @@ import Fallback from "@/app/archive/fallBack";
 import Profile from "@/component/sidebar/profile/profile";
 import Search from "@/component/sidebar/search/search";
 import Category from "@/component/sidebar/category/category";
-import ArchiveList from "@/component/archiveList/archiveList";
-import Pagination from "@/component/pagination/pagination";
+import ArchiveList from "@/component/content/archiveList/archiveList";
+import Pagination from "@/component/content/pagination/pagination";
 
 export async function generateStaticParams() {
   const databaseId = process.env.NOTION_BLOG_DATABASE_ID;

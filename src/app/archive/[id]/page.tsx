@@ -1,6 +1,6 @@
 import type { ExtendedRecordMap } from "notion-types";
-import NextHead from "@/component/seo/DefaultMeta";
-import NotionViewer from "@/component/notionViewer/notionViewer";
+import NextHead from "@/component/common/seo/DefaultMeta";
+import NotionViewer from "@/component/content/notionViewer/notionViewer";
 
 interface ArchiveDetailPageProps {
   params: { id: string };
