@@ -3,7 +3,7 @@ import notion from "@/lib/noiton";
 import { redirect } from "next/navigation";
 import Fallback from "@/app/archive/fallBack";
 import Profile from "@/component/sidebar/profile/profile";
-import Search from "@/component/sidebar/search/search";
+// import Search from "@/component/sidebar/search/search";
 import Category from "@/component/sidebar/category/category";
 import ArchiveList from "@/component/content/archiveList/archiveList";
 import Pagination from "@/component/content/pagination/pagination";
@@ -43,12 +43,12 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 
   return (
     <Suspense fallback={<Fallback />}>
-      <section className="archive__layout__sidebar">
+      <aside className="archive__layout__sidebar">
         <Profile description={info.description} imageUrl={info.coverURL} />
         {/* TODO. 검색 기능 개발 해야함! */}
         {/* <Search /> */}
         <Category list={info.category} />
-      </section>
+      </aside>
       <section className="archive__layout__content">
         <ArchiveList list={pages} />
         <Pagination total={pages.length} />

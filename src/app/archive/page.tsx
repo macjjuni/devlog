@@ -32,12 +32,12 @@ export default async function ArchivePage({ searchParams }: { searchParams: { pa
 
   return (
     <Suspense fallback={<Fallback />}>
-      <section className="archive__layout__sidebar">
+      <aside className="archive__layout__sidebar">
         <Profile description={info.description} imageUrl={info.coverURL} />
         {/* TODO. 검색 기능 개발 해야함! */}
         {/* <Search /> */}
         <Category list={info.category} />
-      </section>
+      </aside>
       <section className="archive__layout__content">
         <ArchiveList list={pages} />
         <Pagination total={pages.length} />
