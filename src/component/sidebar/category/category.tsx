@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useCallback, useEffect, useMemo, useRef, useState, UIEvent } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState, UIEvent, MouseEvent } from "react";
 import Link from "next/link";
 import { throttle, debounce } from "lodash-es";
 import { ICategory } from "@/@types/notion";
@@ -47,7 +47,6 @@ function Category({ list }: CategoryProps) {
   }, []);
 
   const sanitizedList = useMemo(() => {
-
     const filteredList = list || [];
     const lowerCaseCategoryName = categoryName?.toLowerCase();
 
@@ -61,9 +60,9 @@ function Category({ list }: CategoryProps) {
     }
 
     const currentCategory = { ...filteredList[currentCategoryIdx] };
-    const remainingCategories = filteredList?.filter(item => {
-      return item.name.toLowerCase() !== lowerCaseCategoryName
-    })
+    const remainingCategories = filteredList?.filter((item) => {
+      return item.name.toLowerCase() !== lowerCaseCategoryName;
+    });
 
     return initialCategoryList.concat(currentCategory, remainingCategories);
   }, [list, categoryName, initialCategoryList]);
@@ -114,6 +113,10 @@ function Category({ list }: CategoryProps) {
     [scrollAction],
   );
 
+  const onClickCategoryLink = useCallback((e: MouseEvent<HTMLAnchorElement>) => {
+    // e.target.blur();
+  }, []);
+
   // endregion
 
   // region [Effects]
@@ -137,10 +140,10 @@ function Category({ list }: CategoryProps) {
       <ul ref={categoryRef} className="category__card__list" onScroll={onScroll}>
         {sanitizedList.map((listItem) => (
           <li key={listItem.id} className="category__card__item">
-            <Link href={listItem.name === "All" ? "/archive" : getCategoryPageUrl(listItem.name)} className="category__card__item__link">
+            <Link href={listItem.name === "All" ? "/archive" : getCategoryPageUrl(listItem.name)} className="category__card__item__link" onClick={onClickCategoryLink}>
               {checkCurrentCategory(listItem.name) && <ActiveCheckSvg className="category__card__item__link__active-character" />}
+              { !checkCurrentCategory(listItem.name) && <div className="category__card__item__link__hover-character" /> }
               {categoryName === null && listItem.name === "All" && <ActiveCheckSvg className="category__card__item__link__active-character" />}
-              <div className="category__card__item__link__hover-character" />
               {listItem.name}
             </Link>
           </li>
