@@ -1,17 +1,19 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import routes from "@/route";
 import Link from "next/link";
+import NavigationList from "@/component/common/navigation/navigationList";
 import "./navigation.scss";
 
 export default function Navigation() {
   // region [Hooks]
+
   const [isNavOpen, setIsNavOpen] = useState(false);
   const pathname = usePathname();
 
-  // endregiion
+  // endregion
 
   // region [Styles]
 
@@ -33,7 +35,22 @@ export default function Navigation() {
 
   // region [Events]
 
-  const onClickNavigationButton = useCallback(() => {}, []);
+  const closeNavigationList = useCallback(() => {
+    setIsNavOpen(false);
+  }, []);
+
+  // endregion
+
+  // region [Events]
+
+  const onClickNavigationButton = useCallback(() => {
+    setIsNavOpen((prev) => !prev);
+  }, []);
+
+  // endregion
+
+  // region [Effects]
+
 
   // endregion
 
@@ -51,6 +68,8 @@ export default function Navigation() {
         <span className="navigation__button__bar" />
         <span className="navigation__button__bar" />
       </button>
+
+      <NavigationList isOpen={isNavOpen} />
     </>
   );
 }
