@@ -1,36 +1,82 @@
 
 .navigation {
-    width: 240px;
+  width: 240px;
 
-    @include flex-center;
-    justify-content: space-between;
-    flex-direction: row;
+  @include flex-center;
+  justify-content: space-between;
+  flex-direction: row;
 
-    .navigation__link {
-        font-size: 16px;
-        padding: 4px;
+  .navigation__link {
+    font-size: 16px;
+    padding: 4px;
 
-        &:after {
-            content: '';
-            position: absolute;
-            bottom: 1px;
-            left: 4px;
-            width: 0;
-            height: 1px;
-            background: $kku-white-color;
-            transition: width 0.33s ease;
-        }
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 1px;
+      left: 4px;
+      width: 0;
+      height: 1px;
+      background: $kku-white-color;
+      transition: width 0.33s ease;
     }
+  }
 
-    .navigation__link-active {
-        position: relative;
-        font-weight: bold;
+  .navigation__link-active {
+    position: relative;
+    font-weight: bold;
 
-        &:after { width: calc(100% - 8px); }
+    &:after {
+      width: calc(100% - 8px);
     }
+  }
+}
+
+.navigation__button {
+  $kku-nav-border: lighten($kku-border-color, 20%);
+
+  display: none;
+  position: relative;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  border: 1px solid $kku-nav-border;
+  border-radius: 3px;
+  background: transparent;
+  transition: 0.3s ease;
+  cursor: pointer;
+
+
+  .navigation__button__bar {
+    width: 22px;
+    height: 3px;
+    border-radius: 1px;
+    background-color: $kku-nav-border;
+    transition: inherit;
+  }
+
+  &:hover {
+    border-color: $kku-white-color;
+    background-color: $kku-hover-background-color;
+
+    .navigation__button__bar {
+      background-color: $kku-white-color;
+    }
+  }
 }
 
 @media screen and (max-width: $kku-layout-small) {
 
-    .navigation { display: none; }
+  .navigation {
+    display: none;
+  }
+  .navigation__button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
 }

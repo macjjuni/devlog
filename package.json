@@ -13,6 +13,7 @@
     "@splinetool/react-spline": "^2.2.6",
     "@splinetool/runtime": "^1.2.5",
     "dayjs": "^1.11.11",
+    "framer-motion": "^11.2.6",
     "kku-ui": "^0.0.465",
     "lodash-es": "^4.17.21",
     "next": "14.2.2",

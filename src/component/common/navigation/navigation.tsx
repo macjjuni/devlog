@@ -1,13 +1,17 @@
 "use client";
 
+import { useCallback, useState } from "react";
+import { usePathname } from "next/navigation";
 import routes from "@/route";
 import Link from "next/link";
 import "./navigation.scss";
-import { useCallback } from "react";
-import { usePathname } from "next/navigation";
 
 export default function Navigation() {
+  // region [Hooks]
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const pathname = usePathname();
+
+  // endregiion
 
   // region [Styles]
 
@@ -27,13 +31,26 @@ export default function Navigation() {
 
   // endregion
 
+  // region [Events]
+
+  const onClickNavigationButton = useCallback(() => {}, []);
+
+  // endregion
+
   return (
-    <nav className="navigation">
-      {routes.map((route) => (
-        <Link key={route.id} href={route.path} className={`navigation__link ${getActiveClass(route.path)}`}>
-          {route.title}
-        </Link>
-      ))}
-    </nav>
+    <>
+      <nav className="navigation">
+        {routes.map((route) => (
+          <Link key={route.id} href={route.path} className={`navigation__link ${getActiveClass(route.path)}`}>
+            {route.title}
+          </Link>
+        ))}
+      </nav>
+      <button type="button" aria-label="menu" className="navigation__button" onClick={onClickNavigationButton}>
+        <span className="navigation__button__bar" />
+        <span className="navigation__button__bar" />
+        <span className="navigation__button__bar" />
+      </button>
+    </>
   );
 }
