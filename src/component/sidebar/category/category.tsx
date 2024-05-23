@@ -50,9 +50,10 @@ function Category({ list }: CategoryProps) {
     const filteredList = list || [];
     const lowerCaseCategoryName = categoryName?.toLowerCase();
 
-    const currentCategoryIdx = filteredList.findIndex((item) => {
-      return item?.name.toLowerCase() === lowerCaseCategoryName;
-    }) || -1;
+    const currentCategoryIdx =
+      filteredList.findIndex((item) => {
+        return item?.name.toLowerCase() === lowerCaseCategoryName;
+      }) || -1;
 
     if (currentCategoryIdx === -1) {
       return initialCategoryList.concat(filteredList);
@@ -80,6 +81,16 @@ function Category({ list }: CategoryProps) {
       }
     }, 160),
     [],
+  );
+
+  const linkClass = useCallback(
+    (name: string) => {
+      if ((name === "All" && categoryName === null) || name.toLowerCase() === categoryName?.toLowerCase()) {
+        return "category__card__item__link--active";
+      }
+      return "";
+    },
+    [categoryName],
   );
 
   // endregion
@@ -113,10 +124,6 @@ function Category({ list }: CategoryProps) {
     [scrollAction],
   );
 
-  const onClickCategoryLink = useCallback((e: MouseEvent<HTMLAnchorElement>) => {
-    // e.target.blur();
-  }, []);
-
   // endregion
 
   // region [Effects]
@@ -140,11 +147,10 @@ function Category({ list }: CategoryProps) {
       <ul ref={categoryRef} className="category__card__list" onScroll={onScroll}>
         {sanitizedList.map((listItem) => (
           <li key={listItem.id} className="category__card__item">
-            <Link href={listItem.name === "All" ? "/archive" : getCategoryPageUrl(listItem.name)} className="category__card__item__link" onClick={onClickCategoryLink}>
-              {categoryName === null && listItem.name === "All" && <ActiveCheckSvg className="category__card__item__link__active-character" />}
-              {checkCurrentCategory(listItem.name) && <ActiveCheckSvg className="category__card__item__link__active-character" />}
-              {!checkCurrentCategory(listItem.name) && <div className="category__card__item__link__hover-character" /> }
-              {listItem.name}
+            <Link href={listItem.name === "All" ? "/archive" : getCategoryPageUrl(listItem.name)} className={`category__card__item__link ${linkClass(listItem.name)}`}>
+              <ActiveCheckSvg className="category__card__item__link__active-character" />
+              <div className="category__card__item__link__hover-character" />
+              <span className="category__card__item__text">{listItem.name}</span>
             </Link>
           </li>
         ))}
