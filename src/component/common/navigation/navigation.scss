@@ -3,12 +3,10 @@
   width: 240px;
 
   @include flex-center;
-  justify-content: space-between;
-  flex-direction: row;
+  justify-content: space-between; flex-direction: row;
 
   .navigation__link {
-    font-size: 16px;
-    padding: 4px;
+    font-size: 16px; padding: 4px;
 
     &:after {
       content: '';
@@ -26,15 +24,15 @@
     position: relative;
     font-weight: bold;
 
-    &:after {
-      width: calc(100% - 8px);
-    }
+    &:after { width: calc(100% - 8px); }
   }
 }
 
-.navigation__button {
-  $kku-nav-border: lighten($kku-border-color, 20%);
+$kku-nav-border: lighten($kku-border-color, 20%);
+$kku-nav-border-active: darken($kku-white-color, 24%);
+$kku-navigation-background-color: lighten($kku-background-color, 4%);
 
+.navigation__button {
   display: none;
   position: relative;
   width: 36px;
@@ -48,7 +46,6 @@
   transition: 0.3s ease;
   cursor: pointer;
 
-
   .navigation__button__bar {
     width: 22px;
     height: 3px;
@@ -57,21 +54,47 @@
     transition: inherit;
   }
 
-  &:hover {
-    border-color: $kku-white-color;
-    background-color: $kku-hover-background-color;
+  &.navigation__button--active {
+     background-color: $kku-navigation-background-color;
 
-    .navigation__button__bar {
-      background-color: $kku-white-color;
-    }
+    .navigation__button__bar { background-color: $kku-nav-border-active; }
   }
 }
 
+
+
+.navigation__list__wrapper {
+  position: fixed;
+  top: 72px;
+  right: 16px;
+  width: 160px;
+  border: 1px solid $kku-nav-border;
+  border-radius: 4px;
+  background-color: $kku-navigation-background-color;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+
+  .navigation__list .navigation__list__item .navigation__list__item__link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 16px;
+    color: darken($kku-white-color, 8%);
+    @include font-sub-title-2;
+
+    &.navigation__list__item__link--active {
+      font-weight: bold;
+    }
+
+    &:hover { background-color: lighten($kku-navigation-background-color, 6%); }
+  }
+}
+
+
 @media screen and (max-width: $kku-layout-small) {
 
-  .navigation {
-    display: none;
-  }
+  .navigation { display: none; }
   .navigation__button {
     display: flex;
     flex-direction: column;

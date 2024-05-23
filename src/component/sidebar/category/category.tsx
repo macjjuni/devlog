@@ -142,7 +142,7 @@ function Category({ list }: CategoryProps) {
           <li key={listItem.id} className="category__card__item">
             <Link href={listItem.name === "All" ? "/archive" : getCategoryPageUrl(listItem.name)} className="category__card__item__link" onClick={onClickCategoryLink}>
               {checkCurrentCategory(listItem.name) && <ActiveCheckSvg className="category__card__item__link__active-character" />}
-              { !checkCurrentCategory(listItem.name) && <div className="category__card__item__link__hover-character" /> }
+              {!checkCurrentCategory(listItem.name) && <div className="category__card__item__link__hover-character" /> }
               {categoryName === null && listItem.name === "All" && <ActiveCheckSvg className="category__card__item__link__active-character" />}
               {listItem.name}
             </Link>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import routes from "@/route";
 import Link from "next/link";
@@ -18,6 +18,16 @@ export default function Navigation() {
   // endregion
 
   // region [Styles]
+
+  const mobileButtonClass = useMemo(() => {
+    const clazz = [];
+
+    if (isNavOpen) {
+      clazz.push("navigation__button--active");
+    }
+
+    return clazz.join(" ");
+  }, [isNavOpen]);
 
   const getActiveClass = useCallback(
     (path: string) => {
@@ -37,20 +47,20 @@ export default function Navigation() {
 
   // region [Events]
 
-  const closeNavigationList = useCallback(() => {
-    setIsNavOpen(false);
-  }, []);
-
-  // endregion
-
-  // region [Events]
-
   const onClickNavigationButton = useCallback(() => {
     setIsNavOpen((prev) => !prev);
   }, []);
 
   // endregion
 
+  // region [Privates]
+
+  const closeNavigationList = useCallback(() => {
+    setIsNavOpen(false);
+  }, []);
+
+  // endregion
+  //
   // region [Effects]
 
   // endregion
@@ -65,13 +75,13 @@ export default function Navigation() {
         ))}
       </nav>
 
-      <button type="button" aria-label="menu" className="navigation__button" onClick={onClickNavigationButton}>
+      <button type="button" aria-label="menu" className={`navigation__button ${mobileButtonClass}`} onClick={onClickNavigationButton}>
         <span className="navigation__button__bar" />
         <span className="navigation__button__bar" />
         <span className="navigation__button__bar" />
       </button>
 
-      { isMobile && (<NavigationList isOpen={isNavOpen} />) }
+      {isMobile && <NavigationList isOpen={isNavOpen} close={closeNavigationList} />}
     </>
   );
 }
