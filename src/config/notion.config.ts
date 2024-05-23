@@ -17,8 +17,6 @@ const config = {
   blog: {
     SITE_URL: process.env.SITE_URL || "http://kku.dev", // 도메인
     SITE_IMAGE: "/api/notion/getSiteImage", // 노션 DB 설명란에 작성된 링크 주소를 가져옴
-    POST_PATH: "blog", // 블로그 페이지로 사용할 경로
-    CATEGORY_PATH: "category", // 블로그에 카테고리 페이지로 사용할 경로('./src/pages' 폴더에 동일한 이름에 디렉토리와 링크될 파일 만들어 줘야 함)
   },
   // 포스팅 관련 설정
   post: {
@@ -28,16 +26,6 @@ const config = {
     DEFAULT_THUMB: "/images/default_thumb.webp",
     DEFAULT_ALT: "kkussaeng",
   },
-  categoryColor: [
-    { key: "dev", color: "#9a57ff" },
-    { key: "bitcoin", color: "#f7931a" },
-    { key: "javascript", color: "#FFCA28" },
-    { key: "typescript", color: "#3178c6" },
-    { key: "react", color: "#61dafb" },
-    { key: "vue", color: "#42b983" },
-    { key: "일상", color: "#26b7f0" },
-    { key: "default", color: "#3e3e3e" },
-  ],
 };
 
 export default config;

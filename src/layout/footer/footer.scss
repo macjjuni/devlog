@@ -35,7 +35,7 @@
         .footer__wrapper {
             padding: 0 $kku-padding-md;
 
-            .footer__wrapper__text { font-size: 10px;}
+            .footer__wrapper__text { @include font-small; }
         }
     }
 }
