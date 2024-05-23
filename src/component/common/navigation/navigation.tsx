@@ -1,17 +1,19 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { usePathname } from "next/navigation";
 import routes from "@/route";
 import Link from "next/link";
 import NavigationList from "@/component/common/navigation/navigationList";
 import "./navigation.scss";
+import useMediaScreen from "@/hook/useMediaScreen";
 
 export default function Navigation() {
   // region [Hooks]
 
   const [isNavOpen, setIsNavOpen] = useState(false);
   const pathname = usePathname();
+  const isMobile = useMediaScreen("sm");
 
   // endregion
 
@@ -51,7 +53,6 @@ export default function Navigation() {
 
   // region [Effects]
 
-
   // endregion
 
   return (
@@ -63,13 +64,14 @@ export default function Navigation() {
           </Link>
         ))}
       </nav>
+
       <button type="button" aria-label="menu" className="navigation__button" onClick={onClickNavigationButton}>
         <span className="navigation__button__bar" />
         <span className="navigation__button__bar" />
         <span className="navigation__button__bar" />
       </button>
 
-      <NavigationList isOpen={isNavOpen} />
+      { isMobile && (<NavigationList isOpen={isNavOpen} />) }
     </>
   );
 }
