@@ -2,7 +2,7 @@
 
 import { memo, useCallback, useEffect, useMemo, useRef, useState, UIEvent, MouseEvent } from "react";
 import Link from "next/link";
-import { throttle, debounce } from "lodash-es";
+import { createDebounce, createThrottle } from "@/utils/lodash";
 import { ICategory } from "@/@types/notion";
 import ActiveCheckSvg from "@/component/sidebar/category/ActiveCheckSvg";
 import { getCategoryPageUrl } from "@/route";
@@ -50,10 +50,9 @@ function Category({ list }: CategoryProps) {
     const filteredList = list || [];
     const lowerCaseCategoryName = categoryName?.toLowerCase();
 
-    const currentCategoryIdx =
-      filteredList.findIndex((item) => {
-        return item?.name.toLowerCase() === lowerCaseCategoryName;
-      }) || -1;
+    const currentCategoryIdx = filteredList.findIndex((item) => {
+      return item?.name.toLowerCase() === lowerCaseCategoryName;
+    }) || -1;
 
     if (currentCategoryIdx === -1) {
       return initialCategoryList.concat(filteredList);
@@ -68,7 +67,7 @@ function Category({ list }: CategoryProps) {
   }, [list, categoryName, initialCategoryList]);
 
   const initializeWidth = useCallback(
-    debounce(() => {
+    createDebounce(() => {
       const { innerWidth: fullWidth } = window;
       const { scrollWidth } = categoryRef.current!;
 
@@ -88,8 +87,9 @@ function Category({ list }: CategoryProps) {
   // region [Events]
 
   const onScroll = useCallback(
-    throttle((e: UIEvent<HTMLUListElement>) => {
-      const { scrollLeft } = e.target as HTMLElement;
+    createThrottle((e) => {
+      const event = e as UIEvent<HTMLUListElement>;
+      const { scrollLeft } = event.target as HTMLElement;
 
       if (scrollLeft < 2) {
         setScrollPosition("left");
