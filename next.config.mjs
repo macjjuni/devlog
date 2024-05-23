@@ -1,7 +1,7 @@
 const nextConfig = {
   sassOptions: {
     includePaths: ["./src", "./src/**/*.scss"],
-    prependData: `@import "@/style/index.scss";`
+    prependData: `@import "@/style/index.scss";`,
   },
   images: {
     remotePatterns: [
