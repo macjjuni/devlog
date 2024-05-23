@@ -63,7 +63,7 @@
                 &:hover .category__card__item__link__hover-character { width: 16px; }
 
                 .category__card__item__link__active-character + .category__card__item__link__hover-character {
-                    width: 0;
+                    width: 0 !important ;
                     &:after { content: none; }
                 }
             }
@@ -120,6 +120,7 @@
             background: $kku-background-color;
             cursor: pointer;
             z-index: 1;
+            animation: fadeIn 0.3s ease forwards;
 
             &:after {
                 content: '';
