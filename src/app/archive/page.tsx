@@ -1,24 +1,16 @@
-"use server";
-
-import { Suspense } from "react";
+import { Suspense, cache } from "react";
 import { redirect } from "next/navigation";
 import Category from "@/component/sidebar/category/category";
 import Profile from "@/component/sidebar/profile/profile";
 // import Search from "@/component/sidebar/search/search";
 import ArchiveList from "@/component/content/archiveList/archiveList";
 import Pagination from "@/component/content/pagination/pagination";
-import type { INotionInfo, IPage } from "@/@types/notion";
 import { isNumber } from "@/utils/string";
+import { getNotionPages } from "@/api/notion/page";
 import Fallback from "./fallBack";
 
-const localDomain = process.env.NEXT_PUBLIC_DOMAIN;
-const revalidate = 60;
-
-async function getPosts(): Promise<{ info: INotionInfo; pages: IPage[]; error: boolean }> {
-  const res = await fetch(`${localDomain}/api/archive/list`, { next: { revalidate } });
-
-  return res.json();
-}
+export const revalidate = 60;
+const getPages = cache(getNotionPages);
 
 export default async function ArchivePage({ searchParams }: { searchParams: { page: string | undefined } }) {
   const { page } = searchParams;
@@ -28,7 +20,7 @@ export default async function ArchivePage({ searchParams }: { searchParams: { pa
     redirect("/404");
   }
 
-  const { info, pages } = await getPosts();
+  const { info, pages } = await getPages();
 
   return (
     <Suspense fallback={<Fallback />}>

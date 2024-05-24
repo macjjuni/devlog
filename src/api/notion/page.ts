@@ -1,8 +1,6 @@
-import { NextResponse } from "next/server";
-
 import notion from "@/lib/noiton";
 
-export async function GET() {
+export async function getNotionPages() {
   const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
 
   try {
@@ -11,12 +9,12 @@ export async function GET() {
     const info = notion.getParseNotionInfo(tempInfo); // 데이터 가공
     const pages = await notion.getPages(databaseId);
 
-    return NextResponse.json({ info, pages, error: false });
+    return { info, pages, error: false };
   } catch (e) {
-    return NextResponse.json({
+    return {
       info: { title: "Not Found", description: "Not Found", category: [], icon: "", tags: null, coverURL: null },
       pages: [],
       error: true,
-    });
+    };
   }
 }
