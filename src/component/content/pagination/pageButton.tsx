@@ -31,7 +31,7 @@ const PageButton = ({ text, href, icon, active = false, disabled = false, classN
   }
   if (active) {
     return (
-      <button type="button" name="link" aria-label={text?.toString()} className={`pagination__number-button--active`} disabled>
+      <button type="button" name="link" aria-label={text?.toString()} className="pagination__number-button--active" disabled>
         {children()}
       </button>
     );
@@ -42,6 +42,6 @@ const PageButton = ({ text, href, icon, active = false, disabled = false, classN
       {children()}
     </Link>
   );
-}
+};
 
 export default memo(PageButton);
