@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useCallback, useEffect, useMemo, useRef, useState, UIEvent, MouseEvent } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState, UIEvent } from "react";
 import Link from "next/link";
 import { createDebounce, createThrottle } from "@/utils/lodash";
 import { ICategory } from "@/@types/notion";
@@ -50,10 +50,9 @@ function Category({ list }: CategoryProps) {
     const filteredList = list || [];
     const lowerCaseCategoryName = categoryName?.toLowerCase();
 
-    const currentCategoryIdx =
-      filteredList.findIndex((item) => {
-        return item?.name.toLowerCase() === lowerCaseCategoryName;
-      }) || -1;
+    const currentCategoryIdx = filteredList.findIndex((item) => {
+      return item?.name.toLowerCase() === lowerCaseCategoryName;
+    }) || -1;
 
     if (currentCategoryIdx === -1) {
       return initialCategoryList.concat(filteredList);
