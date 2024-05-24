@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import variables from "@/style/variables.module.css";
+import variable from "@/style/variables";
 import { extractNumbers } from "@/utils/string";
 import { createThrottle } from "@/utils/lodash";
 
-const smallSize = Number(extractNumbers(variables.kkuLayoutSmall));
-const mediumSize = Number(extractNumbers(variables.kkuLayoutSmall));
-const largeSize = Number(extractNumbers(variables.kkuLayoutSmall));
+const smallSize = Number(extractNumbers(variable.kkuLayoutSmall));
+const mediumSize = Number(extractNumbers(variable.kkuLayoutSmall));
+const largeSize = Number(extractNumbers(variable.kkuLayoutSmall));
 
 export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
   // region [Hooks]
