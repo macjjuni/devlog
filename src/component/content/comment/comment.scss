@@ -1,0 +1,10 @@
+
+.comment__wrapper {
+  @include flex-center;
+  gap: 16px;
+  width: 100%;
+  min-height: 270px;
+  margin-top: 16px;
+}
+
+
