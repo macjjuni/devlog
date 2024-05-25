@@ -11,7 +11,7 @@ export type SelectPropertyResponse = {
 export type ICategory = SelectPropertyResponse[] | null;
 
 // 노전 블로그 정보 타입
-export interface INotionInfo {
+export interface NotionInfoProps {
   title: string;
   description: string;
   coverURL: string | null;
@@ -29,7 +29,7 @@ export interface INotionProject {
 }
 
 // 노션 페이지 타입
-export interface IPage {
+export interface NotionPageProps {
   id: string;
   cover: string;
   title: string;
@@ -53,8 +53,8 @@ export interface DatabaseQueryOption {
 
 // 글 목록 리스트 받는 페이지 Props 타입
 export interface IBlogPage {
-  info: INotionInfo;
-  pages: IPage[];
+  info: NotionInfoProps;
+  pages: NotionPageProps[];
 }
 
 // 방명록 타입

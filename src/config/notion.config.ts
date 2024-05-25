@@ -24,7 +24,7 @@ const config = {
     POSTS_PER_PAGE: 12, // 한 페이지에 보여지는 글수
     PAGINATION_RANGE: 5, // 페이지네이션 표시 수
     DEFAULT_THUMB: "/images/default_thumb.webp",
-    DEFAULT_ALT: "kkussaeng",
+    DEFAULT_ALT: "kkusaeng",
   },
 };
 

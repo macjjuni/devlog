@@ -3,7 +3,7 @@ import { NotionAPI } from "notion-client";
 import { getBlockTitle, getPageContentBlockIds } from "notion-utils";
 
 import type { DatabaseObjectResponse, ListBlockChildrenResponse, PageObjectResponse, ParagraphBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import type { DatabaseQueryOption, INotionInfo, IPage, IProjectPage, ReadGuestBookType, SaveRequestGuestBookType } from "@/@types/notion";
+import type { DatabaseQueryOption, NotionInfoProps, NotionPageProps, IProjectPage, ReadGuestBookType, SaveRequestGuestBookType } from "@/@types/notion";
 import type { Block, ExtendedRecordMap, RecordMap, Role } from "notion-types";
 import config, { token } from "@/config/notion.config";
 
@@ -24,7 +24,7 @@ const notion = {
     // 블로그 정보 조회
     return (await notionClient.databases.retrieve({ database_id: databaseId })) as DatabaseObjectResponse;
   },
-  getParseNotionInfo: (notionInfo: DatabaseObjectResponse): INotionInfo => {
+  getParseNotionInfo: (notionInfo: DatabaseObjectResponse): NotionInfoProps => {
     const title = notionInfo.title[0]?.type === "text" ? notionInfo.title[0].plain_text : "";
     const description = notionInfo.description[0]?.type === "text" ? notionInfo.description[0].plain_text : "";
     const coverURL = notionInfo.description[1] !== undefined ? notionInfo.description[1]?.href : ""; // 블로그 목록 썸네일
@@ -33,7 +33,7 @@ const notion = {
     const category = notionInfo.properties["카테고리"].type === "select" ? notionInfo.properties["카테고리"].select.options : null;
     return { title, description, coverURL, icon, tags, category };
   },
-  getPages: async (databasedId: string, option?: DatabaseQueryOption): Promise<IPage[]> => {
+  getPages: async (databasedId: string, option?: DatabaseQueryOption): Promise<NotionPageProps[]> => {
     let allPage = [] as PageObjectResponse[];
     let nextCursor: string | undefined | null;
 
@@ -75,7 +75,7 @@ const notion = {
   },
 
   // 블로그 리스트 데이터 가공
-  getParsePages: (pages: PageObjectResponse[]): IPage[] => {
+  getParsePages: (pages: PageObjectResponse[]): NotionPageProps[] => {
     return pages.map((page) => {
       const { id } = page;
       const { 이름, 카테고리, 작성일, 태그 } = page.properties;
@@ -134,8 +134,9 @@ const notion = {
       query,
       filter: { value: "page", property: "object" },
       sort: { direction: "descending", timestamp: "last_edited_time" },
-      page_size: post.POSTS_PER_PAGE,
+      // page_size: post.POSTS_PER_PAGE, // 전체 검색
     });
+
     const pages = searchPages.results as PageObjectResponse[];
     const currentPages = pages.filter((page) => page.parent.type === "database_id"); // 다른 노션 페이지 삭제
     // 공개 페이지만 필터링
@@ -199,13 +200,13 @@ const notion = {
       if (recordMap.block[key].value.type === "page") pageKey = key;
     });
 
-    const paegBlock = recordMap.block[pageKey].value;
-    const alt = paegBlock.properties.title[0][0]; // 페이지 타이틀 이미지 alt 속성으로 사용
+    const pageBlock = recordMap.block[pageKey].value;
+    const alt = pageBlock.properties.title[0][0]; // 페이지 타이틀 이미지 alt 속성으로 사용
     try {
-      if (!paegBlock.format) throw Error("Not found pageBlock!");
-      const originUrl = paegBlock.format.page_cover;
+      if (!pageBlock.format) throw Error("Not found pageBlock!");
+      const originUrl = pageBlock.format.page_cover;
       const filteredUrl = originUrl.charAt(0) === "/" ? `https://www.notion.so${originUrl}` : originUrl;
-      const coverUrl = `https://www.notion.so/image/${encodeURIComponent(filteredUrl)}?table=block&id=${paegBlock?.id}&cache=v2`;
+      const coverUrl = `https://www.notion.so/image/${encodeURIComponent(filteredUrl)}?table=block&id=${pageBlock?.id}&cache=v2`;
       return { coverUrl, alt };
     } catch {
       return { coverUrl: "", alt: config.post.DEFAULT_ALT };
