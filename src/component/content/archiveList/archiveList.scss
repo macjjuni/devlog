@@ -9,6 +9,11 @@
   display: flex;
   flex-direction: column;
 
+  .archive__list__item-no-text {
+    @include flex-center;
+    height: 160px;
+  }
+
   .archive__list__item {
     position: relative;
 

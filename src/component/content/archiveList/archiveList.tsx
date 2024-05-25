@@ -35,9 +35,9 @@ function ArchiveList({ pages }: { pages: NotionPageProps[] }) {
       ))}
       {
         pageList.length === 0 && (
-          <>
+          <li className="archive__list__item-no-text">
             검색 결과가 없습니다.
-          </>
+          </li>
         )
       }
     </ul>

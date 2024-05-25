@@ -39,7 +39,7 @@ const Pagination = ({ total }: IPagination) => {
   // region [Templates]
 
   const prevButtonDisabled = useMemo(() => current === 1, [current]);
-  const nextButtonDisabled = useMemo(() => current === lastPageNumber, [current, lastPageNumber]);
+  const nextButtonDisabled = useMemo(() => current === lastPageNumber || lastPageNumber === 0, [current, lastPageNumber]);
 
   const prevIcon = useMemo(() => <KIcon size={18} icon="keyboard_arrow_down" color="inherit" />, []);
   const nextIcon = useMemo(() => <KIcon size={18} icon="keyboard_arrow_down" color="inherit" />, []);
