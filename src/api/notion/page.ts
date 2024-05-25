@@ -9,8 +9,7 @@ export async function getNotionPages() {
     if (!databaseId) throw new Error("DATABASE_ID is undefined.");
     const tempInfo = await notion.getNotionInfo(databaseId);
     const info = notion.getParseNotionInfo(tempInfo); // 데이터 가공
-    const pages = await notion
-      .getPages(databaseId);
+    const pages = await notion.getPages(databaseId);
 
     return { info, pages, error: false };
   } catch (e) {
@@ -40,9 +39,58 @@ export async function getNotionDetail(id: string) {
   }
 }
 
+export async function getNotionCategoryList(categoryName: string) {
+  const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
+
+  try {
+    if (!databaseId) {
+      throw new Error("DATABASE_ID is not defined");
+    }
+    if (categoryName === null) {
+      throw new Error("name is not defined");
+    }
+
+    const pages = await notion.getPages(databaseId, { categoryName });
+
+    const tempInfo = await notion.getNotionInfo(databaseId);
+    const info = notion.getParseNotionInfo(tempInfo); // 데이터 가공
+
+    const cateArr = info.category?.map((cate) => cate.name) || [];
+    const currentName = cateArr.find((cate) => cate === categoryName);
+
+    // 존재하지 않은 카테고리 접근 시 404 페이지로 이동
+    if (currentName === undefined) {
+      return { info: null, pages: [], error: true };
+    }
+    return { info, pages, error: false };
+  } catch (e) {
+    console.error("NextResponse.redirect");
+    return { info: null, pages: [], error: true };
+  }
+}
+
+export async function getNotionSearchPages(keyword: string) {
+  const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
+
+  try {
+    if (!databaseId) {
+      throw new Error("DATABASE_ID is not defined");
+    }
+
+    const searchPages = await notion.getSelectPage(keyword);
+    const tempInfo = await notion.getNotionInfo(databaseId);
+    const info = notion.getParseNotionInfo(tempInfo); // 데이터 가공
+
+    return { searchPages, info, error: false };
+  } catch (e) {
+    console.error(e);
+    return { searchPages: [], pages: [], info: null, error: true };
+  }
+}
+
 export interface IGetPageCover {
-  coverUrl: string
-  alt: string
+  coverUrl: string;
+  alt: string;
 }
 
 const getPageCoverImage = async (id: string) => request<IGetPageCover>(`/api/notion/getPageCover?id=${encodeURIComponent(id)}`);
