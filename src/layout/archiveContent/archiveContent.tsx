@@ -5,7 +5,6 @@ import Pagination from "@/component/content/pagination/pagination";
 import { NotionPageProps } from "@/@types/notion";
 
 function archiveContent({ pages }: { pages: NotionPageProps[] }) {
-
   return (
     <>
       <ArchiveTitle pages={pages} />

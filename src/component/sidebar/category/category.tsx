@@ -48,10 +48,9 @@ function Category({ list }: CategoryProps) {
     const filteredList = list || [];
     const lowerCaseCategoryName = categoryName?.toLowerCase();
 
-    const currentCategoryIdx =
-      filteredList.findIndex((item) => {
-        return item?.name.toLowerCase() === lowerCaseCategoryName;
-      }) || -1;
+    const currentCategoryIdx = filteredList.findIndex((item) => {
+      return item?.name.toLowerCase() === lowerCaseCategoryName;
+    }) || -1;
 
     if (currentCategoryIdx === -1) {
       return initialCategoryList.concat(filteredList);

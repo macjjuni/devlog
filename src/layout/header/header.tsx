@@ -3,7 +3,7 @@ import Link from "next/link";
 import Navigation from "@/component/common/navigation/navigation";
 import "./header.scss";
 
-const logoText = process.env.NEXT_PUBLIC_LOGO || 'kku';
+const logoText = process.env.NEXT_PUBLIC_LOGO || "kku";
 
 export default function Header() {
   return (

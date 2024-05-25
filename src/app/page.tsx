@@ -1,5 +1,13 @@
 import PageLayout from "@/app/page/layout";
 import SocialLink from "@/component/content/socialLink/socialLink";
+import type { Metadata } from "next";
+import { generateMetaTitle } from "@/utils/meta";
+
+export const metadata: Metadata = {
+  title: generateMetaTitle("About"),
+  description: process.env.NEXT_PUBLIC_DESCRIPTION,
+};
+
 
 export default function AboutPage() {
   return (

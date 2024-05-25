@@ -57,7 +57,7 @@ const Pagination = ({ total }: IPagination) => {
   return (
     <div className="pagination">
       {/* 이전 버튼 */}
-      <PageButton href={current - 1} icon={prevIcon} disabled={prevButtonDisabled} className={"pagination__prev-button"} />
+      <PageButton href={current - 1} icon={prevIcon} disabled={prevButtonDisabled} className="pagination__prev-button" />
       {/* 줄임표 버튼 */}
       {firstEllipsis}
       {/* 현재 페이지 이전 숫자들 */}

@@ -5,6 +5,13 @@ import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import { isNumber } from "@/utils/string";
 import { getNotionPages } from "@/api/notion/page";
 import Fallback from "./fallBack";
+import type { Metadata } from "next";
+import { generateMetaTitle } from "@/utils/meta";
+
+export const metadata: Metadata = {
+  title: generateMetaTitle("Archive"),
+  description: process.env.NEXT_PUBLIC_DESCRIPTION,
+};
 
 export const revalidate = 60;
 const getPages = cache(getNotionPages);

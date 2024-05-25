@@ -54,8 +54,8 @@ export default function SplineWrapper() {
 
   return (
     <section className={`kku_spline__wrapper ${rootClass}`}>
-      {/* {!isRender && <Spinner />} */}
-      {/* {(isRenderOnPath || isRender) && <Spline className="kku__spline" scene={sceneUrl} onLoad={onLoad} />} */}
+      {!isRender && <Spinner />}
+      {(isRenderOnPath || isRender) && <Spline className="kku__spline" scene={sceneUrl} onLoad={onLoad} />}
     </section>
   );
 }

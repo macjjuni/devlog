@@ -20,12 +20,36 @@ export default function NavigationList({ isOpen, close }: { isOpen: boolean; clo
 
   // region [Style]
 
-  const navLinkClass = useCallback((path: string) => {
-    if (pathname === path || (path !== "/" && pathname.includes(path))) {
-      return "navigation__list__item__link--active";
-    }
-    return "";
-  }, [pathname]);
+  const navLinkClass = useCallback(
+    (path: string) => {
+      if (pathname === path || (path !== "/" && pathname.includes(path))) {
+        return "navigation__list__item__link--active";
+      }
+      return "";
+    },
+    [pathname],
+  );
+
+  // endregion
+
+  // region [Privates]
+
+  // const clickFilter = (e: UIEvent) => {
+  //   console.log(e);
+  // };
+  //
+  // // endregion
+  //
+  // // region [Effects]
+  //
+  // useEffect(() => {
+  //   console.log(isOpen);
+  //   if (isOpen) {
+  //     window.addEventListener("click", clickFilter);
+  //   } else {
+  //     window.removeEventListener("click", clickFilter);
+  //   }
+  // }, [isOpen]);
 
   // endregion
 

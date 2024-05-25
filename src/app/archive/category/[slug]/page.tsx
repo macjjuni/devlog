@@ -5,7 +5,15 @@ import Fallback from "@/app/archive/fallBack";
 import { getNotionCategoryList as _getNotionCategoryList } from "@/api/notion/page";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
-import ArchiveSearchPage from "@/app/archive/search/page";
+import type { Metadata } from "next";
+import { generateMetaTitle } from "@/utils/meta";
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  return {
+    title: generateMetaTitle(`Archive -${params.slug}`),
+    description: process.env.NEXT_PUBLIC_DESCRIPTION,
+  };
+}
 
 export async function generateStaticParams() {
   const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
@@ -17,11 +25,11 @@ export async function generateStaticParams() {
     const tempInfo = await notion.getNotionInfo(databaseId);
     const { category } = notion.getParseNotionInfo(tempInfo); // 데이터 가공
 
-    return category?.map(({ name }) => ({ slug: name }));
+    return category?.map(({ name }) => ({ slug: name })) || [];
   } catch (e) {
     console.error(e);
 
-    return { paths: [], fallback: false };
+    return [];
   }
 }
 
