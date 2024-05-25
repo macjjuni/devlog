@@ -13,7 +13,7 @@ type ScrollPositionType = "left" | "between" | "right";
 type ScrollDirectionType = Omit<ScrollPositionType, "between">;
 
 interface CategoryProps {
-  list: ICategory;
+  list?: ICategory;
 }
 
 const initialCategoryList = [{ id: "all", name: "All" }];
@@ -30,10 +30,6 @@ function Category({ list }: CategoryProps) {
   // endregion
 
   // region [Privates]
-
-  const checkCurrentCategory = useCallback((name: string) => {
-    return name.toLowerCase() === categoryName?.toLowerCase();
-  }, []);
 
   const isLeftScrollIcon = useMemo(() => isScroll && scrollPosition !== "left", [isScroll, scrollPosition]);
   const isRightScrollIcon = useMemo(() => isScroll && scrollPosition !== "right", [isScroll, scrollPosition]);
@@ -68,8 +64,10 @@ function Category({ list }: CategoryProps) {
 
   const initializeWidth = useCallback(
     createDebounce(() => {
+      if (!categoryRef.current) { return; }
+
       const { innerWidth: fullWidth } = window;
-      const { scrollWidth } = categoryRef.current!;
+      const { scrollWidth } = categoryRef.current;
 
       setScrollMaxWidth(scrollWidth - fullWidth + 12 * 2); // 16 is padding
 

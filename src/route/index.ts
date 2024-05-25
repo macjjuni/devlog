@@ -22,6 +22,6 @@ const routes: IRoutes[] = [
 ];
 
 export const getCategoryPageUrl = (category: string) => `/archive/category/${encodeURIComponent(category)}`;
-export const getSearchPageUrl = (searchText: string) => `?search=${encodeURIComponent(searchText)}`;
+export const getSearchPageUrl = (searchText: string) => `/archive/search?q=${encodeURIComponent(searchText)}`;
 
 export default routes;

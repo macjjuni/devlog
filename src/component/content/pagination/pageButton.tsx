@@ -1,6 +1,8 @@
 "use client";
 
 import { memo, ReactNode, useCallback } from "react";
+// import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 interface IPageButton {
@@ -13,14 +15,28 @@ interface IPageButton {
 }
 
 const PageButton = ({ text, href, icon, active = false, disabled = false, className }: IPageButton) => {
-  const generateUrl = useCallback(() => {
-    return `?page=${href}`;
+  // region [Hooks]
+
+  const pathname = usePathname();
+  const params = new URLSearchParams(useSearchParams());
+
+  // endregion
+
+  // region [Privates]
+
+  const generatePaginationUrl = useCallback(() => {
+    params.set("page", href.toString());
+    return `${pathname}/?${params.toString()}`;
   }, [href]);
 
-  const children = () => {
+  const children = useCallback(() => {
     if (text?.toString()) return text;
     if (icon) return icon;
-  };
+  }, [text]);
+
+  // endregion
+
+  // region [Templates]
 
   if (disabled) {
     return (
@@ -37,8 +53,10 @@ const PageButton = ({ text, href, icon, active = false, disabled = false, classN
     );
   }
 
+  // endregion
+
   return (
-    <Link href={generateUrl()} role="link" aria-label={text?.toString() || "Next page in the list"} className={className}>
+    <Link href={generatePaginationUrl()} aria-label={text?.toString() || "Next page in the list"} className={className}>
       {children()}
     </Link>
   );

@@ -2,11 +2,11 @@
 
 import { useMemo, memo } from "react";
 import { useRouter } from "next/navigation";
+import usePageSize from "@/hook/usePageSize";
 import { KIcon } from "kku-ui";
 import config from "@/config/notion.config";
 import PageButton from "./pageButton";
 import "./pagination.scss";
-import usePageSize from "@/hook/usePageSize";
 
 interface IPagination {
   total: number;
@@ -29,8 +29,8 @@ const Pagination = ({ total }: IPagination) => {
   const current = Number(pageSize);
   const lastPageNumber = Math.ceil(total / POSTS_PER_PAGE);
 
-  // 페이지네이션 오버될 때 에러 핸들링
-  if (pageSize > lastPageNumber) {
+  // 페이지네이션 오버될 때 에러 핸들링 && 페이지 검색결과 없을 때 제외
+  if (pageSize > lastPageNumber && lastPageNumber !== 0) {
     replace("/404");
   }
 
@@ -41,10 +41,10 @@ const Pagination = ({ total }: IPagination) => {
   const prevButtonDisabled = useMemo(() => current === 1, [current]);
   const nextButtonDisabled = useMemo(() => current === lastPageNumber, [current, lastPageNumber]);
 
-  const prevIcon = useMemo(() => <KIcon size={18} icon="keyboard_arrow_down" color={"inherit"} />, []);
-  const nextIcon = useMemo(() => <KIcon size={18} icon="keyboard_arrow_down" color={"inherit"} />, []);
+  const prevIcon = useMemo(() => <KIcon size={18} icon="keyboard_arrow_down" color="inherit" />, []);
+  const nextIcon = useMemo(() => <KIcon size={18} icon="keyboard_arrow_down" color="inherit" />, []);
 
-  const extraButton = useMemo(() => <PageButton href={"#"} active={false} disabled text={"··"} className={"pagination__extra-button"} />, []);
+  const extraButton = useMemo(() => <PageButton href="#" active={false} disabled text="··" className="pagination__extra-button" />, []);
 
   const prevPageNumbers = useMemo(() => Array.from(Array(PAGINATION_RANGE), (_, index) => current - index - 1).reverse(), [PAGINATION_RANGE, current]);
   const nextPageNumbers = useMemo(() => Array.from(Array(PAGINATION_RANGE), (_, index) => current + index + 1), [PAGINATION_RANGE, current]);
@@ -61,15 +61,15 @@ const Pagination = ({ total }: IPagination) => {
       {/* 줄임표 버튼 */}
       {firstEllipsis}
       {/* 현재 페이지 이전 숫자들 */}
-      {prevPageNumbers.map((pageIndex) => pageIndex > 0 && <PageButton key={pageIndex} href={pageIndex} text={pageIndex} className={"pagination__number-button"} />)}
+      {prevPageNumbers.map((pageIndex) => pageIndex > 0 && <PageButton key={pageIndex} href={pageIndex} text={pageIndex} className="pagination__number-button" />)}
       {/* 현재 페이지 */}
-      <PageButton href={current} text={current} active className={"pagination__number-button"} />
+      <PageButton href={current} text={current} active className="pagination__number-button" />
       {/* 현재 페이지 이후 숫자들 */}
-      {nextPageNumbers.map((pageIndex) => pageIndex <= lastPageNumber && <PageButton key={pageIndex} href={pageIndex} text={pageIndex} className={"pagination__number-button"} />)}
+      {nextPageNumbers.map((pageIndex) => pageIndex <= lastPageNumber && <PageButton key={pageIndex} href={pageIndex} text={pageIndex} className="pagination__number-button" />)}
       {/* 줄임표 버튼 */}
       {lastEllipsis}
       {/* 다음 버튼 */}
-      <PageButton href={current + 1} icon={nextIcon} disabled={nextButtonDisabled} className={"pagination__next-button"} />
+      <PageButton href={current + 1} icon={nextIcon} disabled={nextButtonDisabled} className="pagination__next-button" />
     </div>
   );
 };
