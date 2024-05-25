@@ -8,6 +8,7 @@ import ActiveCheckSvg from "@/component/sidebar/category/ActiveCheckSvg";
 import { getCategoryPageUrl } from "@/route";
 import "./category.scss";
 import useCategoryName from "@/hook/useCategoryName";
+import { usePathname } from "next/navigation";
 
 type ScrollPositionType = "left" | "between" | "right";
 type ScrollDirectionType = Omit<ScrollPositionType, "between">;
@@ -21,6 +22,7 @@ const initialCategoryList = [{ id: "all", name: "All" }];
 function Category({ list }: CategoryProps) {
   // region [Hooks]
 
+  const pathname = usePathname();
   const categoryRef = useRef<HTMLUListElement>(null);
   const [scrollMaxWidth, setScrollMaxWidth] = useState(0);
   const [isScroll, setIsScroll] = useState(false);
@@ -46,9 +48,10 @@ function Category({ list }: CategoryProps) {
     const filteredList = list || [];
     const lowerCaseCategoryName = categoryName?.toLowerCase();
 
-    const currentCategoryIdx = filteredList.findIndex((item) => {
-      return item?.name.toLowerCase() === lowerCaseCategoryName;
-    }) || -1;
+    const currentCategoryIdx =
+      filteredList.findIndex((item) => {
+        return item?.name.toLowerCase() === lowerCaseCategoryName;
+      }) || -1;
 
     if (currentCategoryIdx === -1) {
       return initialCategoryList.concat(filteredList);
@@ -64,7 +67,9 @@ function Category({ list }: CategoryProps) {
 
   const initializeWidth = useCallback(
     createDebounce(() => {
-      if (!categoryRef.current) { return; }
+      if (!categoryRef.current) {
+        return;
+      }
 
       const { innerWidth: fullWidth } = window;
       const { scrollWidth } = categoryRef.current;
@@ -82,7 +87,7 @@ function Category({ list }: CategoryProps) {
 
   const linkClass = useCallback(
     (name: string) => {
-      if ((name === "All" && categoryName === null) || name.toLowerCase() === categoryName?.toLowerCase()) {
+      if ((name === "All" && categoryName === null && !pathname.includes("search")) || name.toLowerCase() === categoryName?.toLowerCase()) {
         return "category__card__item__link--active";
       }
       return "";
