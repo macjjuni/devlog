@@ -5,6 +5,7 @@ import Fallback from "@/app/archive/fallBack";
 import { getNotionCategoryList as _getNotionCategoryList } from "@/api/notion/page";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
+import ArchiveSearchPage from "@/app/archive/search/page";
 
 export async function generateStaticParams() {
   const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
@@ -27,7 +28,7 @@ export async function generateStaticParams() {
 export const revalidate = 60;
 const getCategoryList = cache(_getNotionCategoryList);
 
-export default async function CategoryPage({ params }: { params: { slug: string } }) {
+export default async function ArchiveCategoryPage({ params }: { params: { slug: string } }) {
   const { info, pages, error } = await getCategoryList(params.slug);
 
   if (error || !info) {

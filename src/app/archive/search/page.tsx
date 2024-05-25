@@ -8,7 +8,7 @@ import ArchiveContent from "@/layout/archiveContent/archiveContent";
 export const revalidate = 60;
 const getNotionSearchPages = cache(_getNotionSearchPages);
 
-export default async function CategoryPage({ searchParams }: { searchParams: { q: string } }) {
+export default async function ArchiveSearchPage({ searchParams }: { searchParams: { q: string } }) {
   const { info, searchPages, error } = await getNotionSearchPages(searchParams?.q || "");
 
   if (error || !info) { redirect("/404"); }
