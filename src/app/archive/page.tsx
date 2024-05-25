@@ -1,10 +1,7 @@
 import { Suspense, cache } from "react";
 import { redirect } from "next/navigation";
-import Category from "@/component/sidebar/category/category";
-import Profile from "@/component/sidebar/profile/profile";
-// import Search from "@/component/sidebar/search/search";
-import ArchiveList from "@/component/content/archiveList/archiveList";
-import Pagination from "@/component/content/pagination/pagination";
+import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
+import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import { isNumber } from "@/utils/string";
 import { getNotionPages } from "@/api/notion/page";
 import Fallback from "./fallBack";
@@ -25,14 +22,10 @@ export default async function ArchivePage({ searchParams }: { searchParams: { pa
   return (
     <Suspense fallback={<Fallback />}>
       <aside className="archive__layout__sidebar">
-        <Profile description={info.description} imageUrl={info.coverURL} />
-        {/* TODO. 검색 기능 개발 해야함! */}
-        {/* <Search /> */}
-        <Category list={info.category} />
+        <ArchiveSidebar info={info} />
       </aside>
       <section className="archive__layout__content">
-        <ArchiveList list={pages} />
-        <Pagination total={pages.length} />
+        <ArchiveContent pages={pages} />
       </section>
     </Suspense>
   );

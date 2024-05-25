@@ -1,12 +1,10 @@
-import React, { Suspense } from "react";
+import { cache, Suspense } from "react";
 import notion from "@/lib/noiton";
 import { redirect } from "next/navigation";
 import Fallback from "@/app/archive/fallBack";
-import Profile from "@/component/sidebar/profile/profile";
-// import Search from "@/component/sidebar/search/search";
-import Category from "@/component/sidebar/category/category";
-import ArchiveList from "@/component/content/archiveList/archiveList";
-import Pagination from "@/component/content/pagination/pagination";
+import { getNotionCategoryList as _getNotionCategoryList } from "@/api/notion/page";
+import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
+import ArchiveContent from "@/layout/archiveContent/archiveContent";
 
 export async function generateStaticParams() {
   const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
@@ -26,32 +24,23 @@ export async function generateStaticParams() {
   }
 }
 
-const localDomain = process.env.NEXT_PUBLIC_DOMAIN;
-const revalidate = 60;
-
-export async function getCategoryPosts(categoryName: string) {
-  const res = await fetch(`${localDomain}/api/archive/category?name=${categoryName}`, { next: { revalidate } });
-  return res.json();
-}
+export const revalidate = 60;
+const getCategoryList = cache(_getNotionCategoryList);
 
 export default async function CategoryPage({ params }: { params: { slug: string } }) {
-  const { info, pages, error } = await getCategoryPosts(params.slug);
+  const { info, pages, error } = await getCategoryList(params.slug);
 
-  if (error) {
+  if (error || !info) {
     redirect("/404");
   }
 
   return (
     <Suspense fallback={<Fallback />}>
       <aside className="archive__layout__sidebar">
-        <Profile description={info.description} imageUrl={info.coverURL} />
-        {/* TODO. 검색 기능 개발 해야함! */}
-        {/* <Search /> */}
-        <Category list={info.category} />
+        <ArchiveSidebar info={info} />
       </aside>
       <section className="archive__layout__content">
-        <ArchiveList list={pages} />
-        <Pagination total={pages.length} />
+        <ArchiveContent pages={pages} />
       </section>
     </Suspense>
   );
