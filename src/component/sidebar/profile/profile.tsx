@@ -3,8 +3,8 @@ import Image from "next/image";
 import "./profile.scss";
 
 interface ProfileProps {
-  description: string;
-  imageUrl: string | null;
+  description?: string | null;
+  imageUrl?: string | null;
 }
 
 function Profile({ description, imageUrl }: ProfileProps) {
