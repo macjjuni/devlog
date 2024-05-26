@@ -16,9 +16,9 @@ function ArchiveTitle({ pages }: { pages: NotionPageProps[] }) {
 
   // region [Hooks]
 
-  const archiveTitleText = useMemo(()=> {
+  const archiveTitleText = useMemo(() => {
     if (!categoryName && !keyword) {
-      return 'All'
+      return "All";
     }
     if (categoryName && !keyword) {
       return categoryName;

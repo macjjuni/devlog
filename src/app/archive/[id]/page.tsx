@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-export async function getStaticPaths() {
+export async function generateStaticParams() {
   const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
 
   try {
@@ -32,12 +32,13 @@ export async function getStaticPaths() {
     // Get all Post
     const allPages = await notion.getPages(databaseId);
     // Generate all post paths
-    const paths = allPages.map(({ id }) => ({ params: { id } }));
+    const paths = allPages.map(({ id }) => ({ id }));
+    console.log(paths);
 
-    return { paths, fallback: true };
+    return paths;
   } catch (e) {
     console.error(e);
-    return { paths: [], fallback: true };
+    return [];
   }
 }
 

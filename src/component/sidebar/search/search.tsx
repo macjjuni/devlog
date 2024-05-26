@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useCallback, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { KTextField } from "kku-ui";
 import "./search.scss";
 import { getSearchPageUrl } from "@/route";
@@ -66,15 +66,7 @@ function Search() {
 
   return (
     <div className="search__card">
-      <KTextField
-        value={searchText}
-        onChange={onChangeSearch}
-        onKeyDownEnter={onSearch}
-        className={`search__card__input ${errorClass}`}
-        placeholder="검색"
-        clearable
-        maxLength={100}
-      />
+      <KTextField value={searchText} onChange={onChangeSearch} onKeyDownEnter={onSearch} className={`search__card__input ${errorClass}`} placeholder="검색" clearable maxLength={100} />
     </div>
   );
 }
