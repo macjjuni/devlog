@@ -7,3 +7,11 @@
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+@keyframes errorVibe {
+    0% { transform: rotate(3deg); }
+    25% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+    75% { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
+}

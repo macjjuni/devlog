@@ -27,6 +27,12 @@
             font-weight: 300;
         }
     }
+
+    .search__card__input--error {
+        animation: errorVibe 0.5s ease-in-out 1;
+        transform-origin: center;
+    }
+
 }
 
 @media screen and (max-width: $kku-layout-medium) {
