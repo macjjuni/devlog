@@ -28,27 +28,31 @@
   }
 }
 
-$kku-nav-border: lighten($kku-border-color, 20%);
+$kku-nav-border: lighten($kku-border-color, 40%);
 $kku-nav-border-active: darken($kku-white-color, 24%);
-$kku-navigation-background-color: lighten($kku-background-color, 2%);
+$kku-navigation-background-color: lighten($kku-background-color, 4%);
 
 .navigation__button {
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
   position: relative;
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   padding: 0;
   margin: 0;
   outline: 0;
-  border: 1px solid $kku-nav-border;
+  border: none;
   border-radius: 3px;
   background: transparent;
   transition: 0.3s ease;
   cursor: pointer;
 
   .navigation__button__bar {
-    width: 22px;
-    height: 3px;
+    width: 18px;
+    height: 2px;
     border-radius: 1px;
     background-color: $kku-nav-border;
     transition: inherit;
@@ -104,9 +108,5 @@ $kku-navigation-background-color: lighten($kku-background-color, 2%);
   .navigation { display: none; }
   .navigation__button {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
   }
 }

@@ -1,7 +1,19 @@
 
 .header {
     flex: 0 0 64px;
-    border-bottom: 0.5px solid $kku-border-color;
+
+    &.header--mini {
+        position: fixed;
+        top: 0; left: 50%;
+        width: 100%; height: 56px;
+        transform: translateX(-50%);
+        border-bottom: 0.5px solid $kku-border-color;
+        background-color: rgba(17, 17, 17, 0.64);
+        backdrop-filter: blur(4px);
+        z-index: 100;
+
+        .header__wrapper .header__logo > .header__logo__link { font-size: 24px; }
+    }
 
     .header__wrapper {
         display: flex;
@@ -21,8 +33,18 @@
                 font-size: 28px;
                 font-weight: 900;
                 font-style: italic;
+                transition: font-size 0.3s ease;
             }
         }
+    }
+
+    .header__observer {
+        position: absolute;
+        top: 0;
+        width: 1px;
+        height: 1px;
+        margin: 0;
+        opacity: 0;
     }
 }
 
