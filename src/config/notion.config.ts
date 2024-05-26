@@ -16,7 +16,7 @@ const config = {
   },
   blog: {
     SITE_URL: process.env.SITE_URL || "http://kku.dev", // 도메인
-    SITE_IMAGE: "/api/notion/getSiteImage", // 노션 DB 설명란에 작성된 링크 주소를 가져옴
+    SITE_IMAGE: "/api/notion/siteImage", // 노션 DB 설명란에 작성된 링크 주소를 가져옴
   },
   // 포스팅 관련 설정
   post: {

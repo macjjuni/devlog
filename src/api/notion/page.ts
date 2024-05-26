@@ -1,12 +1,36 @@
 import request from "@/lib/request";
 import notion, { getHeadDescription } from "@/lib/noiton";
 import { getPageTitle } from "notion-utils";
+import config from "@/config/notion.config";
+
+const { blog } = config;
+
+export async function getNotionCoverUrl() {
+  const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
+
+  try {
+    if (!databaseId) {
+      throw new Error("DATABASE_ID is undefined.");
+    }
+
+    const tempInfo = await notion.getNotionInfo(databaseId);
+    const { coverURL } = notion.getParseNotionInfo(tempInfo); // 데이터 가공
+
+    const coverUrl = coverURL || (blog.SITE_IMAGE as string);
+
+    return { coverUrl, error: false };
+  } catch (e) {
+    return { coverUrl: blog.SITE_IMAGE, error: false };
+  }
+}
 
 export async function getNotionPages() {
   const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
 
   try {
-    if (!databaseId) throw new Error("DATABASE_ID is undefined.");
+    if (!databaseId) {
+      throw new Error("DATABASE_ID is undefined.");
+    }
     const tempInfo = await notion.getNotionInfo(databaseId);
     const info = notion.getParseNotionInfo(tempInfo); // 데이터 가공
     const pages = await notion.getPages(databaseId);
@@ -64,7 +88,7 @@ export async function getNotionCategoryList(categoryName: string) {
     }
     return { info, pages, error: false };
   } catch (e) {
-    console.error("NextResponse.redirect");
+    console.error(e);
     return { info: null, pages: [], error: true };
   }
 }
