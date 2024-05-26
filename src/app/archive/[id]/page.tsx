@@ -6,17 +6,21 @@ import { getNotionDetail as _getNotionDetail } from "@/api/notion/page";
 import { cache } from "react";
 import notion from "@/lib/noiton";
 import type { Metadata } from "next";
-import { generateMetaTitle } from "@/utils/meta";
+import { generateMetaTitle, metadata as _metadata } from "@/utils/meta";
 
 export const revalidate = 60;
 const getNotionDetail = cache(_getNotionDetail);
 
-// 동적 메타 태그 설정
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-
   const { title, des } = await getNotionDetail(params.id);
+  const metadataTitle = generateMetaTitle(title || "");
 
-  return { title: generateMetaTitle(title || ""), description: des };
+  return {
+    ..._metadata,
+    title: metadataTitle,
+    description: des,
+    openGraph: { ..._metadata.openGraph, title: metadataTitle },
+  };
 }
 
 export async function getStaticPaths() {

@@ -1,16 +1,18 @@
 import { Suspense, cache } from "react";
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { generateMetaTitle, metadata as _metadata } from "@/utils/meta";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import { isNumber } from "@/utils/string";
 import { getNotionPages } from "@/api/notion/page";
 import Fallback from "./fallBack";
-import type { Metadata } from "next";
-import { generateMetaTitle } from "@/utils/meta";
 
+const metadataTitle = generateMetaTitle("Archive");
 export const metadata: Metadata = {
-  title: generateMetaTitle("Archive"),
-  description: process.env.NEXT_PUBLIC_DESCRIPTION,
+  ..._metadata,
+  title: metadataTitle,
+  openGraph: { ..._metadata.openGraph, title: metadataTitle },
 };
 
 export const revalidate = 60;

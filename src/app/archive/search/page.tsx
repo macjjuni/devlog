@@ -5,12 +5,14 @@ import { getNotionSearchPages as _getNotionSearchPages } from "@/api/notion/page
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import type { Metadata } from "next";
-import { generateMetaTitle } from "@/utils/meta";
+import { generateMetaTitle, metadata as _metadata } from "@/utils/meta";
 
 export async function generateMetadata({ searchParams }: { searchParams: { q: string } }): Promise<Metadata> {
+  const metadataTitle = generateMetaTitle(`검색: ${searchParams.q}`);
   return {
-    title: generateMetaTitle(`검색: ${searchParams.q}`),
-    description: process.env.NEXT_PUBLIC_DESCRIPTION,
+    ..._metadata,
+    title: metadataTitle,
+    openGraph: { ..._metadata.openGraph, title: metadataTitle },
   };
 }
 
