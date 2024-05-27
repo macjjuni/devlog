@@ -5,6 +5,7 @@ import useCategoryName from "@/hook/useCategoryName";
 import type { NotionPageProps } from "@/@types/notion";
 import "./archiveTitle.scss";
 import useSearchText from "@/hook/useSearchText";
+import ArchiveTitleIcon from "@/component/content/archiveTitle/archiveTitleIcon";
 
 function ArchiveTitle({ pages }: { pages: NotionPageProps[] }) {
   // region [Hooks]
@@ -17,21 +18,20 @@ function ArchiveTitle({ pages }: { pages: NotionPageProps[] }) {
   // region [Hooks]
 
   const archiveTitleText = useMemo(() => {
-    if (!categoryName && !keyword) {
-      return "All";
-    }
     if (categoryName && !keyword) {
       return categoryName;
     }
     if (!categoryName && keyword) {
       return keyword;
     }
+    return "All";
   }, [categoryName, keyword]);
 
   // endregion
 
   return (
     <h2 className="archive__title">
+      <ArchiveTitleIcon title={archiveTitleText} />
       {archiveTitleText}
       {`(${pages.length})`}
     </h2>
