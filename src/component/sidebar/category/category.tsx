@@ -9,6 +9,7 @@ import { getCategoryPageUrl } from "@/route";
 import "./category.scss";
 import useCategoryName from "@/hook/useCategoryName";
 import { usePathname } from "next/navigation";
+import { KIcon } from "kku-ui";
 
 type ScrollPositionType = "left" | "between" | "right";
 type ScrollDirectionType = Omit<ScrollPositionType, "between">;
@@ -141,8 +142,8 @@ function Category({ list }: CategoryProps) {
   return (
     <div className="category__card">
       {isLeftScrollIcon && (
-        <button type="button" className="category__card__scroll-action-icon-start" onClick={() => onScrollAction("left")}>
-          &#60;
+        <button type="button" className="category__card__scroll-action-start__button" onClick={() => onScrollAction("left")}>
+          <KIcon icon={"keyboard_arrow_down"} className="category__card__scroll-action-start__button-icon" size={24} />
         </button>
       )}
       <ul ref={categoryRef} className="category__card__list" onScroll={onScroll}>
@@ -157,8 +158,8 @@ function Category({ list }: CategoryProps) {
         ))}
       </ul>
       {isRightScrollIcon && (
-        <button type="button" className="category__card__scroll-action-icon-end" onClick={() => onScrollAction("right")}>
-          &#62;
+        <button type="button" className="category__card__scroll-action-end__button" onClick={() => onScrollAction("right")}>
+          <KIcon icon={"keyboard_arrow_down"} className="category__card__scroll-action-end__button-icon" size={24} />
         </button>
       )}
     </div>

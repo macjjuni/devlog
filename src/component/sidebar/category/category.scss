@@ -74,7 +74,7 @@
         }
     }
 
-    .category__card__scroll-action-icon-start, .category__card__scroll-action-icon-end {
+    .category__card__scroll-action-start__button, .category__card__scroll-action-end__button {
         display: none;
     }
 }
@@ -111,13 +111,13 @@
             }
         }
 
-        .category__card__scroll-action-icon-start, .category__card__scroll-action-icon-end {
+        .category__card__scroll-action-start__button, .category__card__scroll-action-end__button {
             @include flex-center;
             position: absolute;
             top: 2px;
             width: 24px;
             height: 30px;
-            padding: $kku-padding-sm;
+            padding: 0;
             font-size: $kku-font-size-heading-4;
             border: none;
             color: $kku-white-color;
@@ -136,17 +136,25 @@
             }
         }
 
-        .category__card__scroll-action-icon-start {
+        .category__card__scroll-action-start__button {
             left: 0;
             justify-content: flex-start;
 
             &:after { right: 0; }
+
+            .category__card__scroll-action-start__button-icon {
+                transform: rotate(90deg);
+            }
         }
-        .category__card__scroll-action-icon-end {
+        .category__card__scroll-action-end__button {
             right: 0;
             justify-content: flex-end;
 
             &:after { left: 0; }
+
+            .category__card__scroll-action-end__button-icon {
+                transform: rotate(-90deg);
+            }
         }
     }
 }
