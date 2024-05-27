@@ -1,12 +1,13 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import useMediaScreen from "@/hook/useMediaScreen";
 import routes from "@/route";
 import Link from "next/link";
 import NavigationList from "@/component/common/navigation/navigationList";
 import "./navigation.scss";
-import useMediaScreen from "@/hook/useMediaScreen";
+import useOutsideClick from "@/hook/useOutsideClick";
 
 export default function Navigation() {
   // region [Hooks]
@@ -14,6 +15,8 @@ export default function Navigation() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const pathname = usePathname();
   const isMobile = useMediaScreen("sm");
+  const navListRef = useRef<HTMLDivElement>(null);
+  const isOutsideClick = useOutsideClick(navListRef.current, isNavOpen && isMobile !== null && isMobile);
 
   // endregion
 
@@ -51,17 +54,27 @@ export default function Navigation() {
     setIsNavOpen((prev) => !prev);
   }, []);
 
+  const onCloseNaviagation = useCallback(() => {
+    setIsNavOpen(false);
+  }, []);
+
   // endregion
 
   // region [Privates]
 
   const closeNavigationList = useCallback(() => {
-    setIsNavOpen(false);
+    onCloseNaviagation();
   }, []);
 
   // endregion
-  //
+
   // region [Effects]
+
+  useEffect(() => {
+    if (isOutsideClick) {
+      setIsNavOpen(false);
+    }
+  }, [isOutsideClick]);
 
   // endregion
 
@@ -75,13 +88,15 @@ export default function Navigation() {
         ))}
       </nav>
 
-      <button type="button" aria-label="menu" className={`navigation__button ${mobileButtonClass}`} onClick={onClickNavigationButton}>
-        <span className="navigation__button__bar" />
-        <span className="navigation__button__bar" />
-        <span className="navigation__button__bar" />
-      </button>
+      <div ref={navListRef}>
+        <button type="button" aria-label="menu" className={`navigation__button ${mobileButtonClass}`} onClick={onClickNavigationButton}>
+          <span className="navigation__button__bar" />
+          <span className="navigation__button__bar" />
+          <span className="navigation__button__bar" />
+        </button>
 
-      {isMobile && <NavigationList isOpen={isNavOpen} close={closeNavigationList} />}
+        {isMobile && <NavigationList isOpen={isNavOpen} close={closeNavigationList} />}
+      </div>
     </>
   );
 }

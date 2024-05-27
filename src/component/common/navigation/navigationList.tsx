@@ -1,9 +1,9 @@
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import { usePathname } from "next/navigation";
 import routes from "@/route";
 import Link from "next/link";
 import ActiveCheckSvg from "@/component/sidebar/category/ActiveCheckSvg";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const navMotion = {
   initial: { opacity: 0, y: "-8px", zIndex: -1 },
@@ -15,6 +15,7 @@ export default function NavigationList({ isOpen, close }: { isOpen: boolean; clo
   // region [Hooks]
 
   const pathname = usePathname();
+  const navListRef = useRef<HTMLDivElement>(null);
 
   // endregion
 
@@ -32,43 +33,23 @@ export default function NavigationList({ isOpen, close }: { isOpen: boolean; clo
 
   // endregion
 
-  // region [Privates]
-
-  // const clickFilter = (e: UIEvent) => {
-  //   console.log(e);
-  // };
-  //
-  // // endregion
-  //
-  // // region [Effects]
-  //
-  // useEffect(() => {
-  //   console.log(isOpen);
-  //   if (isOpen) {
-  //     window.addEventListener("click", clickFilter);
-  //   } else {
-  //     window.removeEventListener("click", clickFilter);
-  //   }
-  // }, [isOpen]);
-
-  // endregion
-
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div {...navMotion} className="navigation__list__wrapper">
-          <ul className="navigation__list">
-            {routes.map((route) => (
-              <li key={route.id} className="navigation__list__item">
-                <Link href={route.path} className={`navigation__list__item__link ${navLinkClass(route.path)}`} onClick={close}>
-                  <ActiveCheckSvg className="navigation__list__item__link__check-icon" />
-                  {route.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+      <motion.div ref={navListRef} className="navigation__list__wrapper" {...navMotion}>
+        <ul className="navigation__list">
+          {routes.map((route) => (
+            <li key={route.id} className="navigation__list__item">
+              <Link href={route.path} className={`navigation__list__item__link ${navLinkClass(route.path)}`} onClick={close}>
+                <ActiveCheckSvg className="navigation__list__item__link__check-icon" />
+                {route.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </motion.div>
       )}
     </AnimatePresence>
+
   );
 }
