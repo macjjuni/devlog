@@ -88,7 +88,7 @@ export default function Navigation() {
         ))}
       </nav>
 
-      <div ref={navListRef}>
+      <div ref={navListRef} className={"navigation__button__container"}>
         <button type="button" aria-label="menu" className={`navigation__button ${mobileButtonClass}`} onClick={onClickNavigationButton}>
           <span className="navigation__button__bar" />
           <span className="navigation__button__bar" />
