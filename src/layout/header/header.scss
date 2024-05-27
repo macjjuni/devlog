@@ -2,34 +2,40 @@
 .header {
     flex: 0 0 64px;
 
-    &.header--mini {
+    &.header--mini  .header__wrapper {
         position: fixed;
-        top: 0; left: 50%;
-        width: 100%; height: 56px;
-        transform: translateX(-50%);
+        top: 0;
+        left: 50%;
+        width: 100%;
+        height: 48px;
         border-bottom: 0.5px solid $kku-border-color;
         background-color: rgba(17, 17, 17, 0.64);
         backdrop-filter: blur(4px);
+        transform: translateX(-50%);
         z-index: 100;
 
-        .header__wrapper .header__logo > .header__logo__link { font-size: 24px; }
+        .header__wrapper__container    .header__logo > .header__logo__link {
+            font-size: 24px;
+        }
     }
 
     .header__wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        max-width: $kku-layout-large;
-        width: 100%;
+        max-height: 64px;
         height: 100%;
 
-        margin: 0 auto;
-        padding: 0 $kku-padding-xl;
+        .header__wrapper__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-        .header__logo {
+            max-width: $kku-layout-large;
+            width: 100%;
+            height: 100%;
 
-            .header__logo__link {
+            margin: 0 auto;
+            padding: 0 $kku-padding-xl;
+
+            .header__logo  .header__logo__link {
                 font-size: 28px;
                 font-weight: 900;
                 font-style: italic;
@@ -52,7 +58,7 @@
 @media screen and (max-width: $kku-layout-medium) {
     .header {
 
-        .header__wrapper { padding: 0 $kku-padding-lg; }
+        .header__wrapper > .header__wrapper__container {  padding: 0 $kku-padding-lg; }
         .header__wrapper > .header__logo > .header__logo__link { font-size: 28px; }
     }
 }
@@ -60,7 +66,7 @@
 @media screen and (max-width: $kku-layout-small) {
     .header {
 
-        .header__wrapper { padding: 0 $kku-padding-lg; }
+        .header__wrapper > .header__wrapper__container {  padding: 0 $kku-padding-lg; }
         .header__wrapper > .header__logo > .header__logo__link { font-size: 28px; }
     }
 }

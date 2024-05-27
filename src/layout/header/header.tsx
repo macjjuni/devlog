@@ -29,13 +29,16 @@ export default function Header() {
   return (
     <header className={`header ${rootClass}`}>
       <div className="header__wrapper">
-        <h1 className="header__logo">
-          <Link href="/" className="header__logo__link">
-            {logoText}
-          </Link>
-        </h1>
+        <div className="header__wrapper__container">
 
-        <Navigation />
+          <h1 className="header__logo">
+            <Link href="/" className="header__logo__link">
+              {logoText}
+            </Link>
+          </h1>
+
+          <Navigation />
+        </div>
       </div>
     </header>
   );
