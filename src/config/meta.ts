@@ -24,8 +24,9 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
+    card: "summary_large_image",
     title: process.env.NEXT_PUBLIC_TITLE,
     description: process.env.NEXT_PUBLIC_DESCRIPTION,
-    images: process.env.NEXT_PUBLIC_TITLE,
+    images: [process.env.NEXT_PUBLIC_TITLE as string],
   },
 };

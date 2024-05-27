@@ -13,7 +13,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     ..._metadata,
     title: metadataTitle,
-    openGraph: { ..._metadata.openGraph, title: metadataTitle },
+    openGraph: {
+      ..._metadata.openGraph,
+      title: metadataTitle,
+    },
+    twitter: {
+      ..._metadata.twitter,
+      title: metadataTitle,
+    },
   };
 }
 

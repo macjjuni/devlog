@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     twitter: {
       title: metadataTitle,
       description: metadataDescription,
-      images: metadataImage,
+      images: [metadataImage],
     },
   };
 }

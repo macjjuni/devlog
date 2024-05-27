@@ -7,7 +7,14 @@ const metadataTitle = generateMetaTitle("Resume");
 export const metadata: Metadata = {
   ..._metadata,
   title: metadataTitle,
-  openGraph: { ..._metadata.openGraph, title: metadataTitle },
+  openGraph: {
+    ..._metadata.openGraph,
+    title: metadataTitle,
+  },
+  twitter: {
+    ..._metadata.twitter,
+    title: metadataTitle,
+  },
 };
 
 export default function ResumePage() {

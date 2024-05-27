@@ -12,7 +12,14 @@ export async function generateMetadata({ searchParams }: { searchParams: { q: st
   return {
     ..._metadata,
     title: metadataTitle,
-    openGraph: { ..._metadata.openGraph, title: metadataTitle },
+    openGraph: {
+      ..._metadata.openGraph,
+      title: metadataTitle,
+    },
+    twitter: {
+      ..._metadata.twitter,
+      title: metadataTitle,
+    },
   };
 }
 
