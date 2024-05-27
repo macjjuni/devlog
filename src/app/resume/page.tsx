@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { generateMetaTitle, metadata as _metadata } from "@/utils/meta";
+import { generateMetaTitle, metadata as _metadata } from "@/config/meta";
 import SquareLoad from "@/component/lottie/squareLoad/squareLoad";
 import ResumeLayout from "./pageLayout";
 

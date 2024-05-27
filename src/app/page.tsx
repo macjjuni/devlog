@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { generateMetaTitle, metadata as _metadata } from "@/utils/meta";
+import { generateMetaTitle, metadata as _metadata } from "@/config/meta";
 import PageLayout from "@/app/page/layout";
 import SocialLink from "@/component/content/socialLink/socialLink";
 

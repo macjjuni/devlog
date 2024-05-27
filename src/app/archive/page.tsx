@@ -1,7 +1,7 @@
 import { Suspense, cache } from "react";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { generateMetaTitle, metadata as _metadata } from "@/utils/meta";
+import { generateMetaTitle, metadata as _metadata } from "@/config/meta";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import { isNumber } from "@/utils/string";

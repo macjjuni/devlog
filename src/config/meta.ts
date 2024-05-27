@@ -23,4 +23,9 @@ export const metadata: Metadata = {
     locale: "ko",
     type: "website",
   },
+  twitter: {
+    title: process.env.NEXT_PUBLIC_TITLE,
+    description: process.env.NEXT_PUBLIC_DESCRIPTION,
+    images: process.env.NEXT_PUBLIC_TITLE,
+  },
 };

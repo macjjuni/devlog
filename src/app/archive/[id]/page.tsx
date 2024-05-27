@@ -6,7 +6,7 @@ import { getNotionDetail as _getNotionDetail } from "@/api/notion/page";
 import { cache } from "react";
 import notion from "@/lib/noiton";
 import type { Metadata } from "next";
-import { generateMetaTitle, metadata as _metadata } from "@/utils/meta";
+import { generateMetaTitle, metadata as _metadata } from "@/config/meta";
 
 export const revalidate = 60;
 const getNotionDetail = cache(_getNotionDetail);
