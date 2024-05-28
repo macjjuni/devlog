@@ -3,7 +3,7 @@
 import { memo, UIEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { createDebounce, createThrottle } from "@/utils/lodash";
-import { ICategory } from "@/@types/notion";
+import { ICategory, SelectPropertyResponse } from "@/@types/notion";
 import ActiveCheckSvg from "@/component/sidebar/category/ActiveCheckSvg";
 import { getCategoryPageUrl } from "@/route";
 import "./category.scss";
@@ -18,7 +18,7 @@ interface CategoryProps {
   list?: ICategory;
 }
 
-const initialCategoryList = [{ id: "all", name: "All" }];
+const initialCategoryList: SelectPropertyResponse[] = [{ id: "all", name: "All", description: "", color: "default" }];
 
 function Category({ list }: CategoryProps) {
   // region [Hooks]
@@ -46,17 +46,25 @@ function Category({ list }: CategoryProps) {
   }, []);
 
   const sanitizedList = useMemo(() => {
-    const filteredList = list || [];
+    const filteredList: ICategory = list || [];
     const lowerCaseCategoryName = categoryName?.toLowerCase();
 
-    const currentCategoryIdx = filteredList.findIndex((item) => (
-      (item?.name.toLowerCase() === lowerCaseCategoryName) || -1));
+    // Archive 메인 경로 접속
+    if (lowerCaseCategoryName === undefined) {
+      return initialCategoryList.concat(filteredList);
+    }
+    // category 페이지 접속
+    const currentCategoryIdx = filteredList.findIndex((item) => {
+      return item?.name.toLowerCase() === lowerCaseCategoryName;
+    });
 
+    // 잘 못된 Category 인 경우
     if (currentCategoryIdx === -1) {
       return initialCategoryList.concat(filteredList);
     }
-
+    // 현재 Category 객체를 All 아래에 위치 시키고 반환
     const currentCategory = { ...filteredList[currentCategoryIdx] };
+
     const remainingCategories = filteredList?.filter((item) => {
       return item.name.toLowerCase() !== lowerCaseCategoryName;
     });
