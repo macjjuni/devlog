@@ -6,6 +6,7 @@ export type SelectPropertyResponse = {
   id: string;
   name: string;
   color: SelectColor;
+  description: string | null;
 };
 
 export type ICategory = SelectPropertyResponse[] | null;

@@ -5,22 +5,10 @@ import { getNotionSearchPages as _getNotionSearchPages } from "@/api/notion/page
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import type { Metadata } from "next";
-import { generateMetaTitle, metadata as _metadata } from "@/config/meta";
+import { getMetadata } from "@/config/meta";
 
 export async function generateMetadata({ searchParams }: { searchParams: { q: string } }): Promise<Metadata> {
-  const metadataTitle = generateMetaTitle(`검색: ${searchParams.q}`);
-  return {
-    ..._metadata,
-    title: metadataTitle,
-    openGraph: {
-      ..._metadata.openGraph,
-      title: metadataTitle,
-    },
-    twitter: {
-      ..._metadata.twitter,
-      title: metadataTitle,
-    },
-  };
+  return getMetadata(`검색: ${searchParams.q}`, null, `search?q=${searchParams.q}`, null);
 }
 
 export const revalidate = 60;

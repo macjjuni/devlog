@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import { generateMetaTitle, metadata as _metadata } from "@/config/meta";
+import { getMetadata } from "@/config/meta";
 import PageLayout from "@/app/page/layout";
 import SocialLink from "@/component/content/socialLink/socialLink";
 
-const metadataTitle = generateMetaTitle("About");
-export const metadata: Metadata = {
-  ..._metadata,
-  title: metadataTitle,
-  openGraph: { ..._metadata.openGraph, title: metadataTitle },
-};
+export const metadata: Metadata = getMetadata("About", null, null, null);
 
 export default function AboutPage() {
   return (

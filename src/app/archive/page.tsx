@@ -1,26 +1,14 @@
-import { Suspense, cache } from "react";
+import { cache, Suspense } from "react";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { generateMetaTitle, metadata as _metadata } from "@/config/meta";
+import { getMetadata } from "@/config/meta";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import { isNumber } from "@/utils/string";
 import { getNotionPages } from "@/api/notion/page";
 import Fallback from "./fallBack";
 
-const metadataTitle = generateMetaTitle("Archive");
-export const metadata: Metadata = {
-  ..._metadata,
-  title: metadataTitle,
-  openGraph: {
-    ..._metadata.openGraph,
-    title: metadataTitle,
-  },
-  twitter: {
-    ..._metadata.twitter,
-    title: metadataTitle,
-  },
-};
+export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
 
 export const revalidate = 60;
 const getPages = cache(getNotionPages);

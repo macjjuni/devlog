@@ -1,21 +1,9 @@
 import type { Metadata } from "next";
-import { generateMetaTitle, metadata as _metadata } from "@/config/meta";
+import { getMetadata } from "@/config/meta";
 import SquareLoad from "@/component/lottie/squareLoad/squareLoad";
 import ResumeLayout from "./pageLayout";
 
-const metadataTitle = generateMetaTitle("Resume");
-export const metadata: Metadata = {
-  ..._metadata,
-  title: metadataTitle,
-  openGraph: {
-    ..._metadata.openGraph,
-    title: metadataTitle,
-  },
-  twitter: {
-    ..._metadata.twitter,
-    title: metadataTitle,
-  },
-};
+export const metadata: Metadata = getMetadata("Resume", null, "resume", null);
 
 export default function ResumePage() {
   return (

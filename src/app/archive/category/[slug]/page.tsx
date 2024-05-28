@@ -6,22 +6,10 @@ import { getNotionCategoryList as _getNotionCategoryList } from "@/api/notion/pa
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import type { Metadata } from "next";
-import { generateMetaTitle, metadata as _metadata } from "@/config/meta";
+import { getMetadata } from "@/config/meta";
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const metadataTitle = generateMetaTitle(`Archive - ${params.slug}`);
-  return {
-    ..._metadata,
-    title: metadataTitle,
-    openGraph: {
-      ..._metadata.openGraph,
-      title: metadataTitle,
-    },
-    twitter: {
-      ..._metadata.twitter,
-      title: metadataTitle,
-    },
-  };
+  return getMetadata(`Archive - ${params.slug}`, null, `archive/${params.slug}`, null);
 }
 
 export async function generateStaticParams() {
