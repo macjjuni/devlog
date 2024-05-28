@@ -39,7 +39,7 @@ const defaultPageUrl = process.env.NEXT_PUBLIC_DOMAIN as string;
 const defaultImageUrl = `${process.env.NEXT_PUBLIC_DOMAIN}${config.blog.SITE_IMAGE}`;
 
 export function getMetadata(_title: MetadataPropsType, _description: MetadataPropsType, _pageUrl: MetadataPropsType, _imageUrl: MetadataPropsType): Metadata {
-  const title = _title ? generateMetaTitle(_title) : defaultTitle ;
+  const title = _title ? generateMetaTitle(_title) : defaultTitle;
   const description = _description || defaultDescription;
   const pageUrl = new URL(_pageUrl ? `${process.env.NEXT_PUBLIC_DOMAIN}/${_pageUrl}` : defaultPageUrl);
   const imageUrl = _imageUrl || defaultImageUrl;
