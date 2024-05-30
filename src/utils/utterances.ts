@@ -15,7 +15,7 @@ export const appendUtter = (dom: HTMLElement) => {
   scriptEl.setAttribute("issue-term", "url");
   scriptEl.setAttribute("theme", "github-dark");
   scriptEl.setAttribute("label", "💬 Discussion");
-  dom.appendChild(scriptEl);
+  dom.prepend(scriptEl);
 };
 
 // utterances 삽입 유무

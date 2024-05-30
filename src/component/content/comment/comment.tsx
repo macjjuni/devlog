@@ -18,5 +18,9 @@ export default function Comment() {
     appendUtter(commentDom); // 렌더링 안 됐으면 스크립트 삽입 로직 실행!
   }, []);
 
-  return <section ref={commentRef} id={commentElemetId} className="comment__wrapper" />;
+  return (
+    <section ref={commentRef} id={commentElemetId} className="comment__wrapper">
+      <div className="comment__blank" />
+    </section>
+  );
 }
