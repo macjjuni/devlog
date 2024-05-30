@@ -6,10 +6,10 @@ import ActiveCheckSvg from "@/component/sidebar/category/ActiveCheckSvg";
 import { AnimatePresence, motion } from "framer-motion";
 
 const navMotion = {
-  initial: { opacity: 0, y: "-8px", zIndex: -1 },
+  initial: { opacity: 0, y: "-12px", zIndex: -1 },
   animate: { opacity: 1, y: "0", zIndex: 100 },
-  exit: { opacity: 0, y: "-8px", zIndex: -1 },
-  transition: { type: "spring", duration: 0.33 },
+  exit: { opacity: 0, y: "-12px", zIndex: -1 },
+  transition: { type: "spring", duration: 0.3 },
 };
 export default function NavigationList({ isOpen, close }: { isOpen: boolean; close: () => void }) {
   // region [Hooks]

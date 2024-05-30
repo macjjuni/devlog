@@ -56,6 +56,7 @@ $kku-navigation-background-color: lighten($kku-background-color, 4%);
     background: transparent;
     transition: 0.3s ease;
     cursor: pointer;
+    user-select: none;
 
     .navigation__button__bar {
       width: 18px;
@@ -96,7 +97,7 @@ $kku-navigation-background-color: lighten($kku-background-color, 4%);
     width: 100%;
     padding: 10px 16px;
     color: darken($kku-white-color, 8%);
-    @include font-sub-title-2;
+    @include font-sub-title-3;
 
     .navigation__list__item__link__check-icon {
       display: none;

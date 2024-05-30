@@ -28,6 +28,7 @@
 
     .archive__layout {
         flex-direction: column;
+        gap: 24px;
 
         .archive__layout__sidebar { max-width: 100%; }
         .archive__layout__content {max-width: 100%;}
