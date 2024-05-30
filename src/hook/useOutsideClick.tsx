@@ -9,11 +9,9 @@ export default function useOutsideClick(ref: HTMLElement | null, isCheck: boolea
 
   const handleClickOutside = useCallback(
     (ev: globalThis.MouseEvent | globalThis.TouchEvent) => {
-      console.log(ref, ev.target);
       if (!ref || !ev.target) {
         return;
       }
-      console.log(!ref?.contains(ev.target as Node));
 
       setIsOutsideClick(!ref?.contains(ev.target as Node));
     },
