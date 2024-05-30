@@ -1,11 +1,12 @@
 import React, { ReactNode } from "react";
 import type { Viewport } from "next";
 import { Footer, Header, Main } from "@/layout";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import SplineWrapper from "@/component/content/spline/spline";
 import PageLoader from "@/component/common/pageLoader/pageLoader";
+import HeaderObserver from "@/layout/header/headerObserver";
 import "./layout.scss";
 import "kku-ui/lib/styles/index.css";
-import HeaderObserver from "@/layout/header/headerObserver";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Footer />
         </div>
       </body>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
     </html>
   );
 }
