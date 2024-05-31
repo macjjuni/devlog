@@ -6,8 +6,8 @@ import { extractNumbers } from "@/utils/string";
 import { createThrottle } from "@/utils/lodash";
 
 const smallSize = Number(extractNumbers(variable.kkuLayoutSmall));
-const mediumSize = Number(extractNumbers(variable.kkuLayoutSmall));
-const largeSize = Number(extractNumbers(variable.kkuLayoutSmall));
+const mediumSize = Number(extractNumbers(variable.kkuLayoutMedium));
+const largeSize = Number(extractNumbers(variable.kkuLayoutLarge));
 
 export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
   // region [Hooks]
@@ -22,18 +22,38 @@ export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
     createThrottle(() => {
       const width = window.innerWidth;
 
-      if (screenMode === "sm" && width <= smallSize) {
-        setStatus(true);
-      } else if (screenMode === "md" && width <= mediumSize) {
-        setStatus(true);
-      } else if (screenMode === "lg" && width <= largeSize) {
-        setStatus(true);
-      } else {
-        setStatus(false);
+      if (screenMode === "sm") {
+        if (width <= smallSize) {
+          setStatus(true);
+        } else {
+          setStatus(false);
+        }
+        return;
       }
+
+      if (screenMode === "md") {
+        if (width > smallSize && width <= mediumSize) {
+          setStatus(true);
+        } else {
+          setStatus(false);
+        }
+        return;
+      }
+
+      if (screenMode === "lg") {
+        if (width > mediumSize) {
+          setStatus(true);
+        } else {
+          setStatus(false);
+        }
+        return;
+      }
+
+      setStatus(false);
     }, 240),
-    []
+    [screenMode, smallSize, mediumSize, largeSize]
   );
+
 
   const eventRegistered = useCallback(() => {
     window.addEventListener("resize", onResized);
