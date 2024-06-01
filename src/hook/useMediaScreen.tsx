@@ -51,9 +51,8 @@ export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
 
       setStatus(false);
     }, 240),
-    [screenMode, smallSize, mediumSize, largeSize]
+    [screenMode, smallSize, mediumSize, largeSize],
   );
-
 
   const eventRegistered = useCallback(() => {
     window.addEventListener("resize", onResized);
