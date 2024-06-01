@@ -3,21 +3,28 @@
 import { memo, useState, useRef, useEffect, useCallback, useMemo } from "react";
 import useMediaScreen from "@/hook/useMediaScreen";
 import { KButton } from "kku-ui";
-import { getBtcRangeData } from "@/api/bitcoin/coinGecko";
+import { getBtcRangeData } from "@/api/bitcoin/marketChart";
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, Tooltip, Legend, LineElement } from "chart.js";
-import { type ChartData } from "@/component/sidebar/bitcoinChart/bitcoinChart.interface";
+import type { ChartData, MarketChartDaysList } from "@/component/sidebar/bitcoinChart/bitcoinMarketChart.interface";
 import { getChartDataset, getLastArrayValue } from "@/component/sidebar/bitcoinChart/chart";
-import "./bitcoinChart.scss";
+import "./bitcoinMarketChart.scss";
 
 // Chart.js 컴포넌트 등록
 ChartJS.register(CategoryScale, LinearScale, PointElement, Tooltip, Legend, LineElement);
 
-function BitcoinChart() {
+const marketChartDays: MarketChartDaysList[] = [
+  { text: "1D", value: 1 },
+  { text: "1W", value: 7 },
+  { text: "1M", value: 30 },
+  { text: "1Y", value: 365 },
+];
+
+function BitcoinMarketChart() {
   // region [Hooks]
 
   const [cost, setCost] = useState<string>("");
-  const [days, setDays] = useState<1 | 7 | 30 | 365>(7);
+  const [days, setDays] = useState<1 | 7 | 30 | 365>(1);
   const [chartData, setChartData] = useState<ChartData>({
     labels: [],
     datasets: [],
@@ -33,6 +40,7 @@ function BitcoinChart() {
   // region [Privates]
 
   const setCostTransparent = useCallback((isTransparent: boolean) => {
+
     if (!isTransparent) {
       costRef.current?.classList.add("bitcoin__chart__title__cost__loaded");
     } else {
@@ -40,7 +48,15 @@ function BitcoinChart() {
     }
   }, []);
 
+  const isActiveButtonClass = useCallback((value: number) => {
+
+    if (days === value) { return "bitcoin__chart__button--active"; }
+
+    return "";
+  }, [days]);
+
   const calculateDelay = useMemo(() => {
+
     const dataLength = chartData.datasets[0]?.data.length || 365;
 
     return dataLength / 900;
@@ -55,19 +71,21 @@ function BitcoinChart() {
   // region [Transaction]
 
   const getListBtcPrice = useCallback(() => {
+
     setCostTransparent(true);
-    getBtcRangeData(days)
-      .then((data) => {
-        setChartData({
-          labels: data.date.map((timestamp) => new Date(timestamp).toLocaleDateString()), // 날짜를 라벨로 설정
-          datasets: [getChartDataset(data.price)],
-        });
-        const costValue = getLastArrayValue(data).toFixed(2);
-        setCost(costValue);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
+
+    getBtcRangeData(days).then((data) => {
+
+      setChartData({
+        labels: data.date.map((timestamp) => new Date(timestamp).toLocaleDateString()), // 날짜를 라벨로 설정
+        datasets: [getChartDataset(data.price)],
       });
+
+      const costValue = getLastArrayValue(data).toFixed(2);
+      setCost(costValue);
+    }).catch((error) => {
+      console.error("Error fetching data:", error);
+    });
   }, [days]);
 
   // endregion
@@ -78,9 +96,7 @@ function BitcoinChart() {
   // region [Effects]
 
   useEffect(() => {
-    if (isTablet !== null) {
-      chartRef.current!.resize();
-    }
+    if (isTablet !== null) { chartRef.current!.resize(); }
   }, [isTablet]);
 
   useEffect(() => {
@@ -138,21 +154,14 @@ function BitcoinChart() {
         }}
       />
       <div className="bitcoin__chart__button__group">
-        <KButton onClick={() => changeDays(1)} className="bitcoin__chart__button" small>
-          1D
-        </KButton>
-        <KButton onClick={() => changeDays(7)} className="bitcoin__chart__button" small>
-          1W
-        </KButton>
-        <KButton onClick={() => changeDays(30)} className="bitcoin__chart__button" small>
-          1M
-        </KButton>
-        <KButton onClick={() => changeDays(365)} className="bitcoin__chart__button" small>
-          1Y
-        </KButton>
+        {marketChartDays.map((marketChartDay) => (
+          <KButton key={marketChartDay.value} className={`bitcoin__chart__button ${isActiveButtonClass(marketChartDay.value)}`} small onClick={() => changeDays(marketChartDay.value)}>
+            {marketChartDay.text}
+          </KButton>
+        ))}
       </div>
     </div>
   );
 }
 
-export default memo(BitcoinChart);
+export default memo(BitcoinMarketChart);

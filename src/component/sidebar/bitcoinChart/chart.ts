@@ -1,5 +1,4 @@
-import { FormattedData } from "@/api/bitcoin/coinGecko";
-
+import { MarketChartFormattedData } from "@/api/bitcoin/marketChart.interface";
 
 export const getChartDataset = (data: number[]) => {
   return {
@@ -11,6 +10,6 @@ export const getChartDataset = (data: number[]) => {
   };
 };
 
-export const getLastArrayValue = (data: FormattedData) => {
+export const getLastArrayValue = (data: MarketChartFormattedData) => {
   return data.price[data.price.length - 1];
 };

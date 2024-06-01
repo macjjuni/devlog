@@ -10,7 +10,7 @@
     gap: 4px;
     font-weight: 500;
     padding: 0 $kku-padding-md;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 
     .bitcoin__chart__title__text {
       @include font-sub-title-3;
@@ -47,6 +47,11 @@
         border-radius: 4px 0 0 4px;
       }
       &:last-child { border-radius: 0 4px 4px 0; }
+
+      &.bitcoin__chart__button--active {
+        color: $kku-black-color;
+        background-color: $kku-white-color;
+      }
     }
   }
 }

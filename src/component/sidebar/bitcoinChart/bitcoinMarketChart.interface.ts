@@ -8,3 +8,9 @@ export interface ChartData {
     fill: boolean;
   }[];
 }
+
+export type MarketChartDays = 1 | 7 | 30 | 365;
+export interface MarketChartDaysList {
+  text: string
+  value: MarketChartDays
+}
