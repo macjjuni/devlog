@@ -1,0 +1,52 @@
+
+.bitcoin__chart {
+  padding: 16px 0;
+  border: 0.5px solid $kku-border-color;
+  border-radius: 4px;
+
+  .bitcoin__chart__title {
+    @include flex-center;
+    flex-direction: column;
+    gap: 4px;
+    font-weight: 500;
+    padding: 0 $kku-padding-md;
+    margin-bottom: 12px;
+
+    .bitcoin__chart__title__text {
+      @include font-sub-title-3;
+    }
+
+    .bitcoin__chart__title__cost {
+      @include font-heading-3;
+      opacity: 0;
+      transition: opacity 0.13s ease;
+
+      &.bitcoin__chart__title__cost__loaded {
+        opacity: 1;
+      }
+    }
+  }
+
+  .bitcoin__chart__button__group {
+    @include flex-center;
+    margin-top: 16px;
+
+    .bitcoin__chart__button {
+      margin: 0;
+      width: calc((100% - 32px) / 4);
+      padding: 0 8px;
+      color: $kku-font-color;
+      border-left-width: 0;
+      border-radius: 0;
+      background-color: $kku-background-color;
+      border-color: $kku-border-color;
+      @include font-body;
+
+      &:first-child {
+        border-left-width: 1px;
+        border-radius: 4px 0 0 4px;
+      }
+      &:last-child { border-radius: 0 4px 4px 0; }
+    }
+  }
+}
