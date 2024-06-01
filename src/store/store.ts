@@ -1,22 +1,24 @@
 import { create } from "zustand";
-import { devtools } from "zustand/middleware";
-// persist
+import { devtools, persist } from "zustand/middleware";
+import { StoreProps } from "@/store/store.interface";
 
-interface BearState {
-  isHeaderMini: boolean;
-  setIsHeaderMini: (bool: boolean) => void;
-}
-
-export const useStore = create<BearState>()(
+export const useStore = create<StoreProps>()(
   devtools(
-    // persist(
-    (set) => ({
-      isHeaderMini: false,
-      setIsHeaderMini: (bool) => set(() => ({ isHeaderMini: bool })),
-    }),
-    // {
-    //   name: "bear-storage", // persist key
-    // },
-    // ),
+    persist(
+      (set) => ({
+        isHeaderMini: false,
+        setIsHeaderMini: (bool) => set(() => ({ isHeaderMini: bool })),
+        btcChart: {
+          1: { date: [], price: [], timeStamp: 0 },
+          7: { date: [], price: [], timeStamp: 0 },
+          30: { date: [], price: [], timeStamp: 0 },
+          365: { date: [], price: [], timeStamp: 0 },
+        },
+        setBtcChart: (day, data) => set((state) => ({
+          btcChart: { ...state.btcChart, [day]: data },
+        })),
+      }),
+      { name: "kku-storage" }, // persist key
+    ),
   ),
 );

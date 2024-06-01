@@ -108,7 +108,7 @@ function BitcoinMarketChart() {
   return (
     <div className={"bitcoin__chart"}>
       <div className={"bitcoin__chart__title"}>
-        <p className={"bitcoin__chart__title__text"}>{`Bitcoin(${days})`}</p>
+        <p className={"bitcoin__chart__title__text"}>Bitcoin</p>
         <p ref={costRef} className={"bitcoin__chart__title__cost"}>{`$${cost}`}</p>
       </div>
       <Line

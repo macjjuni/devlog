@@ -24,4 +24,9 @@ const date = {
   },
 };
 
+export function isOneMinutesPassed(timestamp1: number, timestamp2: number): boolean {
+  const THREE_MINUTES_IN_MS = 1 * 60 * 1000; // 3분을 밀리초로 변환
+  return Math.abs(timestamp2 - timestamp1) >= THREE_MINUTES_IN_MS;
+}
+
 export default date;
