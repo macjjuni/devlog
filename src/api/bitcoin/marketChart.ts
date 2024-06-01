@@ -39,14 +39,14 @@ export async function getBtcRangeData(days: MarketChartDays): Promise<MarketChar
       useStore.getState().setBtcChart(days, { ...formattedData, timeStamp: Date.now() });
 
       return formattedData;
+
     } catch (error) {
       console.error("Error fetching data:", error);
-      return { price: [], date: [] };
     }
-  } else {
-    return {
-      price: btcChartData.price,
-      date: btcChartData.date,
-    };
   }
+
+  return {
+    price: btcChartData.price,
+    date: btcChartData.date,
+  };
 }

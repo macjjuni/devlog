@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 
 dayjs.locale("ko");
 
-const defaultFormat = "YYYY-MM-DD";
+const defaultFormat = "YYYY.MM.DD";
 const defaultDetailFormat = "YYYY-MM-DD HH:mm";
 
 const now = dayjs();
