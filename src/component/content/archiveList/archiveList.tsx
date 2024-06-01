@@ -6,6 +6,7 @@ import config from "@/config/notion.config";
 import usePageSize from "@/hook/usePageSize";
 import type { NotionPageProps } from "@/@types/notion";
 import "./archiveList.scss";
+import date from "@/lib/date";
 
 const { POSTS_PER_PAGE } = config.post;
 
@@ -29,7 +30,10 @@ function ArchiveList({ pages }: { pages: NotionPageProps[] }) {
           <Link href={`/archive/${listItem.id}`} className="archive__list__item__link">
             <h3 className="archive__list__item__title">{listItem.title}</h3>
             {/* TODO. 날짜 포멧 변환 해야함! YYYY.MM.DD */}
-            <p className="archive__list__item__date">{listItem.published}</p>
+            <div className="archive__list__item__right">
+              <p>{listItem.category?.name}</p>
+              <p>{date.format(listItem.published)}</p>
+            </div>
           </Link>
         </li>
       ))}

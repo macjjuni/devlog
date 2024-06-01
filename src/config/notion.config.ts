@@ -21,7 +21,7 @@ const config = {
   // 포스팅 관련 설정
   post: {
     RECENT_DAY: 3, // 최근 포스팅 날짜 기한
-    POSTS_PER_PAGE: 12, // 한 페이지에 보여지는 글수
+    POSTS_PER_PAGE: 10, // 한 페이지에 보여지는 글수
     PAGINATION_RANGE: 5, // 페이지네이션 표시 수
     DEFAULT_THUMB: "/images/default_thumb.webp",
     DEFAULT_ALT: "kkusaeng",

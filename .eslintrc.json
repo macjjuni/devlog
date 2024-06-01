@@ -55,6 +55,7 @@
     "react/jsx-curly-brace-presence": "off",
     "@typescript-eslint/indent": ["error", 2], // 스페이스 들여쓰기 규칙 설정
     "quote-props)": "off",
-    "no-trailing-spaces": "off"
+    "no-trailing-spaces": "off",
+    "padded-blocks": "off"
   }
 }

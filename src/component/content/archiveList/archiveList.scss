@@ -52,8 +52,11 @@
         @include text-ellipsis;
       }
 
-      .archive__list__item__date {
+      .archive__list__item__right {
         position: relative;
+        @include flex-center;
+        gap: 4px;
+        flex-direction: column;
         max-width: 84px;
         width: 100%;
         padding-left: $kku-padding-md;
@@ -61,10 +64,14 @@
         @include font-element;
 
         &:after {
-          content: '|';
+          content: '';
           position: absolute;
-          top: 0;
+          top: 50%;
           left: 0;
+          transform: translateY(-50%);
+          width: 0.5px;
+          height: 80%;
+          background-color: $kku-border-color;
         }
       }
 
@@ -88,7 +95,7 @@
           @include font-sub-title-3;
         }
 
-        .archive__list__item__date {
+        .archive__list__item__right {
           max-width: 72px;
           width: 100%;
           @include font-small;
