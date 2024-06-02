@@ -4,7 +4,7 @@
   border: 0.5px solid $kku-border-color;
   border-radius: 4px;
 
-  .bitcoin__chart__title {
+  .bitcoin__chart__title__container {
     @include flex-center;
     flex-direction: column;
     gap: 4px;
