@@ -10,15 +10,15 @@
     gap: 4px;
     font-weight: 500;
     padding: 0 $kku-padding-md;
-    margin-bottom: 16px;
+    margin-bottom: 4px;
 
     .bitcoin__chart__title__text {
       @include font-sub-title-3;
+      font-weight: bold;
     }
 
     .bitcoin__chart__title__cost {
       @include font-heading-3;
-      opacity: 0;
       transition: opacity 0.13s ease;
 
       &.bitcoin__chart__title__cost__loaded {
@@ -29,7 +29,7 @@
 
   .bitcoin__chart__button__group {
     @include flex-center;
-    margin-top: 16px;
+    margin-top: 8px;
 
     .bitcoin__chart__button {
       margin: 0;

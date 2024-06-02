@@ -17,6 +17,8 @@ export const useStore = create<StoreProps>()(
         setBtcChart: (day, data) => set((state) => ({
           btcChart: { ...state.btcChart, [day]: data },
         })),
+        realTimeMarketPriceUSD: "",
+        setRealTimeMarketPriceUSD: (price) => set(() => ({ realTimeMarketPriceUSD: price })),
       }),
       { name: "kku-storage" }, // persist key
     ),

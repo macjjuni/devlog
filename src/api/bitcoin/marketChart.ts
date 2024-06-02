@@ -2,7 +2,7 @@
 import { MarketChartFormattedData, MarketChartParams, MarketChartResponseData } from "@/api/bitcoin/marketChart.interface";
 import { useStore } from "@/store/store";
 import { MarketChartDays } from "@/component/sidebar/bitcoinChart/bitcoinMarketChart.interface";
-import { isOneMinutesPassed } from "@/lib/date";
+import { isTwoMinutesPassed } from "@/lib/date";
 
 const url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart";
 
@@ -21,7 +21,7 @@ const params: MarketChartParams = {
 
 export async function getBtcRangeData(days: MarketChartDays): Promise<MarketChartFormattedData> {
   const btcChartData = useStore.getState().btcChart[days];
-  const isAllow = isOneMinutesPassed(btcChartData.timeStamp, Date.now());
+  const isAllow = isTwoMinutesPassed(btcChartData.timeStamp, Date.now());
 
   if (isAllow) {
     const searchParams = createParams({ ...params, days });

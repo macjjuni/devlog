@@ -47,15 +47,18 @@
     "@typescript-eslint/quotes": ["error", "double"],
     "@typescript-eslint/comma-dangle": "off",
     "import/prefer-default-export": "off",
-    "max-len": ["error", { "code": 250 }],
+    "max-len": ["error", { "code": 120 }],
     "object-curly-newline": "off",
     "arrow-body-style": "off",
     "no-undef": "off",
     "no-underscore-dangle": "off",
     "react/jsx-curly-brace-presence": "off",
-    "@typescript-eslint/indent": ["error", 2], // 스페이스 들여쓰기 규칙 설정
+    "@typescript-eslint/indent": "off",
     "quote-props)": "off",
     "no-trailing-spaces": "off",
-    "padded-blocks": "off"
+    "padded-blocks": "off",
+    "react/jsx-first-prop-new-line": "off",
+    "react/jsx-max-props-per-line": "off",
+    "react/jsx-closing-bracket-location": [0]
   }
 }

@@ -18,4 +18,6 @@ export interface StoreProps {
   setIsHeaderMini: (bool: boolean) => void;
   btcChart: BtcChart;
   setBtcChart: (value: MarketChartDays, data: ChartData) => void;
+  realTimeMarketPriceUSD: string
+  setRealTimeMarketPriceUSD: (price: string) => void
 }
