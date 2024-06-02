@@ -8,8 +8,8 @@ import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, Tooltip, Legend, LineElement } from "chart.js";
 import type { ChartData, MarketChartDaysList } from "@/component/sidebar/bitcoinChart/bitcoinMarketChart.interface";
 import { getChartDataset } from "@/component/sidebar/bitcoinChart/chart";
-import "./bitcoinMarketChart.scss";
 import RealTimeMarketPrice from "@/component/sidebar/bitcoinChart/realTimeMarketPrice";
+import "./bitcoinMarketChart.scss";
 
 // Chart.js 컴포넌트 등록
 ChartJS.register(CategoryScale, LinearScale, PointElement, Tooltip, Legend, LineElement);
@@ -38,18 +38,17 @@ function BitcoinMarketChart() {
 
   // region [Privates]
 
-  const isActiveButtonClass = useCallback(
-    (value: number) => {
-      if (days === value) {
-        return "bitcoin__chart__button--active";
-      }
+  const isActiveButtonClass = useCallback((value: number) => {
 
+      if (days === value) { return "bitcoin__chart__button--active"; }
       return "";
-    },
-    [days],
-  );
+    }, [days]);
 
-  const changeDays = useCallback((day: 1 | 7 | 30 | 365) => {
+  // endregion
+
+  // region [Events]
+
+  const onClickChangeDays = useCallback((day: 1 | 7 | 30 | 365) => {
     setDays(day);
   }, []);
 
@@ -91,7 +90,7 @@ function BitcoinMarketChart() {
 
   return (
     <div className={"bitcoin__chart"}>
-      <div className={"bitcoin__chart__title"}>
+      <div className={"bitcoin__chart__title__container"}>
         <p className={"bitcoin__chart__title__text"}>Bitcoin</p>
         <p className={"bitcoin__chart__title__cost"}>
           <RealTimeMarketPrice />
@@ -138,7 +137,7 @@ function BitcoinMarketChart() {
       />
       <div className="bitcoin__chart__button__group">
         {marketChartDays.map((marketChartDay) => (
-          <KButton key={marketChartDay.value} small onClick={() => changeDays(marketChartDay.value)}
+          <KButton key={marketChartDay.value} small onClick={() => onClickChangeDays(marketChartDay.value)}
             className={`bitcoin__chart__button ${isActiveButtonClass(marketChartDay.value)}`}>
             {marketChartDay.text}
           </KButton>

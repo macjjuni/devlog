@@ -1,4 +1,3 @@
-import NextHead from "@/component/common/seo/DefaultMeta";
 import NotionViewer from "@/component/content/notionViewer/notionViewer";
 import Comment from "@/component/content/comment/comment";
 import ErrorPage from "@/app/404/page";
@@ -37,7 +36,7 @@ export async function generateStaticParams() {
 }
 
 export default async function ArchiveDetailPage({ params }: { params: { id: string } }) {
-  const { title, des, coverUrl, alt, recordMap, error } = await getNotionDetail(params.id);
+  const { coverUrl, alt, recordMap, error } = await getNotionDetail(params.id);
 
   const pageCoverUrl = coverUrl || undefined;
 
@@ -47,7 +46,6 @@ export default async function ArchiveDetailPage({ params }: { params: { id: stri
 
   return (
     <>
-      <NextHead title={title} des={des} image={pageCoverUrl} />
       <NotionViewer recordMap={recordMap} coverUrl={pageCoverUrl} alt={alt} />
       <Comment />
     </>

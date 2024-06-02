@@ -3,7 +3,6 @@ import initRealTimeMarketPriceUSD from "@/api/bitcoin/realtimeMarketPriceUSD";
 import { useStore } from "@/store/store";
 
 function RealTimeMarketPrice() {
-
   const btcUSD = useStore((state) => state.realTimeMarketPriceUSD);
 
   const formattedPrice = useMemo(() => {
@@ -18,7 +17,7 @@ function RealTimeMarketPrice() {
     initRealTimeMarketPriceUSD();
   }, []);
 
-  return <span>{formattedPrice}</span>;
+  return <span>{`$${formattedPrice}`}</span>;
 }
 
 export default memo(RealTimeMarketPrice);

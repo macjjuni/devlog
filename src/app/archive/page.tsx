@@ -10,7 +10,7 @@ import Fallback from "./fallBack";
 
 export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
 
-export const revalidate = 60;
+export const revalidate = 180;
 const getPages = cache(getNotionPages);
 
 export default async function ArchivePage({ searchParams }: { searchParams: { page: string | undefined } }) {
