@@ -66,7 +66,8 @@ function Search() {
 
   return (
     <div className="search__card">
-      <KTextField value={searchText} onChange={onChangeSearch} onKeyDownEnter={onSearch} className={`search__card__input ${errorClass}`} placeholder="검색" clearable maxLength={100} />
+      <KTextField value={searchText} onChange={onChangeSearch} onKeyDownEnter={onSearch} className={`search__card__input ${errorClass}`}
+        placeholder="검색" clearable maxLength={100} />
     </div>
   );
 }

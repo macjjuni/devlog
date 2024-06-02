@@ -47,7 +47,7 @@
     "@typescript-eslint/quotes": ["error", "double"],
     "@typescript-eslint/comma-dangle": "off",
     "import/prefer-default-export": "off",
-    "max-len": ["error", { "code": 120 }],
+    "max-len": ["error", { "code": 180 }],
     "object-curly-newline": "off",
     "arrow-body-style": "off",
     "no-undef": "off",

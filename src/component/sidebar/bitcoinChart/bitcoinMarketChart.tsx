@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { memo, useState, useRef, useEffect, useCallback } from "react";
 import useMediaScreen from "@/hook/useMediaScreen";
 import { KButton } from "kku-ui";
 import { getBtcRangeData } from "@/api/bitcoin/marketChart";
@@ -48,12 +48,6 @@ function BitcoinMarketChart() {
     },
     [days],
   );
-
-  const calculateDelay = useMemo(() => {
-    const dataLength = chartData.datasets[0]?.data.length || 365;
-
-    return dataLength / 900;
-  }, [chartData]);
 
   const changeDays = useCallback((day: 1 | 7 | 30 | 365) => {
     setDays(day);
