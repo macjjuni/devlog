@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "꾸생의 블로그",
+  "short_name": "꾸생의 블로그",
   "icons": [
     {
       "src": "/favicon/android-chrome-192x192.png",
@@ -14,6 +14,6 @@
     }
   ],
   "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "background_color": "#111111",
   "display": "standalone"
 }

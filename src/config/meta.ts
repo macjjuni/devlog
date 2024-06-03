@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     description: process.env.NEXT_PUBLIC_DESCRIPTION,
     images: [process.env.NEXT_PUBLIC_TITLE as string],
   },
+  manifest: "/favicon/site.webmanifest",
 };
 
 type MetadataPropsType = string | undefined | null;
