@@ -11,3 +11,12 @@
     width: 100%;
   }
 }
+
+@media screen and (max-width: 940px) {
+  .comment__wrapper {
+
+    .comment__blank {
+      display: none;
+    }
+  }
+}
