@@ -10,21 +10,22 @@
         gap: 0;
 
         .k-text-field__input__container {
+            padding: $kku-padding-sm $kku-padding-md;
             border-width: 0.5px;
             border-color: $kku-border-color;
             border-radius: 4px;
             background: $kku-background-color;
-        }
 
-        .k-text-field__input__container {
-            padding: $kku-padding-sm $kku-padding-md;
-            background: $kku-background-color;
-        }
-        .k-text-field__input {
-            color: $kku-font-color;
-            caret-color: $kku-font-color;
-            @include font-body;
-            font-weight: 300;
+            .k-text-field__input {
+                color: $kku-font-color;
+                caret-color: $kku-font-color;
+                @include font-body;
+                font-weight: 300;
+            }
+
+            .k-icon--clickable > svg {
+                fill: $kku-white-color;
+            }
         }
     }
 

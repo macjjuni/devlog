@@ -1,14 +1,16 @@
 "use client";
 
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { KTextField } from "kku-ui";
+import { KTextField, KTextFieldRefs } from "kku-ui";
 import "./search.scss";
 import { getSearchPageUrl } from "@/route";
 import useSearchText from "@/hook/useSearchText";
 
 function Search() {
   // region [Hooks]
+
+  const searchRef = useRef<KTextFieldRefs>(null);
   const keyword = useSearchText();
   const [searchText, setSearchText] = useState("");
   const [errorClass, setErrorClass] = useState<"search__card__input--error" | "">("");
@@ -20,6 +22,7 @@ function Search() {
 
   const handleAddInputError = useCallback(() => {
     setErrorClass("search__card__input--error");
+    searchRef.current?.focus();
   }, []);
 
   const handleRemoveInputError = useCallback(() => {
@@ -66,8 +69,12 @@ function Search() {
 
   return (
     <div className="search__card">
-      <KTextField value={searchText} onChange={onChangeSearch} onKeyDownEnter={onSearch} className={`search__card__input ${errorClass}`}
-        placeholder="검색" clearable maxLength={100} />
+      <KTextField
+        ref={searchRef}
+        className={`search__card__input ${errorClass}`}
+        value={searchText} onChange={onChangeSearch}
+        onKeyDownEnter={onSearch} placeholder="검색"
+        clearable search onSearch={onSearch} maxLength={100} />
     </div>
   );
 }
