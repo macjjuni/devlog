@@ -20,7 +20,6 @@ interface CategoryProps {
 
 const arrowIconSize = 20;
 
-
 const initialCategoryList: SelectPropertyResponse[] = [{ id: "all", name: "All", description: "", color: "default" }];
 
 function Category({ list }: CategoryProps) {
