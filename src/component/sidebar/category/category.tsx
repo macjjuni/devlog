@@ -18,6 +18,9 @@ interface CategoryProps {
   list?: ICategory;
 }
 
+const arrowIconSize = 20;
+
+
 const initialCategoryList: SelectPropertyResponse[] = [{ id: "all", name: "All", description: "", color: "default" }];
 
 function Category({ list }: CategoryProps) {
@@ -150,7 +153,7 @@ function Category({ list }: CategoryProps) {
     <div className="category__card">
       {isLeftScrollIcon && (
         <button type="button" className="category__card__scroll-action-start__button" aria-label={"left scroll"} onClick={() => onScrollAction("left")}>
-          <KIcon icon={"keyboard_arrow_down"} className="category__card__scroll-action-start__button-icon" size={24} />
+          <KIcon icon={"keyboard_arrow_down"} className="category__card__scroll-action-start__button-icon" size={arrowIconSize} />
         </button>
       )}
       <ul ref={categoryRef} className="category__card__list" onScroll={onScroll}>
@@ -166,7 +169,7 @@ function Category({ list }: CategoryProps) {
       </ul>
       {isRightScrollIcon && (
         <button type="button" className="category__card__scroll-action-end__button" aria-label={"right scroll"} onClick={() => onScrollAction("right")}>
-          <KIcon icon={"keyboard_arrow_down"} className="category__card__scroll-action-end__button-icon" size={24} />
+          <KIcon icon={"keyboard_arrow_down"} className="category__card__scroll-action-end__button-icon" size={arrowIconSize} />
         </button>
       )}
     </div>
