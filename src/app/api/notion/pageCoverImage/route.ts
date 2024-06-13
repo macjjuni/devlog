@@ -4,7 +4,7 @@ import notion from "@/lib/noiton";
 
 /**
  * 노션 페이지 커버 이미지 URL 가져오는 API
- * 클라이언트에서 호출해 사용하지만, 아직 사용 안함
+ * 클라이언트에서 호출해 사용하지만, 아직 사용 케이스 없음
  */
 
 export interface IGetPageCover {
