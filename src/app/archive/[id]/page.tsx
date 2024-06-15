@@ -1,5 +1,5 @@
-import NotionViewer from "@/component/content/notionViewer/notionViewer";
-import ArchiveComment from "@/component/content/archiveComment/archiveComment";
+import NotionViewer from "@/component/archiveContent/notionViewer/notionViewer";
+import ArchiveComment from "@/component/archiveContent/archiveComment/archiveComment";
 import ErrorPage from "@/app/404/page";
 import { getNotionDetail as _getNotionDetail } from "@/api/notion/page";
 import { cache } from "react";

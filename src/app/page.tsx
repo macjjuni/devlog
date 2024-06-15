@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getMetadata } from "@/config/meta";
 import PageLayout from "@/app/page/layout";
-import SocialLink from "@/component/content/socialLink/socialLink";
+import SocialLink from "@/component/homeContent/socialLink/socialLink";
 
 export const metadata: Metadata = getMetadata("About", null, null, null);
 
