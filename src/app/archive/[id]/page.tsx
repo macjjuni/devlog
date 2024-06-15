@@ -25,10 +25,8 @@ export async function generateStaticParams() {
     // Get all Post
     const allPages = await notion.getPages(databaseId);
     // Generate all post paths
-    const paths = allPages.map(({ id }) => ({ id }));
-    console.log(paths);
+    return allPages.map(({ id }) => ({ id }));
 
-    return paths;
   } catch (e) {
     console.error(e);
     return [];
