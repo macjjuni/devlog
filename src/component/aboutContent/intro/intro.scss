@@ -1,0 +1,17 @@
+
+.intro__container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+
+  @include font-sub-title-2;
+}
+
+@media screen and (max-width: $kku-layout-medium) {
+  .intro__container {
+    gap: 24px;
+    @include font-sub-title-3;
+  }
+}
+

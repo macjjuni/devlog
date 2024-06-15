@@ -3,7 +3,6 @@
     @include flex-center;
     justify-content: flex-start;
     gap: 24px;
-    margin-top: 40px;
 
     .social-link {
         @include flex-center;
@@ -27,6 +26,5 @@
 @media screen and (max-width: $kku-layout-small) {
     .social-link__container{
         justify-content: flex-end;
-        margin-top: 32px;
     }
 }
