@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import { appendUtter, commentElemetId } from "@/utils/utterances";
-import "./comment.scss";
+import "./archiveComment.scss";
 
-export default function Comment() {
+export default function ArchiveComment() {
   const commentRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {

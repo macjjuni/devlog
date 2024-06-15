@@ -1,5 +1,5 @@
 import NotionViewer from "@/component/content/notionViewer/notionViewer";
-import Comment from "@/component/content/comment/comment";
+import ArchiveComment from "@/component/content/archiveComment/archiveComment";
 import ErrorPage from "@/app/404/page";
 import { getNotionDetail as _getNotionDetail } from "@/api/notion/page";
 import { cache } from "react";
@@ -47,7 +47,7 @@ export default async function ArchiveDetailPage({ params }: { params: { id: stri
   return (
     <>
       <NotionViewer recordMap={recordMap} coverUrl={pageCoverUrl} alt={alt} />
-      <Comment />
+      <ArchiveComment />
     </>
   );
 }
