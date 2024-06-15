@@ -1,11 +1,11 @@
 "use client";
 
-import { memo, useState, useRef, useEffect, useCallback } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import useMediaScreen from "@/hook/useMediaScreen";
 import { KButton } from "kku-ui";
 import { getBtcRangeData } from "@/api/bitcoin/marketChart";
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, Tooltip, Legend, LineElement } from "chart.js";
+import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Tooltip } from "chart.js";
 import type { ChartData, MarketChartDaysList } from "@/component/sidebar/bitcoinChart/bitcoinMarketChart.interface";
 import RealTimeMarketPrice from "@/component/sidebar/bitcoinChart/realTimeMarketPrice";
 import "./bitcoinMarketChart.scss";
@@ -41,11 +41,15 @@ function BitcoinMarketChart() {
 
   // region [Privates]
 
-  const isActiveButtonClass = useCallback((value: number) => {
-
-      if (days === value) { return "bitcoin__chart__button--active"; }
+  const isActiveButtonClass = useCallback(
+    (value: number) => {
+      if (days === value) {
+        return "bitcoin__chart__button--active";
+      }
       return "";
-    }, [days]);
+    },
+    [days],
+  );
 
   // endregion
 
@@ -113,7 +117,7 @@ function BitcoinMarketChart() {
               easing: "easeInOutQuart",
               duration: 1000,
               from: NaN, // NaN에서 시작하여 데이터의 처음 값으로 시작
-              delay({type, mode, chart, dataIndex}) {
+              delay({ type, mode, chart, dataIndex }) {
                 if (type !== "data" || mode !== "default") {
                   return 0;
                 }
@@ -124,7 +128,7 @@ function BitcoinMarketChart() {
               type: "number",
               easing: "easeInOutQuart",
               duration: 1000,
-              from: ({type, mode,chart}) => {
+              from: ({ type, mode, chart }) => {
                 if (type === "data" && mode === "default") {
                   return chart.scales.y.getPixelForValue(0); // y 축의 시작점을 0으로 설정
                 }
@@ -135,7 +139,10 @@ function BitcoinMarketChart() {
       />
       <div className="bitcoin__chart__button__group">
         {marketChartDays.map((marketChartDay) => (
-          <KButton key={marketChartDay.value} small onClick={() => onClickChangeDays(marketChartDay.value)}
+          <KButton
+            key={marketChartDay.value}
+            small
+            onClick={() => onClickChangeDays(marketChartDay.value)}
             className={`bitcoin__chart__button ${isActiveButtonClass(marketChartDay.value)}`}>
             {marketChartDay.text}
           </KButton>

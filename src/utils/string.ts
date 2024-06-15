@@ -1,4 +1,3 @@
-
 /* ---------- 숫자 형식 판별 정규식 ---------- */
 export const isNumber = (str: string) => /^\d+$/.test(str);
 
