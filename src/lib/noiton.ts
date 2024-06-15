@@ -2,8 +2,8 @@ import { Client } from "@notionhq/client";
 import { NotionAPI } from "notion-client";
 import { getBlockTitle, getPageContentBlockIds } from "notion-utils";
 
-import type { DatabaseObjectResponse, ListBlockChildrenResponse, PageObjectResponse, ParagraphBlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import type { DatabaseQueryOption, NotionInfoProps, NotionPageProps, IProjectPage, ReadGuestBookType, SaveRequestGuestBookType } from "@/@types/notion";
+import type { DatabaseObjectResponse, PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
+import type { DatabaseQueryOption, IProjectPage, NotionInfoProps, NotionPageProps } from "@/@types/notion";
 import type { Block, ExtendedRecordMap, RecordMap, Role } from "notion-types";
 import config, { token } from "@/config/notion.config";
 
