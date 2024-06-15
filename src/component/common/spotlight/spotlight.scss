@@ -1,0 +1,31 @@
+
+.spotlight__wrapper {
+  display: inline-flex;
+  position: relative;
+  //padding: 2px;
+
+  &:hover {
+
+    .spotlight__wrapper__background {
+      height: 100%;
+    }
+  }
+
+  .spotlight__wrapper__text {
+    z-index: 1;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: $kku-primary-color;
+  }
+
+  .spotlight__wrapper__background {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: $kku-primary-color;
+    transition: height 0.16s ease;
+    z-index: 0;
+  }
+}
