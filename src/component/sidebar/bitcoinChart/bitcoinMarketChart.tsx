@@ -1,13 +1,12 @@
 "use client";
 
-import { memo, useState, useRef, useEffect, useCallback } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import useMediaScreen from "@/hook/useMediaScreen";
 import { KButton } from "kku-ui";
 import { getBtcRangeData } from "@/api/bitcoin/marketChart";
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, Tooltip, Legend, LineElement } from "chart.js";
+import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Tooltip } from "chart.js";
 import type { ChartData, MarketChartDaysList } from "@/component/sidebar/bitcoinChart/bitcoinMarketChart.interface";
-import { getChartDataset } from "@/component/sidebar/bitcoinChart/chart";
 import RealTimeMarketPrice from "@/component/sidebar/bitcoinChart/realTimeMarketPrice";
 import "./bitcoinMarketChart.scss";
 
@@ -20,6 +19,10 @@ const marketChartDays: MarketChartDaysList[] = [
   { text: "1M", value: 30 },
   { text: "1Y", value: 365 },
 ];
+
+export const generateChartData = (data: number[]) => {
+  return { label: "", data, borderColor: "#fff", backgroundColor: "transparent", fill: true };
+};
 
 function BitcoinMarketChart() {
   // region [Hooks]
@@ -38,11 +41,15 @@ function BitcoinMarketChart() {
 
   // region [Privates]
 
-  const isActiveButtonClass = useCallback((value: number) => {
-
-      if (days === value) { return "bitcoin__chart__button--active"; }
+  const isActiveButtonClass = useCallback(
+    (value: number) => {
+      if (days === value) {
+        return "bitcoin__chart__button--active";
+      }
       return "";
-    }, [days]);
+    },
+    [days],
+  );
 
   // endregion
 
@@ -61,7 +68,7 @@ function BitcoinMarketChart() {
       .then((data) => {
         setChartData({
           labels: data.date.map((timestamp) => new Date(timestamp).toLocaleDateString()), // 날짜를 라벨로 설정
-          datasets: [getChartDataset(data.price)],
+          datasets: [generateChartData(data.price)],
         });
       })
       .catch((error) => {
@@ -110,25 +117,20 @@ function BitcoinMarketChart() {
               easing: "easeInOutQuart",
               duration: 1000,
               from: NaN, // NaN에서 시작하여 데이터의 처음 값으로 시작
-              delay(ctx) {
-                if (ctx.type !== "data" || ctx.mode !== "default") {
+              delay({ type, mode, chart, dataIndex }) {
+                if (type !== "data" || mode !== "default") {
                   return 0;
                 }
-                // 데이터 포인트의 총 개수
-                const totalPoints = ctx.chart.data.datasets[0].data.length;
-                // 각 데이터 포인트에 대한 지연 시간 계산
-                const totalDuration = 1000; // 전체 애니메이션 시간 (1000ms)
-                const delayPerPoint = totalDuration / totalPoints;
-                return ctx.dataIndex * delayPerPoint;
+                return dataIndex * (1000 / chart.data.datasets[0].data.length);
               },
             },
             y: {
               type: "number",
               easing: "easeInOutQuart",
               duration: 1000,
-              from: (ctx) => {
-                if (ctx.type === "data" && ctx.mode === "default") {
-                  return ctx.chart.scales.y.getPixelForValue(0); // y 축의 시작점을 0으로 설정
+              from: ({ type, mode, chart }) => {
+                if (type === "data" && mode === "default") {
+                  return chart.scales.y.getPixelForValue(0); // y 축의 시작점을 0으로 설정
                 }
               },
             },
@@ -137,7 +139,10 @@ function BitcoinMarketChart() {
       />
       <div className="bitcoin__chart__button__group">
         {marketChartDays.map((marketChartDay) => (
-          <KButton key={marketChartDay.value} small onClick={() => onClickChangeDays(marketChartDay.value)}
+          <KButton
+            key={marketChartDay.value}
+            small
+            onClick={() => onClickChangeDays(marketChartDay.value)}
             className={`bitcoin__chart__button ${isActiveButtonClass(marketChartDay.value)}`}>
             {marketChartDay.text}
           </KButton>

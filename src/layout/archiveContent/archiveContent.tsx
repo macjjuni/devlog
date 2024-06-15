@@ -1,7 +1,7 @@
 import { memo } from "react";
-import ArchiveTitle from "@/component/content/archiveTitle/archiveTitle";
-import ArchiveList from "@/component/content/archiveList/archiveList";
-import Pagination from "@/component/content/pagination/pagination";
+import ArchiveTitle from "@/component/archiveContent/archiveTitle/archiveTitle";
+import ArchiveList from "@/component/archiveContent/archiveList/archiveList";
+import Pagination from "@/component/archiveContent/pagination/pagination";
 import { NotionPageProps } from "@/@types/notion";
 
 function archiveContent({ pages }: { pages: NotionPageProps[] }) {

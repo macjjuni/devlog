@@ -1,0 +1,64 @@
+"use client";
+
+import { memo, useCallback, useMemo, useRef } from "react";
+import "./socialLink.scss";
+import { KDropHolder, KDropHolderRefs, KIcon } from "kku-ui";
+import snsInfo from "@/config/sns";
+import copyToClipboard from "@/utils/copy";
+
+const emailText = process.env.NEXT_PUBLIC_ADMIN_EMAIL || "";
+
+function SocialLink() {
+
+  // region [Hooks]
+
+  const dropHolderRef = useRef<KDropHolderRefs>(null);
+
+  // endregion
+
+  // region [Apis]
+
+  const copyEmail = useCallback(async () => {
+    await copyToClipboard(emailText);
+    setTimeout(() => {
+      dropHolderRef.current?.close();
+    }, 2400);
+  }, []);
+
+  // endregion
+
+  // region [Events]
+
+  const onClickCopyEmail = useCallback(async () => {
+    await copyEmail();
+  }, []);
+
+  // endregion
+
+  // region [Templates]
+
+  const copyCompleteBox = useMemo(() => {
+    return <div className={"copied__complete__wrapper"}>Copied!</div>;
+  }, []);
+
+  // endregion
+
+  return (
+    <div className="social-link__container">
+      {snsInfo.map((snsItem) => (
+        // eslint-disable-next-line jsx-a11y/control-has-associated-label
+        <a key={snsItem.id} href={snsItem.link} target="_blank" className="social-link" rel="noreferrer" title={snsItem.text}>
+          <KIcon className="social-link__icon" icon={snsItem.icon} size={32} />
+        </a>
+      ))}
+      {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+      <button type={"button"} className="social-button" onClick={onClickCopyEmail}>
+        <KDropHolder ref={dropHolderRef} position={"bottom-center"} offset={"16px"} content={copyCompleteBox}>
+          <KIcon className="social-link__icon" icon={"gmail"} color={"#fff"} size={32} />
+        </KDropHolder>
+      </button>
+    </div>
+  );
+}
+
+export default memo(SocialLink);

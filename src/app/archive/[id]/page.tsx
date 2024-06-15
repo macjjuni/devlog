@@ -1,5 +1,5 @@
-import NotionViewer from "@/component/content/notionViewer/notionViewer";
-import Comment from "@/component/content/comment/comment";
+import NotionViewer from "@/component/archiveContent/notionViewer/notionViewer";
+import ArchiveComment from "@/component/archiveContent/archiveComment/archiveComment";
 import ErrorPage from "@/app/404/page";
 import { getNotionDetail as _getNotionDetail } from "@/api/notion/page";
 import { cache } from "react";
@@ -25,10 +25,8 @@ export async function generateStaticParams() {
     // Get all Post
     const allPages = await notion.getPages(databaseId);
     // Generate all post paths
-    const paths = allPages.map(({ id }) => ({ id }));
-    console.log(paths);
+    return allPages.map(({ id }) => ({ id }));
 
-    return paths;
   } catch (e) {
     console.error(e);
     return [];
@@ -47,7 +45,7 @@ export default async function ArchiveDetailPage({ params }: { params: { id: stri
   return (
     <>
       <NotionViewer recordMap={recordMap} coverUrl={pageCoverUrl} alt={alt} />
-      <Comment />
+      <ArchiveComment />
     </>
   );
 }
