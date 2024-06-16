@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { NextResponse } from "next/server";
-import { cache } from "react";
 import { getNotionPages } from "@/api/notion/page";
 import { NotionInfoProps, NotionPageProps } from "@/@types/notion";
 
@@ -14,12 +13,9 @@ interface AllPages {
   error: boolean;
 }
 
-export const revalidate = 60;
-const getPages = cache(getNotionPages);
-
 export async function GET(): Promise<NextResponse<AllPages>> {
   try {
-    const { info, pages } = await getPages();
+    const { info, pages } = await getNotionPages();
 
     return NextResponse.json({ info, pages, error: false });
   } catch (err) {
