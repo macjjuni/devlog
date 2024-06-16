@@ -70,5 +70,10 @@
     line-height: $kku-line-height-small;
 }
 
+@mixin neon {
+    animation: neon 1s ease infinite;
+    -moz-animation: neon 1s ease infinite;
+    -webkit-animation: neon 1s ease infinite;
+}
 
 // endregion

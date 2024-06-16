@@ -46,6 +46,15 @@
 
       transition: background-color 0.3s ease;
 
+      &.new:before {
+        content: 'NEW';
+        @include neon;
+        position: absolute;
+        top: -6px;
+        left: -6px;
+        font-size: 12px;
+      }
+
       .archive__list__item__title {
         width: calc(100% - 84px);
         @include font-heading-4;
@@ -72,11 +81,16 @@
           width: 0.5px;
           height: 80%;
           background-color: $kku-border-color;
+          transition: background-color 0.3s ease;
         }
       }
 
       &:hover {
         background: $kku-hover-background-color;
+
+        .archive__list__item__right:after {
+          background-color: $kku-white-color;
+        }
       }
     }
   }
