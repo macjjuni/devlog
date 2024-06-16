@@ -14,9 +14,10 @@ interface AllPages {
 }
 
 export async function GET(): Promise<NextResponse<AllPages>> {
+
   try {
     const { info, pages } = await getNotionPages();
-
+    console.log(pages);
     return NextResponse.json({ info, pages, error: false });
   } catch (err) {
     console.error(err);

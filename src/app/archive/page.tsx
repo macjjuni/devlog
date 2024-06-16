@@ -10,7 +10,8 @@ import Fallback from "./fallBack";
 export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
 
 async function getAllPages() {
-  return fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/notion/allPages`, { next: { revalidate: 60 * 60 * 3 } }).then((res) => res.json());
+  // 3분 마다 재검증
+  return fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/notion/allPages`, { next: { revalidate: 60 * 3 } }).then((res) => res.json());
 }
 
 export default async function ArchivePage({ searchParams }: { searchParams: { page: string | undefined } }) {
