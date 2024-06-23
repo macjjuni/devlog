@@ -10,6 +10,13 @@
     border-radius: 4px;
     overflow: hidden;
 
+    &:hover {
+        .profile__card__image {
+            transform: rotate(4deg);
+            box-shadow: rgba(255, 255, 255, 0.48) 0 30px 78px 12px;
+        }
+    }
+
     &:after {
         content: '';
         position: absolute;
@@ -24,6 +31,7 @@
         width: 132px; height: 132px;
         border-radius: 50%;
         box-shadow: rgba(255, 255, 255, 0.48) 0 22px 70px 4px;
+        transition: 0.3s ease;
     }
 
     .profile__card__content {
