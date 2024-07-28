@@ -2,9 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Spline from "@splinetool/react-spline";
-import "./spline.scss";
 import { usePathname } from "next/navigation";
 import Spinner from "@/component/common/spinner/spinner";
+import "./spline.scss";
 
 const sceneUrl = "https://prod.spline.design/wDppaG99uxF-mPel/scene.splinecode";
 

@@ -1,20 +1,42 @@
 .kku-loader {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
     display: inline-block;
-    border-top: 3px solid $kku-gray-color;
-    border-right: 3px solid transparent;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-    @include absolute-center;
+    width: 80px; height: 80px;
+    z-index: 9999;
+
+    div {
+        position: absolute;
+        border: 4px solid $kku_primary-color;
+        opacity: 1;
+        border-radius: 50%;
+        animation: kku-loader__effect 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+    div:nth-child(2) { animation-delay: -0.5s; }
+
 }
 
-@keyframes rotation {
+@keyframes kku-loader__effect {
     0% {
-        transform: translate(-50%, -50%) rotate(0deg);
+        top: 36px; left: 36px;
+        width: 8px; height: 8px;
+        opacity: 0;
+    }
+    4.9% {
+        top: 36px; left: 36px;
+        width: 8px; height: 8px;
+        opacity: 0;
+    }
+    5% {
+        top: 36px; left: 36px;
+        width: 8px; height: 8px;
+        opacity: 1;
     }
     100% {
-        transform: translate(-50%, -50%) rotate(360deg);
+        top: 0; left: 0;
+        width: 80px; height: 80px;
+        opacity: 0;
     }
 }
+

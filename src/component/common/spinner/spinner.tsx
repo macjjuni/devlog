@@ -1,26 +1,29 @@
-import { CSSProperties, useMemo } from "react";
-import "./spinner.scss";
+"use client";
+
+import { CSSProperties, useMemo, memo } from "react";
 import { SpinnerProps } from "@/component/common/spinner/spinner.interface";
+import "./spinner.scss";
 
-const color = "#eee";
-
-function Spinner({ borderWidth = 3, size = 48 }: SpinnerProps) {
+function Spinner({ color }: SpinnerProps) {
   // region [Styles]
 
-  const rootStyle = useMemo(() => {
+  const childStyle = useMemo(() => {
+
     const style: CSSProperties = {};
 
-    style.borderTop = `${borderWidth}px solid ${color}`;
-    style.borderRight = `${borderWidth}px solid transparent`;
-    style.width = `${size}px`;
-    style.height = `${size}px`;
+    if (color) { style.borderColor = color; }
 
     return style;
-  }, [borderWidth, size]);
+  }, [color]);
 
   // endregion
 
-  return <span className="kku-loader" style={rootStyle} />;
+  return (
+    <div className="kku-loader">
+      <div style={childStyle} />
+      <div style={childStyle} />
+    </div>
+  );
 }
 
-export default Spinner;
+export default memo(Spinner);
