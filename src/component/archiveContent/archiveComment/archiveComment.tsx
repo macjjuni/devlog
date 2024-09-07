@@ -1,25 +1,28 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { appendUtter, commentElemetId } from "@/utils/utterances";
+import { appendUtter, commentElementId } from "@/utils/utterances";
 import "./archiveComment.scss";
 
 export default function ArchiveComment() {
+  // region [Hooks]
+
   const commentRef = useRef<HTMLElement | null>(null);
 
+  // endregion
+
+  // region [Life Cycles]
+
   useEffect(() => {
-    const commentDom = commentRef.current;
-
-    if (!commentDom) {
-      return;
+    if (window) {
+      appendUtter(commentRef.current as HTMLDivElement);
     }
-    // if (!commentDom || color === null) return;
-
-    appendUtter(commentDom); // 렌더링 안 됐으면 스크립트 삽입 로직 실행!
   }, []);
 
+  // endregion
+
   return (
-    <section ref={commentRef} id={commentElemetId} className="comment__wrapper">
+    <section ref={commentRef} id={commentElementId} className="comment__wrapper">
       <div className="comment__blank" />
     </section>
   );

@@ -19,9 +19,11 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 export async function generateStaticParams() {
   const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
 
-  try {
-    if (!databaseId) throw new Error("DATABASE_ID is not defined");
+  if (!databaseId) {
+    throw new Error("DATABASE_ID is not defined");
+  }
 
+  try {
     // Get all Post
     const allPages = await notion.getPages(databaseId);
     // Generate all post paths
