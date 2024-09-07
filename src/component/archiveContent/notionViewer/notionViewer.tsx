@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { commentElemetId } from "@/utils/utterances";
+import { commentElementId } from "@/utils/utterances";
 
 import type { ExtendedRecordMap } from "notion-types";
 import { NotionRenderer } from "react-notion-x";
@@ -46,7 +46,7 @@ export default function NotionViewer({ recordMap, coverUrl, alt }: INotionRender
     const linkKeys = Object.keys(links) as Array<keyof typeof links>;
 
     links.comment.textContent = "💬 댓글";
-    links.comment.href = `#${commentElemetId}`;
+    links.comment.href = `#${commentElementId}`;
     links.pages.textContent = "📚 글 목록";
     links.pages.onclick = goBack;
 
