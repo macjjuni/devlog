@@ -6,13 +6,16 @@ import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import { isNumber } from "@/utils/string";
 import Fallback from "./fallBack";
+import { AllPages } from "@/app/api/notion/allPages/route";
 
 export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
 
-export const revalidate = 60;
-async function getAllPages() {
-  // 3분 마다 재검증
-  return fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/notion/allPages`).then((res) => res.json());
+export const revalidate = 10;
+
+async function getAllpage(): Promise<AllPages> {
+  return fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/notion/allPages`, {
+    next: { revalidate },
+  }).then((res) => res.json());
 }
 
 export default async function ArchivePage({ searchParams }: { searchParams: { page: string | undefined } }) {
@@ -23,7 +26,7 @@ export default async function ArchivePage({ searchParams }: { searchParams: { pa
     redirect("/404");
   }
 
-  const { info, pages, error } = await getAllPages();
+  const { info, pages, error } = await getAllpage();
 
   if (error) {
     redirect("/404");

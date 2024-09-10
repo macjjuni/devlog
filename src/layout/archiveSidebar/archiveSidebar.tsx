@@ -5,12 +5,12 @@ import Category from "@/component/sidebar/category/category";
 import BitcoinChart from "@/component/sidebar/bitcoinChart/bitcoinMarketChart";
 import { NotionInfoProps } from "@/@types/notion";
 
-function ArchiveSidebar({ info }: { info: NotionInfoProps }) {
+function ArchiveSidebar({ info }: { info?: NotionInfoProps }) {
   return (
     <>
-      <Profile description={info.description} imageUrl={info.coverURL} />
+      <Profile description={info?.description} imageUrl={info?.coverURL} />
       <Search />
-      <Category list={info.category} />
+      <Category list={info?.category || []} />
       <BitcoinChart />
     </>
   );

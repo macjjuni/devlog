@@ -7,8 +7,8 @@ import { NotionInfoProps, NotionPageProps } from "@/@types/notion";
  * 노션 모든 페이지를 조회하는 API
  */
 
-interface AllPages {
-  info: NotionInfoProps | {};
+export interface AllPages {
+  info?: NotionInfoProps;
   pages: NotionPageProps[];
   error: boolean;
 }
@@ -22,6 +22,6 @@ export async function GET(): Promise<NextResponse<AllPages>> {
   } catch (err) {
     console.error(err);
 
-    return NextResponse.json({ info: {}, pages: [], error: true });
+    return NextResponse.json({ info: undefined, pages: [], error: true });
   }
 }
