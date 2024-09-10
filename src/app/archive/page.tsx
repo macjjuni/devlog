@@ -1,22 +1,17 @@
-import { Suspense } from "react";
+import { cache, Suspense } from "react";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getMetadata } from "@/config/meta";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
-import { AllPages } from "@/app/api/notion/allPages/route";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
+import { getNotionPages as _getNotionPages } from "@/api/notion/page";
 import { isNumber } from "@/utils/string";
 import Fallback from "./fallBack";
 
 export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
 
-export const revalidate = 10;
-
-async function getAllpage(): Promise<AllPages> {
-  return fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/notion/allPages`, {
-    next: { revalidate },
-  }).then((res) => res.json());
-}
+export const revalidate = 60;
+const getAllPage = cache(_getNotionPages);
 
 export default async function ArchivePage({ searchParams }: { searchParams: { page: string | undefined } }) {
   const { page } = searchParams;
@@ -26,7 +21,7 @@ export default async function ArchivePage({ searchParams }: { searchParams: { pa
     redirect("/404");
   }
 
-  const { info, pages, error } = await getAllpage();
+  const { info, pages, error } = await getAllPage();
 
   if (error) {
     redirect("/404");
