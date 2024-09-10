@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getMetadata } from "@/config/meta";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
+import { AllPages } from "@/app/api/notion/allPages/route";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import { isNumber } from "@/utils/string";
 import Fallback from "./fallBack";
-import { AllPages } from "@/app/api/notion/allPages/route";
 
 export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
 
