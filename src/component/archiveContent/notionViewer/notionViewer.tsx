@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { commentElementId } from "@/utils/utterances";
+import { commentElementId } from "@/component/archiveContent/archiveComment/archiveComment";
 
 import type { ExtendedRecordMap } from "notion-types";
 import { NotionRenderer } from "react-notion-x";

@@ -1,28 +1,28 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { appendUtter, commentElementId } from "@/utils/utterances";
+import Giscus from "@giscus/react";
 import "./archiveComment.scss";
 
+export const commentElementId = "utterances-kku";
+const repoUrl = process.env.NEXT_PUBLIC_GITHUB_REPO as `${string}/${string}`;
+
 export default function ArchiveComment() {
-  // region [Hooks]
-
-  const commentRef = useRef<HTMLElement | null>(null);
-
-  // endregion
-
-  // region [Life Cycles]
-
-  useEffect(() => {
-    if (window) {
-      appendUtter(commentRef.current as HTMLDivElement);
-    }
-  }, []);
-
-  // endregion
 
   return (
-    <section ref={commentRef} id={commentElementId} className="comment__wrapper">
+    <section id={commentElementId} className="comment__wrapper">
+      <Giscus
+        repo={repoUrl}
+        repoId={"R_kgDOKPQeNg"}
+        category={"Announcements"}
+        categoryId={"DIC_kwDOKPQeNs4CiXns"}
+        mapping={"pathname"}
+        theme={"noborder_gray"}
+        strict={"0"}
+        reactionsEnabled={"1"}
+        emitMetadata={"0"}
+        inputPosition={"bottom"}
+        lang={"ko"}
+      />
       <div className="comment__blank" />
     </section>
   );
