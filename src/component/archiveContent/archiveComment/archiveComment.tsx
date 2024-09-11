@@ -3,7 +3,7 @@
 import Giscus from "@giscus/react";
 import "./archiveComment.scss";
 
-export const commentElementId = "utterances-kku";
+export const commentElementId = "giscus-kku";
 const repoUrl = process.env.NEXT_PUBLIC_GITHUB_REPO as `${string}/${string}`;
 
 export default function ArchiveComment() {
