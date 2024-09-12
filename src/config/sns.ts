@@ -5,12 +5,12 @@ const snsInfo = [
     icon: "github",
     link: "https://github.com/macjjuni",
   },
-  {
-    id: 1,
-    text: "x",
-    icon: "x_logo",
-    link: "https://twitter.com/kkusaeng",
-  },
+  // {
+  //   id: 1,
+  //   text: "x",
+  //   icon: "x_logo",
+  //   link: "https://twitter.com/kkusaeng",
+  // },
 ];
 
 export default snsInfo;
