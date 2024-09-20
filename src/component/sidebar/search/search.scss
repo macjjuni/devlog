@@ -3,37 +3,55 @@
     border: 0.5px solid $kku-border-color;
     border-radius: 4px;
 
-
-    .k-text-field.search__card__input {
+    .search__card__input {
         min-width: auto;
         width: 100%;
+        justify-content: space-between;
         gap: 0;
+        padding: $kku-padding-sm $kku-padding-md;
+        border-width: 0.5px;
+        border-color: $kku-border-color;
+        border-style: solid;
+        border-radius: 4px;
+        background: $kku-background-color;
 
-        .k-text-field__input__container {
-            padding: $kku-padding-sm $kku-padding-md;
-            border-width: 0.5px;
-            border-color: $kku-border-color;
+        .search__card__input__icon__container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search__card__input__shortcuts {
+            padding: 2px 3px;
+            border: 0.5px solid $kku-border-color;
             border-radius: 4px;
+            font-size: 12px;
+            line-height: 12px;
+            font-weight: bold;
+            color: $kku-white-color;
+            text-align: center;
+        }
+
+        .k-button__content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            @include font-body;
+            font-weight: 300;
+            color: lighten($kku-border-color, 24%);
+        }
+
+        &:hover {
             background: $kku-background-color;
+        }
 
-            .k-text-field__input {
-                color: $kku-font-color;
-                caret-color: $kku-font-color;
-                @include font-body;
-                font-weight: 100;
-            }
 
-            .k-icon--clickable > svg {
-                fill: $kku-white-color;
-            }
+        &:focus {
+            outline-color: $kku-primary-color;
         }
     }
-
-    .search__card__input--error {
-        animation: errorVibe 0.5s ease-in-out 1;
-        transform-origin: center;
-    }
-
 }
 
 @media screen and (max-width: $kku-layout-medium) {
@@ -42,9 +60,7 @@
         border: none;
 
         .k-text-field.search__card__input {
-            .k-text-field__input__container {
-                padding: $kku-padding-md $kku-padding-md;
-            }
+            padding: $kku-padding-md $kku-padding-md;
         }
     }
 }

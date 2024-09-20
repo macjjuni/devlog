@@ -1,81 +1,83 @@
 "use client";
 
-import { memo, useCallback, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
-import { KTextField, KTextFieldRefs } from "kku-ui";
+import { memo, useCallback, useState, useRef, useEffect } from "react";
+// import { useRouter } from "next/navigation";
+// import { getSearchPageUrl } from "@/route";
+// import useSearchText from "@/hook/useSearchText";
 import "./search.scss";
-import { getSearchPageUrl } from "@/route";
-import useSearchText from "@/hook/useSearchText";
+import SearchModal from "@/component/sidebar/search/searchModal";
+import { KButton, KIcon } from "kku-ui";
+import getOS from "@/utils/os";
 
 function Search() {
   // region [Hooks]
 
-  const searchRef = useRef<KTextFieldRefs>(null);
-  const keyword = useSearchText();
-  const [searchText, setSearchText] = useState("");
-  const [errorClass, setErrorClass] = useState<"search__card__input--error" | "">("");
-  const { push } = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const [shortcutText, setShortcutText] = useState("");
+  const searchRef = useRef<HTMLInputElement | null>(null);
+  // const keyword = useSearchText();
+  // const [searchText, setSearchText] = useState("");
+  // const [errorClass, setErrorClass] = useState<"search__card__input--error" | "">("");
+  // const { push } = useRouter();
 
   // endregion
 
   // region [Privates]
 
-  const handleAddInputError = useCallback(() => {
-    setErrorClass("search__card__input--error");
-    searchRef.current?.focus();
+  const onClose = useCallback(() => {
+    setIsOpen(false);
   }, []);
 
-  const handleRemoveInputError = useCallback(() => {
-    setTimeout(() => {
-      setErrorClass("");
-    }, 600);
+  const onAddSearchOpenKeyboardEvent = useCallback((e: KeyboardEvent) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      setIsOpen(true);
+    }
+  }, []);
+
+  const initializeShortcutText = useCallback(() => {
+    const os = getOS();
+    if (os === "mac") {
+      setShortcutText("Cmd+K");
+    } else {
+      setShortcutText("Ctrl+K");
+    }
   }, []);
 
   // endregion
 
   // region [Events]
 
-  const onChangeSearch = useCallback((text: string) => {
-    setSearchText(text);
+  const onFocusSearchInput = useCallback(() => {
+    setIsOpen(true);
+    searchRef.current?.blur();
   }, []);
-
-  const onSearch = useCallback(() => {
-    const safeSearchText = searchText.trim();
-
-    if (safeSearchText !== "") {
-      push(getSearchPageUrl(safeSearchText));
-    } else {
-      handleAddInputError();
-    }
-  }, [searchText]);
 
   // endregion
 
   // region [Effects]
 
   useEffect(() => {
-    if (errorClass !== "") {
-      handleRemoveInputError();
-    }
-  }, [errorClass]);
+    initializeShortcutText();
+    window.addEventListener("keydown", onAddSearchOpenKeyboardEvent);
 
-  useEffect(() => {
-    if (keyword) {
-      setSearchText(keyword);
-    }
-  }, [keyword]);
+    return () => window.removeEventListener("keydown", onAddSearchOpenKeyboardEvent);
+  }, []);
 
   // endregion
 
   return (
-    <div className="search__card">
-      <KTextField
-        ref={searchRef}
-        className={`search__card__input ${errorClass}`}
-        value={searchText} onChange={onChangeSearch}
-        onKeyDownEnter={onSearch} placeholder="검색"
-        clearable search onSearch={onSearch} maxLength={100} />
-    </div>
+    <>
+      <div className="search__card">
+        <KButton className="search__card__input" onClick={onFocusSearchInput}>
+          <div className={"search__card__input__icon__container"}>
+            <KIcon icon={"search"} size={18} />
+            Search...
+          </div>
+          <div className="search__card__input__shortcuts">{shortcutText}</div>
+        </KButton>
+      </div>
+      <SearchModal isOpen={isOpen} onClose={onClose} />
+    </>
   );
 }
 
