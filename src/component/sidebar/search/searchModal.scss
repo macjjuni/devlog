@@ -19,13 +19,14 @@
       padding: $kku-padding-md $kku-padding-lg;
 
       hr {
-        margin: $kku-padding-sm 0 $kku-padding-lg;
+        margin: $kku-padding-sm $kku-padding-md $kku-padding-lg $kku-padding-md;
       }
 
       .search__input__container {
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        padding: 0 $kku-padding-md;
 
         .search__modal__search__input {
           gap: 0;
@@ -48,7 +49,9 @@
 
       .search__history__container {
         .search__history__title {
-          @include font-body;
+          @include font-small;
+          padding: 0 $kku-padding-md;
+          margin-bottom: 4px;
         }
 
         .search__history__list {
@@ -58,15 +61,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            @include font-body;
             width: 100%;
-            padding: $kku-padding-md 0;
+            padding: $kku-padding-md;
+            
+            &:hover {
+              background-color: $kku-hover-background-color;
+            }
 
             .search__history__list__item__text {
-              @include font-sub-title-2;
+              @include font-body;
             }
             .search__history__list__item__close {
-
+              font-size: 0;
             }
           }
         }

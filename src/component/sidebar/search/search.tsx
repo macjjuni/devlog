@@ -1,13 +1,10 @@
 "use client";
 
 import { memo, useCallback, useState, useRef, useEffect } from "react";
-// import { useRouter } from "next/navigation";
-// import { getSearchPageUrl } from "@/route";
-// import useSearchText from "@/hook/useSearchText";
-import "./search.scss";
 import SearchModal from "@/component/sidebar/search/searchModal";
 import { KButton, KIcon } from "kku-ui";
 import getOS from "@/utils/os";
+import "./search.scss";
 
 function Search() {
   // region [Hooks]
@@ -15,10 +12,6 @@ function Search() {
   const [isOpen, setIsOpen] = useState(false);
   const [shortcutText, setShortcutText] = useState("");
   const searchRef = useRef<HTMLInputElement | null>(null);
-  // const keyword = useSearchText();
-  // const [searchText, setSearchText] = useState("");
-  // const [errorClass, setErrorClass] = useState<"search__card__input--error" | "">("");
-  // const { push } = useRouter();
 
   // endregion
 

@@ -5,6 +5,7 @@ import "./searchModal.scss";
 import { getSearchPageUrl } from "@/route";
 import { useStore } from "@/store/store";
 import useSearchText from "@/hook/useSearchText";
+import Link from "next/link";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -20,7 +21,7 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
   // region [Hooks]
 
   const searchRef = useRef<KTextFieldRefs>(null);
-  const router = useRouter();
+  const { push } = useRouter();
   const [searchValue, setSearchValue] = useState("");
   const sanitizedSearchText = useMemo(() => searchValue?.trim() || "", [searchValue]);
   const searchHistory = useStore((state) => state.searchHistory);
@@ -71,7 +72,7 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
       searchRef.current?.focus();
       return;
     }
-    router.push(getSearchPageUrl(sanitizedSearchText));
+    push(getSearchPageUrl(sanitizedSearchText));
   }, [searchHistory, sanitizedSearchText]);
 
   // endregion
@@ -134,23 +135,20 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
           {sortByRecentDateHistory.length === 0 ? (
             <div className={"search__history__no__item"}>최근 검색어가 없습니다.</div>
           ) : (
-            <ul className={"search__history__list"}>
+            <div className={"search__history__list"}>
               {sortByRecentDateHistory.map((item) => (
-                <li key={item.date} className={"search__history__list__item"}>
+                <Link href={getSearchPageUrl(item.text)} key={item.date} className={"search__history__list__item"}>
                   <span className={"search__history__list__item__text"}>{item.text}</span>
                   <span className={"search__history__list__item__close"}>
-                    <KIcon
-                      icon={"close"}
-                      size={16}
-                      color={"white"}
+                    <KIcon icon={"close"} size={14} color={"#fff"}
                       onClick={() => {
                         onClickRemoveHistoryItem(item.date);
                       }}
                     />
                   </span>
-                </li>
+                </Link>
               ))}
-            </ul>
+            </div>
           )}
         </div>
       </>
