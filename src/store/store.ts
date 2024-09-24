@@ -7,7 +7,7 @@ export const useStore = create<StoreProps>()(
     persist(
       (set) => ({
         isHeaderMini: false,
-        setIsHeaderMini: (bool) => set(() => ({ isHeaderMini: bool })),
+        setIsHeaderMini: (bool) => set((state) => ({ ...state, isHeaderMini: bool })),
         btcChart: {
           1: { date: [], price: [], timeStamp: 0 },
           7: { date: [], price: [], timeStamp: 0 },
@@ -18,10 +18,13 @@ export const useStore = create<StoreProps>()(
           btcChart: { ...state.btcChart, [day]: data },
         })),
         realTimeMarketPriceUSD: "",
-        setRealTimeMarketPriceUSD: (realTimeMarketPriceUSD) => set(() => ({ realTimeMarketPriceUSD })),
+        setRealTimeMarketPriceUSD: (realTimeMarketPriceUSD) => set((state) => ({
+          ...state, realTimeMarketPriceUSD
+        })),
         searchHistory: [],
-        setSearchHistory: (searchHistory) => set(() => ({ searchHistory })),
-      }),
+        setSearchHistory: (searchHistory) => set((state) => ({
+          ...state, searchHistory })),
+        }),
       { name: "kku-storage" }, // persist key
     ),
   ),

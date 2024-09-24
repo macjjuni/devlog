@@ -17,7 +17,7 @@
     "chart.js": "^4.4.3",
     "dayjs": "^1.11.11",
     "framer-motion": "^11.2.6",
-    "kku-ui": "^0.0.471",
+    "kku-ui": "^0.0.472",
     "lodash-es": "^4.17.21",
     "next": "^14.2.3",
     "nextjs-toploader": "^1.6.12",

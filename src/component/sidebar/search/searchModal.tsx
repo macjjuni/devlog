@@ -1,11 +1,11 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { KIcon, KModal, KTextField, KTextFieldRefs } from "kku-ui";
 import { useRouter } from "next/navigation";
-import "./searchModal.scss";
 import { getSearchPageUrl } from "@/route";
 import { useStore } from "@/store/store";
 import useSearchText from "@/hook/useSearchText";
-import Link from "next/link";
+import "./searchModal.scss";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -104,9 +104,14 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   useEffect(() => {
     if (isOpen) {
+      // 모달 열렸을 때 내부 문서 스크롤 방지
+      document.body.style.overflow = "hidden";
       setTimeout(() => {
         searchRef.current?.focus();
-      }, 300);
+      }, 100);
+    } else {
+      // 원상 복구
+      document.body.style.overflow = "unset";
     }
   }, [isOpen]);
 
@@ -126,7 +131,7 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
         <div className={"search__input__container"}>
           <KIcon icon={"search"} size={24} onClick={onClickSearch} />
           <KTextField ref={searchRef} className={"search__modal__search__input"} fullWidth value={searchValue}
-            onChange={onChangeSearchValue} onKeyDownEnter={onKeyDownEnter} placeholder={"검색어를 입력하세요."} />
+            onChange={onChangeSearchValue} onKeyDownEnter={onKeyDownEnter} placeholder={"검색어를 입력하세요."} maxLength={24} />
         </div>
         <hr />
         <div className={"search__history__container"}>
@@ -135,20 +140,24 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
           {sortByRecentDateHistory.length === 0 ? (
             <div className={"search__history__no__item"}>최근 검색어가 없습니다.</div>
           ) : (
-            <div className={"search__history__list"}>
+            <ul className={"search__history__list"}>
               {sortByRecentDateHistory.map((item) => (
-                <Link href={getSearchPageUrl(item.text)} key={item.date} className={"search__history__list__item"}>
-                  <span className={"search__history__list__item__text"}>{item.text}</span>
-                  <span className={"search__history__list__item__close"}>
-                    <KIcon icon={"close"} size={14} color={"#fff"}
-                      onClick={() => {
-                        onClickRemoveHistoryItem(item.date);
-                      }}
-                    />
-                  </span>
-                </Link>
+                <li key={item.date} className={"search__history__list__item"}>
+                  <Link href={getSearchPageUrl(item.text)} className={"search__history__list__item__text"}>
+                    {item.text}
+                  </Link>
+                  <KIcon
+                    icon={"close"}
+                    size={14}
+                    color={"#fff"}
+                    className={"search__history__list__item__close"}
+                    onClick={() => {
+                      onClickRemoveHistoryItem(item.date);
+                    }}
+                  />
+                </li>
               ))}
-            </div>
+            </ul>
           )}
         </div>
       </>

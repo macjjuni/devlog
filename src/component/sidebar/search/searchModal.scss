@@ -1,14 +1,11 @@
 
 
 .k-modal__wrapper {
+  align-items: flex-start;
   background-color: rgba(255, 255, 255, 0.24);
 
   .k-modal__container {
-    margin-bottom: calc(100dvh / 2);
-
-    &.k-modal__container--small {
-
-    }
+    margin-top: 160px;
 
     .k-modal__container__header {
       display: none;
@@ -19,14 +16,14 @@
       padding: $kku-padding-md $kku-padding-lg;
 
       hr {
-        margin: $kku-padding-sm $kku-padding-md $kku-padding-lg $kku-padding-md;
+        width: 100%;
       }
 
       .search__input__container {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding: 0 $kku-padding-md;
+        //padding: 0 $kku-padding-md;
 
         .search__modal__search__input {
           gap: 0;
@@ -48,31 +45,45 @@
       }
 
       .search__history__container {
+        margin: 0 -$kku-padding-lg;
+        margin-top: 12px;
+        margin-bottom: $kku-padding-md;
+
         .search__history__title {
           @include font-small;
-          padding: 0 $kku-padding-md;
-          margin-bottom: 4px;
+          padding: 0 $kku-padding-lg;
         }
 
         .search__history__list {
+          max-height: 380px;
           min-height: 120px;
+          overflow-y: auto;
 
           .search__history__list__item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            position: relative;
             width: 100%;
-            padding: $kku-padding-md;
-            
+
             &:hover {
               background-color: $kku-hover-background-color;
             }
 
             .search__history__list__item__text {
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              width: 100%;
+              height: 100%;
+              padding: $kku-padding-md $kku-padding-lg;
               @include font-body;
             }
+
             .search__history__list__item__close {
+              position: absolute;
+              top: 50%;
+              right: $kku-padding-lg;
+              transform: translateY(-50%);
               font-size: 0;
+              z-index: 100;
             }
           }
         }
@@ -83,8 +94,6 @@
           min-height: 120px;
         }
       }
-
-
     }
   }
 }
