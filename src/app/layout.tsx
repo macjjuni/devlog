@@ -5,8 +5,8 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import SplineWrapper from "@/component/aboutContent/spline/spline";
 import PageLoader from "@/component/common/pageLoader/pageLoader";
 import HeaderObserver from "@/layout/header/headerObserver";
-import "./layout.scss";
 import "kku-ui/lib/styles/index.css";
+import "./layout.scss";
 
 export const viewport: Viewport = {
   width: "device-width",

@@ -15,7 +15,7 @@ const date = {
     const diffTargetDate = dayjs(dateStr, defaultFormat);
     return nowDate.diff(diffTargetDate, "d");
   },
-  format: (dateStr: string) => dayjs(dateStr).format(defaultFormat),
+  format: (dateStr: string | number) => dayjs(dateStr).format(defaultFormat),
   formatDetail: (dateStr: string) => dayjs(dateStr).format(defaultDetailFormat),
   diff: (date1: string, date2: string) => {
     const formatDate1 = dayjs(date1, defaultDetailFormat);
