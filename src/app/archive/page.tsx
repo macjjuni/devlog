@@ -6,6 +6,7 @@ import { getMetadata } from "@/config/meta";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import { getNotionPages as _getNotionPages } from "@/api/notion/page";
+import { NotionInfoProps, NotionPageProps } from "@/@types/notion";
 import { isNumber } from "@/utils/string";
 import Fallback from "./fallBack";
 
@@ -13,6 +14,10 @@ export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
 
 export const revalidate = 60 * 10;
 const getAllPage = unstable_cache(_getNotionPages, ["archive"], { revalidate, tags: ["archive"] });
+
+let backupPages = [] as NotionPageProps[];
+// eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
+let backupInfo = null as NotionInfoProps | null;
 
 export default async function ArchivePage({ searchParams }: { searchParams: { page: string | undefined } }) {
   const { page } = searchParams;
@@ -24,9 +29,18 @@ export default async function ArchivePage({ searchParams }: { searchParams: { pa
 
   const { info, pages, error } = await getAllPage();
 
+  // 에러가 아닌경우 백업
+  if (!error) {
+    backupInfo = info;
+    backupPages = [...pages];
+  }
+
   if (error) {
+    if (backupPages.length > 0) { return; }
     redirect("/404");
   }
+
+  const sanitisedPage = pages.length ? pages : backupPages;
 
   return (
     <Suspense fallback={<Fallback />}>
@@ -34,7 +48,7 @@ export default async function ArchivePage({ searchParams }: { searchParams: { pa
         <ArchiveSidebar info={info} />
       </aside>
       <section className="archive__layout__content">
-        <ArchiveContent pages={pages} />
+        <ArchiveContent pages={sanitisedPage} />
       </section>
     </Suspense>
   );
