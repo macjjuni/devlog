@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getMetadata } from "@/config/meta";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
-import ArchiveContent from "@/layout/archiveContent/archiveContent";
+import ArchiveContent from "@/layout/archiveContainer/archiveContainer";
 import { getNotionPages as _getNotionPages } from "@/api/notion/page";
 import { NotionInfoProps, NotionPageProps } from "@/@types/notion";
 import { isNumber } from "@/utils/string";

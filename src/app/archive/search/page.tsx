@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import Fallback from "@/app/archive/fallBack";
 import { getNotionSearchPages as _getNotionSearchPages } from "@/api/notion/page";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
-import ArchiveContent from "@/layout/archiveContent/archiveContent";
+import ArchiveContent from "@/layout/archiveContainer/archiveContainer";
 import type { Metadata } from "next";
 import { getMetadata } from "@/config/meta";
 
