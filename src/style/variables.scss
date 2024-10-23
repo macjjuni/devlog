@@ -1,14 +1,21 @@
 
-// region [Layout]
+// region [spacing]
 
 $kku-layout-large: 1100px;
 $kku-layout-medium: 768px;
 $kku-layout-small: 464px;
 
-$kku-padding-xl: 24px;
-$kku-padding-lg: 16px;
-$kku-padding-md: 8px;
-$kku-padding-sm: 4px;
+$kku-spacing-xl: 24px;
+$kku-spacing-lg: 16px;
+$kku-spacing-md: 8px;
+$kku-spacing-sm: 4px;
+
+// endregion
+
+
+// region [width]
+
+$kku-archive-toc-width: 304px;
 
 // endregion
 

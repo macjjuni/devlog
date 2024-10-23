@@ -12,7 +12,7 @@
         height: 100%;
 
         margin: 0 auto;
-        padding: 0 $kku-padding-xl;
+        padding: 0 $kku-spacing-xl;
 
         .footer__wrapper__text {
             font-size: 14px;
@@ -24,7 +24,7 @@
 
 @media screen and (max-width: $kku-layout-medium) {
     .footer > .footer__wrapper {
-        padding: 0 $kku-padding-lg;
+        padding: 0 $kku-spacing-lg;
     }
 }
 

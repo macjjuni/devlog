@@ -4,21 +4,21 @@
     flex: 1 1 auto;
     width: 100%;
     max-width: $kku-layout-large;
-    padding: $kku-padding-xl;
+    padding: $kku-spacing-xl;
 }
 
 @media screen and (max-width: $kku-layout-large) {
     .main {
-        padding: $kku-padding-xl;
+        padding: $kku-spacing-xl;
     }
 }
 
 @media screen and (max-width: $kku-layout-medium) {
     .main {
-        padding: $kku-padding-lg;
+        padding: $kku-spacing-lg;
     }
     .main > .kku_spline__wrapper__render-off + .about__layout {
-        margin-top: calc(50dvh - ($kku-padding-lg * 2));
+        margin-top: calc(50dvh - ($kku-spacing-lg * 2));
     }
     .main > .kku_spline__wrapper__render-on + .about__layout {
         margin-top: 0;

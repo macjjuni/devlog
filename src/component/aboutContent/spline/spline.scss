@@ -2,7 +2,7 @@
 .kku_spline__wrapper {
     position: absolute;
     top: 50%; left: 0;
-    width: calc(100% - (480px + $kku-padding-xl * 2));
+    width: calc(100% - (480px + $kku-spacing-xl * 2));
     height: 660px;
     transform: translateY(-50%);
     transition: opacity 0.3s ease;
@@ -26,8 +26,8 @@
 
 @media screen and (max-width: $kku-layout-large) {
     .kku_spline__wrapper {
-        left: $kku-padding-xl;
-        width: calc(50% - $kku-padding-xl);
+        left: $kku-spacing-xl;
+        width: calc(50% - $kku-spacing-xl);
     }
 }
 
@@ -39,13 +39,13 @@
         transform: translateY(0);
 
         width: 100%;
-        height: calc(50dvh - ($kku-padding-lg * 2));
+        height: calc(50dvh - ($kku-spacing-lg * 2));
     }
 }
 
 @media screen and (max-width: $kku-layout-small) {
     .kku_spline__wrapper {
         width: 100%;
-        height: calc((100dvh - (64px + 32px + ($kku-padding-lg * 2))) / 2);
+        height: calc((100dvh - (64px + 32px + ($kku-spacing-lg * 2))) / 2);
     }
 }

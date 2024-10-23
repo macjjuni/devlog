@@ -233,12 +233,12 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  padding-left: $kku-padding-md;
+  padding-left: $kku-spacing-md;
 }
 
 .notion-aside-table-of-contents-header {
   width: 100%;
-  padding: $kku-padding-sm;
+  padding: $kku-spacing-sm;
   border-bottom: 0.5px solid $kku-border-color;
   text-transform: uppercase;
   font-weight: 600;
@@ -1809,7 +1809,7 @@ svg.notion-page-icon {
 }
 
 .notion-table-of-contents-item > span {
-  padding: $kku-padding-sm $kku-padding-md;
+  padding: $kku-spacing-sm $kku-spacing-md;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2277,7 +2277,7 @@ svg.notion-page-icon {
 }
 
 /*
-    NOTE: if we hide the preview image, there's a weird bug with react hydration where
+    NOTE: if we hide the view image, there's a weird bug with react hydration where
     the image will sometimes flicker to show the background during initial page load.
     So I'm removing this `opacity: 0` for now, but it will cause issues if the real
     image is transparent.

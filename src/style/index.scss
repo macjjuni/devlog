@@ -4,6 +4,9 @@
 @import 'animation.scss';
 @import 'mixins.scss';
 
+html {
+    scroll-padding-top: 64px;
+}
 body {
     font-family: $kku-default-font-family;
     font-weight: 100;

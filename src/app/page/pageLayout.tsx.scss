@@ -1,7 +1,7 @@
 
 .about__layout {
     position: absolute;
-    top: 0; right: $kku-padding-xl;
+    top: 0; right: $kku-spacing-xl;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -22,8 +22,8 @@
 
 @media screen and (max-width: $kku-layout-large) {
     .about__layout {
-        left: calc(50% + $kku-padding-xl);
-        width: calc(50% - ($kku-padding-xl * 2));
+        left: calc(50% + $kku-spacing-xl);
+        width: calc(50% - ($kku-spacing-xl * 2));
         max-width: none;
     }
 }
@@ -36,13 +36,13 @@
         left: 0;
         transform: translateY(0);
         width: 100%;
-        padding-top: $kku-padding-lg;
+        padding-top: $kku-spacing-lg;
     }
 }
 
 @media screen and (max-width: $kku-layout-small) {
     .about__layout {
-        padding-top: $kku-padding-lg;
+        padding-top: $kku-spacing-lg;
 
         .about__layout__container {
             gap: 24px;

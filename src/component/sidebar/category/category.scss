@@ -5,7 +5,7 @@
     .category__card__list {
         position: relative;
         width: 100%;
-        padding: $kku-padding-lg;
+        padding: $kku-spacing-lg;
         border: 0.5px solid $kku-border-color;
         border-radius: 4px;
 
@@ -35,7 +35,7 @@
                 align-items: center;
                 gap: 4px;
                 width: 100%;
-                padding: $kku-padding-sm $kku-padding-sm $kku-padding-sm $kku-padding-md;
+                padding: $kku-spacing-sm $kku-spacing-sm $kku-spacing-sm $kku-spacing-md;
                 transition: background-color 0.3s ease;
                 border-radius: 4px;
                 @include font-body;
@@ -91,7 +91,7 @@
             flex-direction: row;
             flex-wrap: nowrap;
             gap: 6px;
-            padding: 0 0 $kku-padding-md 0;
+            padding: 0 0 $kku-spacing-md 0;
             border: none;
             white-space: nowrap;
             overflow: auto;
@@ -102,7 +102,7 @@
                 }
 
                 .category__card__item__link {
-                    padding: $kku-padding-sm $kku-padding-md;
+                    padding: $kku-spacing-sm $kku-spacing-md;
 
                     &:hover {
                         .category__card__item__link__hover-character { width: 10px; }

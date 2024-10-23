@@ -1,5 +1,5 @@
 .search__card {
-    padding: $kku-padding-lg;
+    padding: $kku-spacing-lg;
     border: 0.5px solid $kku-border-color;
     border-radius: 4px;
 
@@ -8,7 +8,7 @@
         width: 100%;
         justify-content: space-between;
         gap: 0;
-        padding: $kku-padding-sm $kku-padding-md;
+        padding: $kku-spacing-sm $kku-spacing-md;
         border-width: 0.5px;
         border-color: $kku-border-color;
         border-style: solid;
@@ -60,7 +60,7 @@
         border: none;
 
         .k-text-field.search__card__input {
-            padding: $kku-padding-md $kku-padding-md;
+            padding: $kku-spacing-md $kku-spacing-md;
         }
     }
 }

@@ -33,7 +33,7 @@
             height: 100%;
 
             margin: 0 auto;
-            padding: 0 $kku-padding-xl;
+            padding: 0 $kku-spacing-xl;
 
             .header__logo  .header__logo__link {
                 font-size: 28px;
@@ -57,14 +57,14 @@
 
 @media screen and (max-width: $kku-layout-medium) {
     .header {
-        .header__wrapper > .header__wrapper__container {  padding: 0 $kku-padding-lg; }
+        .header__wrapper > .header__wrapper__container {  padding: 0 $kku-spacing-lg; }
         .header__wrapper > .header__logo > .header__logo__link { font-size: 28px; }
     }
 }
 
 @media screen and (max-width: $kku-layout-small) {
     .header {
-        .header__wrapper > .header__wrapper__container {  padding: 0 $kku-padding-lg; }
+        .header__wrapper > .header__wrapper__container {  padding: 0 $kku-spacing-lg; }
         .header__wrapper > .header__logo > .header__logo__link { font-size: 28px; }
     }
 }
