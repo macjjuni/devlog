@@ -1,53 +1,41 @@
-import NotionViewer from "@/component/archiveContent/notionViewer/notionViewer";
-import ArchiveComment from "@/component/archiveContent/archiveComment/archiveComment";
+import ArchiveHeader from "@/component/archive/archiveHeader/archiveHeader";
+import ArchiveContent from "@/component/archive/archiveContent/ArchiveContent";
+import ArchiveComment from "@/component/archive/archiveComment/archiveComment";
+import { mdxSerializer } from "@/lib/mdx";
 import ErrorPage from "@/app/404/page";
-import { getNotionDetail as _getNotionDetail } from "@/api/notion/page";
-import { cache } from "react";
-import notion from "@/lib/noiton";
-import type { Metadata } from "next";
-import { getMetadata } from "@/config/meta";
-
-export const revalidate = 60;
-const getNotionDetail = cache(_getNotionDetail);
-
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const { title, des, coverUrl } = await getNotionDetail(params.id);
-
-  return getMetadata(title, des, `archive/${params.id}`, coverUrl);
-}
+import { getAllArchivePath, getArchiveFileSource, getArchivePath } from "@/utils/archive";
+import { ArchiveData } from "@/@types/archive";
+import ArchiveToc from "@/component/archive/archiveToc/archiveToc";
 
 export async function generateStaticParams() {
-  const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
+  const allArchivePath = await getAllArchivePath();
 
-  if (!databaseId) {
-    throw new Error("DATABASE_ID is not defined");
-  }
-
-  try {
-    // Get all Post
-    const allPages = await notion.getPages(databaseId);
-    // Generate all post paths
-    return allPages.map(({ id }) => ({ id }));
-
-  } catch (e) {
-    console.error(e);
-    return [];
-  }
+  return allArchivePath.map((archivePath) => ({
+    id: archivePath,
+  }));
 }
 
 export default async function ArchiveDetailPage({ params }: { params: { id: string } }) {
-  const { coverUrl, alt, recordMap, error } = await getNotionDetail(params.id);
+  try {
+    const currentArchivePath = await getArchivePath(params.id);
+    if (!currentArchivePath) {
+      throw Error("Not Found Archive");
+    }
 
-  const pageCoverUrl = coverUrl || undefined;
+    const source = getArchiveFileSource(currentArchivePath);
+    const mdxSource = await mdxSerializer(source); // MDX 직렬화
+    const archiveData = mdxSource.frontmatter as unknown as ArchiveData;
 
-  if (error || !recordMap) {
+    return (
+      <>
+        <ArchiveHeader thumbnailPath={currentArchivePath} archiveData={archiveData} />
+        <ArchiveContent source={mdxSource}>
+          <ArchiveToc source={source} />
+        </ArchiveContent>
+        <ArchiveComment />
+      </>
+    );
+  } catch (e) {
     return <ErrorPage />;
   }
-
-  return (
-    <>
-      <NotionViewer recordMap={recordMap} coverUrl={pageCoverUrl} alt={alt} />
-      <ArchiveComment />
-    </>
-  );
 }

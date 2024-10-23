@@ -8,7 +8,8 @@ const nextConfig = {
       { protocol: "https", hostname: "pbs.twimg.com" },
       { protocol: "https", hostname: "www.notion.so", pathname: "/image/**", port: "" }
     ]
-  }
+  },
+  transpilePackages: ['next-mdx-remote'],
 };
 
 export default nextConfig;
