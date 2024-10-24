@@ -23,12 +23,12 @@ export default async function ArchiveDetailPage({ params }: { params: { id: stri
     }
 
     const source = getArchiveFileSource(currentArchivePath);
-    const mdxSource = await mdxSerializer(source); // MDX 직렬화
+    const mdxSource = await mdxSerializer(source); // MD 직렬화
     const archiveData = mdxSource.frontmatter as unknown as ArchiveData;
 
     return (
       <>
-        <ArchiveHeader thumbnailPath={currentArchivePath} archiveData={archiveData} />
+        <ArchiveHeader archiveData={archiveData} />
         <ArchiveContent source={mdxSource}>
           <ArchiveToc source={source} />
         </ArchiveContent>
