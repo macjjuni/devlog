@@ -20,9 +20,9 @@ interface CategoryProps {
 
 const arrowIconSize = 20;
 
-const initialCategoryList: SelectPropertyResponse[] = [{ id: "all", name: "All", description: "", color: "default" }];
+const initialCategoryList: string[] = ["All"];
 
-function Category({ list }: CategoryProps) {
+function Category({ list }: { list: string[]}) {
   // region [Hooks]
 
   const pathname = usePathname();
@@ -47,8 +47,8 @@ function Category({ list }: CategoryProps) {
     categoryRef.current!.scroll({ top: 0, left: scrollValue, behavior: "smooth" });
   }, []);
 
-  const sanitizedList = useMemo(() => {
-    const filteredList: ICategory = list || [];
+  const sanitizedList = useMemo((): string[] => {
+    const filteredList = list || [];
     const lowerCaseCategoryName = categoryName?.toLowerCase();
 
     // Archive 메인 경로 접속
@@ -57,7 +57,7 @@ function Category({ list }: CategoryProps) {
     }
     // category 페이지 접속
     const currentCategoryIdx = filteredList.findIndex((item) => {
-      return item?.name.toLowerCase() === lowerCaseCategoryName;
+      return item?.toLowerCase() === lowerCaseCategoryName;
     });
 
     // 잘 못된 Category 인 경우
@@ -65,10 +65,10 @@ function Category({ list }: CategoryProps) {
       return initialCategoryList.concat(filteredList);
     }
     // 현재 Category 객체를 All 아래에 위치 시키고 반환
-    const currentCategory = { ...filteredList[currentCategoryIdx] };
+    const currentCategory = filteredList[currentCategoryIdx];
 
     const remainingCategories = filteredList?.filter((item) => {
-      return item.name.toLowerCase() !== lowerCaseCategoryName;
+      return item?.toLowerCase() !== lowerCaseCategoryName;
     });
 
     return initialCategoryList.concat(currentCategory, remainingCategories);
@@ -157,11 +157,11 @@ function Category({ list }: CategoryProps) {
       )}
       <ul ref={categoryRef} className="category__card__list" onScroll={onScroll}>
         {sanitizedList.map((listItem) => (
-          <li key={listItem.id} className="category__card__item">
-            <Link href={listItem.name === "All" ? "/archive" : getCategoryPageUrl(listItem.name)} className={`category__card__item__link ${linkClass(listItem.name)}`}>
+          <li key={listItem} className="category__card__item">
+            <Link href={listItem === "All" ? "/archive" : getCategoryPageUrl(listItem)} className={`category__card__item__link ${linkClass(listItem)}`}>
               <ActiveCheckSvg className="category__card__item__link__active-character" />
               <div className="category__card__item__link__hover-character" />
-              <span className="category__card__item__text">{listItem.name}</span>
+              <span className="category__card__item__text">{listItem}</span>
             </Link>
           </li>
         ))}
