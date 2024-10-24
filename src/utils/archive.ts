@@ -3,6 +3,7 @@ import path from "path";
 import { readdir } from "fs/promises";
 import { archivePath } from "@/config/archive";
 
+// 카테고리 목록 조회
 export async function getCategoryList() {
   const entries = await readdir(archivePath, { withFileTypes: true });
 
@@ -17,6 +18,7 @@ export async function getCategoryList() {
   return sanitizedDirectories;
 }
 
+// 모든 게시글 경로 조회
 export async function getAllArchivePath(): Promise<string[]> {
   const categories = await getCategoryList();
 
@@ -31,6 +33,7 @@ export async function getAllArchivePath(): Promise<string[]> {
   }, []);
 }
 
+// 특정 게시글 경로 조회
 export async function getArchivePath(id: string) {
   const allArchivePath = await getAllArchivePath();
 
@@ -40,6 +43,7 @@ export async function getArchivePath(id: string) {
 
   return null;
 }
+
 
 export function getArchiveFileSource(_path: string) {
   const filePath = path.join(process.cwd(), `${archivePath}/${_path}`, "markdown.mdx");
