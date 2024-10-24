@@ -15,11 +15,10 @@
       font-size: 20px;
       font-weight: bold;
       padding: $kku-spacing-sm 0;
-      margin-bottom: $kku-spacing-md;
     }
 
     &.archive__toc__container__list__item--first { padding-left: 0; }
-    &.archive__toc__container__list__item--second { padding-left: 0; font-size: 22px; }
+    &.archive__toc__container__list__item--second { margin-top: $kku-spacing-md; padding-left: 0; font-size: 22px; }
     &.archive__toc__container__list__item--third { padding-left: 16px; font-size: 18px; }
     &.archive__toc__container__list__item--fourth { padding-left: 32px; font-size: 16px; }
     &.archive__toc__container__list__item--fifth { padding-left: 48px; font-size: 14px; }
