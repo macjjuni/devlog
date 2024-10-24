@@ -4,13 +4,17 @@ import Search from "@/component/sidebar/search/search";
 import Category from "@/component/sidebar/category/category";
 import BitcoinChart from "@/component/sidebar/bitcoinChart/bitcoinMarketChart";
 import { NotionInfoProps } from "@/@types/notion";
+import { getCategoryList } from "@/utils/archive";
 
-function ArchiveSidebar({ info }: { info: NotionInfoProps }) {
+async function ArchiveSidebar({ info }: { info?: NotionInfoProps, list?: string[] }) {
+
+  const categoryList = await getCategoryList();
+
   return (
     <>
       <Profile description={info?.description} imageUrl={info?.coverURL} />
       <Search />
-      <Category list={info?.category} />
+      <Category list={categoryList} />
       <BitcoinChart />
     </>
   );
