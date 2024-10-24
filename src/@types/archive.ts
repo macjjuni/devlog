@@ -3,6 +3,7 @@ export type ArchiveCategory = "Dev" | "Daily" | "JavaScript" | "TypeScript" | "R
 export interface ArchiveData {
   title: string;
   category: ArchiveCategory;
+  tag: string[];
   date: string;
   author: string;
 }
