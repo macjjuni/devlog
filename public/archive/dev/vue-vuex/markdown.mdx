@@ -1,0 +1,139 @@
+---
+title: "Vue - vuex"
+category: Dev
+tag: ['Vue']
+date: 2023-03-31
+author: 꾸생
+---
+
+Vuex는 전역 상태관리를 할 때 사용하는데, 사용하기 위해 필요한 기본 지식들을 정리해 본다. 이제는 Pinia가 대세다.
+
+## 📌 Install
+
+```bash
+vue add vuex
+```
+
+vue-cli 명령어로 설치해주면 폴더구조까지 알아서 설정해준다.
+
+## 📝 main.ts
+
+```tsx
+import { createApp } from 'vue'
+// VueX
+import store from './store'
+
+const app = createApp(App)
+app.use(store).mount('#app')
+```
+
+## 📌 VueX 기본 구성
+
+`State`: 전역 변수
+
+`Mutations`: State를 변경시키는 함수(동기)
+
+`Actions`: State를 변경시키는 함수(비동기)
+
+`Getters`: Computed속성으로 State를 전달해주는 함수(빠르게 State에 접근 가능)
+
+이미 밥상을 다 차려놨기 때문에 숟가락으로 퍼먹으면 된다.
+
+## State
+
+```tsx
+const Store = {
+	state: () => ({
+    userInfo: {
+      id: null,
+      token: null,
+    },
+  }),
+	...
+}
+```
+
+State가 많은 경우 모듈로 형태로 분리해서 따로 작성
+    - src/store/modules/auth.ts
+    - src/store/modules/todo.ts
+    - …
+## Mutations
+
+```tsx
+const Store = {
+	...
+	mutations: {
+    Login(state, userInfo) {
+      state.userInfo.id = userInfo.id
+      state.userInfo.token = userInfo.token
+    },
+    Logout(state) {
+      state.userInfo.id = null
+      state.userInfo.token = null
+    },
+  },
+	...
+}
+```
+
+- State를 변경하는 로직을 작성
+- 컴포넌트에서느 `commit(’함수명’, 전달 인자)` 방식으로 사용
+
+## Actions
+
+```tsx
+const store = {
+	...
+	actions: {
+	  setAccount({ commit }, uesrInfo) {
+
+	    return new Promise((resolve, reject) => {
+	      setTimeout(() => {
+	        commit('Login', userInfo);
+	        resolve()
+	      }, 1000)
+	    })
+
+	  }
+	},
+	...
+}
+```
+
+Actions는 Mutations를 실행시키는데, commit 함수가 아닌 dispatch 함수를 통해서 아래 순서로 실행된다.
+
+1. `dispatch('action name', parameter)`
+2. Actions 실행
+3. Mutations 실행(State 변경)
+
+```tsx
+dispatch('Login', userInfo).then(() => {
+	...
+});
+```
+
+비동기를 위한 방법으로 컴포넌트에서 `then catch` 콜백함수를 실행할 수 있다.
+
+## Getters
+
+```tsx
+const store = {
+	state: () => ({
+    userInfo: {
+      id: null,
+      token: null,
+    },
+  }),
+	getters: {
+    getUserId(state) {
+      return state.userInfo.id
+    },
+  },
+}
+```
+
+Computed 속성으로 원하는 State값을 정의해두면 빠르게 접근할 수  있다.
+
+```tsx
+const userId = store.getters.[모듈명].getUserId()
+```

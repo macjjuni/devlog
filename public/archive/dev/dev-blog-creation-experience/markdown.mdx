@@ -1,0 +1,96 @@
+---
+title: "노션 블로그 개발하기"
+category: Dev
+tag: ['React', TypeScript']
+date: 2023-02-16
+author: 꾸생
+---
+
+## 🚀 티스토리에서 노션 블로그로
+
+```tsx
+import { lookingJob } from 'wanted'
+
+const me = {
+	name: '이준희',
+	age: '28',
+	birth: '1995-09-07',
+	position: '프론트엔드 개발자'
+	yearsOfexp: '1',
+	status: '이직 준비중',
+	devKnowledge: 100
+}
+
+const devStudy = (developer) => {
+	developer.devKnowledge++;
+}
+
+while (me.status === '구직중' || me.status === '이직 준비중') {
+	devStudy(me);
+	lookingJob();
+}
+```
+
+프론트엔드 공부를 시작했을 당시인 2020년부터 티스토리에서 [**`꾸생의 Devlog`**](https://juni-official.tistory.com/) 블로그에 스킨도 직접 만들며 글을 써왔다.
+
+현재는 피치 못할 사정으로 이직을 준비하고 있는데, 준비를 하면서 소개와 지금까지의 이력을 담아낼 웹사이트 개발을 마무리하던 와중 막바지에 큰 결심을 하게 됐다. 지금까지 운영해 왔던 티스토리 블로그를 그만두고 블로그를 새롭게 만들기로 말이다.  😤😤 이미 비싼 도메인(kku.dev)도 결제를 했기 때문에 물러설 수 없다.
+
+<p>
+    <img src="/archive/dev/dev-blog-creation-experience/kku.webp" width="440" height="544" alt="뜨거운 열정보다 중요한 것은 지속적인 열정이다" />
+</p>
+
+### 📱 플랫폼을 두고 왜 개인 블로그를?
+
+- **네이버 - 블로그**
+- **카카오 - 티스토리, 브런치**
+- **Velog**
+- **인프런 - 블로그**
+- **Medium**
+- **구글 블로그 & 워드프레스 블로그**
+
+개인적으로 알고있는 블로그 서비스인데, 중학교 때 네이버 블로그와 티스토리를 조금이나마 경험해봤었다. 그 당시 기록을 남기는 것도 좋아했고 티스토리 초대장을 구하려고 끙끙 발버둥 쳤던 것도 기억이 난다.
+
+위에 많은 블로그 서비스가 있지만 굳이 개인 블로그로 이전하는 이유는 프론트엔드 개발자라면 다들 하나씩 가지고 있는 로망 때문이다.
+
+<p>
+    <img src="/archive/dev/dev-blog-creation-experience/fe-dream.webp" width="440" height="544" alt="뜨거운 열정보다 중요한 것은 지속적인 열정이다" />
+</p>
+
+많은 개발자가 기술 블로그를 직접 만들거나 운영해 나가고 싶다는 것은 위에 밈이 증명해주고 있는데, 대부분 시간이 지나면 3개의 포스팅만 남겨놓고 잠잠해 진다는 밈이다.
+
+하지만 꾸준하게 운영하고 계신 분들도 많이 봤다. [**제로초**](https://www.zerocho.com/)님, [김정환](https://jeonghwan-kim.github.io/)님, [워니](https://wonny.space/)님 “기억보단 기록을”의 [향로](https://jojoldu.tistory.com/)님, [황준일](https://junilhwang.github.io/TIL/)님, 최근에는 [정현수](https://junghyeonsu.com/)님 등.
+
+직접 구현해보며 학습하고 사용하면서 개선하는 것이 가장 큰 의미가 있다고 생각하고 0부터 100까지 구현하는 것은 무척 오래 걸리고 손이 많이 가지만 오픈소스와 수 많은 레퍼런스는 든든한 조력자가 존재한다. 💪🏻
+
+## 🗂️ CMS는 어떻게? 🤔
+
+무언가 개발할 때 여러 레퍼런스를 참고하면서 벤치마킹하는 편이다. 찾아보니 개인 블로그를 구축하는 여러 방법이 있었따. 눈에 띈 것은 [`nextjs-notion-starter-kit`](https://github.com/transitive-bullshit/nextjs-notion-starter-kit) 과 **`gatuby-starter-bee`** 였다.
+
+Gatuby 생태계도 한 번 경험해보고 싶었으나 마크다운으로 글 작성을 하고 빌드&배포해야 게시되는 **`SSG 방식`**의 사용자 경험이 블로그를 꾸준하게 운영하기에 부정적일 것으로 판단했다. 꾸준히 포스팅하면 잔디가 계속 심어지는 건 좋은 거 같지만 말이다.
+
+하나의 서비스를 개선 & 유지보수 하는 것처럼 블로그 포스팅도 추가 수정이 이루어지고 오타도 수정해야 하는데, 그 때마다 커밋 ⇒ 푸시의 반복은 불편한 경험으로 다가올게 뻔했기에 대안은 다음과 같다.
+
+nextjs-notion-starter-kit 처럼 노션을 **CMS**로 활용한 블로그다. 노션은 다용도로 개발자 뿐만 아니라 메모장으로도 많이 이용하는 서비스고 주위에도 많은 분들이 유용하게 사용할 뿐더러 이력서와 포트폴리오, 기업용 웹사이트 또한 노션으로 만들 정도다.
+
+개인적으로 업무를 진행하면서 프로젝트 기록 관리와 회의록, Todo 리스트, 개인 공부 내용을 기록하는 용도로 활용해 왔었다.
+
+<aside>
+💡 **`CMS(Content Management System: 콘텐츠 관리 시스템)`**은 회사의 디지털 콘텐츠 관리를 지원합니다. 전체 팀은 CMS를 사용하여 콘텐츠를 제작, 편집, 구성 및 게시할 수 있습니다. (출처: [https://www.oracle.com/kr/content-management/what-is-cms/](https://www.oracle.com/kr/content-management/what-is-cms/))
+</aside>
+
+## 🛠️ 어떻게 개발할까?
+
+- [x]  **Next.js(React)**
+- [x]  **Notion(notion-client, react-notion-x)**
+- [x]  **Giscus 또는 Notion 댓글 ⇒ utterances 사용**
+- [x]  **Vercel Deploy**
+- [x]  **Google Analytics/Search Console**
+
+
+검색엔진에 노출되기 위해 Next.js에서 SSR 방식을 사용하지만 빠른 HTML 서빙과 서버 부담을 줄이기 위해 `ISR 방식`을 사용한다.
+
+Notion은 블로그 컨텐츠 관리를 위해 사용하고 노션 자체에서 제공하는 [`notion-client`](https://www.npmjs.com/package/notion-client) API를 사용해 노션 페이지 데이터를 가져온다.
+
+글 상세 페이지는 [`react-notion-x`](https://github.com/NotionX/react-notion-x) 라이브러리를 사용해 노션 스타일 그대로 렌더링해 보여준다.
+
+방명록 기능은 특정 노션 Page를 할당해 JSON 형식으로 데이터를 쌓는다.

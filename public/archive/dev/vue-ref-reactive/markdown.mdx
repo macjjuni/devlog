@@ -1,0 +1,65 @@
+---
+title: "Vue3 ref, reactive"
+category: Dev
+tag: ['Vue']
+date: 2023-03-27
+author: 꾸생
+---
+
+## ref
+
+화면에 데이터를 렌더링 시켜주기 위해서는 단순 변수를 사용하는 것이 아닌 반응형 데이터를 만들어 사용해야하는데, Vue3에서 제공하는 `ref`와 `reactive`를 사용한다.
+
+```tsx
+<template>
+  <div>
+    <p>Count: {{ count }}</p>
+    <button @click="incrementCount">Increment Count</button>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const count = ref(0);
+
+const incrementCount = () => {
+  count.value++;
+};
+</script>
+```
+
+반응형 데이터를 만들기 위해 `ref` 함수로 `count`를 생성해 주었고 `incrementCount()` 함수는 `count` 값을 증가시키는데, 값에 접근하기 위해서는 `count.value`로 접근해야한다.
+
+## reactive
+
+```tsx
+<template>
+  <div>
+    <p>Count: {{ state.count }}</p>
+    <button @click="incrementCount">Increment Count</button>
+  </div>
+</template>
+
+<script setup>
+import { reactive } from 'vue';
+
+const state = reactive({
+  count: 0
+});
+
+const incrementCount = () => {
+  state.count++;
+};
+</script>
+```
+
+코드로만 보면 ref는 단일 값을, reactive는 객체 타입을 반응형 데이터로 만들어 사용한다. 그렇다면 차이점?
+
+## ref, react 차이점
+
+1. 반환 타입: `ref` 함수는 단일한 값을 감싸는 래퍼(wrapper) 객체를 반환합니다. `reactive` 함수는 객체를 감싸는 프록시(proxy) 객체를 반환한다.
+2. 속성 업데이트 방법: `ref` 객체의 속성 값을 변경할 때는 `value` 를 직접 업데이트해야 한다. 하지만 `reactive` 객체는 일반 객체처럼 속성 값을 직접 업데이트할 수 있다.
+3. 응용 분야: `ref` 객체는 기본적으로 원시 값을 리액티브하게 만들어 사용하고 일반적으로 DOM 요소와 관련된 데이터를 처리하는 데 사용된다. `reactive` 객체는 객체 타입을 리액티브하게 만들어 사용하며, 컴포넌트의 상태(state)와 관련된 데이터를 처리하는 데 사용한다.
+
+숫자나 문자열과 같은 단순한 값의 변경을 다룰 때는 `ref`를 사용하고 객체나 배열과 같은 복잡한 데이터 구조의 변경을 다룰 때는 `reactive`를 사용하는 것이 좋다.

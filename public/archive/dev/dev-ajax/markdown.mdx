@@ -1,0 +1,45 @@
+---
+title: "JQuery - Ajax"
+category: Dev
+tag: ['JQuery']
+date: 2023-04-07
+author: 꾸생
+---
+
+끊임없이 새로 나오는 라이브러리를 학습해야하는 프론트엔드 시장에서 과거 신문물을 다시 공부하게 될 줄은 몰랐다. 이전걸 배운다고 나쁘다는 의미가 아니라 예상치 못한 상황이라 그렇다.
+
+새로 입사한 회사에서 메인 솔루션 코드를 살펴보고 있는데, JSP에 프론트는 Vue2, JQuery를 덧붙여 사용하고 있었다.
+
+보통 ES6 문법 위주로 개발을 해왔고 작성된 JS 코드는 번들러에 의해 ES5로 변환되어 배포 상태에서 동작하는데, 여긴 ES5 문법이 기본이고 window 전역에 공통 함수를 할당하거나 이벤트 버스, 믹스인 덕분에 어디서 함수가 호출되는지 분간하기 너무 어려웠다.
+
+아무튼 ajax는 많이 사용해보지 않아 기록으로 한 번 남겨본다.
+
+## 📌 Ajax(Asynchronous JavaScript And Xml)
+
+Ajax는 JavaScript와 Xml을 이용해 비동기적으로 서버와 브라우저가 데이터를 주고받을 수 있는 기술이다. 요즘은 Axios나 Fetch를 주로 사용한다.
+
+JQuery에서는 $.ajax() 함수를 제공하여 Ajax 요청을 보낼 수 있는데, 이 함수는 다양한 옵션을 제공하기 때문에 다양한 요청에 대응할 수 있다.
+
+### $.ajax
+
+```javascript
+$.ajax({
+  url: "데이터를 요청할 주소",
+  type: "GET 또는 POST",
+  data: "서버로 보낼 데이터",
+  dataType: "받아올 데이터 타입",
+  success: function(response) {
+    // 요청이 성공했을 때 실행할 코드
+  },
+  error: function(xhr, status, error) {
+    // 요청이 실패했을 때 실행할 코드
+  }
+});
+
+```
+
+success, error, complate 대신 `done`, `fail`, `always`를 대신 사용해도 된다.
+
+- done: 요청 성공시 호출
+- fail: 요청 실패시 호출
+- always: 성공 실패 상관없이 호출

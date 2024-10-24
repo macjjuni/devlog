@@ -1,0 +1,54 @@
+---
+title: "자바스크립트 문자열 숫자 추출"
+category: Dev
+tag: ['JavaScript', 'Algorithm']
+date: 2023-03-01
+author: 꾸생
+---
+
+## 정규식 사용
+
+```jsx
+const str = "1a2b3c4d123Z";
+const numbers = str.match(/[0-9]+/g);
+console.log(numbers); // ['1', '2', '3', '4', '123']
+```
+
+## Array.reduce() 사용
+
+```jsx
+const answer = []
+const str = "1a2b3c4d123Z";
+const strArr = str.split('')
+strArr.reduce((acc, cur) => {
+	const beforeCheck = !!Number(acc);
+	const currentCheck = !!Number(cur);
+
+	// 이전과 현재 둘 다 숫자일 경우
+	if(beforeCheck && currentCheck) return acc + cur;
+	// 이전 값만 숫자일 경우
+	else if (beforeCheck && !currentCheck) {
+		answer.push(acc)
+		return
+	}
+	// 현재 값만 숫자일 경우
+	else if (!beforeCheck && currentCheck) {
+		return cur
+	}
+	return
+})
+console.log(answer) // ['1', '2', '3', '4', '123']
+```
+
+프로그래머스 숨어있는 숫자의 덧셈 문제를 풀다가 reduce를 활용해 문자열 안에 숫자를 뽑아냈다. 그런데 테스트 하나에 런타임 오류가 발생했고 해결이 안 되어 찾아보니 대부분 정규식을 사용하더라..
+
+정규식이 확실이 코드가 깔끔하고 유용한 것 같아 기록해둔다.
+
+## 숫자 추출 원툴
+
+```jsx
+const str = '21;jl12k3j12l;3j;l1k2j3l;k13j41;kl4j12lkj4kl1;4kl'
+const numArr = str.match(/[0-9]+/g)
+console.log(numArr)
+// ['21', '12', '3', '12', '3', '1', '2', '3', '13', '41', '4', '12', '4', '1', '4']
+```

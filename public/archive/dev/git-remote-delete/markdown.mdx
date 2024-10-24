@@ -1,0 +1,37 @@
+---
+title: "Git 원격 저장소 파일/폴더 삭제"
+category: Dev
+tag: ['JavaScript', 'Algorithm']
+date: 2023-03-04
+author: 꾸생
+---
+
+.gitignore 파일을 미리 작성하지 못해 깃 저장소에 파일이 잘 못 올라갔다면 아래 명령어를 사용해 파일을 제거해주면 된다.
+
+## 로컬/원격 저장소에서 삭제
+
+```bash
+// 로컬과 원격 저장소에서 파일/폴더를 삭제하는 경우
+git rm -r [File Name]
+
+// 로컬에서는 보존하고 원격 저장소에서만 파일/폴더 삭제
+git rm -r --cached [File Name]
+```
+
+## .gitignore 설정
+
+```bash
+touch .gitignore
+```
+
+터미널에서 위 명령어로 파일을 생성하거나 아래 링크에서 프로젝트에 맞게 파일을 받아서 적용시켜주면 된다.
+
+[gitignore.io](https://www.toptal.com/developers/gitignore)
+
+## 커밋/푸쉬
+
+```bash
+git commit -m "Chore: [File Name] 원격 저장소에서 제거"
+
+git push -u origin
+```

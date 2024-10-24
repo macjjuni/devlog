@@ -1,0 +1,113 @@
+---
+title: "Vue3 emit & Event Bus"
+category: Dev
+tag: ['Vue']
+date: 2023-04-04
+author: 꾸생
+---
+
+## 📌 emit
+
+`emit`은 vue에서 상위 컴포넌트로 이벤트를 전달하는 키워드이다.`<script setup />` 태그 내에서 사용하는 방법이다.
+
+### 부모 컴포넌트
+
+```tsx
+<template>
+	<AComponent @toggle="toggle" />
+</template>
+
+<script setup lang="ts">
+import AComponentfrom '@/components/AComponent.vue'
+
+const toggle = () => {
+	console.log('토글 실행')
+}
+</script>
+```
+
+### 자식 컴포넌트
+
+```tsx
+<template>
+	<button @click="emit('toggle')">Toggle</button>
+</template>
+
+<script setup lang="ts">
+const emit = defineEmits(['toggle'])
+</script>
+```
+
+부모 컴포넌트에서 toggle로 이벤트를 넘겨주고 자식 컴포넌트에서는 `defineEmits`를 사용해 전달받은 toggle을 배열에 담아줘 선언해주면 `emit('toggle')` 과 같은 방식으로 이벤트를 전달받아 실행시킬 수 있다.
+
+<aside>
+💡 `defineEmits`는 따로 선언을 안해줘도 된다.
+
+</aside>
+
+## 📌 이벤트 버스(Event Bus)
+
+Vue2 버전에서 이벤트 버스가 남용되는 사례가 많아 공식 문서에서도 내용을 제거하고 Vue3 에서는 해당 기능이 제거됐다고 한다.
+
+그런데 다른 추가 라이브러리를 사용해서 구현하는 방법은 아래와 같다.
+
+### Install
+
+```tsx
+> yarn add tiny-emitter
+```
+
+### src/core/EventBus.js
+
+```tsx
+import emitter from 'tiny-emitter/instance'
+
+export default {
+  $on: (...args) => emitter.on(...args),
+  $once: (...args) => emitter.once(...args),
+  $off: (...args) => emitter.off(...args),
+  $emit: (...args) => emitter.emit(...args),
+}
+```
+
+## 사용법
+
+### 이벤트 등록
+
+```tsx
+<template>
+	...
+</template>
+
+<script setup lang="ts">
+import { onMounted, onUnmounted } from 'vue'
+import Emitter from '@/core/eventBus'
+
+onMounted(() => {
+  Emitter.$on('event1', () => {
+    console.log(123123)
+  })
+})
+
+onUnmounted(() => {
+  Emitter.$off('event1')
+})
+</script>
+```
+
+### 이벤트 사용
+
+```tsx
+<template>
+	<div>
+		<button @click="Emitter.$emit('event1')">Test</button>
+	</div>
+</template>
+<script setup lang="ts">
+import Emitter from '@/core/eventBus'
+</script>
+```
+
+[Events API | Vue 3 Migration Guide](https://v3-migration.vuejs.org/breaking-changes/events-api.html#event-bus)
+
+이벤트 버스 대신 vuex를 사용을 지향해야한다.

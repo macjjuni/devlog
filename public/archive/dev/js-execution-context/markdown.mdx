@@ -1,0 +1,200 @@
+---
+title: "자바스크립트 실행 컨텍스트"
+category: Dev
+tag: ['JavaScript']
+date: 2023-03-07
+author: 꾸생
+---
+
+[[10분 테코톡] 💙 하루의 실행 컨텍스트](https://www.youtube.com/watch?v=EWfujNzSUmw)
+
+<br/>
+
+해당 포스팅은 우아한테크 10분 테코톡 [하루](https://365kim.tistory.com/)님의 설명을 기반으로 정리된 글이다.
+
+시작하기 전, 자바스크립트의 실행 컨텍스트를 이해하면 `스코프(Scope)`, `호이스팅(Hoisting)`, `클로저(Closure)`와 같은 중요한 동작을 이해할 수 있다고 한다. 그러므로 3마리의 토끼를 잡아보도록 하자!
+
+## 실행 컨텍스트(Execution Context)
+
+<p><img src="/archive/dev/js-execution-context/Untitled.webp" alt="js-exe-context" width="724" /></p>
+
+
+자바스크립트 엔진은 코드를 실행하면 `콜 스택(Call Stack)`이라는 메모리에 전역 실행 컨텍스트를 담는다. 실행 컨텍스트에는 `Record`와 `Outer`가 담겨 있다.
+
+<p><img src="/archive/dev/js-execution-context/Untitled1.webp" alt="js-exe-context" width="724" /></p>
+
+만약 전역에서 함수A를 호출할 경우 자바스크립트 엔진은 함수A의 실행 컨텍스트를 생성해서 콜 스택에 다시 담는다. 실행 컨텍스트는 제일 상단, 즉 최근에 추가된 실행 컨텍스트만 활성화된다.
+
+함수A가 실행을 마치고 종료되면 콜 스택에서 함수 A의 실행 컨텍스트는 사라진다. 전역에 있는 코드가 마지막 라인까지 모두 실행된다면 전역 실행 컨텍스트 또한 사라진다.
+
+![https://user-images.githubusercontent.com/38034518/236771248-243a4070-750e-4332-9b23-8739282235e4.gif](https://user-images.githubusercontent.com/38034518/236771248-243a4070-750e-4332-9b23-8739282235e4.gif)
+
+대략 이런 방식으로 작동한다.
+
+## 호이스팅(Hoisting)
+
+<p><img src="/archive/dev/js-execution-context/Untitled2.webp" alt="js-exe-context" width="724" /></p>
+
+코드만 보고 생각해보자. `var` 키워드로 TVChannel 이라는 변수를 선언하고 앞뒤로 콘솔 로그를 찍어보면 선언하기 전에는 `undefined`로 출력된다. 다른 언어라면 `ReferenceError`가 뜰텐데 말이다.
+
+이 말은 즉, 첫 번째 콘솔 로그 이전에 `TVChannel` 변수가 만들어졌다는 의미인데, 이처럼 선언 전에 변수를 참조할 수 있는 현상을 `호이스팅(Hoisting)`이라 부른다.
+
+호이스팅이 가능한 이유는 자바스크립트 엔진이 코드 전체를 스캔하면서 변수 같은 정보를 실행 컨텍스트 어딘가에 미리 기록해 놓는데, 위 이미지에서 보았던 Record, `환경 레코드(Environment Record)`이다.
+
+<aside>
+📖 호이스팅: 선언 이전에 변수를 참조할 수 있는 현상
+</aside>
+
+### 📌변수 호이스팅(var)
+
+
+#### 생성 단계(Creation Phase)
+
+<p><img src="/archive/dev/js-execution-context/Untitled3.webp" alt="js-exe-context" width="724" /></p>
+
+자바스크립트 엔진이 좌측 상단 코드를 실행하면 콜스택 메모리에 전역 컨텍스트를 생성하고 전체 코드를 읽으며 선언해야 할 부분이 있다면 선언해준다.
+
+선언하는 과정에서 실행 컨텍스트 안에 있는 레코드, 즉 `환경 레코드(Environment Record)`에 식발자 `TVChannel`을 기록한다.
+
+여기서 TVChannel은 `var` 키워드로 선언했으므로 `undefined`로 초기화한 것이다.
+
+여기까지 전체 코드를 스캔하고 기록하는 준비 단계를 `생성 단계(Creation Phase)`라 표현한다.
+
+<aside>
+📖 생성 단계(Creation Phase)
+- 실행 컨텍스트 생성
+- 선언문만 실행해서 환경 레코드에 기록
+</aside>
+
+#### 실행 단계(Execution Phase)
+
+생성 단계가 끝나고 선언문 외에 나머지 코드를 순차적으로 실행하는 단계를 `실행 단계(Execution Phase)`라 한다. 이 단계에서 필요한 경우 생성 단계에서 환경 레코드에 기록한 정보를 참고하거나 업데이트한다.
+
+<p><img src="/archive/dev/js-execution-context/Untitled4.webp" alt="js-exe-context" width="724" /></p>
+
+첫 번째 코드인 콘솔 로그에서 `undefined`가 출력되는데, 이것은 `생성 단계`에서 자바스크립트 엔진이 전역 `실행 컨텍스트`안에 있는 `환경 레코드`에 선언문만 실행해 기록했기 때문이다.
+
+<p><img src="/archive/dev/js-execution-context/Untitled5.webp" alt="js-exe-context" width="724" /></p>
+
+
+2번 째 라인에서 TVChannel을 “Netflix” 문자열로 선언해 줬지만, `생성 단계`에서 JS 엔진이 이미 `환경 레코드`에 `undefined`로 선언해 주었고 지금은 이미 선언된 TVChannel에 바인딩된 값을 “Netflix”로 업데이트 한다.
+
+<p><img src="/archive/dev/js-execution-context/Untitled6.webp" alt="js-exe-context" width="724" /></p>
+
+
+마지막 코드를 실행하면 환경 레코드를 참조 후 업데이트된 `TVChannel` 값인 “Netflix” 문자열을 출력한다.
+
+### 📌 변수 호이스팅(const, let)
+
+
+`var` 키워드 대신 `ES6`문법에서 추가된 `const`키워드로 변수를 선언할 경우 아래와 같다.
+
+<p><img src="/archive/dev/js-execution-context/Untitled7.webp" alt="js-exe-context" width="724" /></p>
+
+
+JS 엔진은 `생성 단계`에서 `const` 키워드로 선언된 TVChannel을 `환경 레코드`에 식별자로 기록은 하지만 값을 초기화 하지 않는다.
+
+TVChannel의 값을 읽을 수 없어 첫 번째 코드에서 `Reference Error`가  발생한다.
+
+이 처럼 `let` 또는 `const` 키워드로 선언한 경우 선언 라인 이전에 식별자를 참조할 수 없다.
+
+ES6 문법에 새롭게 추가된 것으로 보아 다른 언어와 같이 선언 라인 이전에 변수를 참조할 수 없는 방식을 따라가기 위해 언어적 차원에서 보완됐다는 것을 알 수 있다.
+
+### 📌함수 호이스팅
+
+
+
+#### 함수 표현식
+
+<p><img src="/archive/dev/js-execution-context/Untitled8.webp" alt="js-exe-context" width="724" /></p>
+
+자바스크립트는 함수를 변수에 할당할 수 있는데, `var` 키워드로 `study` 라는 화살표 함수를 담아 선언문 이전에 실행을 한다면 순서는 아래와 같다.
+
+JS 엔진은 생성 단계에서 환경 레코드에는 `study`라는 식별자에 `undefined`값을 초기화한다. 그리고 실행 단계에서 첫 번째 코드를 실행하게 되는데, `study`는 `undefined`이므로 `TypeError`가 발생한다.
+
+<p><img src="/archive/dev/js-execution-context/Untitled9.webp" alt="js-exe-context" width="724" /></p>
+
+`var`키워드가 아닌 `const` 키워드를 사용한다면 생성 단계에서 환경 레코드에 `study` 식별자로 기록은 되나 값은 초기화되어 있지 않으므로 `Reference Error`가 발생한다.
+
+`함수 표현식`으로 변수에 할당할 경우 변수 호이스팅과 똑같이 동작한다.
+
+#### 함수 선언식
+
+<p><img src="/archive/dev/js-execution-context/Untitled10.webp" alt="js-exe-context" width="724" /></p>
+
+함수 선언문인 `function` 키워드로 함수를 선언하면 JS 엔진이 함수 선언과 동시에 완성된 함수 객체를 생성해 환경 레코드에 기록한다.
+
+`study` 함수를 실행하면 정상적으로 에러없이 실행된다. 변수 호이스팅과는 다르게 `생성 단계`에서 함수가 생성된다는 점이다.
+
+<p><img src="/archive/dev/js-execution-context/Untitled11.webp" alt="js-exe-context" width="724" /></p>
+
+함수 표현식과 선언식 차이
+
+## 스코프체이닝
+
+### 📌 Outer
+
+아우터의 정식 명칭은 `외부 환경 참조(Outer Environment Reference)`이다. 아우터는 바깥 `Lexical Environment`를 가리키는데,  아래와 같다.
+
+
+
+<p><img src="/archive/dev/js-execution-context/Untitled12.webp" alt="js-exe-context" width="724" /></p>
+<p><img src="/archive/dev/js-execution-context/Untitled13.webp" alt="js-exe-context" width="724" /></p>
+
+
+코드로 보자. 첫 번째 라인에서 `lamp`를 false로 선언했고 `function` 키워드로 `goTo2F()`함수를 선언해줬으니 생성 단계에서 환경 레코드에 함수 객체가 생성된다. 그런 `lamp`라는 동일한 식별자로 선언되어있다.
+
+`goTo2F()`함수에서 콘솔 로그를 통해 lamp에 접근하는데, 과연 JS 엔진은 어떤 `lamp`를 가져올까? 이 것을 `식별자 결정(Identifier Resolution)`이라고 한다
+
+<aside>
+📖 실별자 결정(Identifier Resolution)
+⇒ 코드에서 변수나 함수의 값을 결정하는 것
+</aside>
+
+가장 첫 번째 우선순위로 현재 활성화된 실행 컨텍스트이다.  `goTo2F()` 함수가 실행됐다는 건 해당 함수의 실행 컨텍스트가 활성화 됐다는 의미로 함수 안에 있는 `lamp` 변수 값인 true를 출력한다.
+
+<p><img src="/archive/dev/js-execution-context/Untitled14.webp" alt="js-exe-context" width="724" /></p>
+
+
+`goTo2F()`함수가 호출되는 시점으로 돌아가 JS 엔진은 환경 레코드에 실행 컨텍스트를 생성하는데, 바깥 렉시컬 환경으로 돌아갈 수 있는 outer라는 사다리를 남겨놓는다.
+
+이제 필요한 경우 이전 실행 컨텍스트의 환경 레코드 안에 있는 식별자도 참조할 수 있다는 뜻이다. 식별자가 겹친 `lamp` 변수를 참조할 때 우선적으로 활성화된 실행 컨텍스트를 참조한다는 것을 알게됐다.
+
+만약 `goTo2F()` 함수 안에 `lamp` 변수가 없었다면 outer 라는 사다리로 이전 실행 컨텍스트로 이동해 `lamp` 변수를 찾아 출력했을거란 의미다.
+
+<p><img src="/archive/dev/js-execution-context/Untitled15.webp" alt="js-exe-context" width="724" /></p>
+<p><img src="/archive/dev/js-execution-context/Untitled16.webp" alt="js-exe-context" width="724" /></p>
+
+`goTo2F()` 함수에 `goTo3F()` 함수를 또 생성한다고 하자. 생성 후 `goTo3F()` 함수를 실행하면 `pet` 변수에 “puppy” 문자열이 할당되고 콘솔 로그로 출력된다.
+
+그렇다면 어디에도 없는 `corona`를 출력한다면 JS 엔진은 어떻게 찾을까?
+<p>  <img src="/archive/dev/js-execution-context/Untitled17.webp" alt="js-exe-context" width="724" /></p>
+JS 엔진은 활성화된 실행 컨텍스트를 우선적으로 찾다가 아우터를 타고 내려와 이전 실행 컨텍스트에서 또 찾고 없다면 계속 내려와 최상위인 전역 실행 컨텍스트까지 찾게 된다. 만약 없다면 `corona`는 없다는 결론을 내리게 된다. 없는 것을 참조하려 했기에 `Reference Error`를 보여준다.
+
+### 여기서 알 수 있는 점
+
+JS 엔진은 값을 참조할 때, 활성화된 실행 컨텍스트부터 식별자를 찾으며 없으면 아우터를 통해 찾을 때 까지 이전 활성화된 실행 컨텍스트를 타고 타고 내려간다.
+
+이처럼 식별자를 결정하기 위해 타고 타고 내려가면서 찾는 과정을 `스코프 체이닝`이라 부른다.
+
+<aside>
+📖 스코프 체인(Scope Chain)
+식별자를 결정할 때 활용하는 스코프들의 연결리스트
+</aside>
+
+## 클로저(Closure)
+
+함수가 선언된 환경과의 관계라는 개념이 합쳐진 것으로, 내부함수가 외부함수의 컨텍스트에 접근할 수 있다는 개념이다. 말이 어려운데, 클로저는 한국어로 폐쇄라는 뜻이다.
+쉽게 말해 한 번 함수가 선언되면 그 안에 변수가 못 빠져나가게 변하지 않게 폐쇄시킨다고 생각하면 된다.
+
+클로저는 어려운 개념같아 보이지만 자바스크립트의 함수 객체의 형태 중 하나일 뿐이다.
+
+## 정리
+
+<aside>
+📖 실행 컨텍스트(Execution Context)
+⇒ 코드를 실행하는데 필요한 조건이나 생태를 모아둔 객체
+⇒ 필요한 정보를 한데 모아 제공하는 객체
+⇒ 식별자 결정을 더욱 효율적으로 하기 위한 수단
+⇒ 식별자 우선순위는 현재 활성화된 실행 컨텍스트 부터 호출한 순서로 내려가는 형태
+</aside>

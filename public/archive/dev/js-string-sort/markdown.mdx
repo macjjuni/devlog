@@ -1,0 +1,82 @@
+---
+title: "자바스크립트 문자열 정렬"
+category: Dev
+tag: ['JavaScript', 'Algorithm']
+date: 2023-02-27
+author: 꾸생
+---
+
+## 📚 Array.sort() 메서드
+
+자바스크립트 배열에는 기본적으로 데이터를 정렬해주는 메서드가 존재한다. `map()`과 `filter()` 메서드 다음으로 자주 쓰는 편인데, 이번 코딩 테스트를 준비하면서 문자열 정렬에 애를 먹어 다시 공부하게 됐다.
+
+```tsx
+const strArr = ['abc', 'zxy', '안녕하세요', 'hello', '123'];
+
+strArr.sort();
+
+console.log(strArr); // ['123', 'abc', 'hello', 'zxy', '안녕하세요']
+```
+
+sort 메서드는 인자 값으로 `비교 함수(Compare Function)`를 생략하면 유니코드 값에 따라 오름차순 정렬이 된다. `filter`와 반대로 기존 배열이 수정된다는 특징이 있다.
+
+## ⚖️ 비교 연산자 사용
+
+```tsx
+const strCompare = 'aa' > 'ab'
+console.log(strCompare) // false
+```
+
+우선 자바스크립트에서 문자열은 비교연산를 사용해 두 대상을 비교할 수 있다. 비교 값은 해당 문자열  [`유니코드`](https://ko.wikipedia.org/wiki/%EC%9C%A0%EB%8B%88%EC%BD%94%EB%93%9C_2000~2FFF) 값이다. 그러므로 위에 비교 대상인 `‘aa’` 와 `‘ab’` 를 비교 했을 때 `‘ab’` 의 유니코드 값이 더 크므로 `false` 값이 나온다.
+
+### 오름차순
+
+```tsx
+const strArr = ['ad', 'ac', 'aa', 'ae', 'ab'];
+
+strArr.sort((strA, strB) => strA > strB ? 1 : -1);
+
+console.log(strArr) // ['aa', 'ab', 'ac', 'ad', 'ae']
+```
+
+단순 정렬의 경우 `sort` 메서드 인자 값으로 비교 함수가 아닌 비교 연산자를 활용해 배열 안에 데이터를 정렬 시킬 수 있는데, 어떻게 정렬할지에 따라서  `양수` 또는 `음수`를 반환해주면 된다.
+
+`strA > strB` 를 비교해 참인 경우 `1`, 거짓인 경우 `-1`을 반환하는데, 이 정렬은 기본 오름차순 방식으로 `strArr.sort()` 이 코드와 동일한 결과값이 나온다.
+
+### 내림차순
+
+```tsx
+const strArr = ['ad', 'ac', 'aa', 'ae', 'ab'];
+
+strArr.sort((strA, strB) => strA < strB ? 1 : -1);
+console.log(strArr) // ['aa', 'ab', 'ac', 'ad', 'ae']
+
+strArr.sort((strA, strB) => strA > strB ? -1 : 1);
+console.log(strArr) // ['aa', 'ab', 'ac', 'ad', 'ae']
+```
+
+반대로 내림차순은 1과 -1의 위치를 바꿔주거나 비교연산자를 역으로 바꿔준다.
+
+### 문자열 단어 사전상 순서 정렬
+
+자바스크립트에서 제공하는 `localeCompare` 메서드는 사전상으로 두 문자열을 비교해 앞에 있는지 뒤에있는지 판단 후 1, 0, -1을 반환한다.
+
+해당 메서드는 문자열에서만 사용할 수 있고 `sort()` 메서드에서 반환값은 `양수`, `0`, `음수`만 필요로하기 때문에 문자열 비교에는 `localeCompare()` 메서드를 사용하면 된다.
+
+```tsx
+const strArr = ['notebook', 'apple', 'watch', 'news', 'camera', 'book'];
+
+strArr.sort((a,b) => a.localeCompare(b));
+console.log(strArr); // ['apple', 'book', 'camera', 'news', 'notebook', 'watch']
+
+strArr.sort((a,b) => b.localeCompare(a))
+console.log(strArr); // ['watch', 'notebook', 'news', 'camera', 'book', 'apple']
+```
+
+위 처럼 여러 단어를 정렬해야하는 경우 `sort()` 메서드와 `localeCompare()` 메서드를 활용하면 쉽게 정렬을 구현할 수 있다.
+
+## 📖 참고
+
+[Array.prototype.sort() - JavaScript | MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+
+[String.prototype.localeCompare() - JavaScript | MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare)

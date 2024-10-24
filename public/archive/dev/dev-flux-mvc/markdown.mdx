@@ -1,0 +1,33 @@
+---
+title: "Flux & MVC"
+category: Dev
+tag: []
+date: 2023-03-27
+author: 꾸생
+---
+
+## 📌 Flux 란?
+
+MVC 패턴의 복잡한 데이터 흐름 문제를 해결하는 개발 패턴(Unidirectional Data Flow)
+
+![https://user-images.githubusercontent.com/38034518/228743214-f57100e8-631f-4730-9543-e719ff5993c0.png](https://user-images.githubusercontent.com/38034518/228743214-f57100e8-631f-4730-9543-e719ff5993c0.png)
+
+1. `action`: 화면에서 발생하는 이벤트 또는 사용자의 입력
+2. `dispatcher`: 데이터를 변경하는 벙법, 메서드
+3. `model`: 화면에 표시할 데이터
+4. `view`: 사용자에게 비춰지는 화면
+
+## 📌 MVC 패턴
+
+![https://user-images.githubusercontent.com/38034518/228743641-3497be05-e3a9-4dc8-a65b-01cc7174e70b.png](https://user-images.githubusercontent.com/38034518/228743641-3497be05-e3a9-4dc8-a65b-01cc7174e70b.png)
+
+### MVC 패턴의 문제점
+
+- 기능 추가 및 변경에 따라 생기는 문제점을 예측할 수 없음
+- 앱이 복잡해지면서 생기는 업데이트 루프
+
+![https://user-images.githubusercontent.com/38034518/228743957-e63aa6c1-2578-4c11-8aef-31a2c230117d.png](https://user-images.githubusercontent.com/38034518/228743957-e63aa6c1-2578-4c11-8aef-31a2c230117d.png)
+
+### Flux 패턴의 단방향 데이터 흐름
+
+- 데이터의 흐름이 여러 갈래로 나뉘지 않고 단방향으로만 처리

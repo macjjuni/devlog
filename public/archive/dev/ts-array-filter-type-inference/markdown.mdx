@@ -1,0 +1,65 @@
+---
+title: "Array filter 타입 가드로 타입추론 교정"
+category: Dev
+tag: ['TypeScript']
+date: 2023-02-21
+author: 꾸생
+---
+
+## Array.prototype.filter()
+
+자바스크립트 배열에서 기본적으로 지원하는 `filter()`  함수는 이름 그대로 테스트를 통과하는 요소를 모아 새로운 배열로 반환해 준다.
+
+```tsx
+const strArr = ['TS', 'JS', 'Python', 'Rust', 'Go', 'Dart']
+
+const filteredArr = strArr.filter((str) => str === 'TS')
+console.log(filteredArr) // ['TS']
+```
+
+조건을 걸어 원하는 요소만 뽑아낼 수 있는데, 만약 여러 종류의 타입이 포함된 배열에서 특정 타입만 조건으로 걸러낸다면 타입스크립트는 해당 타입의 배열로 추론시켜주는지 확인해봤다.
+
+### filter() 함수는 타입도 필터링 해줄까?
+
+```tsx
+type ArrTypes = (string | number | null | undefined)[]
+
+const testArr:ArrTypes = ['문자열', 10, null, undefined, 'xyz', 100]
+
+const filteredArr = testArr.filter((item) => typeof item === 'string')
+```
+
+`testArray` 배열에 복수의 타입이 존재하는데, `filter()` 함수를 사용해 `filteredArray`에 문자열 요소만 남기도록 했다. 그렇다면 `filteredArray`의 타입은 어떻게 지정될까?
+
+![TS](/archive/dev/ts-array-filter-type-inference/ts.webp)
+
+[TS Playground](https://www.typescriptlang.org/ko/play?#code/C4TwDgpgBAggTnAKuCBnKBeKAKVw4CWAdgOZQA+URArgLYBGEcFV1ANmy9UQCYQBmxCDwCUAbQC6AKCkBjAPZE8UYGmDw4ALg3JI6LGIDkgDm7ACeOAX0cMAaKAEYADDZocb3PoKLCbhgB4gAXtZ29vbScorKgmyqcMIamCpqGgB0UTHY2ASqtCKYAHwqKPL8UFkQtJgYWIZ4hKSGIkA)
+
+`string[]` 타입으로 추론될 줄 알았으나 `testArray`와 동일한 타입으로 취급된다. 이런 경우 코드를 작성할 때 마다 타입 오류가 계속 나기 때문에 아래 2가지 방법으로 타입을 교정할 수 있다.
+
+#### 타입단언(Type Assertion)
+
+```tsx
+const filteredArr = testArr.filter((item) => typeof item === 'string') as string[]
+```
+
+`as` 키워드를 사용해 `filterdArr` 타입이 문자열로 이루어진 배열임을 지정해줄 수 있으나 잘 못된 타입으로 단언해줄 경우 문제가 생길 수 있다. 더욱 안전하게 사용할 수 있는 방법은 타입 가드를 사용하는 것이다.
+
+#### 타입가드(Type Guard)
+
+```tsx
+const filteredArr = testArr.filter((item): item is string => typeof item === 'string')
+```
+
+`filter()`  함수 내부 인자값인 `item`의 타입을 `is`키워드로 타입을 지정해 줌으로써 `string` 타입만 리턴해 준다는 의미다. `타입단언(as)`보다 `타입가드(is)` 사용을 지향하는 편이 안전하다.
+
+## 타입단언 강제 지양시키기 🤔
+
+타입단언은 마지막 `as` 키워드와 타입을 작성함으로써 타입가드보다 비교적 코드 작성이 수월한 편이다. MS에서는 유저들에게 타입단언 사용을 지양시키기 위해 아래처럼 코드 작성을 조금 더 귀찮게 해야 하지 않았을까?
+
+```tsx
+// 해당 문법은 존재하지 않습니다.
+const aArr = arr.filter((item) => typeof item === 'string') Assertion Type string[]
+```
+
+[TypeScript 한글 문서](https://typescript-kr.github.io/pages/advanced-types.html#타입-가드와-타입-단언-type-guards-and-type-assertions)
