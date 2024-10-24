@@ -2,7 +2,7 @@
 
 import { memo, UIEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { createDebounce, createThrottle } from "@/utils/lodash";
+import { createDebounce, createThrottle } from "@/lib/lodash";
 import { ICategory, SelectPropertyResponse } from "@/@types/notion";
 import ActiveCheckSvg from "@/component/sidebar/category/ActiveCheckSvg";
 import { getCategoryPageUrl } from "@/route";

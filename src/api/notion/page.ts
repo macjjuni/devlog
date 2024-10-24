@@ -1,4 +1,4 @@
-import request from "@/lib/request";
+import request from "@/utils/request";
 import notion, { getHeadDescription } from "@/lib/noiton";
 import { getPageTitle } from "notion-utils";
 import config from "@/config/notion.config";

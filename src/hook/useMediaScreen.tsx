@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import variable from "@/style/variables";
 import { extractNumbers } from "@/utils/string";
-import { createThrottle } from "@/utils/lodash";
+import { createThrottle } from "@/lib/lodash";
 
 const smallSize = Number(extractNumbers(variable.kkuLayoutSmall));
 const mediumSize = Number(extractNumbers(variable.kkuLayoutMedium));
