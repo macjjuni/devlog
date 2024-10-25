@@ -153,6 +153,16 @@
         margin: 0 auto;
         cursor: zoom-in;
     }
+    p code {
+        color: #eb5757;
+        padding: 2px 4px;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: 6px;
+        background-color: rgba(135, 131, 120, 0.15);
+        font-family: 'pretendard', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;
+        transition: background 0.3s ease;
+    }
     aside {
         padding: 16px 16px 16px 12px;
         display: inline-flex;
