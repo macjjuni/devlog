@@ -6,7 +6,7 @@ interface ArchiveTocProps {
 }
 
 function removeHashtag(str: string) {
-  return str?.replace(/^#+/, "").trim();
+  return str?.replace(/^#+/, "").replace(/`+/g, "").trim();
 }
 
 function getHeadingTocList(src: string) {
@@ -39,13 +39,11 @@ export default function ArchiveToc({ source }: ArchiveTocProps) {
 
   return (
     <ul className={"archive__toc__container__list"}>
-      <li className={"archive__toc__container__list__item archive__toc__container__list__item--header"}>
-        Table of Contents
-      </li>
-      {tocList.map((tocItem) => (
-        <li key={tocItem} className={`archive__toc__container__list__item ${getTocItemClass(tocItem)}`}>
-          <a className={"archive__toc__container__list__item__link"}
-            href={`#${textToId(removeHashtag(tocItem))}`}>
+      <li className={"archive__toc__container__list__item archive__toc__container__list__item--header"}>Table of Contents</li>
+      {tocList.map((tocItem, idx) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <li key={`${tocItem}_${idx}`} className={`archive__toc__container__list__item ${getTocItemClass(tocItem)}`}>
+          <a className={"archive__toc__container__list__item__link"} href={`#${textToId(removeHashtag(tocItem))}`}>
             {removeHashtag(tocItem)}
           </a>
         </li>
