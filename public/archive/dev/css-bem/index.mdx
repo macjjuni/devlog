@@ -1,0 +1,43 @@
+---
+title: "CSS - BEM 방법론"
+category: Dev
+tag: ['CSS']
+date: 2024-01-09
+author: 꾸생
+---
+
+## BEM(Block Element Modifier)
+
+CSS 방법론 중 클래스를 네이밍 하는 방법으로 주로 채택되는 것 중 하나다. 기존에 해당 네이밍을 사용하는 곳을 많이 봤는데, 이게 뭐다 라고는 명확히 알고 있지 않았다. 최근 좋은 기회에 좋은 분을 만나서 많은 지식을 알아가고 있다. 😆
+
+### 🧱 Block
+
+재사용 가능한 독립적 페이지로 어디서나 사용되는 컴포넌트 개념. 보통 `header`, `footer` 와 같은 개념을 블록으로 분류할 수 있다.
+
+#### 📝 Naming Rule
+
+ 블록에 네이밍 방법은 헤더면 `.header`오른쪽 버튼이면 `.right-button`과 같은 방식으로 짓는다.
+
+### 💧Element
+
+블록을 구성하는 요소로 의존적인 요소이므로 Element만 다른 곳에 재사용이 불가능
+
+#### 📝 Naming Rule
+
+헤더라는 블록 요소 안 네비게이션 Element일 경우 `.header__navigation`과 같이 지을 수 있다. 여기서 두 단어를 합칠 떄 언더스코어(__)를 사용한다.
+
+<aside>
+💡 헤더 안에 포함된 네비게이션이므로 header와 navigation을 붙인다. 만약 네비게이션 안에 버튼이 추가로 들어간다면 `.header__navigation__button` 이 된다.
+</aside>
+
+### 🔮 **Modifier**
+
+Block과 Element의 형태 또는 상태, 행동을 구분짓기 위해 사용.
+
+#### 📝 Naming Rule
+
+가운데 버튼이라는 Element 요소가 있고 해당 요소가 Focus, Active 두 가지 상태를 클래스 명으로 규정 짓는 다면 아래와 같이 할 수 있다.
+
+`.center__button—focus`
+
+`.center__button—active`

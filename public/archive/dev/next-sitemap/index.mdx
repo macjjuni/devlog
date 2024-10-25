@@ -1,0 +1,201 @@
+---
+title: "Next.js 크롤링 및 색인 생성"
+category: Dev
+tag: ['Next.js']
+date: 2023-10-05
+author: 꾸생
+---
+
+## Sitemap.xml
+
+사이트맵은 검색 엔진이 웹사이트 컨텐츠를 효율적으로 크롤링할 수 있도록 알려주는 지도와 같다. 사이트의 페이지, 동영상, 기타 파일 등 이들 간의 관계 정보도 담고 있다. 웹사이트에 사이트맵을 잘 준비해 놓는다면 검색 엔진이 좋아할 거다.
+
+사이트맵을 직접 작성한다면 XML 형식의 스키마를 이해하고 있어야 하는데, 아래 간단한 규칙과 태그 정의만 이해하고 간단하게 작성하도록 하자.. 깊게 들어가면 어렵다 🥹
+
+### Sitemap 규칙
+
+- 여는 [&#60;urlset&#62;](http://superkts.pe.kr/upload/helper/file1/siteMapXML.htm#urlsetdef) 태그로 시작해 닫는 &#60;urlset&#62; 태그로 끝납니다.
+- [&#60;urlset&#62;](http://superkts.pe.kr/upload/helper/file1/siteMapXML.htm#urlsetdef) 태그 안에 네임스페이스(프로토콜 표준)를 지정합니다.
+- 각 URL의 [&#60;url&#62;](http://superkts.pe.kr/upload/helper/file1/siteMapXML.htm#urldef) 항목을 상위 XML 태그로 포함시켜야 합니다.
+- 각 url 상위 태그에 [&#60;loc&#62;](http://superkts.pe.kr/upload/helper/file1/siteMapXML.htm#locdef) 하위 항목을 포함시켜야 합니다.
+
+
+### XML 태그 정의
+
+
+<table>
+  <thead>
+    <tr>
+      <th>속성</th>
+      <th></th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&lt;urlset&gt;</code></td>
+      <td>필수</td>
+      <td>파일을 캡슐화하고 현재 프로토콜 표준을 참조합니다.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;url&gt;</code></td>
+      <td>필수</td>
+      <td>각 URL 항목의 상위 태그. 나머지 태그는 이 태그의 하위 태그입니다.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;loc&gt;</code></td>
+      <td>필수</td>
+      <td>
+        페이지의 URL. 해당 URL은 <code>http</code> 같은 프로토콜로 시작해야 하며 웹서버에 따라 슬래시로 끝나야 합니다.
+        이 값은 2,048자 미만이어야 합니다.
+      </td>
+    </tr>
+    <tr>
+      <td><code>&lt;lastmod&gt;</code></td>
+      <td>옵션</td>
+      <td>
+        파일을 마지막으로 수정한 날짜입니다. 이 날짜는 <a href="http://www.w3.org/TR/NOTE-datetime">W3C Datetime</a> 형식이어야 합니다.
+        이 형식에서는 시간 부분을 생략할 수 있으며 원하는 경우 <code>YYYY-MM-DD</code> 형식을 사용할 수 있습니다.<br />
+        이 태그는 서버에서 반환할 수 있는 <code>If-Modified-Since(304)</code> 헤더와 다르므로 검색 엔진은 두 소스에서 다른 정보를 사용할 수 있습니다.
+      </td>
+    </tr>
+    <tr>
+      <td><code>&lt;changefreq&gt;</code></td>
+      <td>옵션</td>
+      <td>
+        페이지가 변경되는 빈도. 이 값은 검색 엔진에 일반적인 정보를 제공하며 검색 엔진에서 페이지를 크롤링하는 정확한 빈도와는 관련이 없을 수도 있습니다.
+        유효한 값은 다음과 같습니다:
+        <ul>
+          <li>always</li>
+          <li>hourly</li>
+          <li>daily</li>
+          <li>weekly</li>
+          <li>monthly</li>
+          <li>yearly</li>
+          <li>never</li>
+        </ul>
+        값 <code>"always"</code>는 액세스할 때마다 변경되는 문서를 설명하는 데 사용해야 합니다. 값 <code>"never"</code>는 보관된 URL을 설명하는 데 사용해야 합니다.<br />
+        태그의 값은 힌트일 뿐 명령이 아닙니다. 검색 엔진 크롤러는 이 정보를 고려하더라도 빈도를 다르게 적용할 수 있습니다.
+      </td>
+    </tr>
+    <tr>
+      <td><code>&lt;priority&gt;</code></td>
+      <td>옵션</td>
+      <td>
+        해당 사이트의 기타 URL에 대한 특정 URL의 상대적 우선순위입니다. 유효값 범위는 <code>0.0-1.0</code>입니다.<br />
+        페이지의 기본 우선순위는 <code>0.5</code>입니다. 우선순위는 검색 엔진에서 같은 사이트 내 URL 중 하나를 선택하는 데 사용되며, 사이트 전체의 순위에 영향을 미치지 않습니다.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Next.js 사이트맵 생성
+
+Next.js 프레임워크에서 사이트맵을 추가하는 방법은 3가지가 있다. 수동, 동적 생성, 라이브러리를 사용하는 방법인데, 상황에 맞게 잘 사용해보자.
+
+### 1. 수동 생성
+
+```xml
+<!-- public/sitemap.xml -->
+   <xml version="1.0" encoding="UTF-8">
+   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+     <url>
+       <loc>http://www.example.com</loc>
+       <lastmod>2023-10-05</lastmod>
+     </url>
+     <url>
+       <loc>http://www.example.com/about</loc>
+       <lastmod>2023-10-05</lastmod>
+     </url>
+     <url>
+       <loc>http://www.example.com/notice</loc>
+       <lastmod>2023-10-05</lastmod>
+     </url>
+   </urlset>
+   </xml>
+```
+
+단순한 페이지로 구성된 웹사이트의 경우 프로젝트 루트 경로에 존재하는 `public` 디렉토리 안에 아래 파일을 만들어주고 내용을 작성하면 된다. 파일 명은 `sitemap.xml` 로 네이밍 해준다. `<url/>` 태그 안에 `lastMod` 또는 `priority`와 같이 작성하고 싶은 태그를 넣어 입력해주면 된다.
+
+### 2. 동적 생성
+
+Next.js의 SSR을 사용해 사이트맵 요청 시 XML 형식의 문서를 만들어 반환해주는 방법이다. page 라우터를 사용한다면 pages 디렉토리 안에 sitemap.xml.js 또는 sitemap.xml.ts 파일을 작성해준다.
+
+```tsx
+//pages/sitemap.xml.js
+const EXTERNAL_DATA_URL = 'https://jsonplaceholder.typicode.com/posts';
+
+function generateSiteMap(posts) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+     <!--We manually set the two URLs we know already-->
+     <url>
+       <loc>https://jsonplaceholder.typicode.com</loc>
+     </url>
+     <url>
+       <loc>https://jsonplaceholder.typicode.com/guide</loc>
+     </url>
+     ${posts
+       .map(({ id }) => {
+         return `
+       <url>
+           <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
+       </url>
+     `;
+       })
+       .join('')}
+   </urlset>
+ `;
+}
+
+function SiteMap() {
+  // getServerSideProps will do the heavy lifting
+}
+
+export async function getServerSideProps({ res }) {
+  // We make an API call to gather the URLs for our site
+  const request = await fetch(EXTERNAL_DATA_URL);
+  const posts = await request.json();
+
+  // We generate the XML sitemap with the posts data
+  const sitemap = generateSiteMap(posts);
+
+  res.setHeader('Content-Type', 'text/xml');
+  // we send the XML to the browser
+  res.write(sitemap);
+  res.end();
+
+  return {
+    props: {},
+  };
+}
+
+export default SiteMap;
+```
+
+위 예제는 글 목록을 가져와 xml 형식으로 사이트맵을 만들어주는 함수를 사용한다. 웹사이트에 맞는 방법으로 함수를 만들어주면 된다.
+
+### 3. 라이브러리 사용
+
+[npm: next-sitemap](https://www.npmjs.com/package/next-sitemap)
+
+기존에 라이브러리를 사용했는데, 이번에 마이그레이션을 진행하면서 수동으로 작성하는 방법을 적용했다.
+
+## 🤖 robot.txt
+
+사이트맵을 만들었다면 robot.txt 파일도 추가해주는 걸 잊어선 안된다. 검색 엔진한테 사이트맵 경로와 어디까지 크롤링해도 되는지 등 미리 알려줄 수 있다.
+
+```bash
+User-Agent: *
+Allow: /
+Disallow: /api/
+Sitemap: https://www.example.com/sitemap.xml
+```
+
+**public/robot.txt** 경로에 작성해준다.
+
+## 출처
+
+[Sitemap XML ���](http://superkts.pe.kr/upload/helper/file1/siteMapXML.htm)
+
+[Learn | Next.js](https://nextjs.org/learn/seo/crawling-and-indexing/xml-sitemaps)

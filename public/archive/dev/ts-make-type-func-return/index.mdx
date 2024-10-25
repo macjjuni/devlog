@@ -1,0 +1,69 @@
+---
+title: "특정 함수의 리턴 값을 타입으로 만들기"
+category: Daily
+tag: ['TypeScript']
+date: 2024-01-04
+author: 꾸생
+---
+
+## ReturnType`<Type>`
+
+함수 `Type`의 반환 타입으로 구성된 타입을 생성한다.
+
+### 📁 src/hooks/useCustomHook.ts
+
+```tsx
+export default function useCustomHook() {
+	...
+	return { state, setState }
+}
+```
+
+예를들어 위와 같은 리액트 훅을 만들었다.
+
+### 📁 src/components/CustomComponent.tsx
+
+```tsx
+import ChildComponent from '.'
+import useCustomHook from '@/hooks/useCustomHook'
+
+export default function CustomComponent() {
+
+	const customHook = useCustomHook()
+
+	return(
+		<>
+				...
+				<ChildComponent hook={customHook} />
+				...
+		</>
+	)
+}
+```
+
+만약 자식 컴포넌트인 `ChildComponent` Prop인 hook으로 `customHook`을 넘겨줘야 할 때, `ChildComponent`의 Prop 타입을 작성하기 까다로울 수 있다. 물론 기본적으로 타입을 제공해 준다면 모르지만^^
+
+이럴 땐 `ReturnType<Type>`을 활용하면 된다.
+
+### 📁 src/components/ChildComponent.tsx
+
+```tsx
+import useCustomHook from '@/hooks/useCustomHook'
+
+interface ChildProps {
+	hook: ReturnType<typeof useCustomHook>
+}
+
+export default function ChildComponent({ hook }: ChildProps) {
+	...
+	return(
+		<>
+			...
+		</>
+	)
+}
+```
+
+## Reference
+
+[Documentation - Utility Types](https://www.typescriptlang.org/ko/docs/handbook/utility-types.html#returntypetype)

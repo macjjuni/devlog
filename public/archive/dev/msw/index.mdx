@@ -1,0 +1,121 @@
+---
+title: "MSW(Mock Service Worker) 2.0"
+category: Daily
+tag: ['JavaScript', 'React']
+date: 2023-12-25
+author: 꾸생
+---
+
+## MSW(Mock Service Worker)란?
+
+<aside>
+💡 MSW(Mock Service Worker)는 API 모킹 라이브러리로 테스트, 프로토타입, 네트워크 관련 문제, 프로덕션 트래픽 모니터링 등 다영한 이유로 사용한다고 함.
+</aside>
+
+
+프론트엔드에서 백엔드 API가 개발되기 전 목업 API를 직접 개발해 UI를 구성할 수 있는 라이브러리다. 첫 회사에서 보일러플레이트를 작성할 때 처음 사용해 봤다. 최근 2.0 버전이 새롭게 나왔다고 하니 설정 방법을 글로 남겨본다.
+
+### ⬇️ Install
+
+```bash
+> npm install msw --save-dev
+> yarn add -D msw
+```
+
+### ✅ MSW 생성
+
+```bash
+> npx msw init public/ --save 
+```
+
+## ⚒️ Setup
+
+msw는 `서비스 워커`라는 웹 브라우저에서 지원하는 도구를 사용한다. 서비스 워커는 브라우저 백그라운드에서 실행되는 스크립트로 해당 페이지와는 별개로 작동하므로 DOM 제어나 사용자 인터렉션이 필요하지 않은 기능만 제공한다.
+
+서비스 워커 설정인 `brower.ts` 와 모킹 API 함수인 `handler.ts` 를 작성한다.
+
+### 📁 ./mock/brower.ts
+
+```tsx
+import { setupWorker } from 'msw/browser'
+import { handlers } from './handlers'
+ 
+export const worker = setupWorker(...handlers)
+```
+
+### 📁 ./mocks/handler.ts
+
+```tsx
+import { http, HttpResponse } from 'msw'
+ 
+export const handlers = [
+  http.get('/api/user', ()=>{
+		return HttpResponse.json({ status: 200, name: 'kkusaeng' })
+  })
+]
+```
+
+### 📁 main.tsx
+
+```tsx
+import ReactDOM from 'react-dom/client'
+import { RouterProvider } from 'react-router'
+import router from '@/router'
+import '@/styles/index.css'
+
+const enableMockingg = async () => {
+  if (import.meta.env.MODE === 'production') return
+
+  const { worker } = await import('../mocks/browser')
+  return worker.start()
+}
+
+enableMockingg().then(() => {
+	ReactDOM.createRoot(document.getElementById('macjjuni') as HTMLElement).render(
+	  // <React.StrictMode>
+	  <RouterProvider router={router} />,
+	  // </React.StrictMode>
+	)
+}
+```
+
+엔트리 포인트에서 개발 모드에서만 워커를 실행시킨 후 리액트 DOM 객체를 생성해 주면 된다. 개발 서버를 실행하면 콘솔 창에서 Mocking enabled 메세지가 보인다면 제대로 작동된 것이고 다음으로 테스트로 만든 모킹 API를 호출해서 결과를 확인해 보자 🏃🏻‍♂️
+
+![Untitled](/archive/dev/msw/Untitled.webp)
+
+## 🏃🏻‍♂️ 모킹 API 호출 테스트
+
+### 📁 App.tsx
+
+```tsx
+import { Outlet } from 'react-router'
+import { useEffect } from 'react'
+
+export default function App() {
+
+  const getUser = async () => {
+    const response = await fetch('/api/user')
+    const data = await response.json()
+    console.log(data)
+  }
+
+  useEffect(() => {
+    getUser()
+  }, [])
+  return <Outlet />
+}
+```
+
+`getUser()` 함수를 작성해서 실행해보고 콘솔창에 잘 나오나 확인해보자.
+
+![Untitled](/archive/dev/msw/Untitled1.webp)
+
+위 이미지 처럼 테스트로 만들어 본 목킹 API를 호출했을 때에도 작성한 대로 결과를 확인할 수 있다면 목킹 API 설정은 끝이다.
+
+개인적으로 백엔드 API 개발이 되기 전 임의로 모킹 API를 만들어 UI를 작성해 보고 API 호출에 실패와 성공 두 가지 케이스에 대해 테스트 코드를 작성해 본다면 완벽한 프론트엔드 개발이지 않을까 싶다.
+
+## Reference
+
+[MSW Docs](https://mswjs.io/docs/getting-started)
+
+[[React] MSW(Mock Service Worker) 2.0을 아시나요?](https://velog.io/@hamsoo159/React-MSW-2.0을-아시나요)
