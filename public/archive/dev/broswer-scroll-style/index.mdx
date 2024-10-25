@@ -1,0 +1,57 @@
+---
+title: "브라우저 스크롤바 스타일링"
+category: Dev
+tag: ['CSS']
+date: 2023-05-10
+author: 꾸생
+---
+
+주로 Mac과 iOS를 주로 사용하면서 데스크톱은 크롬, 모바일은 Safari 브라우저를 사용한다. 블로그에 들어올 때마다 윈도우의 투박한 스크롤바가 거슬렸고 이번 기회에 스크롤 디자인을 적용해 봤다.
+
+브라우저마다 스크롤바 스타일링을 위한 CSS 코드가 다르니 주의해야 하고 OS와 브라우저별 스타일 통합을 원한다면 라이브러리를 사용하는 편이 좋으니 관련 라이브러리도 찾아 기록해 본다.
+
+## 🎨 CSS
+
+```css
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+  transition: 0.3s ease;
+}
+/* Scrollbar Background Style */
+*::-webkit-scrollbar-track {
+  background: #eee;
+}
+/* Scrollbar Body Style */
+*::-webkit-scrollbar-thumb {
+  background-color: black;
+}
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: black #eee;
+				/* body background */
+}
+```
+
+## ✨ 스크롤바 라이브러리
+
+### smooth-scrollbar
+
+[npm: smooth-scrollbar](https://www.npmjs.com/package/smooth-scrollbar)
+
+### simple-scrollbar
+
+[npm: simple-scrollbar](https://www.npmjs.com/package/simple-scrollbar)
+
+### gemini-scrollbar(react, vue 버전도 따로 있음)
+
+[npm: gemini-scrollbar](https://www.npmjs.com/package/gemini-scrollbar)
+
+## Reference
+
+[::-webkit-scrollbar - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar)
+
+[scrollbar-color - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color)
+
+[Change Browser Scrollbar Colour with Tailwind CSS - Scott Spence](https://scottspence.com/posts/change-scrollbar-color-tailwind-css#vanilla-css-example)

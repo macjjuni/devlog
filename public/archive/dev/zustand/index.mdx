@@ -1,0 +1,152 @@
+---
+title: "Zustand 상태 관리"
+category: Dev
+tag: ['React']
+date: 2023-05-09
+author: 꾸생
+---
+
+![zustnad.png](/archive/dev/zustand/zustand.webp)
+
+Zustand 상태관리 라이브러리를 찍먹해봤다. 작년부터 스멀스멀 인기가 올라가더니 상태관리 라이브러리 하면 `Redux`, `Recoil`, `Zustand` 세 개의 대명사가 떠오르게 됐다. Recoil도 안써봤지만 😎
+
+공식 문서 소개글은 이렇다. 단순화된 플럭스 원리를 사용하는 작고 빠르고 확장성있는 상태 관리 솔루션으로 훅 기반 편안한 API 제공.
+
+독단적이지 않다고 강조하는데, 말 잘 들을 것 같은 위 **곰돌이(?)**가 증명해주는 것 같았다.
+
+[NPM: zustand](https://www.npmjs.com/package/zustand#typescript-usage)
+
+## Zustand는 Legend! 👍
+
+**Redux** 또는 **RTK**, **useContext**로 전역 상태 관리를 해봤다면 느꼈을 텐데, 이렇게 간단히 상태 관리를 구현해도 될 정도인가?라는 의문이 들었다. 그리고 Zustand를 사용하니 선언형 방식의 프로그래밍을 몸소 실천하고 있는 기분이 든다.
+
+### 장점
+
+- 특정 라이브러리에 엮이지 않고 리액트와 함께 사용 가능
+- 상태를 정의하고 사용 방법이 단순
+- 상태 변경 시 불필요한 리렌더링 방지 제어 가능
+- 핵심 로직의 코드 줄 수가 약 42줄 😯
+
+<aside>
+👋🏻 리덕스 잘가 ~ 다시는 보지 말자 ~
+</aside>
+
+## Zustand Guide
+
+### 📌 설치
+
+```bash
+yarn add zustand
+```
+
+### 📌 스토어 생성(feat. TypeScript)
+
+```tsx
+// /src/zustand/store.ts
+import { create } from 'zustand'
+import { devtools, persist } from 'zustand/middleware'
+
+interface BearState {
+  bears: number
+  increase: (by: number) => void
+}
+
+export const useBearStore = create<BearState>()(
+  devtools(
+    persist(
+      (set) => ({
+        bears: 0,
+        increase: (by) => set((state) => ({ bears: state.bears + by })),
+      }),
+      {
+        name: 'bear-storage', // persist key
+      }
+    )
+  )
+)
+```
+
+`bears`라는 곰의 카운트와 증가시키는 `increase` 함수가 예제로 나와있다. 미들웨어 `persist`를 기본 제공한다.
+
+### 📌 사용하기
+
+도대체 뭘 했다고 벌써 사용을 한단 말인가..? Provider로 감싸주고 이것저것 더 만들어야 하지 않나 싶었는데 공식 문서에 **that’s it!** 이란다.
+
+```tsx
+import { useBearStore } from './zustand/store'
+
+const App = () => {
+  const bears = useBearStore((state) => state.bears)
+  const upBear = useBearStore((state) => state.increase)
+
+  return (
+    <div className="App">
+      <center>
+        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
+          <img src="/vite.svg" className="logo" alt="Vite logo" />
+        </a>
+      </center>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <center>
+          <h2>count is {bears}</h2>
+        </center>
+        <center>
+          <button
+            type="button"
+            onClick={() => {
+              upBear(100)
+            }}
+          >
+            증가
+          </button>
+        </center>
+      </div>
+    </div>
+  )
+}
+
+export default App
+```
+
+예제로 코드 작성을 해보고 지금하는 프로젝트에서 리덕스를 지워버렸다.
+
+## Transient updates
+
+Zustand는 리덕스에 없는 특별한 기능을 제공하는데, 자주 업데이트되는 상태에 컴포넌트 리렌더링을 방지하는 기능이다. 이 점은 성능에 큰 영향을 줄 수 있으니 유용하게 사용하자!
+
+```tsx
+import { useRef, useEffect } from 'react'
+import { useBearStore } from './zustand/store'
+
+const App = () => {
+  const bearsRef = useRef(useBearStore.getState().bears)
+  const upBear = useBearStore((state) => state.increase)
+  const clear = useBearStore((state) => state.clear)
+
+  useEffect(() => {
+    useBearStore.subscribe((state) => {
+      bearsRef.current = state.bears
+    })
+  }, [])
+
+	...
+```
+
+`useRef`, `useEffect`훅으로 선언과 할당해주고 `bearsRef.current` 로 접근
+
+[GitHub - macjjuni/react18-ts-boilerplate: feat. SWC](https://github.com/macjjuni/react18-ts-boilerplate)
+
+### 📌 리액트 컴포넌트 밖에서 사용하기
+
+```jsx
+import { useBearStore } from './zustand/store'
+
+const { getState } = useBearStore
+
+const clickEvent = () => {
+	getState().increase()
+}
+```
+
+So Easy~❤️

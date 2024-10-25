@@ -46,6 +46,6 @@ export async function getArchivePath(id: string) {
 
 
 export function getArchiveFileSource(_path: string) {
-  const filePath = path.join(process.cwd(), `${archivePath}/${_path}`, "markdown.mdx");
+  const filePath = path.join(process.cwd(), `${archivePath}/${_path}`, "index.mdx");
   return fs.readFileSync(filePath, "utf8");
 }

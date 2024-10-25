@@ -1,0 +1,69 @@
+---
+title: "vue-router 네비게이션 가드"
+category: Dev
+tag: ['Vue']
+date: 2023-04-17
+author: 꾸생
+---
+
+## Navigation Guard
+
+프런트엔드 개발을 하고 싶지만, 프로젝트 투입 전이고 많은 시간이 남은 상황이다. 기존 프로젝트 파악은 JSP와Vue2 레거시 코드로 난해한 부분이 있지만 코드 수준에서 프로젝트 구성과 가이드라인 정도만 노션에 작성하고 있다. 그 와중 다른 솔루션 개발하는 분의 질문으로 나도 몰랐던 부분을 알게 되어 정리해 본다. 대략 내용은 이렇다.
+
+<aside>
+  <code>authMenuList</code>를 API로 넘겨받아 스토어에 저장하고 네비게이션 가드에서 가져오는데 접근이 안 된다는 것.
+
+</aside>
+
+vue 특유의 proxy 객체가 콘솔 로그로 보이긴 하는데 값에 접근이 안 된다는 것이다. 원인은 비동기 처리가 제대로 안됐던 것이고 아래의 방법으로 해결.
+
+**`vue-router`** 자체에서 라우터별 접근관리를 위한 방법을 제공하는데, 보통은 메뉴별로 권한을 판단해서 외부로 내보낼지 허용할 지에 대한 로직을 실행한다.
+
+```tsx
+import { createRouter, createWebHistory } from 'vue-router'
+import auth from './modules/auth'
+import common from './modules/common'
+
+const routes = [...auth, ...common]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+router.beforeEach((to, from, next) => {
+// 라우터 객체에서 권한을 가져옴
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth)
+  if (requiresAuth) {
+    // 로그인이 필요한 페이지에 로그인하지 않은 경우 로그인 페이지로 넘기기
+    next('/login')
+  } else {
+    if (to.path === '/login') { // 로그인 상태인데 로그인 페이지로 이동하면 홈으로 넘기기
+      next('/')
+      return
+    }
+    next()
+  }
+})
+```
+
+- 네이게이션이 트리거될 때 마다 가드 로직이 실행
+- 비동기로 실행되므로, 모든 훅이 실행되기 전까지 보류 중 상태 유지
+- 파라미터 `to`, `from`, `next`는 눈치 껏 보면 알 수 있음
+
+## Global Resolve Guards
+
+<aside>
+💡 **`router.beforeEach`** ⇒ **`router.beforeResolve`**
+
+</aside>
+
+**`beforeEach`**와 다른 점은 데이터 API나 비동기적인 작업이 끝난 후 네비게이션 가드 로직을 처리한다.
+
+**`authMenuList`**는 로그인을 완료하고 또는 새로고침 상태에서 ****데이터를 받아와 스토어에 보관해야 하는데, 나라면 이 방식보다는 네비게이션 가드에서 페이지를 이동할 때마다 권한을 체크하는 방법을 사용할 것이다.
+
+해당 질문을 받았을 때 정확한 원인 파악을 하지도 않고 내 감으로만 판단해 전달드린 부분이 있었다. 개인적인 커뮤니케이션 오류인데, 이 때문에 여러번 소통을 해야만 했다. 앞으로 이런 질문을 받게 된다면 면밀히 알아보고 전달해야겠다.
+
+## Reference
+
+[네비게이션 가드 | Vue Router](https://v3.router.vuejs.org/kr/guide/advanced/navigation-guards.html)

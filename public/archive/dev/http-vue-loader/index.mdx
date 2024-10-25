@@ -1,0 +1,82 @@
+---
+title: "http-vue-loader"
+category: Dev
+tag: ['Vue']
+date: 2023-04-21
+author: 꾸생
+---
+
+HTML/JS 파일에서 vue 단일 컴포넌트를 로드하는데 사용되는 라이브러리다. [**vue3-sfc-loader](https://github.com/FranckFreiburger/vue3-sfc-loader)** 로 새로운 버전이 나왔지만 node.js 환경에서의 개발이 아닌 jsp 에서 vue를 사용하는 환경이라면 http-vue-loader를 사용하자.. ES5를 써야하긴 하지만.. 😂
+
+[GitHub - FranckFreiburger/http-vue-loader: load .vue files from your html/js](https://github.com/FranckFreiburger/http-vue-loader)
+
+## MyComponent.vue
+
+```jsx
+<template>
+    <div class="hello">Hello {{who}}</div>
+</template>
+
+<script>
+module.exports = {
+    data: function() {
+        return {
+            who: 'world'
+        }
+    }
+}
+</script>
+
+<style>
+.hello {
+    background-color: #ffe;
+}
+</style>
+```
+
+## index.html
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/http-vue-loader"></script>
+  </head>
+
+  <body>
+    <div id="my-app">
+      <my-component></my-component>
+    </div>
+
+    <script type="text/javascript">
+      new Vue({
+        el: '#my-app',
+        components: {
+          'my-component': httpVueLoader('/my-component.vue')
+        }
+      });
+    </script>
+  </body>
+</html>
+```
+
+html/jsp 파일에서는 components 안에 httpVueLoader에 vue 파일 경로를 넣어 컴포넌트를 불러올 수 있음.
+
+## httpVueLoader.register()
+
+```jsx
+...
+<script type="text/javascript">
+
+    httpVueLoader.register(Vue, 'my-component.vue');
+
+    new Vue({
+        components: [
+            'my-component'
+            ]
+        },
+        ...
+```
+
+JS 파일 안에서는 **`httpVueLoader.register()`** 를 사용

@@ -1,0 +1,144 @@
+---
+title: "Jest 주로 사용하는 함수 정리"
+category: Dev
+tag: ['JavaScript']
+date: 2023-04-25
+author: 꾸생
+---
+
+## Jest Fn()
+
+Jest에서 테스트 코드를 작성할 때 주로 사용하는 함수를 정리해본다.
+
+### test(name, n, timeout): 테스트 케이스 작성
+
+```jsx
+function sum(a, b) {
+	return a + b
+}
+
+test('sum test', () => {
+  expect(sum(1, 2)).toBe(3)
+})
+```
+
+- name: 테스트 케이스 이름
+- fn: 테스트 케이스 실행 함수
+- timeout?: 테스트 케이스가 실행되는 제한 시간
+
+`test()` 함수 말고도 `it()`도 있는데, 결국 둘은 같으므로 취향에 따라 선택
+
+### describe(name, fn): 테스트 그룹화
+
+```jsx
+ describe('Calculator', () => {
+  // Calculator 관련 테스트 케이스들
+	test('plus test', ()=> {
+		expect(sum(1,2)).toBe(3)
+	})
+})
+```
+
+작은 단위의 테스트 코드를 그룹화할 수 있다. name 파라미터라는 문자열로 테스트를 구분해주고 2번 째 파라미터에 테스트 코드를 작성해준다.
+
+### **expect(value): 예상 결과 검사**
+
+```jsx
+test('calculator plus test', () => {
+  expect(2 + 2).toBe(4)
+})
+```
+
+### beforeAll(fn, time): 테스트 전 로직 실행
+
+```jsx
+let database
+
+beforeAll(() => { database = connectToDatabase() })
+
+test('Test 1', () => { expect(database.getData('test1')).toBe('data1') })
+test('Test 2', () => { expect(database.getData('test2')).toBe('data2') })
+```
+
+`beforeAll()` 함수는 테스트 파일의 모든 테스트 케이스가 실행되기 전 한 번만 실행되는 함수다. 테스트에 필요한 환경을 설정하거나, 리소스 초기화 등 로직을 실행한다.
+
+### afterAll(fn, time): 테스트 후 로직 실행
+
+```jsx
+let database
+
+beforeAll(() => { database = connectToDatabase() })
+afterAll(() => { database.closeConnection() })
+
+test('Test 1', () => { expect(database.getData('test1')).toBe('data1') })
+test('Test 2', () => { expect(database.getData('test2')).toBe('data2') })
+```
+
+`beforeAll()` 함수와 반대로 테스트가 종료된 후 실행되는 로직
+
+### beforeEach(fn, time): 각 테스트 시작 전 실행 로직
+
+```jsx
+let counter = 0
+
+beforeEach(() => { counter++ })
+
+test('Test 1', () => { expect(counter).toBe(1) })
+test('Test 2', () => { expect(counter).toBe(2) })
+```
+
+`beforeEach()` 함수는 테스트가 실행되기 전 실행되는 로직으로 2개의 test가 있을 경우  2번 실행된다.
+
+### afterEach(fn, time): 각 테스트 실행 후 실행 로직
+
+```jsx
+let counter = 0
+
+beforeEach(() => { counter++ })
+afterEach(() => { counter = 0 })
+
+test('Test 1', () => { expect(counter).toBe(1) })
+test('Test 2', () => { expect(counter).toBe(1) })
+```
+
+`beforeEach()`와 `afterEach()`는 서로 실행되는 순서만 다를 뿐 테스트 마다 실행되는 로직
+
+### toBe(value): expect() 예상 결과 비교
+
+```jsx
+function sum(a, b) {
+	return a + b
+}
+
+test('sum test', () => {
+  expect(sum(1, 2)).toBe(3)
+})
+```
+
+`expect`에서 실행된 함수가 반환하는 값을 `toBe()` 함수로 값이 일치하는지 확인한다.
+
+### toEqual(value) ⇒ expect(): 예상 결과 비교
+
+```jsx
+test('object assignment', () => {
+  const data = { one: 1 }
+  data['two'] = 2
+  expect(data).toEqual({ one: 1, two: 2 })
+})
+```
+
+`toBe()` 함수와 비슷하나 주로 객체를 비교할 땐 `toEqual()`을 사용한다. 이유는 서로 내용이 같더라도 다른 메모리에 있으면 **false**가 나오기 때문
+
+### toThrow(error): 예외를 throw하는지 확인
+
+```jsx
+const throwError() => {
+  throw new Error('This function throws an error')
+}
+
+test('throws error', () => {
+  expect(throwError).toThrow(Error)
+})
+```
+
+에러가 발생한다는 가정하에 제대로 된 에러를 표시하는지 여부 확인하는 함수다. 에러가 발생하면 테스트는 실패로 종료되니 에러를 테스트할 경우 `toThrow()`로 테스트한다.
