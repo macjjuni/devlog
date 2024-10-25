@@ -1,0 +1,23 @@
+---
+title: "Mac OS 사용중인 포트 강제 종료 방법"
+category: Dev
+tag: []
+date: 2023-06-29
+author: 꾸생
+---
+
+## 터미널 실행
+
+Command(⌘) + Space 검색 창에 terminal 검색
+
+## 특정 포트를 사용 중인 프로세스 검색
+
+```bash
+lsof -i :포트
+```
+
+## 프로세스 종료
+
+```bash
+kill -9 포트
+```

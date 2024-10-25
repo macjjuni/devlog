@@ -1,0 +1,109 @@
+---
+title: "자바스크립트 캔버스(Canvas) 다루기"
+category: Dev
+tag: ['JavaScript']
+date: 2023-08-26
+author: 꾸생
+---
+
+캔버스(Canvas)는 HTML 요소로 애니메이션 부터 게임 그래픽, 데이터 시각화, 사진 편집, 실시간 비디오 처리 등에 사용할 수 있다고 한다. 웹용 그림판을 만들어 보며 캔버스에 이미지를 업로드해 그리거나 펜 그리기 기능 등을 구현해봤는데, 캔버스 쓸 일이 있을테니 기록해본다.
+
+[ez-paint](https://ez-paint.web.app/)
+
+## Canvas 컴포넌트
+
+```tsx
+import { useRef } from 'react'
+
+const Canvas = () => {
+	const canvasRef = useRef<HTMLCanvasElement>(null)
+
+// 캔버스 가져오기
+  const getCanvas = useCallback(() => {
+    if (!canvasRef.current) throw new Error('Canvas is not available.')
+    return canvasRef.current
+  }, [])
+
+  // 캔버스 컨텍스트 가져오기
+  const getCtx = useCallback(() => {
+    const ctx = getCanvas()?.getContext('2d')
+    if (!ctx) throw new Error('Canvas context is not available.')
+    ctx.imageSmoothingQuality = 'high'
+    return ctx
+  }, [])
+
+return (
+    <>
+      <canvas ref={canvasRef} />
+    </>
+}
+```
+
+### 이미지  넣기
+
+```tsx
+const drawImageInCanvas = async (canvas: HTMLCanvasElement, image: Blob | File) => {
+  const ctx = canvas.getContext('2d')
+  if (!ctx) throw new Error('Canvas context is not available.')
+
+  try {
+    const img = new Image()
+    img.src = URL.createObjectURL(image)
+
+    img.onload = () => {
+      const fullWidth = window.innerWidth
+      // 이미지 길아와 브라우저 해상도 비교
+      if (fullWidth > img.width) {
+        canvas.width = img.width
+        canvas.height = img.height
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height) // 캔버스에 이미지 그리기
+      } else {
+        canvas.width = fullWidth
+        canvas.height = fullWidth / (img.width / img.height) // 비율에 맞게 높이 계산
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height) // 캔버스에 이미지 그리기
+      }
+      URL.revokeObjectURL(img.src) // Blob URL 해제
+    }
+    img.onerror = (e) => {
+      console.error('이미지 로드 오류', e)
+    }
+  } catch (err) {
+    console.error('An error occurred while painting image:', err)
+  }
+}
+```
+
+이미지를 넣을 캔버스 요소와 이미지 파일 또는 Blob 데이터를 받는 함수를 작성했다.
+
+다음과 같은 순서로 캔버스에 이미지를 삽입한다.
+
+1. Blob과 File 요소는 URL.createObjectURL() 메소드로 URL을 생성해 이미지 소스에 넣는다.
+2. 소스에 넣은 이미지의 로딩이 완료되면 이미지 사이즈를 브라우저 창 사이즈와 비교한다.
+3. 만약 클 경우 브라우저의 최대 사이즈로 캔버스를 맞추고 높이는 비율에 맞게 설정한다.
+4. **drawImage** 캔버스 API를 사용해 해당 이미지를 그려 넣는다.
+5. 마지막 이미지 객체 URL 메모리 해제한다.
+
+<aside>
+**fullWidth**: 변수는 브라우저 창 width 값이 들어가므로 padding이나 margin 사이즈가 존재하면 화면에서 오버될 수 있으니 참고해야 함.
+</aside>
+
+### 점 찍기
+
+```tsx
+interface IXY {
+	x: number
+	y: number
+}
+
+const drawPoint = (ctx: CanvasRenderingContext2D, moveToXY: IXY, color: string, thick: number) => {
+  ctx.beginPath() // 새로운 path 생성
+  ctx.arc(moveToXY.x, moveToXY.y, thick / 2, 0, Math.PI * 2, false) // 원형 그리기
+  ctx.fillStyle = color // 색상 설정
+  ctx.fill() // path 내부를 채움
+  ctx.closePath() // path 닫기
+}
+```
+
+캔버스 컨텍스트와 점을 찍을 위치 XY좌표, 색상과 두께를 받아 캔버스에 점을 찍는 함수다.

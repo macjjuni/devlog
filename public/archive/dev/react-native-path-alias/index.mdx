@@ -1,0 +1,57 @@
+---
+title: "React-Native - Path Alias 설정"
+category: Dev
+tag: ['react-native']
+date: 2023-07-07
+author: 꾸생
+---
+
+## 패키지 설치
+
+```bash
+yarn add babel-plugin-module-resolver -D
+npm i -D babel-plugin-module-resolver
+```
+
+## Babel 설정
+
+```jsx
+// babel.config.js
+module.exports = {
+  presets: ['module:metro-react-native-babel-preset'],
+  plugins: [
+    [
+      'module-resolver',
+      {
+        root: ['./src'],
+        alias: {
+          '@': './src',
+        },
+      },
+    ],
+  ],
+}
+```
+
+## TS 설정
+
+```json
+// tsconfig.json
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+    }
+  }
+}
+```
+
+## 재시작
+
+```json
+yarn start -—reset-cache
+npm run start --reset-cache
+```

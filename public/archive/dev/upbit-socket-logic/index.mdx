@@ -1,0 +1,137 @@
+---
+title: "업비트 시세조회 API를 사용한 간단한 웹소켓 로직"
+category: Dev
+tag: ['JavaScript']
+date: 2023-07-15
+author: 꾸생
+---
+
+업비트에서 제공하는 시세 API를 사용해 간단한 웹앱을 만들어 사용하다 이번에 마이그레이션을 진행했다.
+
+기존 웹소켓 로직은 한 번 에러가 나면 이후 새로고침을 하지 않는 이상 그로기 상태에 빠져버리는데, 에러 처리 로직을 추가 작성했다.
+
+[BitCoin Price](https://btc-price.web.app)
+
+## 요청 데이터 준비
+
+| **필드명** | **내용** | **타입** | **필요 여부** |
+| --- | --- | --- | --- |
+| **type** | 수신할 시세 타입.(현재가 -> ticker체결 -> trade,호가 ->orderbook) | String | O |
+| **codes** | 수신할 시세 종목 정보.**주의 : codes 필드에 명시되는 종목들은 대문자로 요청해야 합니다.** | List | O |
+| **isOnlySnapshot** | 시세 스냅샷만 제공 | Boolean | X |
+| **isOnlyRealtime** | 실시간 시세만 제공 | Boolean | X |
+
+```tsx
+const currency = [
+	{ ticket: 'kku.dev' },
+	{ type: 'ticker', codes: ['BTC/KRW'] },
+	{ format: 'SIMPLE' }
+]
+```
+
+요청 형식은 위 형태로 작성하는데, `ticket`은 공식 문서에 용도를 식별하기 위한 값으로 대상을 식별하며 되도록 유니크한 값을 사용하도록 권장한다고 나와있다. 내가 선택한 방법은 가장 대표적으로 사용하는 UUID를 이용했고 **uuid** 라이브러리를 사용해서 쉽게 만들어낼 수 있다.
+
+타입에 시세는 현재가와 온리 비트코인이므로 **`ticket`**, **`‘BTC/KRW’`** 문자열만 배열로 넣
+
+[WebSocket을 이용한 업비트 시세 수신](https://docs.upbit.com/docs/upbit-quotation-websocket#1-시세-정보)
+
+## 소켓 생성
+
+```tsx
+const isNetwork = () => window.navigator.onLine // 네트워크 연결 체크
+let timeout: NodeJS.Timeout | null = null       // Timeout 객체
+let retryCount = 1                              // 서버 재접속 시도 횟수
+const limitCount = 3                            // 재시도 제한 횟수
+const setTime = 5000                            // ms 재시도 시간 간격
+
+let socket: WebSocket | null = null             // 소켓 생성
+```
+
+웹 소켓과 예외처리에 필요한 변수 작성
+
+## 소켓 함수 작성
+
+```tsx
+// 소켓 초기화
+function initSocket() {
+
+  socket = new WebSocket('wss://api.upbit.com/websocket/v1')
+  socket.binaryType = 'arraybuffer'
+
+  socket.onopen = function () {
+    console.log('on socket!')
+    retryCount = 1 // 재시도 횟수 초기화
+    this.send(JSON.stringify(currency))
+    console.log('Connect socket!')
+  }
+  socket.onmessage = (evt) => {
+    const enc = new TextDecoder('utf-8')
+    const arr = new Uint8Array(evt.data)
+    const data = JSON.parse(enc.decode(arr))
+    console.log(data) // <-- 웹 서버로 부터 받은 데이터
+  }
+
+  // 소켓 에러 핸들링
+  socket.onerror = (e) => {
+    console.dir(e)
+
+    if (socket === null) return
+    if (!isNetwork()) {
+      toast.warn(`인터넷 연결 오류 또는 서버 점검 중입니다. 나중에 다시 시도해 주세요 🙏`)
+      socket.close()
+    }
+  }
+
+  // 소켓 닫힘
+  socket.onclose = (e) => {
+    console.dir(`비정상적 종료: ${e.code}`)
+    if (e.wasClean || e.code === 1000) {
+      console.log(`서버 연결 해제`)
+    } else if (e.code === 1006) {
+      // 비정상적 오류
+      timeout = setTimeout(() => { // 제한 횟수만큼 연결 재시도
+        console.log(`${setTime / 1000}초 후 재연결 시도합니다. (${retryCount++})`)
+        if (retryCount > limitCount) {
+          clearTimeOut()
+          console.log(`서버가 응답하지 않습니다. 나중에 다시 시도해주세요. 🙏`)
+        } else {
+          initSocket()
+        }
+      }, setTime)
+    }
+  }
+}
+```
+
+### Event
+
+- **onopen**: 소켓 연결이 열렸을 때
+- **onmessage**: 소켓으로 데이터를 수신했을 때
+- **onerror**: 소켓 연결이 일부 데이터 전송의 실패 등 오류로 인해 닫힐 때
+- **onclose**: 소켓 연결이 닫힐 때
+
+중요 기능의 로직은 `onmessage` 이벤트에 작성하고 데이터를 전달받은 후 웹 상에서 렌더링 되도록 코드를 작성한다.
+
+## 에러처리
+
+웹 소켓을 이용하면서 발생되는 이벤트에 맞춰 알맞은 에러처리 로직을 작성해주는데, 위 코드에서는 `onerror`와 `onclose` 이벤트에 대부분의 로직을 작성했다.
+
+`onerror` 이벤트에서 발생했을 때 인터넷 연결이 없는 상태라면 재시도를 할 필요가 없으므로 소켓을 그대로 종료시키도록 작성한다. 만약 다른 이유로 소켓이 종료 됐다면 서버가 살아있는지 확인해 보고 재접속 시도를 해보는 등 다른 작업을 할 수 있다.
+
+이번에 구현한 프로젝트는 소켓 연결이 필수이므로 `onclose` 이벤트에 로직을 구현했다. 정상적인 로직에 의해 소켓이 연결 종료됐다면 그대로 끝내고 아닌 경우 재시도 로직을 실행한다.
+
+## 소켓 종료
+
+```jsx
+socket.close()
+socket.close(code)
+socket.close(code, reason
+```
+
+사용자가 임의에 코드로 소켓을 종료시킬 수 있고 `onclose` 이벤트에서 받아 사용할 수 있다.
+
+## 에러코드
+
+[RFC 6455: The WebSocket Protocol](https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.5)
+
+이미 약속된 에러 코드도 있으니 주의해서 사용한다.

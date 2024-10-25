@@ -1,0 +1,36 @@
+---
+title: "React-Native - AsyncStorage is Null Error"
+category: Dev
+tag: ['react-native']
+date: 2023-07-09
+author: 꾸생
+---
+
+리액트 네이티브 프로젝트를 진행하면서 겪은 에러다. RN 버전은 0.72로 Async Storage 깃 레포의 이슈에도 이와 같은 오류가 이슈로 등록되어 있으나 확실한 해결 방법이 안보였으나 비교적 간단한 문제였다.
+
+
+## ios폴더로 이동
+
+```bash
+$ cd ./ios
+```
+
+## pod install
+
+```bash
+$ sudo npx pod install
+```
+
+## 프로젝트 경로 이동
+
+```bash
+cd ../
+```
+
+## 재시작
+
+```bash
+yarn start --reset-cache
+```
+<br/>
+사실 라이브러리를 설치하면 무조건 해줘야하는 관행 같은 순서였다😅

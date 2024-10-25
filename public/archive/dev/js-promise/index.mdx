@@ -1,0 +1,83 @@
+---
+title: "자바스크립트 - 프로미스(Promise)"
+category: Dev
+tag: ['JavaScript']
+date: 2023-06-09
+author: 꾸생
+---
+
+## 프로미스 객체란?
+
+`Promise` 객체는 비동기 작업이 마무리되고 최종 완료 또는 실패를 나타내는 객체다.
+
+프로미스가 생성된 시점에 결과값에 대한 대리자로 비동기 연산이 종료된 이후 결과 값과 실패 사유를 처리하기 위한 처리기를 연결할 수 있다.
+
+프로미스를 사용하면 비동기 메서드에서 마치 동기 메서드처럼 값을 변환할 수 있다. 하지만 결과값을 받는 것이 아닌 미래 어떤 시점에 결과를 제공하겠다는 “약속”을 반환한다.
+
+### ⛅ Promise 상태
+
+- **대기(Pending)**: 완료, 실패 전 초기 상태
+- **이행(fulfilled)**: 연산이 성공적으로 완료
+- **거부(refjected)**: 연산 실패
+
+![mdn-promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise/promises.png)
+
+대기(Pending) 중인 상태는 완료 또는 거부될 수 있는 2가지 방향성을 가지고 있다. 이때 프로미스의 then 메서드에 의해 대기열(큐)에 추가된 처리기들이 호출된다.
+
+Promise 상태 값은 가끔 비동기 처리를 제대로하지 않은 경우 개발자 도구 콘솔창에서 자주 목격할 수 있다.
+
+### Promise 예제
+
+```jsx
+import { useState } from "react";
+
+function App() {
+  const [result, setResult] = useState("");
+
+  const delay = (ms) =>
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const randomNum = Math.random();
+        if (randomNum > 0.5) resolve("성공 = " + randomNum.toFixed(2));
+				else reject("실패 = " + randomNum.toFixed(2));
+      }, ms);
+    });
+
+  const test = () => {
+    delay(1500).then((result) => {
+        setResult("결과: " + result);
+      }).catch((error) => {
+        setResult("오류: " + error);
+      }).finally(() => {
+        console.log("종료", result);
+      });
+  };
+  return (
+    <div className="App">
+      <center>
+        <button type="button" onClick={test}>Test!</button>
+        <div>{result}</div>
+      </center>
+    </div>
+  );
+}
+
+export default App;
+```
+
+Promise 예제 코드를 리액트 컴포넌트에서 작성해 봤다. `delay()` 함수는 파라미터로 받은 시간(`ms`)이후 랜덤으로`resolve()` 또는 `reject()`을 호출하는 `Promise`를 반환한다.
+
+`test()` 함수에서는 `delay()` 함수에서 반환된 `Promise`를 성공했을 때 `then()`실패 했을 때 `catch()`로 잡아낸다.
+
+### 프로미스 정적 메서드
+
+- [**Promise.all(iterable)**](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+- [**Promise.allSettled(iterable)**](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled)
+- [**Promise.any(iterable)**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/any)
+- [**Promise.any(iterable)**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/any)
+- [**Promise.reject(reason)**](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject)
+- [**Promise.resolve()**](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
+
+## Reference
+
+[Promise - JavaScript | MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)
