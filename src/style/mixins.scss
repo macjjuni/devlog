@@ -181,9 +181,11 @@
     table {
         display: block;
         width: 100%;
+        max-width: 768px;
         margin: $kku-spacing-lg 0;
         border-collapse: collapse;
         font-size: 16px;
+        word-break: break-word; /* 긴 단어도 줄바꿈 가능 */
         white-space: nowrap;
         overflow-x: auto;
 
