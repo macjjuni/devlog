@@ -1,16 +1,16 @@
 "use client";
 
-import { memo, useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import Link from "next/link";
 import config from "@/config/notion.config";
 import usePageSize from "@/hook/usePageSize";
-import type { NotionPageProps } from "@/@types/notion";
 import date from "@/lib/date";
 import "./archiveList.scss";
+import { ArchiveData } from "@/@types/archive";
 
 const { archive } = config;
 
-function ArchiveList({ pages }: { pages: NotionPageProps[] }) {
+export default function ArchiveList({ archives }: { archives: ArchiveData[] }) {
   // region [Hooks]
 
   const page = usePageSize("page");
@@ -19,7 +19,7 @@ function ArchiveList({ pages }: { pages: NotionPageProps[] }) {
 
   // region [Privates]
 
-  const pageList = useMemo(() => pages.slice(archive.POSTS_PER_PAGE * (page - 1), archive.POSTS_PER_PAGE * page), [page, pages]);
+  const pageList = useMemo(() => archives.slice(archive.POSTS_PER_PAGE * (page - 1), archive.POSTS_PER_PAGE * page), [page, archives]);
 
   const isNew = useCallback((dateStr: string) => archive.RECENT_DAY > date.nowDiff(dateStr), []);
 
@@ -28,12 +28,12 @@ function ArchiveList({ pages }: { pages: NotionPageProps[] }) {
   return (
     <ul className="archive__list">
       {pageList.map((listItem) => (
-        <li key={listItem.id} className="archive__list__item">
-          <Link href={`/archive/${listItem.id}`} className={`archive__list__item__link${isNew(listItem.published) ? " new" : ""}`} suppressHydrationWarning>
-            <h3 className="archive__list__item__title">{listItem.title}</h3>
+        <li key={listItem.url} className="archive__list__item">
+          <Link href={`/archive/${listItem.url}`} className={`archive__list__item__link${isNew(listItem?.date) ? " new" : ""}`} suppressHydrationWarning>
+            <h3 className="archive__list__item__title">{listItem?.title}</h3>
             <div className="archive__list__item__right">
-              <p>{listItem.category?.name}</p>
-              <p>{date.format(listItem.published)}</p>
+              <p>{listItem?.category}</p>
+              <p>{date.format(listItem?.date)}</p>
             </div>
           </Link>
         </li>
@@ -42,5 +42,3 @@ function ArchiveList({ pages }: { pages: NotionPageProps[] }) {
     </ul>
   );
 }
-
-export default memo(ArchiveList);

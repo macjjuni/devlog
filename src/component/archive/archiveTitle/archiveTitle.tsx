@@ -1,13 +1,14 @@
 "use client";
 
-import { memo, useMemo } from "react";
+import { useMemo } from "react";
 import useCategoryName from "@/hook/useCategoryName";
-import type { NotionPageProps } from "@/@types/notion";
-import "./archiveTitle.scss";
 import useSearchText from "@/hook/useSearchText";
 import ArchiveTitleIcon from "@/component/archive/archiveTitle/archiveTitleIcon";
+import { ArchiveData } from "@/@types/archive";
+import { capitalizeFirstLetter } from "@/utils/string";
+import "./archiveTitle.scss";
 
-function ArchiveTitle({ pages }: { pages: NotionPageProps[] }) {
+export default function ArchiveTitle({ archives }: { archives: ArchiveData[] }) {
   // region [Hooks]
 
   const categoryName = useCategoryName();
@@ -32,10 +33,8 @@ function ArchiveTitle({ pages }: { pages: NotionPageProps[] }) {
   return (
     <h2 className="archive__title">
       <ArchiveTitleIcon title={archiveTitleText} />
-      {archiveTitleText}
-      {`(${pages.length})`}
+      {capitalizeFirstLetter(archiveTitleText)}
+      {`(${archives.length})`}
     </h2>
   );
 }
-
-export default memo(ArchiveTitle);

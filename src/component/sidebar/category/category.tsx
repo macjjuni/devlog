@@ -3,26 +3,22 @@
 import { memo, UIEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { createDebounce, createThrottle } from "@/lib/lodash";
-import { ICategory, SelectPropertyResponse } from "@/@types/notion";
 import ActiveCheckSvg from "@/component/sidebar/category/ActiveCheckSvg";
 import { getCategoryPageUrl } from "@/route";
-import "./category.scss";
 import useCategoryName from "@/hook/useCategoryName";
 import { usePathname } from "next/navigation";
 import { KIcon } from "kku-ui";
+import "./category.scss";
+import { capitalizeFirstLetter } from "@/utils/string";
 
 type ScrollPositionType = "left" | "between" | "right";
 type ScrollDirectionType = Omit<ScrollPositionType, "between">;
-
-interface CategoryProps {
-  list?: ICategory;
-}
 
 const arrowIconSize = 20;
 
 const initialCategoryList: string[] = ["All"];
 
-function Category({ list }: { list: string[]}) {
+function Category({ list }: { list: string[] }) {
   // region [Hooks]
 
   const pathname = usePathname();
@@ -161,7 +157,7 @@ function Category({ list }: { list: string[]}) {
             <Link href={listItem === "All" ? "/archive" : getCategoryPageUrl(listItem)} className={`category__card__item__link ${linkClass(listItem)}`}>
               <ActiveCheckSvg className="category__card__item__link__active-character" />
               <div className="category__card__item__link__hover-character" />
-              <span className="category__card__item__text">{listItem}</span>
+              <span className="category__card__item__text">{capitalizeFirstLetter(listItem)}</span>
             </Link>
           </li>
         ))}

@@ -3,7 +3,7 @@ import ArchiveContent from "@/component/archive/archiveContent/ArchiveContent";
 import ArchiveComment from "@/component/archive/archiveComment/archiveComment";
 import { mdxSerializer } from "@/lib/mdx";
 import ErrorPage from "@/app/404/page";
-import { getAllArchivePath, getArchiveFileSource, getArchivePath } from "@/utils/archive";
+import { getAllArchivePath, getArchivePath } from "@/utils/archive";
 import { ArchiveData } from "@/@types/archive";
 import ArchiveToc from "@/component/archive/archiveToc/archiveToc";
 
@@ -16,26 +16,20 @@ export async function generateStaticParams() {
 }
 
 export default async function ArchiveDetailPage({ params }: { params: { id: string } }) {
-  try {
-    const currentArchivePath = await getArchivePath(params.id);
-    if (!currentArchivePath) {
-      throw Error("Not Found Archive");
-    }
+  const archiveSource = await getArchivePath(params.id);
 
-    const source = getArchiveFileSource(currentArchivePath);
-    const mdxSource = await mdxSerializer(source); // MD 직렬화
-    const archiveData = mdxSource.frontmatter as unknown as ArchiveData;
+  if (!archiveSource) { return <ErrorPage />; }
 
-    return (
-      <>
-        <ArchiveHeader archiveData={archiveData} />
-        <ArchiveContent source={mdxSource}>
-          <ArchiveToc source={source} />
-        </ArchiveContent>
-        <ArchiveComment />
-      </>
-    );
-  } catch (e) {
-    return <ErrorPage />;
-  }
+  const archiveMdxSource = await mdxSerializer(archiveSource); // MD 직렬화
+  const archiveData = archiveMdxSource.frontmatter as unknown as ArchiveData;
+
+  return (
+    <>
+      <ArchiveHeader archiveData={archiveData} />
+      <ArchiveContent source={archiveMdxSource}>
+        <ArchiveToc source={archiveSource} />
+      </ArchiveContent>
+      <ArchiveComment />
+    </>
+  );
 }
