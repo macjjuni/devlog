@@ -22,7 +22,9 @@ const date = {
     const formatDate2 = dayjs(date2, defaultDetailFormat);
     return formatDate1.diff(formatDate2, "second");
   },
+  getTimeStamp: (_date: string | number) => dayjs(_date).valueOf(),
 };
+
 
 export function isTwoMinutesPassed(timestamp1: number, timestamp2: number): boolean {
   const THREE_MINUTES_IN_MS = 2 * 60 * 1000; // 3분을 밀리초로 변환
