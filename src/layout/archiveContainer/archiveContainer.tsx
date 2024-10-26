@@ -1,17 +1,14 @@
-import { memo } from "react";
 import ArchiveTitle from "@/component/archive/archiveTitle/archiveTitle";
 import ArchiveList from "@/component/archive/archiveList/archiveList";
 import Pagination from "@/component/archive/pagination/pagination";
-import { NotionPageProps } from "@/@types/notion";
+import { ArchiveData } from "@/@types/archive";
 
-function ArchiveContainer({ pages }: { pages: NotionPageProps[] }) {
+export default function ArchiveContainer({ archives }: { archives: ArchiveData[] }) {
   return (
-    <>
-      <ArchiveTitle pages={pages} />
-      <ArchiveList pages={pages} />
-      <Pagination total={pages.length} />
-    </>
+    <section className="archive__layout__content">
+      <ArchiveTitle archives={archives} />
+      <ArchiveList archives={archives} />
+      <Pagination total={archives.length} />
+    </section>
   );
 }
-
-export default memo(ArchiveContainer);

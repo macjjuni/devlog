@@ -1,23 +1,19 @@
-import React, { memo } from "react";
+import React from "react";
 import Profile from "@/component/sidebar/profile/profile";
 import Search from "@/component/sidebar/search/search";
 import Category from "@/component/sidebar/category/category";
 import BitcoinChart from "@/component/sidebar/bitcoinChart/bitcoinMarketChart";
-import { NotionInfoProps } from "@/@types/notion";
 import { getCategoryList } from "@/utils/archive";
 
-async function ArchiveSidebar({ info }: { info?: NotionInfoProps, list?: string[] }) {
-
+export default async function ArchiveSidebar() {
   const categoryList = await getCategoryList();
 
   return (
-    <>
-      <Profile description={info?.description} />
+    <aside className="archive__layout__sidebar">
+      <Profile />
       <Search />
       <Category list={categoryList} />
       <BitcoinChart />
-    </>
+    </aside>
   );
 }
-
-export default memo(ArchiveSidebar);
