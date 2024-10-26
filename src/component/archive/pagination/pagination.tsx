@@ -15,7 +15,7 @@ interface IPagination {
 // 페이지네이션 기본 옵션
 const { POSTS_PER_PAGE, PAGINATION_RANGE } = config.archive;
 
-const Pagination = ({ total }: IPagination) => {
+export default function Pagination({ total }: IPagination) {
   // region [Hooks]
 
   const { replace } = useRouter();
@@ -72,5 +72,4 @@ const Pagination = ({ total }: IPagination) => {
       <PageButton href={current + 1} icon={nextIcon} disabled={nextButtonDisabled} className="pagination__next-button" />
     </div>
   );
-};
-export default memo(Pagination);
+}
