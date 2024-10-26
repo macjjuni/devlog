@@ -91,3 +91,10 @@ export async function getCategoryArchive(categoryName: string) {
     return null;
   }
 }
+
+export async function getSearchArchive(keyword: string) {
+  const allArchivePath = await getAllArchivePath();
+  const archiveDataList = await generateArchiveDataList(allArchivePath);
+
+  return archiveDataList.filter((item) => item.title.toLowerCase().includes(keyword.toLowerCase()));
+}
