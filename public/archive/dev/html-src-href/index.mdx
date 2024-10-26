@@ -1,0 +1,51 @@
+---
+title: "HTML src, href 속성 차이"
+category: Dev
+tag: ['CSS']
+date: 2023-05-10
+author: 꾸생
+---
+
+## 📌 src(source)
+
+src 속성은 외부 리소스를 현재 문서에 포함시키는데 사용된다. 브라우저는 src 속성을 가진 태그를 만나면 해당 리소스를 가져와 그 자리에 삽입시킨다. 흔히 알고 있는 `img` 와 요즘은 잘 사용하지 않는 `iframe` 태그가 있다. 
+
+### 이미지
+
+```html
+<img src="myimage.jpg" alt="">
+```
+
+### 자바스크립트
+
+```html
+<script src="myscript.js"></script>
+```
+
+### HTML문서
+
+```html
+<iframe src="mypage.html"></iframe>
+```
+
+# 📌 href(Hypertext Reference)
+
+href 속성은 현재 문서와 외부 리소스 간의 링크를 설정하는데 사용한다. 외부 리소스는 HTML문서나 이미지 등 여러 요소가 될 수 있다. 지정된 리소스는 사용자가 클릭할 때 브라우저가 가져오게 된다.
+
+### 다른 문서 링크 방법
+
+```html
+<a href="http://www.mypage.com">링크 텍스트</a>
+```
+
+### CSS 파일을 링크 방법
+
+```html
+<link href="myCssfile.css" rel="stylesheet">
+```
+
+## 📌 src, href 차이점
+
+src 요소는 외부 리소스를 문서에 포함 시키고 브라우저는 지정된 리소스를 즉시 가져와 문서에 삽입한다. 그러나 href는 사용자 요구나 필요에 의해 해당 리소스를 가져오게 된다.
+
+주요한 차이라면 src는 자원을 삽입하는데 사용하고 href는 자원을 참조하는데 사용된다.

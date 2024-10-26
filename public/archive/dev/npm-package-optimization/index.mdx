@@ -1,0 +1,59 @@
+---
+title: "패키지 번들 사이즈 최적화"
+category: Dev
+tag: ['React', 'Npm']
+date: 2024-09-25
+author: 꾸생
+---
+
+## 📦 번들 사이즈 확인
+
+패키지 번들 사이즈를 확인하는 방법은 여러가지 있는데, 내 패키지는 NPM에 배포된 상태라 번들 포비아에서 쉽게 확인할 수 있었다.
+
+[Bundlephobia | Size of npm dependencies](https://bundlephobia.com/)
+
+![before](/archive/dev/npm-package-optimization/before-size.webp)
+
+kku-ui 번들 구성요소 중 가장 큰 사이즈로 잡혀있는 녀석이 **lodash**라서 놀랐다. 분명 트리 쉐이킹을 위해 lodash-es를 사용해야 한다고 알고 있음에도 어째서 그냥 lodash를 사용했는지 의문이다.
+
+## 🌲 트리쉐이킹(Tree Shaking)
+
+![search-window](/archive/dev/npm-package-optimization/search-window.webp)
+
+사용하는 곳은 uniqueId 함수 하나인데, 당장 lodash-es로 교체하고 다시 확인해보자.
+
+### 📌 Before
+
+```tsx
+// src/util/lodashUtil.ts
+import { uniqueId } from 'lodash';
+
+export default { uniqueId };
+```
+
+### 📌 After
+
+```tsx
+// src/util/lodashUtil.ts
+import { uniqueId } from 'lodash-es';
+
+export default { uniqueId };
+```
+
+## ✨ 최적화 결과
+
+![result](/archive/dev/npm-package-optimization/after-size.webp)
+
+lodash-es 패키지로 트리 쉐이킹을 적용한 결과 번들 사이즈는 89.1KB 에서 65.6KB로 26% 감소했다. 그래도 구성에서 lodash-es가 많은 부분을 차지하고 있는데, 사용하는 함수가 하나뿐인데 저렇게 많이 차지해도 되나 싶기도 하다. 시간이 지나 다른 함수도 사용할 가능성이 있어 일단 트리쉐이킹 적용에 의미를 둬본다.
+
+## 번외
+
+![code](/archive/dev/npm-package-optimization/code.webp)
+
+![code2](/archive/dev/npm-package-optimization/code2.webp)
+
+`lodash-es` 다음으로 react-dom에서 많은 용량을 차지하고 있어 알아봤는데, 팝업을 띄울 때, `react`에 `createRoot` 함수를 사용해서 그랬다.
+
+![recent](/archive/dev/npm-package-optimization/recent-size.webp)
+
+팝업 띄우는 방식을 리팩토링 하니 코드 양도 줄고 패키지 사이즈도 줄었다 👍

@@ -1,0 +1,68 @@
+---
+title: "let 변수가 아닌 useRef를 사용하는 이유"
+category: Dev
+tag: ['React']
+date: 2024-02-07
+author: 꾸생
+---
+
+![react](/archive/dev/react-useRef-let/react.webp)
+
+코드 리뷰를 받을 때 `let`변수를 안쓰고 `useRef`를 쓴 이유에 대해 질문을 받았는데, 명확히 답을 할 수 없어 다시 찾아본 내용이다. 예전에 한 번 공부 했던 기억이 있는데 오래전 일이라 까먹어 블로그에 남겨놓으려 한다.
+
+## 📦 let 키워드
+
+`let` 변수는 블록 스코프의 범위를 가지는 지역 변수를 선언하고 `const` 와 달리 초기화 이후 값을 할당할 수 있다.
+
+## 🎁 useRef()
+
+렌더링이 필요하지 않은 값을 참조할 수 있는 React에서 제공하는 `Hook`이다.
+
+## useRef대신 let을 사용해도 될까?
+
+```tsx
+import { useRef, useState } from 'react'
+
+export default function Component() {
+  const [countState, setCountState] = useState(0)
+  const countRef = useRef(0)
+  let countLet = 0
+
+  const onClickUp = () => {
+    countLet += 1
+    countRef.current =+ 1
+    setCountState((prev) => prev + 1)
+  }
+
+  const printConsole = () => {
+    console.log('countState', countState)
+    console.log('countRef', countRef.current)
+    console.log('countLet', countLet)
+  }
+
+  return (
+    <div>
+      <button type="button" onClick={onClickUp}>
+        Up
+      </button>
+      <button type="button" onClick={printConsole}>
+        Print
+      </button>
+    </div>
+  )
+}
+```
+
+간단한 컴포넌트를 작성했다. `Up`, `Print`버튼을 만들어 `onClickUp()`과 `printConsole()` 이벤트를 할당해 줬고 네이밍대로 각 기능을 실행한다.
+
+Up 버튼을 눌렀을 때, `useState`, `useRef`, `let`키워드로 할당한 변수를 1씩 증가시키는 로직이다. 예상대로라면 초기 값이 0이니 모두 1로 돼야 한다.
+
+`PrintConsole()` 함수를 실행시켜 결과를 보도록 하자.
+
+![console](/archive/dev/react-useRef-let/console.webp)
+
+결과를 보면 `let`키워드로 할당한 변수만 증가하지 않았다. 결론은 증가를 했으나 `countState`값이 바뀌면서 컴포넌트가 재실행되어 `countLet` 변수는 다시 0으로 초기화된 것이다.
+
+컴포넌트 안에 let 키워드로 변수를 사용하면 원하는 방향으로 로직을 작성할 수 없으므로 `useRef`가 있는 것이다.
+
+꼼수로 컴포넌트 밖에 `let` 키워드로 변수를 선언하면 `countRef`, `countState` 처럼 동작하지만 이 경우도 지양해야 한다. 왜냐면 캡슐화가 안되니깐 😎

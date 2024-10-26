@@ -1,0 +1,89 @@
+---
+title: "자바스크립트 데이터 타입과 실행 컨텍스트"
+category: Dev
+tag: ['JavaScript']
+date: 2024-02-25
+author: 꾸생
+---
+
+## 데이터 타입
+
+### 기본형: 원시 타입(Primitive Type)
+
+✅ **Number**
+
+✅ **String**
+
+✅ **Boolean**
+
+✅ **null**
+
+✅**undefined**
+
+✅ **Symbol(+ES6)**
+
+### 참조형 (Reference Type)
+
+✅ **Object**
+
+- Array
+- Function
+- RegExp
+- Set/WeakSet
+- Map/WeakMap
+
+자바스크립트는 변수에 값을 할당할 때 값이 아닌 값이 들어있는 메모리의 주소를 할당한다.
+
+## 실행 컨텍스트(Execution Context)
+
+실행 컨텍스트는 함수를 실행하기 위한 환경정보를 담은 객체이다.
+
+독립된 코드 영역인 함수에 의해서만 컨텍스트를 구분할 수 있다.
+
+<p>
+<img src="/archive/dev/js-type-execution-context/execution-context-structure.webp" alt="execution-context-structure" width="240"/>
+</p>
+실행 컨텍스트는 스택(Stack) 방식으로 정보가 쌓이며 코드가 실행된다.
+
+Call Stack: 현재 어떤 함수가 실행 중이고 다음 실행될 함수를 제어하는 자료구조
+
+### ✨ 실행 컨텍스트 구조
+
+- `VariableEnvironment`: 식별자 정보 수집 용도로만 쓰이고 변수 값이 변경되어도 실시간으로 반영 안됨.
+- *****`LexicalEnvironment`: 어떤 실행 컨텍스트A에 대한 환경 정보를 담고 있는 사전에 개념. 변수 값이 실시간으로 반영 됨.
+- ThisBinding
+
+<p>
+<img src="/archive/dev/js-type-execution-context/variable-environment.webp" alt="Lexical Environment 예시" width="300"/>
+</p>
+
+### ✨ LexcialEnvironmnet
+
+- `EnvironmentRecord`: 현재 컨텍스트 내부 식별자 정보
+- `OuterEnvironmnetReference`: 외부 환경 참조 정보
+
+실행 컨텍스트가 최초 실행될 때 환경 레코드(`EnvironmentRecord`)에 내부 식별자 정보가 수집되는데, 이 것을 **호이스팅(Hoisting)**이라 부른다.
+
+### ✨ Hoisting ⇒ “끌어올리다”
+
+실행 컨텍스트가 최초 실행될 때 환경레코드(`EnvironmentRecord`)에 선언되어 있는 식별자 정보가 수집되는 과정
+
+### ✨ OuterEnvironmentReference:
+
+외부 환경에 대한 참조를 말하는데, 현재 컨텍스트에 관련 있는 외부 식별자 정보를 뜻한다.
+
+<p>
+<img src="/archive/dev/js-type-execution-context/outer-environment-reference.webp" alt="OuterEnvironmentReference" width="420"/>
+</p>
+
+각 실행 컨텍스트는 전역 컨텍스트를 제외하고 `OuterEnvironmnetReference`를 가지고 있고 이로 인해 **Scope Chain**이 형성된다.
+
+## Scope Chain: 변수 유효 범위
+
+<p>
+<img src="/archive/dev/js-type-execution-context/scope-chain.webp" alt="Scope Chain" width="420"/>
+</p>
+
+inner 실행 컨텍스트는 Outer 실행 컨텍스트 환경 레코드에 접근이 가능한데, 이 것은 inner 한테 Outer에 대한 외부 환경 참조(OuterEnvironMentReference) 정보를 가지고 있기 때문이다. 반대로 outer 는 inner 실행 컨텍스트 환경 레코드에 접근이 불가능하다.
+
+⇒ 변수 유효 범위는 외부로는 나갈 수 있으나 내부로는 접근할 수 없다.

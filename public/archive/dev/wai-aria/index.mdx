@@ -1,0 +1,130 @@
+---
+title: "웹 접근성(WAI-ARIA)"
+category: Dev
+tag: ['CSS']
+date: 2023-05-10
+author: 꾸생
+---
+
+## WAI-ARIA 속성
+
+![[https://aoa.gitbook.io/skymimo](https://aoa.gitbook.io/skymimo)](https://aoa.gitbook.io/~gitbook/image?url=https%3A%2F%2F3414272834-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fassets%252F-LL2w96d4fwoeh4NDyDr%252F-LukrYNHIktpowUaeLjh%252F-LuksWaubhWIKrBsUMEo%252Fimage.png%3Falt%3Dmedia%26token%3Dc1b8624a-3d92-49ad-a1c6-ab988c83d255&width=768&dpr=1&quality=100&sign=d725fbd8&sv=1)
+
+WAI-ARIA(Web Accessibility Initiative - Accessible Rich Internet Applications)는 웹 접근성을 향상시키기 위한 태그와 속성들을 정의한 표준이다. HTML 태그별로 의미에 맞게 사용해 접근성을 향상시킨다. 개인적으로 만들고 있는 UI 컴포넌트 라이브러리가 있는데, 그 중 모달 컴포넌트를 개발하면서 웹 접근성 작업을 진행했다. 겸사겸사 포스팅도 같이 해본다.
+
+
+### 1. role
+
+```html
+<button role="button">Click me</button>
+```
+
+HTML 요소에 특정 역할을 부여하고 스크린 리더 및 검색 엔진에서 의미를 인식할 수 있도록 한다. 기본적으로 HTML 태그마다 지정된 `role`이 있어, 알맞은용도로 사용하면 된다.
+
+### 2. aria-label
+
+```html
+<button type='button' aria-label='Close modal'></button>
+```
+
+요소에 대한 레이블을 정의한다. 시각적으로 레이블은 없지만 보조 기술에서 레이블이 필요할 때 사용한다.
+
+내 경우 모달에서 닫기 버튼에 적용했는데, 버튼 내부 요소에 아무런 레이블도 없어 식별할 수 있도록 의미에 맞게 작성했다.
+
+### 3. aria-labelledby
+
+```html
+<div class="modal">
+  <div class="modal__container__header">
+    <h1 id="modal-title" class="k-modal__container__header__text">Main Title</h1>
+    <button type="button" class="k-modal__container__header__close-button" data-testid="close-button" aria-label="Close modal"></button>
+  </div>
+  <section class="k-modal__container__content custom-content-class" aria-labelledby="modal-title">
+    <p>This is the modal content.</p>
+  </section>
+</div>
+```
+
+`aria-labelledby` 속성은 요소의 제목이나 설명을 명확히 전달할 때 사용. 다른 요소의 id를 참조하여 해당 요소 내용을 레이블로 사용한다. 모달에서 타이틀과 컨텐츠를 `aria-labelledby` 속성으로 연관 지어 줬다.
+
+### 4. aria-describedby
+
+```html
+<label for="username">Username</label>
+<input type="text" id="username" aria-describedby="username-desc">
+<p id="username-desc">Your username must be 6-12 characters long.</p>
+```
+
+```html
+<img src="chart.png" alt="Sales chart" aria-describedby="chart-desc">
+<p id="chart-desc">This chart shows the sales growth over the last quarter.</p>
+```
+
+`aria-describedby` 속성은 주어진 요소와 그 요소를 설명하는 다른 요소 간의 관계를 정의한다. 말이 어려워서 그렇지 부가 설명을 해주는 느낌으로 이해하면 된다. 스크린 리더는 `aria-describedby` 속성이 있으면 추가로 설명도 함께 읽어준다.
+
+### 5. aria-hidden
+
+```html
+<div aria-hidden="true">This content is not accessible</div>
+```
+
+시각적으로 보이지만 스크린 리더는 무시해야 할 때 사용
+
+### 6. aria-live
+
+```html
+<div aria-live="polite">Live content updates will be announced here</div>
+```
+
+| `aria-live` 값 | 설명 | 사용 예시 |
+| --- | --- | --- |
+| `off` | **기본값**. 업데이트된 콘텐츠가 스크린 리더에 의해 읽히지 않습니다. | **없음** (기본값으로 사용) |
+| `polite` | 콘텐츠가 업데이트되면 스크린 리더는 현재 읽고 있는 콘텐츠가 끝난 후 업데이트된 내용을 읽습니다. (정중한 업데이트) | **뉴스 피드**에서 새 기사가 추가될 때 사용자에게 알림. |
+| `assertive` | 콘텐츠가 업데이트되면 즉시 스크린 리더가 내용을 읽습니다. (즉각적인 업데이트) | **경고 메시지**나 **오류 메시지**를 즉시 알릴 때 사용. |
+
+실시간으로 업데이트되는 영역에 사용한다. `role` 속성 중 `alert`와 유사한데, `alert`는 주로 경고나 에러 메세지에 사용된다.
+
+### 7. aria-expanded
+
+```html
+<button aria-expanded="false" aria-controls="menu">Toggle menu</button>
+<ul id="menu" hidden>
+  <li>Menu item 1</li>
+  <li>Menu item 2</li>
+</ul>
+```
+
+드롭다운 메뉴나 아코디언과 같이 확장 기능이 있는 콘텐츠에 사용된다.
+
+### 8. aria-controls
+
+```html
+<button aria-controls="content" aria-expanded="false">Expand</button>
+<div id="content" hidden>
+  <!-- Expandable content -->
+</div>
+```
+
+다른 요소를 제어하는 요소한테 지정하는 속성이다. 버튼이나 컨트롤이 제어하는 대상 요소를 지정한다.
+
+### 9. aria-checked
+
+```html
+<div role="checkbox" aria-checked="false" tabindex="0">Check me</div>
+```
+
+체크박스, 라디오 버튼 등의 체크 상태를 나타낸다. 다만 기존 `input` 태그에 타입이 `checkbox`또는 `radio` 인 경우 굳이 넣을 필요는 없다. 스크린 리더가 `input` 태그를 식별할 수 있기 때문이다.
+
+### 10. aria-disabled
+
+```html
+<div aria-disabled="true" disabled>Disabled button</div>
+```
+
+해당 요소가 상호작용할 수 없는 상태임을 나타낸다. `aria-checked`와 마찬가지로 올바른 태그에 알맞게 `disabled`속성이 적용 됐다면 굳이 추가할 필요는 없다.
+
+## Reference
+
+[Accessible Rich Internet Applications (WAI-ARIA) 1.1](https://www.w3.org/TR/wai-aria-1.1/#aria-labelledby)
+[https://aoa.gitbook.io/skymimo](https://aoa.gitbook.io/skymimo)
+[ARIA - Accessibility | MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)
