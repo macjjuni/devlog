@@ -13,7 +13,7 @@ interface IPagination {
 }
 
 // 페이지네이션 기본 옵션
-const { POSTS_PER_PAGE, PAGINATION_RANGE } = config.post;
+const { POSTS_PER_PAGE, PAGINATION_RANGE } = config.archive;
 
 const Pagination = ({ total }: IPagination) => {
   // region [Hooks]

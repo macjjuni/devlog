@@ -7,10 +7,10 @@ import type { DatabaseQueryOption, IProjectPage, NotionInfoProps, NotionPageProp
 import type { Block, ExtendedRecordMap, RecordMap, Role } from "notion-types";
 import config, { token } from "@/config/notion.config";
 
-const { propertyTable, blog, post } = config;
+const { propertyTable, blog, archive } = config;
 const { activeUser, auth, authToken } = token;
 
-const defaultThumb = blog.SITE_URL + post.DEFAULT_THUMB;
+const defaultThumb = blog.SITE_URL + archive.DEFAULT_THUMB;
 
 // const adminEmail = process.env.ADMIN_EMAIL;
 
@@ -209,7 +209,7 @@ const notion = {
       const coverUrl = `https://www.notion.so/image/${encodeURIComponent(filteredUrl)}?table=block&id=${pageBlock?.id}&cache=v2`;
       return { coverUrl, alt };
     } catch {
-      return { coverUrl: "", alt: config.post.DEFAULT_ALT };
+      return { coverUrl: "", alt: config.archive.DEFAULT_ALT };
     }
   },
 };

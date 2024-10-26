@@ -12,7 +12,7 @@ async function ArchiveSidebar({ info }: { info?: NotionInfoProps, list?: string[
 
   return (
     <>
-      <Profile description={info?.description} imageUrl={info?.coverURL} />
+      <Profile description={info?.description} />
       <Search />
       <Category list={categoryList} />
       <BitcoinChart />

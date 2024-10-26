@@ -8,7 +8,7 @@ import type { NotionPageProps } from "@/@types/notion";
 import date from "@/lib/date";
 import "./archiveList.scss";
 
-const { post } = config;
+const { archive } = config;
 
 function ArchiveList({ pages }: { pages: NotionPageProps[] }) {
   // region [Hooks]
@@ -19,9 +19,9 @@ function ArchiveList({ pages }: { pages: NotionPageProps[] }) {
 
   // region [Privates]
 
-  const pageList = useMemo(() => pages.slice(post.POSTS_PER_PAGE * (page - 1), post.POSTS_PER_PAGE * page), [page, pages]);
+  const pageList = useMemo(() => pages.slice(archive.POSTS_PER_PAGE * (page - 1), archive.POSTS_PER_PAGE * page), [page, pages]);
 
-  const isNew = useCallback((dateStr: string) => post.RECENT_DAY > date.nowDiff(dateStr), []);
+  const isNew = useCallback((dateStr: string) => archive.RECENT_DAY > date.nowDiff(dateStr), []);
 
   // endregion
 
