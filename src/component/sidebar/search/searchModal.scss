@@ -57,6 +57,7 @@
         .search__history__list {
           max-height: 380px;
           min-height: 120px;
+          padding: $kku-spacing-sm 0;
           overflow-y: auto;
 
           .search__history__list__item {
