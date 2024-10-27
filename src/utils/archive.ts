@@ -8,22 +8,34 @@ import date from "@/lib/date";
 
 // region [Utility Functions]
 
-function getArchiveFileSource(_path: string) {
+function getMdxFileSource(_path: string) {
   const filePath = path.join(process.cwd(), `${archivePath}/${_path}`, "index.mdx");
   return fs.readFileSync(filePath, "utf8");
 }
 
-async function generateArchiveDataList(pathList: string[]): Promise<ArchiveData[]> {
+// 최신 날짜 기준으로 아카이브 데이터 정렬
+function sortByLatestDate(archives: ArchiveData[]): ArchiveData[] {
+  return archives.sort(
+    (a, b) => date.getTimeStamp(b.date).valueOf() - date.getTimeStamp(a.date).valueOf()
+  );
+}
+
+// 문자열 배열을 내림차순 정렬합니다.
+function sortByDescendingLocale(arr: string[]): string[] {
+  return arr.sort((a, b) => b.localeCompare(a));
+}
+
+export async function getArchiveDataList(pathList: string[]): Promise<ArchiveData[]> {
   const archives = await Promise.all(
     pathList.map(async (pathString) => {
-      const source = getArchiveFileSource(pathString);
+      const source = getMdxFileSource(pathString);
       const { frontmatter } = (await mdxSerializer(source)) as unknown as { frontmatter: ArchiveData };
 
       return { ...frontmatter, url: `${pathString.split("/")[1]}` };
     }),
   );
-  // 최신 작성 날짜 기준으로 정렬
-  return archives.sort((a, b) => date.getTimeStamp(b.date).valueOf() - date.getTimeStamp(a.date.valueOf()));
+
+  return sortByLatestDate(archives);
 }
 
 // endregion
@@ -40,7 +52,7 @@ export async function getCategoryList() {
     return slicedItem[slicedItem.length - 1];
   });
 
-  return sanitizedDirectories;
+  return sortByDescendingLocale(sanitizedDirectories);
 }
 
 // 모든 아카이브 경로 조회
@@ -64,7 +76,7 @@ export async function getArchivePath(id: string) {
   const archiveAllPath = allArchivePath.find((pathStr) => pathStr.endsWith(id));
 
   if (archiveAllPath) {
-    return getArchiveFileSource(archiveAllPath);
+    return getMdxFileSource(archiveAllPath);
   }
 
   return null;
@@ -74,7 +86,7 @@ export async function getArchivePath(id: string) {
 export async function getAllArchiveList() {
   const allPath = await getAllArchivePath();
 
-  return generateArchiveDataList(allPath);
+  return getArchiveDataList(allPath);
 }
 
 // 특정 카테고리 아카이브 조회
@@ -85,7 +97,7 @@ export async function getCategoryArchive(categoryName: string) {
     // 디렉토리 항목만 필터링하여 이름 배열로 반환
     const directories = entries.filter((entry) => entry.isDirectory()).map((entry) => `${categoryName}/${entry.name}`);
 
-    return await generateArchiveDataList(directories);
+    return await getArchiveDataList(directories);
   } catch (error) {
     console.error("Failed to read directory");
     return null;
@@ -94,7 +106,7 @@ export async function getCategoryArchive(categoryName: string) {
 
 export async function getSearchArchive(keyword: string) {
   const allArchivePath = await getAllArchivePath();
-  const archiveDataList = await generateArchiveDataList(allArchivePath);
+  const archiveDataList = await getArchiveDataList(allArchivePath);
 
   return archiveDataList.filter((item) => item.title.toLowerCase().includes(keyword.toLowerCase()));
 }

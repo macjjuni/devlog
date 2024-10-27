@@ -10,15 +10,15 @@ import ArchiveToc from "@/component/archive/archiveToc/archiveToc";
 export async function generateStaticParams() {
   const allArchivePath = await getAllArchivePath();
 
-  return allArchivePath.map((archivePath) => ({
-    id: archivePath,
-  }));
+  return allArchivePath.map((archivePath) => ({ id: archivePath }));
 }
 
 export default async function ArchiveDetailPage({ params }: { params: { id: string } }) {
   const archiveSource = await getArchivePath(params.id);
 
-  if (!archiveSource) { return <ErrorPage />; }
+  if (!archiveSource) {
+    return <ErrorPage />;
+  }
 
   const archiveMdxSource = await mdxSerializer(archiveSource); // MD 직렬화
   const archiveData = archiveMdxSource.frontmatter as unknown as ArchiveData;

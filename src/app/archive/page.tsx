@@ -12,8 +12,7 @@ export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
 
 export default async function ArchivePage({ searchParams }: { searchParams: { page: string | undefined } }) {
   const { page } = searchParams;
-
-  // 숫자 형식이 아닌 페이지 사이즈 접근 에러 핸들링(use server)
+  // 숫자 형식이 아닌 페이지 사이즈 접근 에러 핸들링
   if (page !== undefined && !isNumber(page)) {
     redirect("/404");
   }
