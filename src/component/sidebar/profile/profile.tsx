@@ -1,4 +1,3 @@
-import { memo } from "react";
 import Image from "next/image";
 import config from "@/config/notion.config";
 import "./profile.scss";

@@ -1,5 +1,3 @@
-
-
 export interface ArchiveData {
   title: string;
   category: string;

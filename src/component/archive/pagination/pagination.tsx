@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, memo } from "react";
+import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import usePageSize from "@/hook/usePageSize";
 import { KIcon } from "kku-ui";

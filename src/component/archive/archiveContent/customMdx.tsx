@@ -26,8 +26,12 @@ function Heading({ type, children }: HeadingProps) {
   return <h6 id={id}>{children}</h6>;
 }
 
-function AnchorTag({ href, children }: {href: string, children: ReactNode }) {
-  return (<a href={href} target={"_blank"}>{children}</a>)
+function AnchorTag({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a href={href} target={"_blank"} rel="noreferrer">
+      {children}
+    </a>
+  );
 }
 
 export default function customMdxComponents() {

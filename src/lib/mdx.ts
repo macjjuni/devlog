@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { serialize } from "next-mdx-remote/serialize";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";

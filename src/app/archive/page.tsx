@@ -5,8 +5,8 @@ import { getMetadata } from "@/config/meta";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContainer/archiveContainer";
 import { isNumber } from "@/utils/string";
-import Fallback from "./fallBack";
 import { getAllArchiveList } from "@/utils/archive";
+import Fallback from "./fallBack";
 
 export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
 
@@ -27,7 +27,6 @@ export default async function ArchivePage({ searchParams }: { searchParams: { pa
       </Suspense>
     );
   } catch (error) {
-
     console.error(error);
     redirect("/404");
   }

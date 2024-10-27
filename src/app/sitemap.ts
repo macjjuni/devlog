@@ -23,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const categoryUrls = categoryList?.map(categoryName => ({
+  const categoryUrls = categoryList?.map((categoryName) => ({
     url: `${domain}/archive/category/${encodeURIComponent(categoryName)}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
