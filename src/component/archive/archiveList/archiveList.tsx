@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo } from "react";
 import Link from "next/link";
-import config from "@/config/notion.config";
+import config from "@/config/config";
 import usePageSize from "@/hook/usePageSize";
 import date from "@/lib/date";
 import "./archiveList.scss";

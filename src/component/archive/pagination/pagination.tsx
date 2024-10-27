@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import usePageSize from "@/hook/usePageSize";
 import { KIcon } from "kku-ui";
-import config from "@/config/notion.config";
+import config from "@/config/config";
 import PageButton from "./pageButton";
 import "./pagination.scss";
 

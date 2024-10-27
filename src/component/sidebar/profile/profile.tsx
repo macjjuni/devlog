@@ -1,5 +1,5 @@
 import Image from "next/image";
-import config from "@/config/notion.config";
+import config from "@/config/config";
 import "./profile.scss";
 
 interface ProfileProps {

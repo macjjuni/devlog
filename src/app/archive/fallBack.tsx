@@ -1,7 +1,7 @@
 import React from "react";
 import Skeleton from "@/component/common/skeleton/skeleton";
 
-const FallBack = () => {
+export default function FallBack() {
   return (
     <>
       <aside className="archive__layout__sidebar">
@@ -16,6 +16,4 @@ const FallBack = () => {
       </section>
     </>
   );
-};
-
-export default FallBack;
+}
