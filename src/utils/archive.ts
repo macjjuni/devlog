@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import { readdir } from "fs/promises";
 import { archivePath } from "@/config/archive";
 import { mdxSerializer } from "@/lib/mdx";
 import { ArchiveData } from "@/@types/archive";
@@ -15,9 +14,7 @@ function getMdxFileSource(_path: string) {
 
 // 최신 날짜 기준으로 아카이브 데이터 정렬
 function sortByLatestDate(archives: ArchiveData[]): ArchiveData[] {
-  return archives.sort(
-    (a, b) => date.getTimeStamp(b.date).valueOf() - date.getTimeStamp(a.date).valueOf()
-  );
+  return archives.sort((a, b) => date.getTimeStamp(b.date).valueOf() - date.getTimeStamp(a.date).valueOf());
 }
 
 // 문자열 배열을 내림차순 정렬합니다.
@@ -42,6 +39,7 @@ export async function getArchiveDataList(pathList: string[]): Promise<ArchiveDat
 
 // 아카이브 카테고리 조회
 export async function getCategoryList() {
+  const { readdir } = await import("fs/promises");
   const entries = await readdir(archivePath, { withFileTypes: true });
 
   // 1 Depth 하위 디렉토리 필터링
@@ -92,6 +90,7 @@ export async function getAllArchiveList() {
 // 특정 카테고리 아카이브 조회
 export async function getCategoryArchive(categoryName: string) {
   try {
+    const { readdir } = await import("fs/promises");
     const entries = await readdir(`${archivePath}/${categoryName}`, { withFileTypes: true });
 
     // 디렉토리 항목만 필터링하여 이름 배열로 반환
