@@ -11,7 +11,6 @@
   "dependencies": {
     "@giscus/react": "^3.0.0",
     "@next/third-parties": "^14.2.3",
-    "@notionhq/client": "^2.2.15",
     "@splinetool/react-spline": "^2.2.6",
     "@splinetool/runtime": "^1.2.5",
     "chart.js": "^4.4.3",
@@ -19,16 +18,13 @@
     "framer-motion": "^11.2.6",
     "kku-ui": "^0.0.474",
     "lodash-es": "^4.17.21",
-    "next": "^14.2.3",
+    "next": "^14.2.16",
     "next-mdx-remote": "^5.0.0",
     "nextjs-toploader": "^1.6.12",
-    "notion-client": "^6.16.0",
-    "notion-utils": "^6.16.0",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-lottie-player": "^2.0.0",
-    "react-notion-x": "^6.16.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

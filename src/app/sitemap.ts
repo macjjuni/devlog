@@ -1,20 +1,12 @@
 import { MetadataRoute } from "next";
-import routes from "@/route";
 import { getAllArchiveList, getCategoryList } from "@/utils/archive";
+import routes from "@/route";
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || "";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const databaseId = process.env.NOTION_BLOG_DATABASE_ID || "";
-
-  if (!databaseId) {
-    throw new Error("Not found database ID!");
-  }
-
   const categoryList = await getCategoryList();
-  // const pages = await notion.getPages(databaseId);
   const archives = await getAllArchiveList();
-  // const projects = await notion.getAllProject(databaseId);
 
   const routeUrls = routes.map((route) => ({
     url: `${domain}${route.path}`,
