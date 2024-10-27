@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "api/**/*.ts": {
-      "externalPackages": ["fs", "path"]
-    }
-  }
-}
