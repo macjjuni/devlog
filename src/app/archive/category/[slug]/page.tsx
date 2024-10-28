@@ -24,7 +24,7 @@ export async function generateStaticParams() {
 }
 
 interface ArchiveCategoryPageProps {
-  params: { slug: string; page: string };
+  params: { slug: string; };
   searchParams: { page: string | undefined };
 }
 
