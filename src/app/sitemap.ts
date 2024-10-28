@@ -7,11 +7,9 @@ import { ArchiveCategoryListResponse } from "@/app/api/archive/category/list/rou
 const domain = process.env.NEXT_PUBLIC_DOMAIN || "";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const categoryListUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/category/list`;
-  const { categories } = (await request<ArchiveCategoryListResponse>(categoryListUrl)) || { categories: [] };
 
-  const archiveListUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/list?page=1&pageSize=10000`;
-  const { archives } = await request<ArchiveListResponse>(archiveListUrl);
+  const { categories } = (await request<ArchiveCategoryListResponse>(`${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/category/list`)) || { categories: [] };
+  const { archives } = await request<ArchiveListResponse>(`${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/list?page=1&pageSize=10000`);
 
   const routeUrls = routes.map((route) => ({
     url: `${domain}${route.path}`,

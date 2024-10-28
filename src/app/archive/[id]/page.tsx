@@ -18,6 +18,7 @@ export async function generateStaticParams() {
 export default async function ArchiveDetailPage({ params }: { params: { id: string } }) {
 
   const archiveDetailUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/detail?id=${params.id}`;
+  console.log("archiveDetailUrl", archiveDetailUrl);
   const { archive: archiveSource } = await request<ArchiveResponse>(archiveDetailUrl);
 
   if (!archiveSource) {
