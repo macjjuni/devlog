@@ -3,12 +3,18 @@ import ArchiveList from "@/component/archive/archiveList/archiveList";
 import Pagination from "@/component/archive/pagination/pagination";
 import { ArchiveData } from "@/@types/archive";
 
-export default function ArchiveContainer({ archives }: { archives: ArchiveData[] }) {
+interface ArchiveContainerProps {
+  archives: ArchiveData[];
+  totalLength: number;
+}
+
+export default function ArchiveContent({ archives, totalLength }: ArchiveContainerProps) {
+
   return (
     <section className="archive__layout__content">
-      <ArchiveTitle archives={archives} />
+      <ArchiveTitle totalLength={totalLength} />
       <ArchiveList archives={archives} />
-      <Pagination total={archives.length} />
+      <Pagination total={totalLength} />
     </section>
   );
 }
