@@ -135,5 +135,5 @@ export async function getSearchArchive(keyword: string, page: number = 1, pageSi
   const archives = archiveDataList.filter((item) => item.title.toLowerCase().includes(keyword.toLowerCase()));
   const pagedArchives = paginate(archives, page, pageSize);
 
-  return { archives: pagedArchives, totalLength: archiveDataList.length };
+  return { archives: pagedArchives, totalLength: archives.length };
 }
