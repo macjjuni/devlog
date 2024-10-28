@@ -30,7 +30,6 @@ function Category({ currentCategory, list }: CategoryProps) {
   const [scrollMaxWidth, setScrollMaxWidth] = useState(0);
   const [isScroll, setIsScroll] = useState(false);
   const [scrollPosition, setScrollPosition] = useState<ScrollPositionType>("left");
-  // const categoryName = useCategoryName();
 
   // endregion
 

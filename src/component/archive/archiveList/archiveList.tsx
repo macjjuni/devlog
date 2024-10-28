@@ -10,7 +10,6 @@ import { ArchiveData } from "@/@types/archive";
 const { archive } = config;
 
 export default function ArchiveList({ archives }: { archives: ArchiveData[] }) {
-
   // region [Privates]
 
   const isNew = useCallback((dateStr: string) => archive.RECENT_DAY > date.nowDiff(dateStr), []);
