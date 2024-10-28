@@ -1,14 +1,12 @@
 "use client";
 
 import { useMemo } from "react";
-import useCategoryName from "@/hook/useCategoryName";
-import useSearchText from "@/hook/useSearchText";
+import { useCategoryName, useSearchText } from "@/hook";
 import ArchiveTitleIcon from "@/component/archive/archiveTitle/archiveTitleIcon";
-import { ArchiveData } from "@/@types/archive";
 import { capitalizeFirstLetter } from "@/utils/string";
 import "./archiveTitle.scss";
 
-export default function ArchiveTitle({ archives }: { archives: ArchiveData[] }) {
+export default function ArchiveTitle({ totalLength }: { totalLength: number }) {
   // region [Hooks]
 
   const categoryName = useCategoryName();
@@ -34,7 +32,7 @@ export default function ArchiveTitle({ archives }: { archives: ArchiveData[] }) 
     <h2 className="archive__title">
       <ArchiveTitleIcon title={archiveTitleText} />
       {capitalizeFirstLetter(archiveTitleText)}
-      {`(${archives.length})`}
+      ({totalLength})
     </h2>
   );
 }

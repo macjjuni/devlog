@@ -2,12 +2,11 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import useMediaScreen from "@/hook/useMediaScreen";
+import { useMediaScreen, useOutsideClick } from "@/hook";
 import routes from "@/route";
 import Link from "next/link";
 import NavigationList from "@/component/common/navigation/navigationList";
 import "./navigation.scss";
-import useOutsideClick from "@/hook/useOutsideClick";
 
 export default function Navigation() {
   // region [Hooks]

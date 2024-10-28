@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useCallback, useEffect, useRef, useState } from "react";
-import useMediaScreen from "@/hook/useMediaScreen";
+import { useMediaScreen } from "@/hook";
 import { KButton } from "kku-ui";
 import { getBtcRangeData } from "@/api/bitcoin/marketChart";
 import { Line } from "react-chartjs-2";

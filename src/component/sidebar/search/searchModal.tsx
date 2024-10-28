@@ -4,7 +4,7 @@ import { KIcon, KModal, KTextField, KTextFieldRefs } from "kku-ui";
 import { useRouter } from "next/navigation";
 import { getSearchPageUrl } from "@/route";
 import { useStore } from "@/store/store";
-import useSearchText from "@/hook/useSearchText";
+import useSearchText from "@/hook/client/useSearchText";
 import "./searchModal.scss";
 
 interface SearchModalProps {

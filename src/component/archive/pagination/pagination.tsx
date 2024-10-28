@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { useRouter } from "next/navigation";
-import usePageSize from "@/hook/usePageSize";
+import { usePageSize } from "@/hook";
 import { KIcon } from "kku-ui";
 import config from "@/config/config";
 import PageButton from "./pageButton";
