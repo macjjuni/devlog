@@ -3,9 +3,10 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getMetadata } from "@/config/meta";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
-import ArchiveContent from "@/layout/archiveContainer/archiveContainer";
+import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import { isNumber } from "@/utils/string";
-import { getAllArchiveList } from "@/utils/archive";
+import request from "@/utils/request";
+import { ArchiveListResponse } from "@/app/api/archive/list/route";
 import Fallback from "./fallBack";
 
 export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
@@ -18,12 +19,13 @@ export default async function ArchivePage({ searchParams }: { searchParams: { pa
   }
 
   try {
-    const allArchives = await getAllArchiveList();
+    const archiveListUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/list?page=${page || 1}`;
+    const { archives, totalLength } = await request<ArchiveListResponse>(archiveListUrl);
 
     return (
       <Suspense fallback={<Fallback />}>
         <ArchiveSidebar />
-        <ArchiveContent archives={allArchives} />
+        <ArchiveContent archives={archives} totalLength={totalLength} />
       </Suspense>
     );
   } catch (error) {

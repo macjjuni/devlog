@@ -3,9 +3,11 @@ import ArchiveContent from "@/component/archive/archiveContent/ArchiveContent";
 import ArchiveComment from "@/component/archive/archiveComment/archiveComment";
 import { mdxSerializer } from "@/lib/mdx";
 import ErrorPage from "@/app/404/page";
-import { getAllArchivePath, getArchivePath } from "@/utils/archive";
+import { getAllArchivePath } from "@/utils/archive";
 import { ArchiveData } from "@/@types/archive";
 import ArchiveToc from "@/component/archive/archiveToc/archiveToc";
+import request from "@/utils/request";
+import { ArchiveResponse } from "@/app/api/archive/detail/route";
 
 export async function generateStaticParams() {
   const allArchivePath = await getAllArchivePath();
@@ -14,7 +16,9 @@ export async function generateStaticParams() {
 }
 
 export default async function ArchiveDetailPage({ params }: { params: { id: string } }) {
-  const archiveSource = await getArchivePath(params.id);
+
+  const archiveDetailUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/detail?id=${params.id}`;
+  const { archive: archiveSource } = await request<ArchiveResponse>(archiveDetailUrl);
 
   if (!archiveSource) {
     return <ErrorPage />;
