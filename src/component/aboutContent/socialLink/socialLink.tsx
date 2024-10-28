@@ -6,7 +6,7 @@ import { KDropHolder, KDropHolderRefs, KIcon } from "kku-ui";
 import snsInfo from "@/config/sns";
 import copyToClipboard from "@/utils/copy";
 
-const emailText = process.env.NEXT_PUBLIC_ADMIN_EMAIL || "";
+const emailText = process.env.NEXT_PUBLIC_EMAIL || "";
 
 function SocialLink() {
   // region [Hooks]
