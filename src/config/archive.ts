@@ -1,1 +1,1 @@
-export const archivePath = "public/archive";
+export const archivePath = "archive";
