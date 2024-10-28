@@ -5,20 +5,24 @@ import Link from "next/link";
 import { createDebounce, createThrottle } from "@/lib/lodash";
 import ActiveCheckSvg from "@/component/sidebar/category/ActiveCheckSvg";
 import { getCategoryPageUrl } from "@/route";
-import useCategoryName from "@/hook/useCategoryName";
 import { usePathname } from "next/navigation";
 import { KIcon } from "kku-ui";
 import "./category.scss";
 import { capitalizeFirstLetter } from "@/utils/string";
+import config from "@/config/config";
+
+interface CategoryProps {
+  currentCategory: string;
+  list: string[];
+}
 
 type ScrollPositionType = "left" | "between" | "right";
 type ScrollDirectionType = Omit<ScrollPositionType, "between">;
 
 const arrowIconSize = 20;
+const { allText } = config.category;
 
-const initialCategoryList: string[] = ["All"];
-
-function Category({ list }: { list: string[] }) {
+function Category({ currentCategory, list }: CategoryProps) {
   // region [Hooks]
 
   const pathname = usePathname();
@@ -26,7 +30,7 @@ function Category({ list }: { list: string[] }) {
   const [scrollMaxWidth, setScrollMaxWidth] = useState(0);
   const [isScroll, setIsScroll] = useState(false);
   const [scrollPosition, setScrollPosition] = useState<ScrollPositionType>("left");
-  const categoryName = useCategoryName();
+  // const categoryName = useCategoryName();
 
   // endregion
 
@@ -42,33 +46,6 @@ function Category({ list }: { list: string[] }) {
 
     categoryRef.current!.scroll({ top: 0, left: scrollValue, behavior: "smooth" });
   }, []);
-
-  const sanitizedList = useMemo((): string[] => {
-    const filteredList = list || [];
-    const lowerCaseCategoryName = categoryName?.toLowerCase();
-
-    // Archive 메인 경로 접속
-    if (lowerCaseCategoryName === undefined) {
-      return initialCategoryList.concat(filteredList);
-    }
-    // category 페이지 접속
-    const currentCategoryIdx = filteredList.findIndex((item) => {
-      return item?.toLowerCase() === lowerCaseCategoryName;
-    });
-
-    // 잘 못된 Category 인 경우
-    if (currentCategoryIdx === -1) {
-      return initialCategoryList.concat(filteredList);
-    }
-    // 현재 Category 객체를 All 아래에 위치 시키고 반환
-    const currentCategory = filteredList[currentCategoryIdx];
-
-    const remainingCategories = filteredList?.filter((item) => {
-      return item?.toLowerCase() !== lowerCaseCategoryName;
-    });
-
-    return initialCategoryList.concat(currentCategory, remainingCategories);
-  }, [list, categoryName, initialCategoryList]);
 
   const initializeWidth = useCallback(
     createDebounce(() => {
@@ -92,12 +69,12 @@ function Category({ list }: { list: string[] }) {
 
   const linkClass = useCallback(
     (name: string) => {
-      if ((name === "All" && categoryName === null && !pathname.includes("search")) || name.toLowerCase() === categoryName?.toLowerCase()) {
+      if ((name === "All" && currentCategory === null && !pathname.includes("search")) || name.toLowerCase() === currentCategory?.toLowerCase()) {
         return "category__card__item__link--active";
       }
       return "";
     },
-    [categoryName],
+    [currentCategory],
   );
 
   // endregion
@@ -152,9 +129,9 @@ function Category({ list }: { list: string[] }) {
         </button>
       )}
       <ul ref={categoryRef} className="category__card__list" onScroll={onScroll}>
-        {sanitizedList.map((listItem) => (
+        {list.map((listItem) => (
           <li key={listItem} className="category__card__item">
-            <Link href={listItem === "All" ? "/archive" : getCategoryPageUrl(listItem)} className={`category__card__item__link ${linkClass(listItem)}`}>
+            <Link href={listItem === allText ? "/archive" : getCategoryPageUrl(listItem)} className={`category__card__item__link ${linkClass(listItem)}`}>
               <ActiveCheckSvg className="category__card__item__link__active-character" />
               <div className="category__card__item__link__hover-character" />
               <span className="category__card__item__text">{capitalizeFirstLetter(listItem)}</span>
