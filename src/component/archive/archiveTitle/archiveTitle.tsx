@@ -31,8 +31,7 @@ export default function ArchiveTitle({ totalLength }: { totalLength: number }) {
   return (
     <h2 className="archive__title">
       <ArchiveTitleIcon title={archiveTitleText} />
-      {capitalizeFirstLetter(archiveTitleText)}
-      ({totalLength})
+      {`${capitalizeFirstLetter(archiveTitleText)}(${totalLength})`}
     </h2>
   );
 }
