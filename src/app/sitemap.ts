@@ -1,12 +1,17 @@
 import { MetadataRoute } from "next";
-import { getAllArchiveList, getCategoryList } from "@/utils/archive";
 import routes from "@/route";
+import request from "@/utils/request";
+import { ArchiveListResponse } from "@/app/api/archive/list/route";
+import { ArchiveCategoryListResponse } from "@/app/api/archive/category/list/route";
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || "";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const categoryList = await getCategoryList();
-  const archives = await getAllArchiveList();
+  const categoryListUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/category/list`;
+  const { categories } = (await request<ArchiveCategoryListResponse>(categoryListUrl)) || { categories: [] };
+
+  const archiveListUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/list?page=1&pageSize=10000`;
+  const { archives } = await request<ArchiveListResponse>(archiveListUrl);
 
   const routeUrls = routes.map((route) => ({
     url: `${domain}${route.path}`,
@@ -15,12 +20,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const categoryUrls = categoryList?.map((categoryName) => ({
-    url: `${domain}/archive/category/${encodeURIComponent(categoryName)}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  })) || [];
+  const categoryUrls = categories?.map((categoryName) => ({
+      url: `${domain}/archive/category/${encodeURIComponent(categoryName)}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })) || [];
 
   const pageUrls = archives.map(({ url, date }) => ({
     url: `${domain}/archive/${url}`,
