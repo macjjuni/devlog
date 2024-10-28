@@ -9,10 +9,13 @@ const config = {
     PROFILE_IMAGE: "/assets/image/profile.webp",
   },
   archive: {
-    RECENT_DAY: 3, // 최근 포스팅 날짜 기한
+    RECENT_DAY: 5, // 최근 포스팅 날짜 기한
     POSTS_PER_PAGE: 10, // 한 페이지에 보여지는 글수
     PAGINATION_RANGE: 5, // 페이지네이션 표시 수
   },
+  category: {
+    allText: "all",
+  }
 };
 
 export default config;
