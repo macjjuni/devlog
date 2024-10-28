@@ -4,6 +4,7 @@ import { archivePath } from "@/config/archive";
 import { mdxSerializer } from "@/lib/mdx";
 import { ArchiveData } from "@/@types/archive";
 import date from "@/lib/date";
+import config from "@/config/config";
 
 // region [Utility Functions]
 
@@ -22,6 +23,14 @@ function sortByDescendingLocale(arr: string[]): string[] {
   return arr.sort((a, b) => b.localeCompare(a));
 }
 
+// 페이지네이션 처리
+function paginate<T>(items: T[], page: number, pageSize: number): T[] {
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+
+  return items.slice(startIndex, endIndex);
+}
+
 export async function getArchiveDataList(pathList: string[]): Promise<ArchiveData[]> {
   const archives = await Promise.all(
     pathList.map(async (pathString) => {
@@ -38,7 +47,7 @@ export async function getArchiveDataList(pathList: string[]): Promise<ArchiveDat
 // endregion
 
 // 아카이브 카테고리 조회
-export async function getCategoryList() {
+export async function getCategoryList(isContainAll: boolean = false) {
   const { readdir } = await import("fs/promises");
   const entries = await readdir(archivePath, { withFileTypes: true });
 
@@ -50,7 +59,13 @@ export async function getCategoryList() {
     return slicedItem[slicedItem.length - 1];
   });
 
-  return sortByDescendingLocale(sanitizedDirectories);
+  const sortedList = sortByDescendingLocale(sanitizedDirectories);
+  const { allText } = config.category;
+
+  if (isContainAll) {
+    return [allText].concat(sortedList);
+  }
+  return sortedList;
 }
 
 // 모든 아카이브 경로 조회
@@ -80,32 +95,45 @@ export async function getArchivePath(id: string) {
   return null;
 }
 
-// 모든 아카이브 데이터 목록 조회
-export async function getAllArchiveList() {
-  const allPath = await getAllArchivePath();
+const { POSTS_PER_PAGE } = config.archive;
 
-  return getArchiveDataList(allPath);
+// 모든 아카이브 데이터 목록 조회
+export async function getAllArchiveList(page: number = 1, pageSize: number = POSTS_PER_PAGE) {
+  const allPath = await getAllArchivePath();
+  const archiveDataList = await getArchiveDataList(allPath);
+  const totalLength = archiveDataList.length;
+
+  // 데이터가 없을 경우 빈 배열 반환
+  if (!Array.isArray(archiveDataList)) {
+    return { archives: [], totalLength: 0 };
+  }
+
+  const pagedArchives = paginate(archiveDataList, page, pageSize);
+  return { archives: pagedArchives, totalLength };
 }
 
-// 특정 카테고리 아카이브 조회
-export async function getCategoryArchive(categoryName: string) {
+// 특정 카테고리 아카이브 목록 조회
+export async function getCategoryArchive(categoryName: string, page: number = 1, pageSize: number = POSTS_PER_PAGE) {
   try {
     const { readdir } = await import("fs/promises");
     const entries = await readdir(`${archivePath}/${categoryName}`, { withFileTypes: true });
 
     // 디렉토리 항목만 필터링하여 이름 배열로 반환
     const directories = entries.filter((entry) => entry.isDirectory()).map((entry) => `${categoryName}/${entry.name}`);
+    const archivesByCategory = await getArchiveDataList(directories);
+    const pagedArchivesByCategory = paginate(archivesByCategory, page, pageSize);
 
-    return await getArchiveDataList(directories);
+    return { archives: pagedArchivesByCategory, totalLength: archivesByCategory.length };
   } catch (error) {
-    console.error("Failed to read directory");
-    return null;
+    throw Error("Failed to read directory");
   }
 }
 
-export async function getSearchArchive(keyword: string) {
+export async function getSearchArchive(keyword: string, page: number = 1, pageSize: number = POSTS_PER_PAGE) {
   const allArchivePath = await getAllArchivePath();
   const archiveDataList = await getArchiveDataList(allArchivePath);
+  const archives = archiveDataList.filter((item) => item.title.toLowerCase().includes(keyword.toLowerCase()));
+  const pagedArchives = paginate(archives, page, pageSize);
 
-  return archiveDataList.filter((item) => item.title.toLowerCase().includes(keyword.toLowerCase()));
+  return { archives: pagedArchives, totalLength: archiveDataList.length };
 }
