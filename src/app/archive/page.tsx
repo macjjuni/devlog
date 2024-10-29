@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { getMetadata } from "@/config/meta";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
-import { getAllArchiveList, getCategoryList } from "@/utils/archive";
+import { getArchiveList, getCategoryList } from "@/utils/archive";
 import { useSearchParamsPage } from "@/hook";
 import { SearchParamsProps } from "@/hook/server/useSearchParamsPage";
 import Fallback from "./fallBack";
@@ -12,7 +12,7 @@ import Fallback from "./fallBack";
 export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
 
 async function getArchives(page?: number, pageSize?: number) {
-  const { archives, totalLength } = await getAllArchiveList(page, pageSize);
+  const { archives, totalLength } = await getArchiveList(page, pageSize);
 
   return { archives, totalLength };
 }

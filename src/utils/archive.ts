@@ -98,7 +98,7 @@ export async function getArchiveSource(id: string) {
 const { POSTS_PER_PAGE } = config.archive;
 
 // 모든 아카이브 데이터 목록 조회
-export async function getAllArchiveList(page: number | undefined = 1, pageSize: number = POSTS_PER_PAGE) {
+export async function getArchiveList(page: number | undefined = 1, pageSize: number = POSTS_PER_PAGE) {
   const allPath = await getAllArchivePath();
   const archiveDataList = await getArchiveDataList(allPath);
   const totalLength = archiveDataList.length;
