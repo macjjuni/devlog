@@ -41,7 +41,7 @@ author: 꾸생
 독립된 코드 영역인 함수에 의해서만 컨텍스트를 구분할 수 있다.
 
 <p>
-<img src="/public/archivearchive/dev/js-type-execution-context/execution-context-structure.webp" alt="execution-context-structure" width="240"/>
+<img src="/archive/dev/js-type-execution-context/execution-context-structure.webp" alt="execution-context-structure" width="240"/>
 </p>
 실행 컨텍스트는 스택(Stack) 방식으로 정보가 쌓이며 코드가 실행된다.
 
@@ -54,7 +54,7 @@ Call Stack: 현재 어떤 함수가 실행 중이고 다음 실행될 함수를 
 - ThisBinding
 
 <p>
-<img src="/public/archivearchive/dev/js-type-execution-context/variable-environment.webp" alt="Lexical Environment 예시" width="300"/>
+<img src="/archive/dev/js-type-execution-context/variable-environment.webp" alt="Lexical Environment 예시" width="300"/>
 </p>
 
 ### ✨ LexcialEnvironmnet
@@ -73,7 +73,7 @@ Call Stack: 현재 어떤 함수가 실행 중이고 다음 실행될 함수를 
 외부 환경에 대한 참조를 말하는데, 현재 컨텍스트에 관련 있는 외부 식별자 정보를 뜻한다.
 
 <p>
-<img src="/public/archivearchive/dev/js-type-execution-context/outer-environment-reference.webp" alt="OuterEnvironmentReference" width="420"/>
+<img src="/archive/dev/js-type-execution-context/outer-environment-reference.webp" alt="OuterEnvironmentReference" width="420"/>
 </p>
 
 각 실행 컨텍스트는 전역 컨텍스트를 제외하고 `OuterEnvironmnetReference`를 가지고 있고 이로 인해 **Scope Chain**이 형성된다.
@@ -81,7 +81,7 @@ Call Stack: 현재 어떤 함수가 실행 중이고 다음 실행될 함수를 
 ## Scope Chain: 변수 유효 범위
 
 <p>
-<img src="/public/archivearchive/dev/js-type-execution-context/scope-chain.webp" alt="Scope Chain" width="420"/>
+<img src="/archive/dev/js-type-execution-context/scope-chain.webp" alt="Scope Chain" width="420"/>
 </p>
 
 inner 실행 컨텍스트는 Outer 실행 컨텍스트 환경 레코드에 접근이 가능한데, 이 것은 inner 한테 Outer에 대한 외부 환경 참조(OuterEnvironMentReference) 정보를 가지고 있기 때문이다. 반대로 outer 는 inner 실행 컨텍스트 환경 레코드에 접근이 불가능하다.
