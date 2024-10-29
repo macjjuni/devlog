@@ -4,8 +4,9 @@ import { redirect } from "next/navigation";
 import { getMetadata } from "@/config/meta";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
-import { isNumber } from "@/utils/string";
-import { getAllArchiveList } from "@/utils/archive";
+import { getAllArchiveList, getCategoryList } from "@/utils/archive";
+import { useSearchParamsPage } from "@/hook";
+import { SearchParamsProps } from "@/hook/server/useSearchParamsPage";
 import Fallback from "./fallBack";
 
 export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
@@ -16,20 +17,20 @@ async function getArchives(page?: number, pageSize?: number) {
   return { archives, totalLength };
 }
 
-export default async function ArchivePage({ searchParams }: { searchParams: { page: string | undefined } }) {
-  const { page } = searchParams;
-  // 숫자 형식이 아닌 페이지 사이즈 접근 에러 핸들링
-  if (page !== undefined && !isNumber(page)) {
-    redirect("/404");
-  }
-  const pageParam = page ? Number(page) : undefined;
+async function getArchiveCategories(isContainAll: boolean) {
+  return getCategoryList(isContainAll);
+}
+
+export default async function ArchivePage({ searchParams }: { searchParams: SearchParamsProps }) {
+  const page = await useSearchParamsPage(searchParams);
 
   try {
-    const { archives, totalLength } = await getArchives(pageParam);
+    const { archives, totalLength } = await getArchives(page);
+    const categories = await getArchiveCategories(true);
 
     return (
       <Suspense fallback={<Fallback />}>
-        <ArchiveSidebar />
+        <ArchiveSidebar categories={categories} />
         <ArchiveContent archives={archives} totalLength={totalLength} />
       </Suspense>
     );

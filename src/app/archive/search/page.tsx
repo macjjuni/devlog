@@ -4,24 +4,41 @@ import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import type { Metadata } from "next";
 import { getMetadata } from "@/config/meta";
-import request from "@/utils/request";
-import { ArchivesByTitleResponse } from "@/app/api/archive/search/[slug]/list/route";
+import { useSearchParamsPage } from "@/hook";
+import { SearchParamsProps } from "@/hook/server/useSearchParamsPage";
+import { getCategoryList, getSearchArchive } from "@/utils/archive";
 
 export async function generateMetadata({ searchParams }: { searchParams: { q: string } }): Promise<Metadata> {
   return getMetadata(`검색: ${searchParams.q}`, null, `search?q=${searchParams.q}`, null);
 }
 
-const archivesByTitle = (name: string, page?: string) => `${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/search/${encodeURIComponent(name)}/list?page=${page || 1}`;
+async function readSearchArchives(keyword: string, page?: number) {
+  return getSearchArchive(keyword, page);
+}
 
-export default async function ArchiveSearchPage({ searchParams }: { searchParams: { q: string; page: string; } }) {
+async function getArchiveCategories(isContainAll: boolean) {
+  return getCategoryList(isContainAll);
+}
+
+interface SearchPageSearchParamsProps extends SearchParamsProps {
+  q: string;
+}
+
+export default async function ArchiveSearchPage({ searchParams }: { searchParams: SearchPageSearchParamsProps }) {
+  const page = await useSearchParamsPage(searchParams);
   const searchKeyword = searchParams?.q || "";
 
-  const { archives, totalLength } = await request<ArchivesByTitleResponse>(archivesByTitle(searchKeyword, searchParams?.page));
+  try {
+    const { archives, totalLength } = await readSearchArchives(searchKeyword, page);
+    const categories = await getArchiveCategories(true);
 
-  return (
-    <Suspense fallback={<Fallback />}>
-      <ArchiveSidebar />
-      <ArchiveContent archives={archives} totalLength={totalLength} />
-    </Suspense>
-  );
+    return (
+      <Suspense fallback={<Fallback />}>
+        <ArchiveSidebar categories={categories} />
+        <ArchiveContent archives={archives} totalLength={totalLength} />
+      </Suspense>
+    );
+  } catch (error) {
+    console.error(error);
+  }
 }
