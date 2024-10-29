@@ -5,11 +5,16 @@ import { getMetadata } from "@/config/meta";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import { isNumber } from "@/utils/string";
-import request from "@/utils/request";
-import { ArchiveListResponse } from "@/app/api/archive/list/route";
+import { getAllArchiveList } from "@/utils/archive";
 import Fallback from "./fallBack";
 
 export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
+
+async function getArchives(page?: number, pageSize?: number) {
+  const { archives, totalLength } = await getAllArchiveList(page, pageSize);
+
+  return { archives, totalLength };
+}
 
 export default async function ArchivePage({ searchParams }: { searchParams: { page: string | undefined } }) {
   const { page } = searchParams;
@@ -17,10 +22,10 @@ export default async function ArchivePage({ searchParams }: { searchParams: { pa
   if (page !== undefined && !isNumber(page)) {
     redirect("/404");
   }
+  const pageParam = page ? Number(page) : undefined;
 
   try {
-    const archiveListUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/list?page=${page || 1}`;
-    const { archives, totalLength } = await request<ArchiveListResponse>(archiveListUrl);
+    const { archives, totalLength } = await getArchives(pageParam);
 
     return (
       <Suspense fallback={<Fallback />}>
