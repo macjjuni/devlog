@@ -3,11 +3,9 @@ import ArchiveContent from "@/component/archive/archiveContent/ArchiveContent";
 import ArchiveComment from "@/component/archive/archiveComment/archiveComment";
 import { mdxSerializer } from "@/lib/mdx";
 import ErrorPage from "@/app/404/page";
-import { getAllArchivePath } from "@/utils/archive";
+import { getAllArchivePath, getArchiveSource } from "@/utils/archive";
 import { ArchiveData } from "@/@types/archive";
 import ArchiveToc from "@/component/archive/archiveToc/archiveToc";
-import request from "@/utils/request";
-import { ArchiveResponse } from "@/app/api/archive/detail/route";
 
 export async function generateStaticParams() {
   const allArchivePath = await getAllArchivePath();
@@ -15,24 +13,23 @@ export async function generateStaticParams() {
   return allArchivePath.map((archivePath) => ({ id: archivePath }));
 }
 
+async function readArchiveDetail(id: string): Promise<string | null> {
+  return getArchiveSource(id);
+}
+
 export default async function ArchiveDetailPage({ params }: { params: { id: string } }) {
+  const source = await readArchiveDetail(params.id);
 
-  const archiveDetailUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/detail?id=${params.id}`;
-  console.log("archiveDetailUrl", archiveDetailUrl);
-  const { archive: archiveSource } = await request<ArchiveResponse>(archiveDetailUrl);
+  if (!source) { return <ErrorPage />; }
 
-  if (!archiveSource) {
-    return <ErrorPage />;
-  }
-
-  const archiveMdxSource = await mdxSerializer(archiveSource); // MD 직렬화
+  const archiveMdxSource = await mdxSerializer(source); // MD 직렬화
   const archiveData = archiveMdxSource.frontmatter as unknown as ArchiveData;
 
   return (
     <>
       <ArchiveHeader archiveData={archiveData} />
       <ArchiveContent source={archiveMdxSource}>
-        <ArchiveToc source={archiveSource} />
+        <ArchiveToc source={source} />
       </ArchiveContent>
       <ArchiveComment />
     </>

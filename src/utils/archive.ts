@@ -84,7 +84,7 @@ export async function getAllArchivePath(): Promise<string[]> {
 }
 
 // 아카이브 상세 조회
-export async function getArchivePath(id: string) {
+export async function getArchiveSource(id: string) {
   const allArchivePath = await getAllArchivePath();
   const archiveAllPath = allArchivePath.find((pathStr) => pathStr.endsWith(id));
 
