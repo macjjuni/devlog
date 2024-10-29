@@ -1,15 +1,20 @@
 import { MetadataRoute } from "next";
 import routes from "@/route";
-import request from "@/utils/request";
-import { ArchiveListResponse } from "@/app/api/archive/list/route";
-import { ArchiveCategoryListResponse } from "@/app/api/archive/category/list/route";
+import { getArchiveList, getCategoryList } from "@/utils/archive";
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || "";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+async function getAllArchive() {
+  return getArchiveList(1, 10000);
+}
 
-  const { categories } = (await request<ArchiveCategoryListResponse>(`${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/category/list`)) || { categories: [] };
-  const { archives } = await request<ArchiveListResponse>(`${process.env.NEXT_PUBLIC_DOMAIN}/api/archive/list?page=1&pageSize=10000`);
+async function getArchiveCategories() {
+  return getCategoryList(false);
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const categories = await getArchiveCategories();
+  const { archives } = (await getAllArchive()) || { archives: [] };
 
   const routeUrls = routes.map((route) => ({
     url: `${domain}${route.path}`,
