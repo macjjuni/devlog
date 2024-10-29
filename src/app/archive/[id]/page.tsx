@@ -20,7 +20,9 @@ async function readArchiveDetail(id: string): Promise<string | null> {
 export default async function ArchiveDetailPage({ params }: { params: { id: string } }) {
   const source = await readArchiveDetail(params.id);
 
-  if (!source) { return <ErrorPage />; }
+  if (!source) {
+    return <ErrorPage />;
+  }
 
   const archiveMdxSource = await mdxSerializer(source); // MD 직렬화
   const archiveData = archiveMdxSource.frontmatter as unknown as ArchiveData;
