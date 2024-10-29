@@ -1,3 +1,8 @@
+import withBundleAnalyzer from "@next/bundle-analyzer";
+
+const isAnalyze = process.env.ANALYZE === 'true';
+const analyzer = withBundleAnalyzer({ enabled: isAnalyze, openAnalyzer: isAnalyze });
+
 const nextConfig = {
   sassOptions: {
     includePaths: ["./src", "./src/**/*.scss"],
@@ -12,4 +17,4 @@ const nextConfig = {
   transpilePackages: ['next-mdx-remote'],
 };
 
-export default nextConfig;
+export default analyzer(nextConfig);
