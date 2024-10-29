@@ -112,7 +112,7 @@ export async function getAllArchiveList(page: number | undefined = 1, pageSize: 
 }
 
 // 특정 카테고리 아카이브 목록 조회
-export async function getCategoryArchive(categoryName: string, page: number = 1, pageSize: number = POSTS_PER_PAGE) {
+export async function getCategoryArchive(categoryName: string, page: number | undefined = 1, pageSize: number = POSTS_PER_PAGE) {
   try {
     const { readdir } = await import("fs/promises");
     const entries = await readdir(`${archivePath}/${categoryName}`, { withFileTypes: true });
