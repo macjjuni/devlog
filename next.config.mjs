@@ -15,7 +15,6 @@ const nextConfig = {
     ]
   },
   transpilePackages: ['next-mdx-remote'],
-  output: "standalone"
 };
 
 export default analyzer(nextConfig);
