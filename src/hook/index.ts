@@ -6,3 +6,4 @@ export { default as useSearchText } from "@/hook/client/useSearchText";
 
 export { default as useServerPathname } from "@/hook/server/useServerPathname";
 export { default as useCurrentCategory } from "@/hook/server/useCurrentCategory";
+export { default as useSearchParamsPage } from "@/hook/server/useSearchParamsPage";
