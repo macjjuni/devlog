@@ -4,7 +4,7 @@
   top: 74px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: $kku-spacing-md;
   width: $kku-archive-toc-width;
   padding: 0 $kku-spacing-xl;
   border-left: 1px solid $kku-border-color;
@@ -18,9 +18,12 @@
     }
 
     &.archive__toc__container__list__item--first { padding-left: 0; }
-    &.archive__toc__container__list__item--second { margin-top: $kku-spacing-md; padding-left: 0; font-size: 22px; }
+    &.archive__toc__container__list__item--second { margin-top: $kku-spacing-md; padding-left: 0; font-size: 20px; }
     &.archive__toc__container__list__item--third { padding-left: 16px; font-size: 18px; }
-    &.archive__toc__container__list__item--fourth { padding-left: 32px; font-size: 16px; }
+    &.archive__toc__container__list__item--fourth {
+      padding-left: 32px; font-size: 16px;
+      & + .archive__toc__container__list__item--third { margin-top: $kku-spacing-md; }
+    }
     &.archive__toc__container__list__item--fifth { padding-left: 48px; font-size: 14px; }
     &.archive__toc__container__list__item--sixth { padding-left: 64px; font-size: 12px; }
     .archive__toc__container__list__item__link {
