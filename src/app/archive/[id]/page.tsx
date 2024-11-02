@@ -1,15 +1,12 @@
 import NotionViewer from "@/component/archiveContent/notionViewer/notionViewer";
 import ArchiveComment from "@/component/archiveContent/archiveComment/archiveComment";
 import ErrorPage from "@/app/404/page";
-import { getNotionDetail as _getNotionDetail } from "@/api/notion/page";
-import { cache } from "react";
+import { getNotionDetail } from "@/api/notion/page";
 import notion from "@/lib/noiton";
 import type { Metadata } from "next";
 import { getMetadata } from "@/config/meta";
 
 export const revalidate = 60;
-const getNotionDetail = cache(_getNotionDetail);
-
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const { title, des, coverUrl } = await getNotionDetail(params.id);
 

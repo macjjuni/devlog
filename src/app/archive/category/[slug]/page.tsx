@@ -1,8 +1,8 @@
-import { cache, Suspense } from "react";
+import { Suspense } from "react";
 import notion from "@/lib/noiton";
 import { redirect } from "next/navigation";
 import Fallback from "@/app/archive/fallBack";
-import { getNotionCategoryList as _getNotionCategoryList } from "@/api/notion/page";
+import { getNotionCategoryList } from "@/api/notion/page";
 import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
 import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import type { Metadata } from "next";
@@ -30,11 +30,9 @@ export async function generateStaticParams() {
   }
 }
 
-export const revalidate = 60;
-const getCategoryList = cache(_getNotionCategoryList);
-
+export const revalidate = 60 * 10;
 export default async function ArchiveCategoryPage({ params }: { params: { slug: string } }) {
-  const { info, pages, error } = await getCategoryList(params.slug);
+  const { info, pages, error } = await getNotionCategoryList(params.slug);
 
   if (error || !info) {
     redirect("/404");

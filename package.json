@@ -19,7 +19,7 @@
     "framer-motion": "^11.2.6",
     "kku-ui": "^0.0.474",
     "lodash-es": "^4.17.21",
-    "next": "^14.2.3",
+    "next": "^14.2.16",
     "nextjs-toploader": "^1.6.12",
     "notion-client": "^6.16.0",
     "notion-utils": "^6.16.0",
