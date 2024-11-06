@@ -1,8 +1,17 @@
 
 .bitcoin__chart {
-  padding: 16px 0;
+  position: relative;
+  padding: $kku-padding-lg 0 calc($kku-padding-lg + 32px);
   border: 0.5px solid $kku-border-color;
   border-radius: 4px;
+  background-image: url(https://raw.githubusercontent.com/macjjuni/only-bitcoin/refs/heads/main/public/images/btc-cover.webp);
+  background-size: 80% auto; /* 이미지 크기를 절반으로 축소 */
+  background-position: center center; /* 부모 요소의 중앙에 위치 */
+  background-repeat: no-repeat;
+
+  canvas {
+    cursor: pointer;
+  }
 
   .bitcoin__chart__title__container {
     @include flex-center;
@@ -11,6 +20,7 @@
     font-weight: 500;
     padding: 0 $kku-padding-md;
     margin-bottom: 4px;
+    cursor: pointer;
 
     .bitcoin__chart__title__text {
       @include font-sub-title-3;
@@ -28,6 +38,10 @@
   }
 
   .bitcoin__chart__button__group {
+    position: absolute;
+    bottom: $kku-padding-lg;
+    left: 0;
+    width: 100%;
     @include flex-center;
     margin-top: 8px;
 
@@ -42,6 +56,7 @@
       background-color: $kku-background-color;
       border-color: $kku-border-color;
       @include font-body;
+      z-index: 1;
 
       &:first-child {
         border-left-width: 1px;

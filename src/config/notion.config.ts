@@ -5,6 +5,8 @@ export const token = {
   authToken: process.env.NOTION_TOKEN_V2,
 };
 
+export const onlyBtcHref = "https://btc-price.web.app/";
+
 const config = {
   // DB 속성 테이블
   propertyTable: {

@@ -8,6 +8,7 @@ import { Line } from "react-chartjs-2";
 import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Tooltip } from "chart.js";
 import type { ChartData, MarketChartDaysList } from "@/component/sidebar/bitcoinChart/bitcoinMarketChart.interface";
 import RealTimeMarketPrice from "@/component/sidebar/bitcoinChart/realTimeMarketPrice";
+import { onlyBtcHref } from "@/config/notion.config";
 import "./bitcoinMarketChart.scss";
 
 // Chart.js 컴포넌트 등록
@@ -51,12 +52,24 @@ function BitcoinMarketChart() {
     [days],
   );
 
+  const applyDayInChart = useCallback((day: 1 | 7 | 30 | 365) => {
+    setDays(day);
+  }, []);
+
   // endregion
 
   // region [Events]
 
   const onClickChangeDays = useCallback((day: 1 | 7 | 30 | 365) => {
-    setDays(day);
+    applyDayInChart(day);
+  }, []);
+
+  const onClickBitcoinChart = useCallback(() => {
+    const anchorTag = document.createElement("a");
+
+    anchorTag.setAttribute("target", "_blank");
+    anchorTag.setAttribute("href", onlyBtcHref);
+    anchorTag.click();
   }, []);
 
   // endregion
@@ -78,9 +91,6 @@ function BitcoinMarketChart() {
 
   // endregion
 
-  // region [Events]
-  // endregion
-
   // region [Effects]
 
   useEffect(() => {
@@ -97,7 +107,7 @@ function BitcoinMarketChart() {
 
   return (
     <div className={"bitcoin__chart"}>
-      <div className={"bitcoin__chart__title__container"}>
+      <div className={"bitcoin__chart__title__container"} onClick={onClickBitcoinChart}>
         <p className={"bitcoin__chart__title__text"}>Bitcoin</p>
         <p className={"bitcoin__chart__title__cost"}>
           <RealTimeMarketPrice />
@@ -106,6 +116,7 @@ function BitcoinMarketChart() {
       <Line
         ref={chartRef}
         data={chartData}
+        onClick={onClickBitcoinChart}
         options={{
           plugins: { legend: { display: false }, tooltip: { enabled: false } },
           elements: { point: { radius: 0 }, line: { tension: 0.36, borderWidth: 1.5 } },
@@ -139,10 +150,7 @@ function BitcoinMarketChart() {
       />
       <div className="bitcoin__chart__button__group">
         {marketChartDays.map((marketChartDay) => (
-          <KButton
-            key={marketChartDay.value}
-            small
-            onClick={() => onClickChangeDays(marketChartDay.value)}
+          <KButton key={marketChartDay.value} small onClick={() => onClickChangeDays(marketChartDay.value)}
             className={`bitcoin__chart__button ${isActiveButtonClass(marketChartDay.value)}`}>
             {marketChartDay.text}
           </KButton>
