@@ -148,8 +148,8 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   </Link>
                   <KIcon
                     icon={"close"}
-                    size={14}
-                    color={"#fff"}
+                    size={22}
+                    color={"#bbb"}
                     className={"search__history__list__item__close"}
                     onClick={() => {
                       onClickRemoveHistoryItem(item.date);
