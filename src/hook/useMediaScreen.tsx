@@ -2,12 +2,12 @@
 
 import { useState, useCallback, useEffect } from "react";
 import variable from "@/style/variables";
-import { extractNumbers } from "@/utils/string";
-import { createThrottle } from "@/utils/lodash";
+import { extractStringNumber } from "@/utils/string";
+import { createThrottle } from "@/utils/debounceThrottle";
 
-const smallSize = Number(extractNumbers(variable.kkuLayoutSmall));
-const mediumSize = Number(extractNumbers(variable.kkuLayoutMedium));
-const largeSize = Number(extractNumbers(variable.kkuLayoutLarge));
+const smallSize = Number(extractStringNumber(variable.kkuLayoutSmall));
+const mediumSize = Number(extractStringNumber(variable.kkuLayoutMedium));
+const largeSize = Number(extractStringNumber(variable.kkuLayoutLarge));
 
 export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
   // region [Hooks]

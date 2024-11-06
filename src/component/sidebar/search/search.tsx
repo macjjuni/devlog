@@ -3,7 +3,7 @@
 import { memo, useCallback, useState, useRef, useEffect } from "react";
 import SearchModal from "@/component/sidebar/search/searchModal";
 import { KButton, KIcon } from "kku-ui";
-import getOS from "@/utils/os";
+import { getOS } from "@/utils/system";
 import "./search.scss";
 
 function Search() {
@@ -29,7 +29,7 @@ function Search() {
 
   const initializeShortcutText = useCallback(() => {
     const os = getOS();
-    if (os === "mac") {
+    if (os === "MacOS") {
       setShortcutText("Cmd+K");
     } else {
       setShortcutText("Ctrl+K");

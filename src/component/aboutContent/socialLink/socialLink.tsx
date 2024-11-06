@@ -4,7 +4,7 @@ import { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import "./socialLink.scss";
 import { KDropHolder, KDropHolderRefs, KIcon } from "kku-ui";
 import snsInfo from "@/config/sns";
-import copyToClipboard from "@/utils/copy";
+import copyToClipboard from "@/utils/clipboard";
 
 const emailText = process.env.NEXT_PUBLIC_ADMIN_EMAIL || "";
 
@@ -33,8 +33,9 @@ function SocialLink() {
   }, []);
 
   const copyEmail = useCallback(async () => {
-    await copyToClipboard(emailText);
-    autoClosePopup();
+    copyToClipboard(emailText).then(() => {
+      autoClosePopup();
+    });
   }, []);
 
   // endregion
