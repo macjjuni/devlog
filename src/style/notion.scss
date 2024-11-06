@@ -899,6 +899,9 @@ svg.notion-page-icon {
 }
 
 .notion-code {
+
+  $notion-code__font-family: 'Menlo', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
   position: relative;
   width: 100%;
   padding: 20px;
@@ -909,11 +912,10 @@ svg.notion-page-icon {
   box-sizing: border-box;
   overflow: auto;
   background: #1a2135;
-  font-family: 'Menlo', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;
-}
-
-.notion-code span {
-  font-family: 'Menlo', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;
+  font-family: $notion-code__font-family;
+  span {
+    font-family: $notion-code__font-family;
+  }
 }
 
 .notion-code-copy {
