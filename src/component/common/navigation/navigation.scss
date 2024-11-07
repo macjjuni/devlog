@@ -9,26 +9,10 @@
   .navigation__link {
     font-size: 16px;
     padding: 4px;
-
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 1px;
-      left: 4px;
-      width: 0;
-      height: 1px;
-      background: $kku-white-color;
-      transition: width 0.33s ease;
-    }
   }
 
   .navigation__link-active {
-    position: relative;
     font-weight: bold;
-
-    &:after {
-      width: calc(100% - 8px);
-    }
   }
 }
 
