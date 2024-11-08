@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { KIcon, KModal, KTextField, KTextFieldRefs } from "kku-ui";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { getSearchPageUrl } from "@/route";
 import { useStore } from "@/store/store";
 import useSearchText from "@/hook/useSearchText";
@@ -73,6 +73,7 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
       return;
     }
     push(getSearchPageUrl(sanitizedSearchText));
+    onClose();
   }, [searchHistory, sanitizedSearchText]);
 
   // endregion
@@ -166,7 +167,7 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   // endregion
 
-  return <KModal title={"123"} isOpen={isOpen} onClose={onClose} size={"small"} escClosable overlayClosable content={searchContent} overlayOpacity={0.24} />;
+  return <KModal title={"search"} isOpen={isOpen} onClose={onClose} size={"small"} escClosable overlayClosable content={searchContent} overlayOpacity={0.24} />;
 }
 
 export default memo(SearchModal);

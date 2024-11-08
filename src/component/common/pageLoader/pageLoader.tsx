@@ -5,12 +5,8 @@ const loaderProps: NextTopLoaderProps = {
   color: "#fff",
   speed: 240,
   showSpinner: false,
-  // crawl: false,
 };
 
-function PageLoader() {
-  // eslint-disable-next-line react/jsx-props-no-spreading
+export default function PageLoader() {
   return <NextTopLoader {...loaderProps} />;
 }
-
-export default PageLoader;

@@ -19,7 +19,7 @@
     "kku-ui": "^0.0.475",
     "kku-util": "^0.0.151",
     "next": "^14.2.16",
-    "nextjs-toploader": "^1.6.12",
+    "nextjs-toploader": "^3.7.15",
     "notion-client": "^6.16.0",
     "notion-utils": "^6.16.0",
     "react": "^18.3.1",
