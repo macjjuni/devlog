@@ -3,8 +3,7 @@ import notion from "@/lib/noiton";
 import { redirect } from "next/navigation";
 import Fallback from "@/app/archive/fallBack";
 import { getNotionCategoryList } from "@/api/notion/page";
-import ArchiveSidebar from "@/layout/archiveSidebar/archiveSidebar";
-import ArchiveContent from "@/layout/archiveContent/archiveContent";
+import { ArchiveSidebar, ArchiveContent } from "@/layout";
 import type { Metadata } from "next";
 import { getMetadata } from "@/config/meta";
 

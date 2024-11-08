@@ -1,12 +1,12 @@
-import NotionViewer from "@/component/archiveContent/notionViewer/notionViewer";
-import ArchiveComment from "@/component/archiveContent/archiveComment/archiveComment";
+import type { Metadata } from "next";
+import { ArchiveComment, NotionViewer } from "@/component/archive";
 import ErrorPage from "@/app/404/page";
 import { getNotionDetail } from "@/api/notion/page";
 import notion from "@/lib/noiton";
-import type { Metadata } from "next";
 import { getMetadata } from "@/config/meta";
 
 export const revalidate = 60;
+
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const { title, des, coverUrl } = await getNotionDetail(params.id);
 
@@ -25,7 +25,6 @@ export async function generateStaticParams() {
     const allPages = await notion.getPages(databaseId);
     // Generate all post paths
     return allPages.map(({ id }) => ({ id }));
-
   } catch (e) {
     console.error(e);
     return [];

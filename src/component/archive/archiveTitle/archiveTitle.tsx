@@ -5,7 +5,7 @@ import useCategoryName from "@/hook/useCategoryName";
 import type { NotionPageProps } from "@/@types/notion";
 import "./archiveTitle.scss";
 import useSearchText from "@/hook/useSearchText";
-import ArchiveTitleIcon from "@/component/archiveContent/archiveTitle/archiveTitleIcon";
+import ArchiveTitleIcon from "@/component/archive/archiveTitle/archiveTitleIcon";
 
 function ArchiveTitle({ pages }: { pages: NotionPageProps[] }) {
   // region [Hooks]

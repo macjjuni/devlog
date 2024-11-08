@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import type { Viewport } from "next";
 import { Footer, Header, Main } from "@/layout";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import SplineWrapper from "@/component/aboutContent/spline/spline";
+import SplineWrapper from "@/component/about/spline/spline";
 import PageLoader from "@/component/common/pageLoader/pageLoader";
 import HeaderObserver from "@/layout/header/headerObserver";
 import "kku-ui/lib/styles/index.css";
