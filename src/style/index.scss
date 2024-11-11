@@ -14,7 +14,9 @@ body {
     font-family: $kku-default-font-family;
     font-weight: 100;
 }
-
+*::selection {
+    background-color: $kku-selection-background;
+}
 
 // region [Scrollbar]
 

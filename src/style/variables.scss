@@ -60,7 +60,6 @@ $kku-font-color: #ffffff;
 $kku-gray-color: #C7C8CC;
 $kku-border-color: #404752;
 
-//$kku-background-color: #1a1e24;
 $kku-background-color: #111111;
 $kku-background-smooth-color: #e0e0e0;
 
@@ -70,9 +69,9 @@ $kku-disabled-background-color: lighten($kku-background-color, 4%);
 
 $kku-active-background-color: lighten($kku-background-color, 16%);
 
-
 $kku-button-background-color: #2a2d33;
 $kku-button-hover-background-color: lighten($kku-button-background-color, 48%);
+$kku-selection-background: $kku-primary-color;
 
 
 // endregion
