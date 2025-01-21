@@ -7,7 +7,6 @@ import { getNotionPages } from "@/api/notion/page";
 import { isNumber } from "@/utils/string";
 import Fallback from "./fallBack";
 
-export const runtime = "edge"; // Edge 환경 설정
 export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
 export const revalidate = 60 * 10;
 
