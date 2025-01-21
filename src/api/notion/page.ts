@@ -31,9 +31,15 @@ export async function getNotionPages() {
     if (!databaseId) {
       throw new Error("DATABASE_ID is undefined.");
     }
-    const tempInfo = await notion.getNotionInfo(databaseId);
-    const info = notion.getParseNotionInfo(tempInfo); // 데이터 가공
-    const pages = await notion.getPages(databaseId);
+
+    const [tempInfo, pages] = await Promise.all([
+      notion.getNotionInfo(databaseId),
+      notion.getPages(databaseId),
+    ]);
+
+    // const tempInfo = await notion.getNotionInfo(databaseId);
+    // const pages = await notion.getPages(databaseId);
+    const info = notion.getParseNotionInfo(tempInfo);
 
     return { info, pages, error: false };
   } catch (e) {
