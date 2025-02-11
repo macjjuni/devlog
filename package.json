@@ -16,7 +16,7 @@
     "@splinetool/runtime": "^1.2.5",
     "chart.js": "^4.4.3",
     "framer-motion": "^11.2.6",
-    "kku-ui": "^0.0.475",
+    "kku-ui": "^0.0.5",
     "kku-util": "^0.0.151",
     "next": "^14.2.16",
     "nextjs-toploader": "^3.7.15",

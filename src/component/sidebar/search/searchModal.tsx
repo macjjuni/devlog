@@ -132,7 +132,8 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
         <div className={"search__input__container"}>
           <KIcon icon={"search"} size={24} onClick={onClickSearch} />
           <KTextField ref={searchRef} className={"search__modal__search__input"} fullWidth value={searchValue}
-            onChange={onChangeSearchValue} onKeyDownEnter={onKeyDownEnter} placeholder={"검색어를 입력하세요."} maxLength={24} />
+            onChange={onChangeSearchValue} onKeyDownEnter={onKeyDownEnter} placeholder={"검색어를 입력하세요."}
+            maxLength={24} />
         </div>
         <hr />
         <div className={"search__history__container"}>
@@ -147,14 +148,8 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   <Link href={getSearchPageUrl(item.text)} className={"search__history__list__item__text"}>
                     {item.text}
                   </Link>
-                  <KIcon
-                    icon={"close"}
-                    size={22}
-                    color={"#bbb"}
-                    className={"search__history__list__item__close"}
-                    onClick={() => {
-                      onClickRemoveHistoryItem(item.date);
-                    }}
+                  <KIcon icon={"close"} size={22} color={"#bbb"} className={"search__history__list__item__close"}
+                    onClick={() => { onClickRemoveHistoryItem(item.date); }}
                   />
                 </li>
               ))}

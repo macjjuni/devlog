@@ -21,7 +21,7 @@ function SocialLink() {
   const autoClosePopup = useCallback(() => {
     timeoutRef.current = setTimeout(() => {
       dropHolderRef.current?.close();
-    }, 2000);
+    }, 2400);
   }, []);
 
   const cancelClosePopup = useCallback(() => {
@@ -75,7 +75,7 @@ function SocialLink() {
       ))}
       {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
       <button type={"button"} className="social-button" onClick={onClickCopyEmail}>
-        <KDropHolder ref={dropHolderRef} content={copyCompleteBox} offset={"16px"}>
+        <KDropHolder ref={dropHolderRef} content={copyCompleteBox} offset={"20px"}>
           <KIcon className="social-link__icon" icon={"gmail"} color={"#fff"} size={32} />
         </KDropHolder>
       </button>

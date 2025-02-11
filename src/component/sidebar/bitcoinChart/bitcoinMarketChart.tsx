@@ -150,7 +150,7 @@ function BitcoinMarketChart() {
       />
       <div className="bitcoin__chart__button__group">
         {marketChartDays.map((marketChartDay) => (
-          <KButton key={marketChartDay.value} small onClick={() => onClickChangeDays(marketChartDay.value)}
+          <KButton key={marketChartDay.value} size={"small"} onClick={() => onClickChangeDays(marketChartDay.value)}
             className={`bitcoin__chart__button ${isActiveButtonClass(marketChartDay.value)}`}>
             {marketChartDay.text}
           </KButton>

@@ -76,3 +76,33 @@
     justify-content: flex-end;
   }
 }
+
+
+.k-drop-holder__anchor__wrapper {
+  .copied__complete__wrapper {
+    color: $kku-black-color;
+    padding: $kku-padding-sm $kku-padding-md;
+    font-size: $kku-font-size-body;
+    font-weight: 500;
+    border: 1px solid #fff;
+    background-color: $kku-white-color;
+    border-radius: 3px;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: -26px;
+      left: calc(50%);
+      transform: translateX(-50%) rotate(-90deg);
+      right: -40px;
+      margin-top: -20px;
+      border-top: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-left: 20px solid $kku-white-color;
+      z-index: -1;
+    }
+  }
+}
+
+

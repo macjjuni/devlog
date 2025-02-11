@@ -16,6 +16,10 @@
         border-radius: 4px;
         background: $kku-background-color;
 
+        &:hover {
+            border-color: $kku-gray-color;
+        }
+
         .search__card__input__icon__container {
             display: flex;
             justify-content: center;
