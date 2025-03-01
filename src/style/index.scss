@@ -4,6 +4,11 @@
 @import 'animation.scss';
 @import 'mixins.scss';
 
+:root {
+    --font-family: $kku-default-font-family;
+    --default-font-color: $kku-font-color;
+}
+
 body {
     font-family: $kku-default-font-family;
     font-weight: 100;
