@@ -12,7 +12,7 @@ function Profile({ description, imageUrl }: ProfileProps) {
     <div className="profile__card">
       {imageUrl && <Image className="profile__card__image" src={imageUrl} alt="profile image" width={400} height={400} />}
       <div className="profile__card__content">
-        <p className="profile__card__content__name">꾸생</p>
+        <p className="profile__card__content__name">{process.env.NEXT_PUBLIC_LOGO}</p>
         <p className="profile__card__content__status-message">{description}</p>
       </div>
     </div>
