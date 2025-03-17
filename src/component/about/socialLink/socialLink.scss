@@ -1,3 +1,5 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
 
 .social-link__container {
   @include flex-center;
@@ -47,6 +49,10 @@
     .social-link__text {
       font-size: 18px;
     }
+
+    .k-drop-holder__anchor__wrapper {
+      border: none;
+    }
   }
 }
 
@@ -71,7 +77,7 @@
   }
 }
 
-@media screen and (max-width: $kku-layout-small) {
+@media screen and (max-width: var(--kku-layout-small)) {
   .social-link__container {
     justify-content: flex-end;
   }

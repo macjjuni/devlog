@@ -1,3 +1,7 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
+
+
 .kku-skeleton {
     background: $kku-gray-color;
     width: 100%;

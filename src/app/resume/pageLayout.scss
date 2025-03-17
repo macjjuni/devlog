@@ -1,3 +1,5 @@
+@use '@/style/variables' as *;
+@use "@/style/mixins" as *;
 
 .resume__layout {
   display: flex;

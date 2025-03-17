@@ -1,16 +1,23 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
-import variable from "@/style/variables";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { extractStringNumber } from "@/utils/string";
 import { createThrottle } from "@/utils/debounceThrottle";
 
-const smallSize = Number(extractStringNumber(variable.kkuLayoutSmall));
-const mediumSize = Number(extractStringNumber(variable.kkuLayoutMedium));
-const largeSize = Number(extractStringNumber(variable.kkuLayoutLarge));
+const getCSSVariableFromNumber = (variable: string) => {
+  const value = getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+
+  return Number(extractStringNumber(value));
+};
 
 export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
   // region [Hooks]
+
+  const layout = useRef({
+    small: 0,
+    medium: 0,
+    large: 0,
+  });
 
   const [status, setStatus] = useState<null | boolean>(null);
 
@@ -23,7 +30,7 @@ export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
       const width = window.innerWidth;
 
       if (screenMode === "sm") {
-        if (width <= smallSize) {
+        if (width <= layout.current.small) {
           setStatus(true);
         } else {
           setStatus(false);
@@ -32,7 +39,7 @@ export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
       }
 
       if (screenMode === "md") {
-        if (width > smallSize && width <= mediumSize) {
+        if (width > layout.current.small && width <= layout.current.medium) {
           setStatus(true);
         } else {
           setStatus(false);
@@ -41,7 +48,7 @@ export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
       }
 
       if (screenMode === "lg") {
-        if (width > mediumSize) {
+        if (width > layout.current.medium) {
           setStatus(true);
         } else {
           setStatus(false);
@@ -51,7 +58,7 @@ export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
 
       setStatus(false);
     }, 240),
-    [screenMode, smallSize, mediumSize, largeSize],
+    [screenMode],
   );
 
   const eventRegistered = useCallback(() => {
@@ -64,6 +71,16 @@ export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
 
   // endregion
 
+  // region [Initialize]
+
+  const initializeLayoutSize = useCallback(() => {
+      layout.current.small = getCSSVariableFromNumber("--kku-layout-small");
+      layout.current.medium = getCSSVariableFromNumber("--kku-layout-medium");
+      layout.current.large = getCSSVariableFromNumber("--kku-layout-large");
+  }, []);
+
+  // endregion
+
   // region [Effects]
 
   useEffect(() => {
@@ -72,6 +89,10 @@ export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
 
     return () => clearRegistered();
   }, [onResized]);
+
+  useEffect(() => {
+    initializeLayoutSize();
+  }, []);
 
   // endregion
 

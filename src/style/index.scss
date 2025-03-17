@@ -1,12 +1,14 @@
-@import 'reset.scss';
-@import 'fonts.scss';
-@import 'variables.scss';
-@import 'animation.scss';
-@import 'mixins.scss';
+@use 'variables' as *;
+@forward 'reset.scss';
+@forward 'fonts.scss';
+@use 'animation.scss';
 
 :root {
-    --font-family: $kku-default-font-family;
-    --default-font-color: $kku-font-color;
+    --font-family: #{$kku-default-font-family};
+    --default-font-color: #{$kku-font-color};
+    --kku-layout-large: #{$kku-layout-large};
+    --kku-layout-medium: #{$kku-layout-medium};
+    --kku-layout-small: #{$kku-layout-small};
 }
 
 body {

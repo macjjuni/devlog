@@ -1,13 +1,15 @@
 const nextConfig = {
   sassOptions: {
-    includePaths: ["./src", "./src/**/*.scss"],
-    prependData: `@import "@/style/index.scss";`
+    // prependData: `@use "@/style/index" as *;`
   },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "pbs.twimg.com" },
       { protocol: "https", hostname: "www.notion.so", pathname: "/image/**", port: "" }
     ]
+  },
+  experimental: {
+    nextScriptWorkers: true
   }
 };
 

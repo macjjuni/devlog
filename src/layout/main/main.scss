@@ -1,3 +1,5 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
 
 .main {
     position: relative;
@@ -18,14 +20,14 @@
         padding: $kku-padding-lg;
     }
     .main > .kku_spline__wrapper__render-off + .about__layout {
-        margin-top: calc(50dvh - ($kku-padding-lg * 2));
+        margin-top: calc(50dvh - (#{$kku-padding-lg} * 2));
     }
     .main > .kku_spline__wrapper__render-on + .about__layout {
         margin-top: 0;
     }
 }
 
-@media screen and (max-width: $kku-layout-small) {
+@media screen and (max-width: var(--kku-layout-small)) {
     .main > .kku_spline__wrapper__render-off + .about__layout {
         margin-top: calc((100dvh - 128px) / 2);
     }

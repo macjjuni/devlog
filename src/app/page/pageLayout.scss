@@ -1,3 +1,4 @@
+@use "@/style/variables" as *;
 
 .about__layout {
     position: absolute;
@@ -22,8 +23,8 @@
 
 @media screen and (max-width: $kku-layout-large) {
     .about__layout {
-        left: calc(50% + $kku-padding-xl);
-        width: calc(50% - ($kku-padding-xl * 2));
+        left: calc(50% + #{$kku-padding-xl});
+        width: calc(50% - (#{$kku-padding-xl * 2}));
         max-width: none;
     }
 }
@@ -34,7 +35,7 @@
         position: relative;
         top: auto;
         left: 0;
-        transform: translateY(0);
+        transform: none;
         width: 100%;
         padding-top: $kku-padding-lg;
     }
@@ -45,7 +46,7 @@
         padding-top: $kku-padding-lg;
 
         .about__layout__container {
-            gap: 24px;
+            gap: 64px;
         }
     }
 }

@@ -6,8 +6,8 @@ import useMediaScreen from "@/hook/useMediaScreen";
 import routes from "@/route";
 import Link from "next/link";
 import NavigationList from "@/component/common/navigation/navigationList";
-import "./navigation.scss";
 import useOutsideClick from "@/hook/useOutsideClick";
+import "./navigation.scss";
 
 export default function Navigation() {
   // region [Hooks]
@@ -15,7 +15,7 @@ export default function Navigation() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const pathname = usePathname();
   const isMobile = useMediaScreen("sm");
-  const navListRef = useRef<HTMLDivElement>(null);
+  const navListRef = useRef<HTMLDivElement | null>(null);
   const isOutsideClick = useOutsideClick(navListRef.current, isNavOpen && isMobile !== null && isMobile);
 
   // endregion

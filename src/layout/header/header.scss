@@ -1,3 +1,5 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
 
 .header {
     flex: 0 0 64px;
@@ -62,7 +64,7 @@
     }
 }
 
-@media screen and (max-width: $kku-layout-small) {
+@media screen and (max-width: var(--kku-layout-small)) {
     .header {
         .header__wrapper > .header__wrapper__container {  padding: 0 $kku-padding-lg; }
         .header__wrapper > .header__logo__link { font-size: 28px; }

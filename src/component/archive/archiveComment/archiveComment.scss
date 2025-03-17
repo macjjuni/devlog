@@ -1,3 +1,6 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
+
 
 .comment__wrapper {
   @include flex-center;

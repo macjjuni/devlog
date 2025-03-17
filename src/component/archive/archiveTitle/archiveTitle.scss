@@ -1,3 +1,6 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
+
 
 .archive__title {
   display: flex;

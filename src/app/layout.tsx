@@ -1,12 +1,13 @@
 import React, { ReactNode } from "react";
-import type { Viewport } from "next";
-import { Footer, Header, Main } from "@/layout";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Footer, Header, Main } from "@/layout";
 import SplineWrapper from "@/component/about/spline/spline";
 import PageLoader from "@/component/common/pageLoader/pageLoader";
 import HeaderObserver from "@/layout/header/headerObserver";
 import "kku-ui/lib/styles/index.css";
+import "@/style/index.scss";
 import "./layout.scss";
+import type { Viewport } from "next";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -15,7 +16,6 @@ export const viewport: Viewport = {
   userScalable: false,
   themeColor: "#111111",
 };
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">

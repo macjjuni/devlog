@@ -1,3 +1,5 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
 
 .intro__container {
   display: flex;

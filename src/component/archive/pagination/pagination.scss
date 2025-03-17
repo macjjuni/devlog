@@ -1,3 +1,7 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
+
+
 .pagination {
   @include flex-center;
   gap: 6px;

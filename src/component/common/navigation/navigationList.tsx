@@ -5,7 +5,7 @@ import Link from "next/link";
 import ActiveCheckSvg from "@/component/sidebar/category/ActiveCheckSvg";
 import { AnimatePresence, motion } from "framer-motion";
 
-const navMotion = {
+const motions = {
   initial: { opacity: 0, y: "-12px", zIndex: -1 },
   animate: { opacity: 1, y: "0", zIndex: 100 },
   exit: { opacity: 0, y: "-12px", zIndex: -1 },
@@ -15,7 +15,7 @@ export default function NavigationList({ isOpen, close }: { isOpen: boolean; clo
   // region [Hooks]
 
   const pathname = usePathname();
-  const navListRef = useRef<HTMLDivElement>(null);
+  const navListRef = useRef<HTMLDivElement | null>(null);
 
   // endregion
 
@@ -36,7 +36,7 @@ export default function NavigationList({ isOpen, close }: { isOpen: boolean; clo
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div ref={navListRef} className="navigation__list__wrapper" {...navMotion}>
+        <motion.div ref={navListRef} className="navigation__list__wrapper" transition={motions.transition} initial={motions.initial} animate={motions.animate} exit={motions.exit}>
           <ul className="navigation__list">
             {routes.map((route) => (
               <li key={route.id} className="navigation__list__item">

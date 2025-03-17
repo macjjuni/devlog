@@ -1,3 +1,5 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
 
 .archive__title {
   @include font-heading-4;

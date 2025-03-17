@@ -1,7 +1,9 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
+
 
 .navigation {
   width: 240px;
-
   @include flex-center;
   justify-content: space-between;
   flex-direction: row;
@@ -16,9 +18,9 @@
   }
 }
 
-$kku-nav-border: lighten($kku-border-color, 40%);
-$kku-nav-border-active: darken($kku-white-color, 24%);
-$kku-navigation-background-color: lighten($kku-background-color, 4%);
+$nav-border: lighten($kku-border-color, 40%);
+$nav-border-active: darken($kku-white-color, 24%);
+$navigation-background-color: lighten($kku-background-color, 4%);
 
 .navigation__button__container {
   display: none;
@@ -47,7 +49,7 @@ $kku-navigation-background-color: lighten($kku-background-color, 4%);
       position: relative;
       width: 28px;
       height: 3px;
-      background-color: $kku-nav-border;
+      background-color: $nav-border;
       transition: inherit;
 
       &:after, &:before {
@@ -64,7 +66,6 @@ $kku-navigation-background-color: lighten($kku-background-color, 4%);
     }
 
     &.navigation__button--active {
-      //background-color: $kku-navigation-background-color;
 
       .navigation__button__bar {
         background-color: $kku-white-color;
@@ -79,9 +80,9 @@ $kku-navigation-background-color: lighten($kku-background-color, 4%);
   top: 72px;
   right: 16px;
   width: 160px;
-  border: 1px solid $kku-nav-border;
+  border: 1px solid $nav-border;
   border-radius: 4px;
-  background-color: $kku-navigation-background-color;
+  background-color: $navigation-background-color;
   box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px;
   overflow: hidden;
   z-index: 9999;
@@ -109,13 +110,13 @@ $kku-navigation-background-color: lighten($kku-background-color, 4%);
     }
 
     &:hover {
-      background-color: lighten($kku-navigation-background-color, 6%);
+      background-color: lighten($navigation-background-color, 6%);
     }
   }
 }
 
 
-@media screen and (max-width: $kku-layout-small) {
+@media screen and (max-width: $kku-layout-large) {
 
   .navigation {
     display: none;
