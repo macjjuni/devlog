@@ -14,7 +14,7 @@ export default function Navigation() {
 
   const [isNavOpen, setIsNavOpen] = useState(false);
   const pathname = usePathname();
-  const isMobile = useMediaScreen("sm");
+  const isMobile = useMediaScreen("md");
   const navListRef = useRef<HTMLDivElement | null>(null);
   const isOutsideClick = useOutsideClick(navListRef.current, isNavOpen && isMobile !== null && isMobile);
 
