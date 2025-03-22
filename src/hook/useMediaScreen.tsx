@@ -48,7 +48,7 @@ export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
       }
 
       if (screenMode === "lg") {
-        if (width > layout.current.medium) {
+        if (width > layout.current.large) {
           setStatus(true);
         } else {
           setStatus(false);
@@ -77,6 +77,7 @@ export default function useMediaScreen(screenMode: "sm" | "md" | "lg") {
       layout.current.small = getCSSVariableFromNumber("--kku-layout-small");
       layout.current.medium = getCSSVariableFromNumber("--kku-layout-medium");
       layout.current.large = getCSSVariableFromNumber("--kku-layout-large");
+    console.log(layout.current.large);
   }, []);
 
   // endregion

@@ -14,9 +14,9 @@ export default function Navigation() {
 
   const [isNavOpen, setIsNavOpen] = useState(false);
   const pathname = usePathname();
-  const isMobile = useMediaScreen("md");
+  const isDeskTop = useMediaScreen("lg");
   const navListRef = useRef<HTMLDivElement | null>(null);
-  const isOutsideClick = useOutsideClick(navListRef.current, isNavOpen && isMobile !== null && isMobile);
+  const isOutsideClick = useOutsideClick(navListRef.current, isNavOpen && !isDeskTop);
 
   // endregion
 
@@ -95,7 +95,7 @@ export default function Navigation() {
           <span className="navigation__button__bar" />
         </button>
 
-        {isMobile && <NavigationList isOpen={isNavOpen} close={closeNavigationList} />}
+        {!isDeskTop && <NavigationList isOpen={isNavOpen} close={closeNavigationList} />}
       </div>
     </>
   );
