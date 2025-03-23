@@ -95,7 +95,7 @@ export default function Navigation() {
           <span className="navigation__button__bar" />
         </button>
 
-        {!isDeskTop && <NavigationList isOpen={isNavOpen} close={closeNavigationList} />}
+        <NavigationList isOpen={!isDeskTop && isNavOpen} close={closeNavigationList} />
       </div>
     </>
   );
