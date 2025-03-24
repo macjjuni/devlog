@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import useMediaScreen from "@/hook/useMediaScreen";
 import routes from "@/route";
 import Link from "next/link";
 import NavigationList from "@/component/common/navigation/navigationList";
@@ -14,9 +13,8 @@ export default function Navigation() {
 
   const [isNavOpen, setIsNavOpen] = useState(false);
   const pathname = usePathname();
-  const isDeskTop = useMediaScreen("lg");
   const navListRef = useRef<HTMLDivElement | null>(null);
-  const isOutsideClick = useOutsideClick(navListRef.current, isNavOpen && !isDeskTop);
+  const isOutsideClick = useOutsideClick(navListRef.current, isNavOpen);
 
   // endregion
 
@@ -95,7 +93,7 @@ export default function Navigation() {
           <span className="navigation__button__bar" />
         </button>
 
-        <NavigationList isOpen={!isDeskTop && isNavOpen} close={closeNavigationList} />
+        <NavigationList isOpen={isNavOpen} close={closeNavigationList} />
       </div>
     </>
   );
