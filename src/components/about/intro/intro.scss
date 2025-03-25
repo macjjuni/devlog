@@ -7,8 +7,28 @@
   align-items: flex-start;
   gap: 32px;
 
-  @include font-sub-title-2;
+  p {
+    @include font-sub-title-2;
+    line-height: 1.32;
+
+    &:last-child {
+      white-space: nowrap;
+    }
+  }
 }
+
+@media screen and (max-width: $kku-layout-large) {
+
+  .intro__container {
+
+    p {
+      &:last-child {
+        white-space: initial;
+      }
+    }
+  }
+}
+
 
 @media screen and (max-width: $kku-layout-medium) {
   .intro__container {
