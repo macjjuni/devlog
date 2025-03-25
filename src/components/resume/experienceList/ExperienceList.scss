@@ -1,0 +1,92 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
+
+.experience-list__area {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+
+  .experience-list__area__item {
+    display: flex;
+    width: 100%;
+
+
+    .experience-list__area__company-name {
+      width: $kku-resume-label-width;
+      @include font-sub-title-1;
+      font-weight: bold;
+    }
+
+    .experience-list__area__project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      width: calc(100% - #{$kku-resume-label-width});
+      padding-top: 4px;
+
+      .experience-list__area__project-list__item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .experience-list__area__project-list__title {
+          position: relative;
+          @include font-sub-title-2;
+          padding-left: $kku-padding-lg;
+          font-weight: bold;
+
+          &:after {
+            content: '';
+            top: 46%; left: 0;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #fff;
+            position: absolute;
+          }
+        }
+
+        .experience-list__area__project-list__date {
+          @include font-body;
+          color: $kku-gray-color;
+          padding-left: $kku-padding-lg;
+          margin-bottom: 8px;
+        }
+
+        .experience-list__area__project-list__result,
+        .experience-list__area__project-list__role,
+        .experience-list__area__project-list__tech-stack {
+          display: flex;
+          gap: 8px;
+          @include font-sub-title-3;
+          line-height: 1.4;
+
+          .label { white-space: nowrap; }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $kku-layout-medium) {
+
+  .experience-list__area {
+    gap: 16px;
+
+    .experience-list__area__item {
+      flex-direction: column;
+      gap: 16px;
+
+      .experience-list__area__company-name {
+      }
+
+      .experience-list__area__project-list {
+        width: 100%;
+      }
+    }
+  }
+}

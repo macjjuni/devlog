@@ -1,0 +1,49 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
+
+.skills__area {
+  display: flex;
+  width: 100%;
+  padding: 40px 0;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+
+  .skills__area__label {
+    width: $kku-resume-label-width;
+    @include font-sub-title-1;
+    font-weight: bold;
+  }
+
+  .skills__area__content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+    gap: $kku-padding-md;
+    width: calc(100% - #{$kku-resume-label-width});
+    @include font-sub-title-3;
+
+    .skills__area__content__front-end { grid-area: 1 / 1 / 2 / 2;}
+    .skills__area__content__styling { grid-area: 1 / 2 / 2 / 3;}
+    .skills__area__content__testing { grid-area: 2 / 1 / 3 / 2;}
+    .skills__area__content__cooperation { grid-area: 2 / 2 / 3 / 3;}
+
+    .label {
+      font-weight: bold;
+      margin-right: 4px;
+    }
+  }
+
+}
+
+@media screen and (max-width: $kku-layout-medium) {
+.skills__area {
+  flex-direction: column;
+  gap: 8px;
+
+  .skills__area__content {
+    width: 100%;
+  }
+}
+}

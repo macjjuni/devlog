@@ -4,16 +4,14 @@
 .resume__layout {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
+  gap: 40px;
 
-  .resume__lottie {
-    max-width: 400px;
-    width: 100%;
-  }
-
-  .resume__ready-text {
-    @include font-sub-title-3;
+  .resume__title {
+    @include font-heading-2;
+    font-weight: bold;
+    background-color: #0033FF;
   }
 }
 
@@ -21,9 +19,5 @@
 @media screen and (max-width: $kku-layout-small) {
   .resume__layout {
 
-    .resume__lottie {
-      max-width: 320px;
-      width: 100%;
-    }
   }
 }
