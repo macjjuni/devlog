@@ -4,7 +4,7 @@ import { memo, UIEvent, useCallback, useEffect, useMemo, useRef, useState } from
 import Link from "next/link";
 import { createDebounce, createThrottle } from "@/utils/debounceThrottle";
 import { ICategory, SelectPropertyResponse } from "@/@types/notion";
-import ActiveCheckSvg from "@/component/sidebar/category/ActiveCheckSvg";
+import ActiveCheckSvg from "@/components/sidebar/category/ActiveCheckSvg";
 import { getCategoryPageUrl } from "@/route";
 import useCategoryName from "@/hook/useCategoryName";
 import { usePathname } from "next/navigation";

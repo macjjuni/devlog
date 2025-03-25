@@ -1,5 +1,5 @@
 import React from "react";
-import Skeleton from "@/component/common/skeleton/skeleton";
+import Skeleton from "@/components/common/skeleton/skeleton";
 
 const FallBack = () => {
   return (

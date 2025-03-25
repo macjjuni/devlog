@@ -1,8 +1,8 @@
 import React, { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Footer, Header, Main } from "@/layout";
-import SplineWrapper from "@/component/about/spline/spline";
-import PageLoader from "@/component/common/pageLoader/pageLoader";
+import SplineWrapper from "@/components/about/spline/spline";
+import PageLoader from "@/components/common/pageLoader/pageLoader";
 import HeaderObserver from "@/layout/header/headerObserver";
 import "kku-ui/lib/styles/index.css";
 import "@/style/index.scss";

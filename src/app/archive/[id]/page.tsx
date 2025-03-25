@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArchiveComment, NotionViewer } from "@/component/archive";
+import { ArchiveComment, NotionViewer } from "@/components/archive";
 import ErrorPage from "@/app/404/page";
 import { getNotionDetail } from "@/api/notion/page";
 import notion from "@/lib/noiton";

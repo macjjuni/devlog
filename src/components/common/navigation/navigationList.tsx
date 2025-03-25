@@ -2,7 +2,7 @@ import { useCallback, useRef } from "react";
 import { usePathname } from "next/navigation";
 import routes from "@/route";
 import Link from "next/link";
-import ActiveCheckSvg from "@/component/sidebar/category/ActiveCheckSvg";
+import ActiveCheckSvg from "@/components/sidebar/category/ActiveCheckSvg";
 import { AnimatePresence, motion } from "framer-motion";
 
 const motions = {

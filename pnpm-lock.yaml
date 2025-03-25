@@ -33,8 +33,8 @@ importers:
         specifier: ^11.2.6
         version: 11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       kku-ui:
-        specifier: ^0.0.517
-        version: 0.0.517
+        specifier: ^0.0.519
+        version: 0.0.519
       kku-util:
         specifier: ^0.0.151
         version: 0.0.151
@@ -1586,8 +1586,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  kku-ui@0.0.517:
-    resolution: {integrity: sha512-3RjzWepqjFyo/I9QTrP9rR4EGpURknE1zIh+x5DBc9Q1TiDvTrWmbNeXnV+0WYYjclnHrDXDAdO701HmVcz3ag==}
+  kku-ui@0.0.519:
+    resolution: {integrity: sha512-o8+JRaaB4trFkVEtlJXoakk8sMXQgQPX7nvQiQhUpmTSs7FtrHcTeNGBo5fqUVRxZPZNFKp6ZPJWmxb1kZlxOQ==}
 
   kku-util@0.0.151:
     resolution: {integrity: sha512-WENlOBrERvjLHwm0A8SFEA7J/dm9W8E0VXvc4I2zWrE0tmyM9yILaka2+jZVM2+s/2FdTVH/5QvA7uKocPMVZA==}
@@ -4345,7 +4345,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  kku-ui@0.0.517:
+  kku-ui@0.0.519:
     dependencies:
       lodash-es: 4.17.21
       react: 19.0.0

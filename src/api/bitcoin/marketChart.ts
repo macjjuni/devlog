@@ -1,7 +1,7 @@
 // 코인게코 API 엔드포인트
 import { MarketChartFormattedData, MarketChartParams, MarketChartResponseData } from "@/api/bitcoin/marketChart.interface";
 import { useStore } from "@/store/store";
-import { MarketChartDays } from "@/component/sidebar/bitcoinChart/bitcoinMarketChart.interface";
+import { MarketChartDays } from "@/components/sidebar/bitcoinChart/bitcoinMarketChart.interface";
 import { isTwoMinutesPassed } from "@/lib/date";
 
 const url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart";

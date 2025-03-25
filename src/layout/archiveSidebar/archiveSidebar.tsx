@@ -1,8 +1,8 @@
 import React, { memo } from "react";
-import Profile from "@/component/sidebar/profile/profile";
-import Search from "@/component/sidebar/search/search";
-import Category from "@/component/sidebar/category/category";
-import BitcoinChart from "@/component/sidebar/bitcoinChart/bitcoinMarketChart";
+import Profile from "@/components/sidebar/profile/profile";
+import Search from "@/components/sidebar/search/search";
+import Category from "@/components/sidebar/category/category";
+import BitcoinChart from "@/components/sidebar/bitcoinChart/bitcoinMarketChart";
 import { NotionInfoProps } from "@/@types/notion";
 
 function ArchiveSidebar({ info }: { info: NotionInfoProps }) {

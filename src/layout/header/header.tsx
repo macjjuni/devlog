@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 import Link from "next/link";
-import Navigation from "@/component/common/navigation/navigation";
+import Navigation from "@/components/common/navigation/navigation";
 import "./header.scss";
 import { useStore } from "@/store/store";
 

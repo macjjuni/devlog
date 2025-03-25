@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import LottieViewer from "@/component/common/lottieViewer/lottieViewer";
+import LottieViewer from "@/components/common/lottieViewer/lottieViewer";
 import squareLoad from "@/asset/lottie/squareLoad.json";
 
 const defaultOption = {

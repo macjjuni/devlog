@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useCallback, useState, useRef, useEffect } from "react";
-import SearchModal from "@/component/sidebar/search/searchModal";
+import SearchModal from "@/components/sidebar/search/searchModal";
 import { KButton, KIcon } from "kku-ui";
 import { getOS } from "@/utils/system";
 import "./search.scss";

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import routes from "@/route";
 import Link from "next/link";
-import NavigationList from "@/component/common/navigation/navigationList";
+import NavigationList from "@/components/common/navigation/navigationList";
 import useOutsideClick from "@/hook/useOutsideClick";
 import "./navigation.scss";
 

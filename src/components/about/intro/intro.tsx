@@ -1,5 +1,5 @@
 import { memo } from "react";
-import Spotlight from "@/component/common/spotlight/spotlight";
+import Spotlight from "@/components/common/spotlight/spotlight";
 import "./intro.scss";
 
 function Intro() {

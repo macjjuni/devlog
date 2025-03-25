@@ -1,7 +1,7 @@
 "use client";
 
 import { CSSProperties, useMemo, memo } from "react";
-import { SpinnerProps } from "@/component/common/spinner/spinner.interface";
+import { SpinnerProps } from "@/components/common/spinner/spinner.interface";
 import "./spinner.scss";
 
 function Spinner({ color }: SpinnerProps) {

@@ -6,8 +6,8 @@ import { KButton } from "kku-ui";
 import { getBtcRangeData } from "@/api/bitcoin/marketChart";
 import { Line } from "react-chartjs-2";
 import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Tooltip } from "chart.js";
-import type { ChartData, MarketChartDaysList } from "@/component/sidebar/bitcoinChart/bitcoinMarketChart.interface";
-import RealTimeMarketPrice from "@/component/sidebar/bitcoinChart/realTimeMarketPrice";
+import type { ChartData, MarketChartDaysList } from "@/components/sidebar/bitcoinChart/bitcoinMarketChart.interface";
+import RealTimeMarketPrice from "@/components/sidebar/bitcoinChart/realTimeMarketPrice";
 import { onlyBtcHref } from "@/config/notion.config";
 import "./bitcoinMarketChart.scss";
 
