@@ -9,6 +9,7 @@
   gap: 40px;
 
   .resume__title {
+    display: inline-flex;
     @include font-heading-2;
     font-weight: bold;
     background-color: #0033FF;

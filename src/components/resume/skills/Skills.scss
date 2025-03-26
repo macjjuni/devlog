@@ -20,9 +20,15 @@
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 0;
     grid-row-gap: 0;
-    gap: $kku-padding-md;
+    gap: 16px;
     width: calc(100% - #{$kku-resume-label-width});
     @include font-sub-title-3;
+
+    & > div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
 
     .skills__area__content__front-end { grid-area: 1 / 1 / 2 / 2;}
     .skills__area__content__styling { grid-area: 1 / 2 / 2 / 3;}
@@ -31,7 +37,14 @@
 
     .label {
       font-weight: bold;
-      margin-right: 4px;
+      margin-right: 6px;
+      white-space: nowrap;
+
+      &:after {
+        content: ':';
+        @include font-sub-title-3;
+        font-weight: bold;
+      }
     }
   }
 
@@ -40,10 +53,25 @@
 @media screen and (max-width: $kku-layout-medium) {
 .skills__area {
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
+  padding: 32px 0;
 
   .skills__area__content {
     width: 100%;
+    gap: 12px;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      .label {
+        margin-bottom: 4px;
+
+        &:after { content: none; }
+      }
+    }
   }
 }
 }
