@@ -1,71 +1,107 @@
 @use "@/style/variables" as *;
 @use "@/style/mixins" as *;
 
-.experience-list__area {
+.ex-area {
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 56px;
   width: 100%;
 
-  .experience-list__area__item {
+  .ex-area__label {
+    width: $kku-resume-label-width;
+    @include font-sub-title-1;
+  }
+
+  .ex-area__content {
     display: flex;
-    width: 100%;
+    flex-direction: column;
+    gap: 40px;
+    width: calc(100% - #{$kku-resume-label-width});
 
-
-    .experience-list__area__company-name {
-      width: $kku-resume-label-width;
-      @include font-sub-title-1;
-      font-weight: bold;
-    }
-
-    .experience-list__area__project-list {
+    .ex-area__content__item {
       display: flex;
       flex-direction: column;
+      width: 100%;
       gap: 40px;
-      width: calc(100% - #{$kku-resume-label-width});
-      padding-top: 4px;
 
-      .experience-list__area__project-list__item {
+      .ex-area__content__item__company {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 4px;
+        width: 100%;
 
-        .experience-list__area__project-list__title {
-          position: relative;
-          @include font-sub-title-2;
-          padding-left: $kku-padding-lg;
-          font-weight: bold;
+        .ex-area__content__item__company__top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
 
-          &:after {
-            content: '';
-            top: 46%; left: 0;
-            transform: translateY(-50%);
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background-color: #fff;
-            position: absolute;
+          .ex-area__content__item__company__top__title {
+            @include font-sub-title-1;
+            font-weight: bold;
+          }
+
+          .ex-area__content__item__company__top__date {
+            @include font-body;
+            font-weight: normal;
+            color: $kku-gray-color;
           }
         }
-
-        .experience-list__area__project-list__date {
+        .ex-area__content__item__company__position {
           @include font-body;
+          font-weight: normal;
           color: $kku-gray-color;
-          padding-left: $kku-padding-lg;
-          margin-bottom: 8px;
         }
+      }
 
-        .experience-list__area__project-list__result,
-        .experience-list__area__project-list__role,
-        .experience-list__area__project-list__tech-stack {
+      .ex-area__content__item__project-list {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        padding-top: 4px;
+
+        .ex-area__content__item__project-list__item {
           display: flex;
+          flex-direction: column;
           gap: 8px;
-          @include font-sub-title-3;
-          line-height: 1.4;
 
-          .label { white-space: nowrap; }
+          .ex-area__content__item__project-list__item__title {
+            position: relative;
+            padding-left: $kku-padding-lg;
+            @include font-sub-title-3;
+            font-weight: bold;
+
+            &:after {
+              content: '';
+              top: 8px;
+              left: 0;
+              width: 6px;
+              height: 6px;
+              border-radius: 50%;
+              background-color: #fff;
+              position: absolute;
+            }
+
+            .ex-area__content__item__project-list__item__title__date {
+              @include font-body;
+              font-weight: normal;
+              color: $kku-gray-color;
+              padding-left: 12px;
+            }
+          }
+
+          .ex-area__content__item__project-list__item__result,
+          .ex-area__content__item__project-list__item__role,
+          .ex-area__content__item__project-list__item__tech-stack {
+            display: flex;
+            gap: 8px;
+            @include font-sub-title-3;
+            line-height: 1.4;
+
+            .label {
+              white-space: nowrap;
+            }
+          }
         }
       }
     }
@@ -74,16 +110,16 @@
 
 @media screen and (max-width: $kku-layout-medium) {
 
-  .experience-list__area {
+  .ex-area {
 
-    .experience-list__area__item {
+    .ex-area__content__item {
       flex-direction: column;
       gap: 16px;
 
-      .experience-list__area__company-name {
+      .ex-area__content__item__company-name {
       }
 
-      .experience-list__area__project-list {
+      .ex-area__content__item__project-list {
         width: 100%;
       }
     }
