@@ -29,6 +29,10 @@
     padding: 0;
     border: none;
 
+    & + & {
+      margin-top: 32px;
+    }
+
     .resume__box-area__label {
       width: 100%;
       padding: 12px 0;
@@ -37,7 +41,7 @@
     }
     .resume__box-area__content {
       width: 100%;
-      padding: 24px 0;
+      padding-top: 24px;
     }
   }
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import { memo } from "react";
 import BoxArea from "@/components/resume/boxArea/BoxArea";
 import { SkillTypes } from "@/@types/resume";
@@ -5,7 +7,7 @@ import "./Skills.scss";
 
 const Skills = ({ skill }: { skill: SkillTypes }) => {
   return (
-    <BoxArea className="skills__area" label="스킬">
+    <BoxArea className="skills__area" label="Skills">
       <div className="skills__area__front-end">
         <span className="label">프런트엔드</span>
         <p className="content">{skill.frontend.join(", ")}</p>

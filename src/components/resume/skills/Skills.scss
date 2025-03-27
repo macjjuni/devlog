@@ -37,9 +37,7 @@
     }
 
     .label {
-      font-weight: bold;
-      margin-right: 6px;
-      white-space: nowrap;
+      font-weight: normal;
 
       &:after {
         content: ':';

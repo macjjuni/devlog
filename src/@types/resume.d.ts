@@ -1,12 +1,16 @@
 
 
 export interface ResumeTypes {
-  name: string;
-  email: string;
-  github: string;
-  blog: string;
+  contact: ContactTypes;
   skill: SkillTypes;
   experience: ExperienceTypes[];
+}
+
+export interface ContactTypes {
+  "email": string;
+  "phone": string;
+  "github": string;
+  "blog": string;
 }
 
 export interface SkillTypes {

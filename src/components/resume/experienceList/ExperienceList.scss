@@ -15,7 +15,10 @@
       margin-top: 2px;
       padding-top: 0;
     }
-    &:last-child { border: none; }
+    &:last-child {
+      border: none;
+      padding-bottom: 0;
+    }
 
     .ex-area__item__company {
       display: flex;
@@ -90,11 +93,8 @@
         .ex-area__item__project-list__item__role,
         .ex-area__item__project-list__item__tech-stack {
           display: flex;
-          gap: 8px;
           @include font-sub-title-3;
           line-height: 1.4;
-
-          .label { white-space: nowrap; }
         }
       }
     }

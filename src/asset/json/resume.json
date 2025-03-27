@@ -1,11 +1,14 @@
 {
   "name": "",
-  "email": "macjjuni@gmail.com",
-  "github": "https://github.com/macjjuni",
-  "blog": "https://kku.dev",
+  "contact": {
+    "email": "macjjuni@gmail.com",
+    "phone": "010-XXXX-XXXX",
+    "github": "https://github.com/macjjuni",
+    "blog": "https://kku.dev"
+  },
   "skill": {
     "frontend": ["React", "Vue", "Next.js", "TypeScript"],
-    "styling": ["CSS3", "SASS", "Tailwind CSS", "CSS in JS"],
+    "styling": ["CSS3", "Scss", "TailwindCSS", "CSS in JS"],
     "testing": ["Vitest", "Jest", "Storybook", "React test Library"],
     "cooperation": ["Git", "Figma", "Jira", "Notion"]
   },

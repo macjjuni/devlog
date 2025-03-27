@@ -10,7 +10,7 @@ const ExperienceList = ({ experienceList }: { experienceList: ExperienceTypes[] 
   // endregion
 
   return (
-    <BoxArea className="ex-area" label="경력">
+    <BoxArea className="ex-area" label="Experience">
       {experienceList.map((resume) => (
         <div key={resume.date} className="ex-area__item">
           <div className="ex-area__item__company">
