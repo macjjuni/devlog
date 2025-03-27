@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Intro from "@/components/resume/intro/Intro";
+// import Intro from "@/components/resume/intro/Intro";
 import Contact from "@/components/resume/contact/Contact";
 import ResumeList from "@/components/resume/experienceList/ExperienceList";
 import Skills from "@/components/resume/skills/Skills";
@@ -16,7 +16,7 @@ export default async function ResumePage() {
 
   return (
     <ResumeLayout>
-      <Intro />
+      {/* <Intro /> */}
       <Skills skill={resumeData.skill} />
       <ResumeList experienceList={resumeData.experience} />
       <Contact contact={resumeData.contact} />

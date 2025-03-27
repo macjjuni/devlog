@@ -37,7 +37,7 @@
                 align-items: center;
                 gap: 4px;
                 width: 100%;
-                padding: $kku-padding-sm $kku-padding-sm $kku-padding-sm $kku-padding-md;
+                padding: 6px $kku-padding-sm 6px $kku-padding-md;
                 transition: background-color 0.3s ease;
                 border-radius: 4px;
                 @include font-body;
