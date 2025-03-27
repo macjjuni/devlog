@@ -3,21 +3,14 @@ import ResumeList from "@/components/resume/experienceList/ExperienceList";
 import Skills from "@/components/resume/skills/Skills";
 import { type ResumeTypes } from "@/@types/resume";
 import { getMetadata } from "@/config/meta";
+import ResumeJson from "@/asset/json/resume.json";
 import ResumeLayout from "./pageLayout";
-
-const getListResumeData = async (): Promise<ResumeTypes> => {
-  return fetch("http://localhost:3000/assets/resume/list.json").then((_res) => _res.json());
-};
 
 export const metadata: Metadata = getMetadata("Resume", null, "resume", null);
 
+const resumeData: ResumeTypes = ResumeJson;
+
 export default async function ResumePage() {
-
-  // region [Templates]
-
-  const resumeData = await getListResumeData();
-
-  // endregion
 
   return (
     <ResumeLayout>
