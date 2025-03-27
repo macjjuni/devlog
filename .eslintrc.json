@@ -1,18 +1,25 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "prettier"],
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
   "parserOptions": {
     "project": "./tsconfig.json",
     "createDefaultProgram": true
   },
   "env": {
     // 전역객체를 eslint가 인식하는 구간
-    "browser": true, // document나 window 인식되게 함
+    "browser": true,
+    // document나 window 인식되게 함
     "node": true,
     "es6": true
   },
-  "ignorePatterns": ["node_modules/"], // eslint 미적용될 폴더나 파일 명시
+  "ignorePatterns": [
+    "node_modules/"
+  ],
+  // eslint 미적용될 폴더나 파일 명시
   "extends": [
     "next/core-web-vitals",
     "airbnb",
@@ -20,14 +27,31 @@
     "eslint:recommended"
   ],
   "rules": {
-    "react/react-in-jsx-scope": "off", // react 17부턴 import 안해도돼서 기능 끔
+    "react/react-in-jsx-scope": "off",
+    // react 17부턴 import 안해도돼서 기능 끔
     // 경고표시, 파일 확장자를 .ts나 .tsx 모두 허용함
-    "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
-    "no-useless-catch": "off", // 불필요한 catch 못쓰게 하는 기능 끔
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ],
+    "no-useless-catch": "off",
+    // 불필요한 catch 못쓰게 하는 기능 끔
     "react/jsx-props-no-spreading": "off",
     "react/function-component-definition": "off",
     "react/jsx-no-useless-fragment": "off",
-    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": [
+          "css"
+        ]
+      }
+    ],
     "react/require-default-props": "off",
     "react-hooks/rules-of-hooks": "off",
     "no-else-return": "off",
@@ -44,10 +68,18 @@
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "no-nested-ternary": "off",
-    "@typescript-eslint/quotes": ["error", "double"],
+    "@typescript-eslint/quotes": [
+      "error",
+      "double"
+    ],
     "@typescript-eslint/comma-dangle": "off",
     "import/prefer-default-export": "off",
-    "max-len": ["error", { "code": 180 }],
+    "max-len": [
+      "error",
+      {
+        "code": 180
+      }
+    ],
     "object-curly-newline": "off",
     "arrow-body-style": "off",
     "no-undef": "off",
@@ -59,6 +91,9 @@
     "padded-blocks": "off",
     "react/jsx-first-prop-new-line": "off",
     "react/jsx-max-props-per-line": "off",
-    "react/jsx-closing-bracket-location": [0]
+    "react/jsx-closing-bracket-location": [
+      0
+    ],
+    "import/extensions": "off"
   }
 }

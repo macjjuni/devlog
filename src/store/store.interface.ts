@@ -1,5 +1,5 @@
-import { MarketChartDays } from "@/component/sidebar/bitcoinChart/bitcoinMarketChart.interface";
-import { SearchHistoryType } from "@/component/sidebar/search/searchModal";
+import { MarketChartDays } from "@/components/sidebar/bitcoinChart/bitcoinMarketChart.interface";
+import { SearchHistoryType } from "@/components/sidebar/search/searchModal";
 
 export interface ChartData {
   date: number[];

@@ -1,0 +1,16 @@
+@use "@/style/mixins" as *;
+
+.intro-name-area {
+    width: 100%;
+    font-size: 44px;
+    font-weight: bold;
+}
+
+.intro-area {
+  .resume__box-area__content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    @include font-sub-title-3;
+  }
+}

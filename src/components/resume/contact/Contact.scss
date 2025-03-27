@@ -1,0 +1,19 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
+
+
+.resume__box-area.contact-area {
+
+  .resume__box-area__content {
+    gap: 8px;
+    margin-top: 2px;
+
+    .label { font-weight: normal; }
+
+    .contact-area__item {
+      @include font-sub-title-3;
+
+      a:hover { text-decoration: underline; }
+    }
+  }
+}

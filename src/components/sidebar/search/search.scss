@@ -1,0 +1,75 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
+
+
+.search__card {
+    padding: $kku-padding-lg;
+    border: 0.5px solid $kku-border-color;
+    border-radius: 4px;
+
+    .search__card__input {
+        min-width: auto;
+        width: 100%;
+        height: 36px;
+        justify-content: space-between;
+        gap: 0;
+        padding: 6px $kku-padding-md 6px;
+        border-width: 0.5px;
+        border-color: $kku-border-color;
+        border-style: solid;
+        border-radius: 4px;
+        background: $kku-background-color;
+
+        &:hover {
+            border-color: $kku-gray-color;
+        }
+
+        .search__card__input__icon__container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search__card__input__shortcuts {
+            padding: 2px 3px;
+            border: 0.5px solid $kku-border-color;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 12px;
+            font-weight: bold;
+            color: $kku-white-color;
+            text-align: center;
+        }
+
+        .k-button__content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            @include font-body;
+            font-weight: 300;
+            color: lighten($kku-border-color, 24%);
+        }
+
+        &:hover {
+            background: $kku-background-color;
+        }
+
+
+        &:focus {
+            outline-color: $kku-primary-color;
+        }
+    }
+}
+
+@media screen and (max-width: var(kku-layout-medium)) {
+    .search__card {
+        padding: 0;
+        border: none;
+
+        .k-text-field.search__card__input {
+            padding: $kku-padding-md $kku-padding-md;
+        }
+    }
+}

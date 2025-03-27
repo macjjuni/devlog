@@ -18,11 +18,9 @@ export default async function ArchivePage({ searchParams }: { searchParams: { pa
     redirect("/404");
   }
 
-  const startTime = performance.now(); // 시작 시간 기록
-
+  console.time("Get All Archives");
   const { info, pages, error } = await getNotionPages();
-  const endTime = performance.now(); // 종료 시간 기록
-  console.log(`Execution time: ${(endTime - startTime).toFixed(2)}ms`);
+  console.timeEnd("Get All Archives");
 
   if (error) {
     redirect("/404");

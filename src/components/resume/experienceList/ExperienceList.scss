@@ -1,0 +1,127 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
+
+.resume__box-area.ex-area {
+
+  .ex-area__item {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    padding: 40px 0;
+    border-bottom: 1px solid #353535;
+
+    &:first-child {
+      margin-top: 2px;
+      padding-top: 0;
+    }
+    &:last-child {
+      border: none;
+      padding-bottom: 0;
+    }
+
+    .ex-area__item__company {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 100%;
+
+      .ex-area__item__company__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .ex-area__item__company__top__title {
+          font-size: 20px;
+          font-weight: bold;
+        }
+
+        .ex-area__item__company__top__date {
+          @include font-body;
+          font-weight: normal;
+          color: $kku-gray-color;
+        }
+      }
+
+      .ex-area__item__company__position {
+        @include font-body;
+        font-weight: normal;
+        color: $kku-gray-color;
+      }
+    }
+
+    .ex-area__item__project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding-top: 4px;
+
+      .ex-area__item__project-list__item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .ex-area__item__project-list__item__title {
+          position: relative;
+          padding-left: $kku-padding-lg;
+          @include font-sub-title-3;
+          font-weight: bold;
+
+          &:first-child { margin-bottom: 4px; }
+
+          &:after {
+            content: '';
+            top: 8px;
+            left: 0;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #fff;
+            position: absolute;
+          }
+
+          .ex-area__item__project-list__item__title__date {
+            padding-left: 12px;
+            color: $kku-gray-color;
+            @include font-body;
+            font-weight: normal;
+          }
+        }
+
+        .ex-area__item__project-list__item__result,
+        .ex-area__item__project-list__item__role,
+        .ex-area__item__project-list__item__tech-stack {
+          display: flex;
+          @include font-sub-title-3;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: $kku-layout-medium) {
+
+  .resume__box-area.ex-area {
+    flex-direction: column;
+
+    .ex-area__label { width: 100%; }
+    .ex-area__content {
+      width: 100%;
+
+      .ex-area__item {
+        flex-direction: column;
+        gap: 16px;
+
+        &:first-child {
+          margin-top: 0;
+          padding-top: 0;
+        }
+
+        .ex-area__item__project-list { width: 100%; }
+      }
+    }
+  }
+}
