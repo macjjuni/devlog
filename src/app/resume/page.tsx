@@ -19,7 +19,6 @@ export default async function ResumePage() {
 
   // endregion
 
-
   return (
     <ResumeLayout>
       <Skills skill={resumeData.skill} />

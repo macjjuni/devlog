@@ -1,126 +1,126 @@
 @use "@/style/variables" as *;
 @use "@/style/mixins" as *;
 
-.ex-area {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
+.resume__box-area.ex-area {
 
-  .ex-area__label {
-    width: $kku-resume-label-width;
-    @include font-sub-title-1;
-  }
-
-  .ex-area__content {
+  .ex-area__item {
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    width: calc(100% - #{$kku-resume-label-width});
+    gap: 32px;
+    width: 100%;
+    padding: 40px 0;
+    border-bottom: 1px solid #353535;
 
-    .ex-area__content__item {
+    &:first-child {
+      margin-top: 2px;
+      padding-top: 0;
+    }
+    &:last-child { border: none; }
+
+    .ex-area__item__company {
       display: flex;
       flex-direction: column;
+      gap: 4px;
       width: 100%;
-      gap: 40px;
 
-      .ex-area__content__item__company {
+      .ex-area__item__company__top {
         display: flex;
-        flex-direction: column;
-        gap: 4px;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
 
-        .ex-area__content__item__company__top {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          width: 100%;
-
-          .ex-area__content__item__company__top__title {
-            @include font-sub-title-1;
-            font-weight: bold;
-          }
-
-          .ex-area__content__item__company__top__date {
-            @include font-body;
-            font-weight: normal;
-            color: $kku-gray-color;
-          }
+        .ex-area__item__company__top__title {
+          font-size: 20px;
+          font-weight: bold;
         }
-        .ex-area__content__item__company__position {
+
+        .ex-area__item__company__top__date {
           @include font-body;
           font-weight: normal;
           color: $kku-gray-color;
         }
       }
 
-      .ex-area__content__item__project-list {
+      .ex-area__item__company__position {
+        @include font-body;
+        font-weight: normal;
+        color: $kku-gray-color;
+      }
+    }
+
+    .ex-area__item__project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding-top: 4px;
+
+      .ex-area__item__project-list__item {
         display: flex;
         flex-direction: column;
-        gap: 32px;
-        padding-top: 4px;
+        gap: 8px;
 
-        .ex-area__content__item__project-list__item {
+        .ex-area__item__project-list__item__title {
+          position: relative;
+          padding-left: $kku-padding-lg;
+          @include font-sub-title-3;
+          font-weight: bold;
+
+          &:first-child { margin-bottom: 4px; }
+
+          &:after {
+            content: '';
+            top: 8px;
+            left: 0;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #fff;
+            position: absolute;
+          }
+
+          .ex-area__item__project-list__item__title__date {
+            padding-left: 12px;
+            color: $kku-gray-color;
+            @include font-body;
+            font-weight: normal;
+          }
+        }
+
+        .ex-area__item__project-list__item__result,
+        .ex-area__item__project-list__item__role,
+        .ex-area__item__project-list__item__tech-stack {
           display: flex;
-          flex-direction: column;
           gap: 8px;
+          @include font-sub-title-3;
+          line-height: 1.4;
 
-          .ex-area__content__item__project-list__item__title {
-            position: relative;
-            padding-left: $kku-padding-lg;
-            @include font-sub-title-3;
-            font-weight: bold;
-
-            &:after {
-              content: '';
-              top: 8px;
-              left: 0;
-              width: 6px;
-              height: 6px;
-              border-radius: 50%;
-              background-color: #fff;
-              position: absolute;
-            }
-
-            .ex-area__content__item__project-list__item__title__date {
-              @include font-body;
-              font-weight: normal;
-              color: $kku-gray-color;
-              padding-left: 12px;
-            }
-          }
-
-          .ex-area__content__item__project-list__item__result,
-          .ex-area__content__item__project-list__item__role,
-          .ex-area__content__item__project-list__item__tech-stack {
-            display: flex;
-            gap: 8px;
-            @include font-sub-title-3;
-            line-height: 1.4;
-
-            .label {
-              white-space: nowrap;
-            }
-          }
+          .label { white-space: nowrap; }
         }
       }
     }
   }
 }
 
+
 @media screen and (max-width: $kku-layout-medium) {
 
-  .ex-area {
+  .resume__box-area.ex-area {
+    flex-direction: column;
 
-    .ex-area__content__item {
-      flex-direction: column;
-      gap: 16px;
+    .ex-area__label { width: 100%; }
+    .ex-area__content {
+      width: 100%;
 
-      .ex-area__content__item__company-name {
-      }
+      .ex-area__item {
+        flex-direction: column;
+        gap: 16px;
 
-      .ex-area__content__item__project-list {
-        width: 100%;
+        &:first-child {
+          margin-top: 0;
+          padding-top: 0;
+        }
+
+        .ex-area__item__project-list { width: 100%; }
       }
     }
   }

@@ -1,0 +1,43 @@
+@use "@/style/variables" as *;
+@use "@/style/mixins" as *;
+
+
+.resume__box-area {
+  display: flex;
+  width: 100%;
+  padding: 40px 0;
+  border-bottom: 1px solid #fff;
+
+  &:last-child { border: none; }
+
+  .resume__box-area__label {
+    width: $kku-resume-label-width;
+    @include font-sub-title-2;
+    font-weight: bold;
+  }
+  .resume__box-area__content {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - #{$kku-resume-label-width});
+  }
+}
+
+
+@media screen and (max-width: $kku-layout-medium) {
+  .resume__box-area {
+    flex-direction: column;
+    padding: 0;
+    border: none;
+
+    .resume__box-area__label {
+      width: 100%;
+      padding: 12px 0;
+      border-bottom: 1px solid #fff;
+      @include font-sub-title-1;
+    }
+    .resume__box-area__content {
+      width: 100%;
+      padding: 24px 0;
+    }
+  }
+}
