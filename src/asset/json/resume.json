@@ -7,40 +7,72 @@
     "blog": "https://kku.dev"
   },
   "skill": {
-    "frontend": ["React", "Vue", "Next.js", "TypeScript"],
-    "styling": ["CSS3", "Scss", "TailwindCSS", "CSS in JS"],
-    "testing": ["Vitest", "Jest", "Storybook", "React test Library"],
-    "cooperation": ["Git", "Figma", "Jira", "Notion"]
+    "frontend": [
+      "React",
+      "Vue",
+      "Next.js",
+      "TypeScript"
+    ],
+    "styling": [
+      "CSS3",
+      "Scss",
+      "TailwindCSS",
+      "CSS in JS"
+    ],
+    "testing": [
+      "Vitest",
+      "Jest",
+      "Storybook",
+      "React test Library"
+    ],
+    "cooperation": [
+      "Git",
+      "Figma",
+      "Jira",
+      "Notion"
+    ]
   },
   "experience": [
     {
       "companyTitle": "스트라토(주)",
       "position": "프런트엔드 개발자",
       "date": "2023.03 ~ 현재 재직중",
-
       "projects": [
+        {
+          "title": "CNAPS - SPAM Web Service 개발",
+          "date": "2024.12 ~ 2025.04",
+          "role": "Frontend 아키텍처 설계 및 개발 가이드 작성",
+          "result": "CDD 기반 컴포넌트 개발과 반복 페이지 구조 템플릿화, 개발 표준 및 문서화를 통한 프런트엔드 개발 효율화",
+          "techStack": [
+            "Vue",
+            "Scss",
+            "AG Grid",
+            "Vite"
+          ]
+        },
         {
           "title": "사내 표준 컴포넌트 라이브러리 개발 및 환경 구축",
           "date": "2024.10 ~ 2024.11",
-          "role": "Frontend 개발 및 환경 구축",
+          "role": "Frontend 아키텍처 설계, 기본 컴포넌트 개발, 빌드 및 배포 프로세스 구축",
           "result": "사내 프런트엔드 개발 업무 개선 및 스토리북을 통한 쇼케이스 개발",
           "techStack": [
             "Vue",
             "Scss",
             "Vite",
-            "Storybook"
+            "Storybook",
+            "Nexus Repository Manager"
           ]
         },
         {
           "title": "LG 24 CoE Web3 광고서비스 개발",
           "date": "2024.08 ~ 2024.10",
-          "role": "Frontend 개발",
-          "result": "렌더링 최적화 및 Props Drilling 개선, 현업 PoC 테스트 통과",
+          "role": "Frontend 개발 및 스프린트 단위 이슈 대응",
+          "result": "렌더링 성능 개선 및 Props Drilling 최소화, 현업 PoC 테스트 통과",
           "techStack": [
-            "Nexjt.js",
+            "Next.js",
             "NX monorepo",
             "Video.js",
-            "Tanstack-Query",
+            "TanStack Query",
             "Swagger",
             "Figma",
             "Jira"
@@ -50,7 +82,7 @@
           "title": "DevOps 솔루션 리뉴얼",
           "date": "2024.05 ~ 2024.08",
           "role": "Frontend 아키텍처 설계 및 개발 가이드 작성",
-          "result": "Composition API 방식 도입, 코드 및 스타일 작성 표준 가이드 확보",
+          "result": "Composition API 기반 구조 도입 및 코드 스타일 표준 가이드 수립",
           "techStack": [
             "Vue3",
             "Pinia",
@@ -65,7 +97,7 @@
           "title": "TKS(SKT MSA 컨테이너 기반 토탈 솔루션), UI 컴포넌트 라이브러리 개발",
           "date": "2023.12 ~ 2024.04",
           "role": "Frontend 개발, UI 컴포넌트 및 쇼케이스 개발, 테스트 코드 작성",
-          "result": "신규 Feature 개발, 디자인 토큰 체계 개편, 테스트 코드 작성 및 문서화를 통한 안정적 UI 제공, API 모킹 통한 개발 효율성 향상",
+          "result": "신규 기능 개발 및 디자인 토큰 체계 개편, 테스트 코드 및 문서화로 안정적 UI 제공, API 모킹을 통한 개발 효율성 향상",
           "techStack": [
             "React",
             "TypeScript",
@@ -80,7 +112,7 @@
         {
           "title": "CMP Cloud Management Platform 솔루션 개발",
           "date": "2023.06 ~ 2023.11",
-          "role": "Frontend 개발",
+          "role": "Frontend 개발 및 공통 컴포넌트 구현",
           "result": "클라우드 리소스(VPC, 서브넷, 보안그룹 등) UI 및 공통 컴포넌트 개발",
           "techStack": [
             "Vue3",
@@ -109,7 +141,7 @@
             "Vite",
             "TypeScript",
             "Styled-Components",
-            "Tanstack-Query",
+            "TanStack Query",
             "MSW",
             "Figma"
           ]
@@ -118,11 +150,11 @@
           "title": "사내 프런트엔드 기술 스터디 주도",
           "date": "2022.09 ~ 2023.11",
           "role": "진행 및 리드",
-          "result": "Tanstack-Query, CSS In JS 스타일 방식 도입",
+          "result": "TanStack Query, CSS In JS 스타일 방식 도입",
           "techStack": [
             "React",
             "Webpack",
-            "Tanstack-Query",
+            "TanStack Query",
             "Styled-Components"
           ]
         },
