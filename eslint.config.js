@@ -6,7 +6,6 @@ import reactPlugin from 'eslint-plugin-react';
 import hooksPlugin from 'eslint-plugin-react-hooks';
 import importPlugin from 'eslint-plugin-import';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
-import eslintRecommended from '@eslint/js';
 
 export default [
   {
@@ -39,13 +38,11 @@ export default [
       'jsx-a11y': jsxA11yPlugin,
     },
     rules: {
-      ...eslintRecommended.configs.recommended.rules,
-      ...nextPlugin.rules,
+      ...nextPlugin.configs.recommended,
       // Airbnb-typescript 규칙 일부 수동 추가
       'import/no-unresolved': 'error',
       'import/extensions': 'off',
       'react/prop-types': 'off',
-      'react/react-in-jsx-scope': 'off',
       'react/jsx-filename-extension': ['warn', { extensions: ['.ts', '.tsx'] }],
       'no-useless-catch': 'off',
       'react/jsx-props-no-spreading': 'off',
@@ -60,7 +57,6 @@ export default [
       'import/no-cycle': 'off',
       'jsx-a11y/anchor-is-valid': 'off',
       'consistent-return': 'off',
-      'no-console': 'off',
       'jsx-a11y/click-events-have-key-events': 'off',
       'jsx-a11y/no-static-element-interactions': 'off',
       'no-nested-ternary': 'off',
