@@ -8,10 +8,12 @@ import { isNumber } from "@/utils/string";
 import Fallback from "./fallBack";
 
 export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
-export const revalidate = 60 * 10;
+export const revalidate = 600;
 
-export default async function ArchivePage({ searchParams }: { searchParams: { page: string | undefined } }) {
-  const { page } = searchParams;
+export default async function ArchivePage({ searchParams }: { searchParams: Promise<{ page: string | undefined }> }) {
+
+  const resolvedSearchParams = await searchParams; // searchParams 해소
+  const { page } = resolvedSearchParams; // 비구조화 할당
 
   // 숫자 형식이 아닌 페이지 사이즈 접근 에러 핸들링(use server)
   if (page !== undefined && !isNumber(page)) {

@@ -34,8 +34,7 @@ function BitcoinMarketChart() {
     datasets: [],
   });
 
-  const chartRef = useRef<ChartJS<"line", number[], string>>();
-
+  const chartRef = useRef<ChartJS<"line", number[], string> | null>(null);
   const isTablet = useMediaScreen("md");
 
   // endregion

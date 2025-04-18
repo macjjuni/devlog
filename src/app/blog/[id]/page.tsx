@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
 
-export default async function BlogPage({ params }: { params: { id: string | undefined } }) {
+export default async function BlogPage({ params }: { params: Promise<{ id: string | undefined }> }) {
 
-  if (!params?.id) {
+  const resolveParams = await params;
+
+  if (!resolveParams?.id) {
     redirect("/404");
   } else {
-    redirect(`/archive/${params.id}`);
+    redirect(`/archive/${resolveParams.id}`);
   }
 }

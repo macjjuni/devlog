@@ -7,10 +7,12 @@ import { getMetadata } from "@/config/meta";
 
 export const revalidate = 60;
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const { title, des, coverUrl } = await getNotionDetail(params.id);
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
 
-  return getMetadata(title, des, `archive/${params.id}`, coverUrl);
+  const resolveParams = await params;
+  const { title, des, coverUrl } = await getNotionDetail(resolveParams.id);
+
+  return getMetadata(title, des, `archive/${resolveParams.id}`, coverUrl);
 }
 
 export async function generateStaticParams() {
@@ -31,9 +33,10 @@ export async function generateStaticParams() {
   }
 }
 
-export default async function ArchiveDetailPage({ params }: { params: { id: string } }) {
-  const { coverUrl, alt, recordMap, error } = await getNotionDetail(params.id);
+export default async function ArchiveDetailPage({ params }: { params: Promise<{ id: string }> }) {
 
+  const resolvedParams = await params;
+  const { coverUrl, alt, recordMap, error } = await getNotionDetail(resolvedParams.id);
   const pageCoverUrl = coverUrl || undefined;
 
   if (error || !recordMap) {

@@ -7,8 +7,10 @@ import { ArchiveSidebar, ArchiveContent } from "@/layout";
 import type { Metadata } from "next";
 import { getMetadata } from "@/config/meta";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  return getMetadata(`Archive - ${params.slug}`, null, `archive/${params.slug}`, null);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+
+  const resolveParams = await params;
+  return getMetadata(`Archive - ${resolveParams.slug}`, null, `archive/${resolveParams.slug}`, null);
 }
 
 export async function generateStaticParams() {
@@ -29,9 +31,11 @@ export async function generateStaticParams() {
   }
 }
 
-export const revalidate = 60 * 10;
-export default async function ArchiveCategoryPage({ params }: { params: { slug: string } }) {
-  const { info, pages, error } = await getNotionCategoryList(params.slug);
+export const revalidate = 600;
+export default async function ArchiveCategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+
+  const resolveParams = await params;
+  const { info, pages, error } = await getNotionCategoryList(resolveParams.slug);
 
   if (error || !info) {
     redirect("/404");

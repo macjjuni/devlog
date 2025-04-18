@@ -18,10 +18,6 @@
   }
 }
 
-$nav-border: lighten($kku-border-color, 40%);
-$nav-border-active: darken($kku-white-color, 24%);
-$navigation-background-color: lighten($kku-background-color, 4%);
-
 .navigation__button__container {
   display: none;
 
@@ -49,7 +45,7 @@ $navigation-background-color: lighten($kku-background-color, 4%);
       position: relative;
       width: 28px;
       height: 3px;
-      background-color: $nav-border;
+      background-color: #848f9f;
       transition: inherit;
 
       &:after, &:before {
@@ -80,9 +76,9 @@ $navigation-background-color: lighten($kku-background-color, 4%);
   top: 72px;
   right: 16px;
   width: 160px;
-  border: 1px solid $nav-border;
+  border: 1px solid #848f9f;
   border-radius: 4px;
-  background-color: $navigation-background-color;
+  background-color: #1b1b1b;
   box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px;
   overflow: hidden;
   z-index: 9999;
@@ -93,7 +89,7 @@ $navigation-background-color: lighten($kku-background-color, 4%);
     gap: 6px;
     width: 100%;
     padding: 10px 16px;
-    color: darken($kku-white-color, 8%);
+    color: #ebebeb;
     @include font-sub-title-3;
 
     .navigation__list__item__link__check-icon {
@@ -110,7 +106,7 @@ $navigation-background-color: lighten($kku-background-color, 4%);
     }
 
     &:hover {
-      background-color: lighten($navigation-background-color, 6%);
+      background-color: #0f0f0f;
     }
   }
 }
