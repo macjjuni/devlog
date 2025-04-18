@@ -162,7 +162,8 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   // endregion
 
-  return <KModal title={"search"} isOpen={isOpen} onClose={onClose} size={"small"} escClosable overlayClosable content={searchContent} overlayOpacity={0.24} />;
+  return <KModal title={"search"} isOpen={isOpen} onClose={onClose} size={"small"} escClosable
+                 overlayClosable content={searchContent} overlayOpacity={0.24} />;
 }
 
 export default memo(SearchModal);

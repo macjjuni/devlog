@@ -5,8 +5,8 @@ import SplineWrapper from "@/components/about/spline/spline";
 import PageLoader from "@/components/common/pageLoader/pageLoader";
 import HeaderObserver from "@/layout/header/headerObserver";
 import "kku-ui/lib/styles/index.css";
-import "@/style/index.scss";
 import "./layout.scss";
+import "@/style/index.scss";
 import type { Viewport } from "next";
 
 export const viewport: Viewport = {

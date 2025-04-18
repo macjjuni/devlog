@@ -7,13 +7,17 @@ import ArchiveContent from "@/layout/archiveContent/archiveContent";
 import type { Metadata } from "next";
 import { getMetadata } from "@/config/meta";
 
-export async function generateMetadata({ searchParams }: { searchParams: { q: string } }): Promise<Metadata> {
-  return getMetadata(`검색: ${searchParams.q}`, null, `search?q=${searchParams.q}`, null);
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ q: string }> }): Promise<Metadata> {
+
+  const resolveSearchParams = await searchParams;
+  return getMetadata(`검색: ${resolveSearchParams.q}`, null, `search?q=${resolveSearchParams.q}`, null);
 }
 
-export const revalidate = 60;
-export default async function ArchiveSearchPage({ searchParams }: { searchParams: { q: string } }) {
-  const { info, searchPages, error } = await getNotionSearchPages(searchParams?.q || "");
+export const revalidate = 600;
+export default async function ArchiveSearchPage({ searchParams }: { searchParams: Promise<{ q: string }> }) {
+
+  const resolveSearchParams = await searchParams;
+  const { info, searchPages, error } = await getNotionSearchPages(resolveSearchParams?.q || "");
 
   if (error || !info) {
     redirect("/404");

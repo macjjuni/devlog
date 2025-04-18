@@ -63,14 +63,14 @@ $kku-border-color: #404752;
 $kku-background-color: #111111;
 $kku-background-smooth-color: #e0e0e0;
 
-$kku-hover-background-color: lighten($kku-background-color, 6%);
-$kku-disabled-color: darken($kku-font-color, 64%);
-$kku-disabled-background-color: lighten($kku-background-color, 4%);
+$kku-hover-background-color: #1f1f1f;
+$kku-disabled-color: #5c5c5c;
+$kku-disabled-background-color: #1b1b1b;
 
-$kku-active-background-color: lighten($kku-background-color, 16%);
+$kku-active-background-color: #373737;
 
 $kku-button-background-color: #2a2d33;
-$kku-button-hover-background-color: lighten($kku-button-background-color, 48%);
+$kku-button-hover-background-color: #888f9d;
 $kku-selection-background: $kku-primary-color;
 
 
