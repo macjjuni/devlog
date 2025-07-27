@@ -13,9 +13,10 @@
 
 body {
     font-family: $kku-default-font-family;
-    font-weight: 100;
+    font-weight: 400;
     color: $kku-font-color;
     background: $kku-background-color;
+    letter-spacing: -1px;
 }
 *:after, *:before {
     font-family: $kku-default-font-family;

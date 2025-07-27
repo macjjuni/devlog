@@ -1,39 +1,23 @@
-// region [Pretendard]
-
 @font-face {
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 900;
-    font-display: swap;
-    src: local('Pretendard Black'),
-    url('/assets/font/pretendard/subset-pretendard-black.woff2') format('woff2')
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: local('Pretendard Bold'),
-    url('/assets/font/pretendard/subset-pretendard-bold.woff2') format('woff2')
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-style: normal;
-    font-weight: normal;
-    font-display: swap;
-    src: local('Pretendard Regular'),
-    url('/assets/font/pretendard/subset-pretendard-regular.woff2') format('woff2')
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-style: normal;
+    font-family: 'JetBrains Mono';
+    src: url('/assets/font/jetbrainsMono/JetBrainsMono-Thin.woff2') format('woff2');
     font-weight: 100;
+    font-style: normal;
     font-display: swap;
-    src: local('Pretendard Thin'),
-    url('/assets/font/pretendard/subset-pretendard-thin.woff2') format('woff2')
 }
 
-// endregion
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/assets/font/jetbrainsMono/JetBrainsMono-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/assets/font/jetbrainsMono/JetBrainsMono-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}

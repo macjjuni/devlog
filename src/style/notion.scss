@@ -716,7 +716,7 @@ svg.notion-page-icon {
   background: var(--bg-color-2);
   border-radius: 4px;
   font-size: 85%;
-  font-family: 'pretendard', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;
   font-weight: 600;
 }
 
@@ -808,7 +808,7 @@ svg.notion-page-icon {
 
 .notion-code {
 
-  $notion-code__font-family: 'Menlo', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  $notion-code__font-family: 'JetBrains Mono';
 
   position: relative;
   width: 100%;
