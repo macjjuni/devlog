@@ -190,7 +190,6 @@
 }
 
 .notion-table-of-contents-active-item {
-  color: #fff !important;
   opacity: 1 !important;
   background: $kku-hover-background-color;
 }
@@ -1703,13 +1702,11 @@ svg.notion-page-icon {
 .notion-table-of-contents-item {
   display: flex;
   align-items: center;
-  border-radius: 4px;
 
   width: 100%;
   border-color: $kku-border-color;
 
-  color: var(--fg-color);
-  opacity: 0.8;
+  color: $kku-font-color;
   transition: background 0.1s ease-in, opacity 0.1s ease-in;
 
   text-decoration: none;
@@ -1722,11 +1719,6 @@ svg.notion-page-icon {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.notion-table-of-contents-item:hover {
-  background: $kku-hover-background-color;
-  opacity: 1;
 }
 
 .notion-table-of-contents-item-body {
@@ -2559,7 +2551,7 @@ svg.notion-page-icon {
 }
 
 .notion-simple-table tr:first-child td {
-  background: var(--bg-color-0);
+  background: var(--bg-color-2);
 }
 
 .notion-simple-table td {

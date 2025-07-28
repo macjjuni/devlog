@@ -1,8 +1,6 @@
 import React, { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Footer, Header, Main } from "@/layout";
-import SplineWrapper from "@/components/about/spline/spline";
-import PageLoader from "@/components/common/pageLoader/pageLoader";
 import HeaderObserver from "@/layout/header/headerObserver";
 import "kku-ui/lib/styles/index.css";
 import "@/style/index.scss";
@@ -14,18 +12,17 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#111111",
+  themeColor: "#fff",
 };
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
       <body>
-        <PageLoader />
         <div className="kku__body__wrapper">
           <HeaderObserver />
           <Header />
           <Main>
-            <SplineWrapper />
             {children}
           </Main>
           <Footer />

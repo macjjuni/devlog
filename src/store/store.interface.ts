@@ -1,5 +1,4 @@
 import { MarketChartDays } from "@/components/sidebar/bitcoinChart/bitcoinMarketChart.interface";
-import { SearchHistoryType } from "@/components/sidebar/search/searchModal";
 
 export interface ChartData {
   date: number[];
@@ -21,6 +20,4 @@ export interface StoreProps {
   setBtcChart: (value: MarketChartDays, data: ChartData) => void;
   realTimeMarketPriceUSD: string
   setRealTimeMarketPriceUSD: (price: string) => void
-  searchHistory: SearchHistoryType[];
-  setSearchHistory: (historyList: SearchHistoryType[]) => void
 }

@@ -20,7 +20,7 @@
     "framer-motion": "^12.7.4",
     "kku-ui": "^0.0.519",
     "kku-util": "^0.0.151",
-    "next": "^15.3.1",
+    "next": "^15.4.4",
     "nextjs-toploader": "^3.7.15",
     "notion-client": "^7.3.0",
     "notion-utils": "^7.3.0",

@@ -36,12 +36,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // const projectUrls = projects.map(({ id, published }) => ({
-  //   url: `${domain}/project/${id}`,
-  //   lastModified: new Date(published).toISOString(),
-  //   changeFrequency: "weekly",
-  //   priority: 0.6,
-  // }))
-
   return [...routeUrls, ...categoryUrls, ...pageUrls];
 }

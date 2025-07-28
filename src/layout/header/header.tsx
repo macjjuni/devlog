@@ -30,9 +30,6 @@ export default function Header() {
     <header className={`header ${rootClass}`}>
       <div className="header__wrapper">
         <div className="header__wrapper__container">
-          <Link href="/" className="header__logo__link">
-            {logoText}
-          </Link>
           <Navigation />
         </div>
       </div>

@@ -2,10 +2,10 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getMetadata } from "@/config/meta";
-import { ArchiveSidebar, ArchiveContent } from "@/layout";
+import { ArchiveContent } from "@/layout";
 import { getNotionPages } from "@/api/notion/page";
 import { isNumber } from "@/utils/string";
-import Fallback from "./fallBack";
+
 
 export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
 export const revalidate = 600;
@@ -21,7 +21,7 @@ export default async function ArchivePage({ searchParams }: { searchParams: Prom
   }
 
   console.time("Get All Archives");
-  const { info, pages, error } = await getNotionPages();
+  const { pages, error } = await getNotionPages();
   console.timeEnd("Get All Archives");
 
   if (error) {
@@ -29,10 +29,7 @@ export default async function ArchivePage({ searchParams }: { searchParams: Prom
   }
 
   return (
-    <Suspense fallback={<Fallback />}>
-      <aside className="archive__layout__sidebar">
-        <ArchiveSidebar info={info} />
-      </aside>
+    <Suspense fallback={null}>
       <section className="archive__layout__content">
         <ArchiveContent pages={pages} />
       </section>
