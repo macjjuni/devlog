@@ -9,7 +9,7 @@ const motions = {
   initial: { opacity: 0, y: "-12px", zIndex: -1 },
   animate: { opacity: 1, y: "0", zIndex: 100 },
   exit: { opacity: 0, y: "-12px", zIndex: -1 },
-  transition: { type: "spring", duration: 0.3 },
+  transition: { type: "spring", duration: 0.24 },
 };
 export default function NavigationList({ isOpen, close }: { isOpen: boolean; close: () => void }) {
   // region [Hooks]
