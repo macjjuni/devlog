@@ -6,20 +6,15 @@ import ActiveCheckSvg from "@/components/sidebar/category/ActiveCheckSvg";
 import { AnimatePresence, motion } from "framer-motion";
 
 const motions = {
-  initial: { opacity: 0, y: "-12px", zIndex: -1 },
-  animate: { opacity: 1, y: "0", zIndex: 100 },
-  exit: { opacity: 0, y: "-12px", zIndex: -1 },
-  transition: { type: "spring", duration: 0.24 },
+  initial: { opacity: 0, y: -12 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -12 },
+  transition: { type: "spring", duration: 0.24 } as const,
 };
-export default function NavigationList({ isOpen, close }: { isOpen: boolean; close: () => void }) {
-  // region [Hooks]
 
+export default function NavigationList({ isOpen, close }: { isOpen: boolean; close: () => void }) {
   const pathname = usePathname();
   const navListRef = useRef<HTMLDivElement | null>(null);
-
-  // endregion
-
-  // region [Style]
 
   const navLinkClass = useCallback(
     (path: string) => {
@@ -31,16 +26,25 @@ export default function NavigationList({ isOpen, close }: { isOpen: boolean; clo
     [pathname],
   );
 
-  // endregion
-
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div ref={navListRef} className="navigation__list__wrapper" transition={motions.transition} initial={motions.initial} animate={motions.animate} exit={motions.exit}>
+        <motion.div
+          ref={navListRef}
+          className="navigation__list__wrapper"
+          initial={motions.initial}
+          animate={motions.animate}
+          exit={motions.exit}
+          transition={motions.transition}
+        >
           <ul className="navigation__list">
             {routes.map((route) => (
               <li key={route.id} className="navigation__list__item">
-                <Link href={route.path} className={`navigation__list__item__link ${navLinkClass(route.path)}`} onClick={close}>
+                <Link
+                  href={route.path}
+                  className={`navigation__list__item__link ${navLinkClass(route.path)}`}
+                  onClick={close}
+                >
                   <ActiveCheckSvg className="navigation__list__item__link__check-icon" />
                   {route.title}
                 </Link>
