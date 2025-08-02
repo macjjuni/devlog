@@ -1,3 +1,4 @@
+import js from '@eslint/js';
 import nextPlugin from 'eslint-config-next';
 import tsEslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
@@ -8,6 +9,7 @@ import importPlugin from 'eslint-plugin-import';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 
 export default [
+  js.configs.recommended,
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     ignores: [
@@ -21,7 +23,9 @@ export default [
       parser: tsParser,
       parserOptions: {
         project: './tsconfig.json',
-        createDefaultProgram: true,
+        tsconfigRootDir: process.cwd(),
+        ecmaVersion: 2020,
+        sourceType: 'module',
       },
       globals: {
         browser: true,
@@ -38,8 +42,9 @@ export default [
       'jsx-a11y': jsxA11yPlugin,
     },
     rules: {
-      ...nextPlugin.configs.recommended,
-      // Airbnb-typescript 규칙 일부 수동 추가
+      ...nextPlugin.configs.recommended.rules, // ✅ `.rules`로 명시적으로 불러와야 함
+
+      // 커스텀 규칙들 ↓
       'import/no-unresolved': 'error',
       'import/extensions': 'off',
       'react/prop-types': 'off',
@@ -50,8 +55,8 @@ export default [
       'react/jsx-no-useless-fragment': 'off',
       'react/no-unknown-property': ['error', { ignore: ['css'] }],
       'react/require-default-props': 'off',
-      'react-hooks/rules-of-hooks': 'warn', // 권장: off → warn
-      'react-hooks/exhaustive-deps': 'warn', // 권장: off → warn
+      'react-hooks/rules-of-hooks': 'warn',
+      'react-hooks/exhaustive-deps': 'warn',
       'no-else-return': 'off',
       'react/destructuring-assignment': 'off',
       'import/no-cycle': 'off',
