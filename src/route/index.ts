@@ -12,13 +12,7 @@ const routes: IRoutes[] = [
     title: "Archive",
     path: "/archive",
     show: true,
-  },
-  {
-    id: 2,
-    title: "Resume",
-    path: "/resume",
-    show: true,
-  },
+  }
 ];
 
 export const getCategoryPageUrl = (category: string) => `/archive/category/${encodeURIComponent(category)}`;
