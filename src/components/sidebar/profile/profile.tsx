@@ -10,7 +10,7 @@ interface ProfileProps {
 function Profile({ description, imageUrl }: ProfileProps) {
   return (
     <div className="profile__card">
-      {imageUrl && <Image className="profile__card__image" src={imageUrl} alt="profile image" width={400} height={400} />}
+      {imageUrl && <Image className="profile__card__image" src="https://avatars.githubusercontent.com/u/38034518?v=4" alt="profile image" width={400} height={400} />}
       <div className="profile__card__content">
         <p className="profile__card__content__name">{process.env.NEXT_PUBLIC_LOGO}</p>
         <p className="profile__card__content__status-message">{description}</p>
