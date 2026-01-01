@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getMetadata } from "@/config/meta";
-import { ArchiveSidebar, ArchiveContent } from "@/layout";
+import { ArchiveContent, ArchiveSidebar } from "@/layout";
 import { getNotionPages } from "@/api/notion/page";
 import { isNumber } from "@/utils/string";
 import Fallback from "./fallBack";
@@ -11,7 +11,6 @@ export const metadata: Metadata = getMetadata("Archive", null, "archive", null);
 export const revalidate = 600;
 
 export default async function ArchivePage({ searchParams }: { searchParams: Promise<{ page: string | undefined }> }) {
-
   const resolvedSearchParams = await searchParams; // searchParams 해소
   const { page } = resolvedSearchParams; // 비구조화 할당
 
@@ -30,12 +29,8 @@ export default async function ArchivePage({ searchParams }: { searchParams: Prom
 
   return (
     <Suspense fallback={<Fallback />}>
-      <aside className="archive__layout__sidebar">
-        <ArchiveSidebar info={info} />
-      </aside>
-      <section className="archive__layout__content">
-        <ArchiveContent pages={pages} />
-      </section>
+      <ArchiveSidebar info={info} />
+      <ArchiveContent pages={pages} />
     </Suspense>
   );
 }

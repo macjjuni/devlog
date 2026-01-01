@@ -6,7 +6,6 @@ import usePageSize from "@/hook/usePageSize";
 import { KIcon } from "kku-ui";
 import config from "@/config/notion.config";
 import PageButton from "./pageButton";
-import "./pagination.scss";
 
 interface IPagination {
   total: number;

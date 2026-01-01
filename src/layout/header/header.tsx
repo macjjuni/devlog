@@ -1,40 +1,33 @@
 "use client";
 
-import React, { useMemo } from "react";
-import Link from "next/link";
-import Navigation from "@/components/common/navigation/navigation";
-import "./header.scss";
+import { Link } from "next-view-transitions";
+import Navigation from "@/components/common/navigation";
 import { useStore } from "@/store/store";
 
-const logoText = process.env.NEXT_PUBLIC_LOGO || "kku";
+const logoText = "kku.log";
 
 export default function Header() {
-  // region [Hooks]
-
   const isHeaderMini = useStore((state) => state.isHeaderMini);
 
-  // endregion
-
-  // region [Styles]
-
-  const rootClass = useMemo(() => {
-    if (isHeaderMini) {
-      return "header--mini";
-    }
-    return "";
-  }, [isHeaderMini]);
-
-  // endregion
-
   return (
-    <header className={`header ${rootClass}`}>
-      <div className="header__wrapper">
-        <div className="header__wrapper__container">
-          <Link href="/" className="header__logo__link">
-            {logoText}
-          </Link>
-          <Navigation />
-        </div>
+    <header
+      className={`
+        fixed top-0 left-0 z-[100] w-full flex-none transition-all duration-300 ease-in-out
+        ${isHeaderMini ? "h-header-mini border-b backdrop-blur-md" : "h-header bg-transparent"}
+      `}
+    >
+      <div className="mx-auto flex h-full w-full max-w-[1100px] items-center justify-between px-4 tablet:px-6">
+        <Link
+          href="/"
+          className={[
+              'font-black italic tracking-tighter transition-all duration-300',
+              isHeaderMini ? "text-2xl" : "text-3xl",
+            ].join(' ')}
+        >
+          {logoText}
+        </Link>
+
+        <Navigation />
       </div>
     </header>
   );

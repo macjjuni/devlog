@@ -3,7 +3,7 @@ import IRoutes from "@/@types/route";
 const routes: IRoutes[] = [
   {
     id: 0,
-    title: "About",
+    title: "Home",
     path: "/",
     show: true,
   },

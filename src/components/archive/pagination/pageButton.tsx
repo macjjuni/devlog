@@ -1,9 +1,8 @@
 "use client";
 
 import { memo, ReactNode, useCallback } from "react";
-// import Link from "next/link";
+import { Link } from 'next-view-transitions'
 import { usePathname, useSearchParams } from "next/navigation";
-import Link from "next/link";
 
 interface IPageButton {
   text?: string | number;

@@ -5,13 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { commentElementId } from "@/components/archive/archiveComment/archiveComment";
+import { commentElementId } from "@/components/archive/archiveComment";
 
 import type { ExtendedRecordMap } from "notion-types";
 import { NotionRenderer } from "react-notion-x";
 import PageCover from "./pageCover";
-import "@/style/notion.scss";
-import "@/style/prism.css";
+
 
 const Code = dynamic(() => import("react-notion-x/build/third-party/code").then((m) => m.Code), { ssr: true });
 const Collection = dynamic(() => import("react-notion-x/build/third-party/collection").then((m) => m.Collection));

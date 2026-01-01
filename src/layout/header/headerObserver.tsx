@@ -19,5 +19,5 @@ export default function HeaderObserver() {
     return () => observer.disconnect();
   }, []);
 
-  return <div className="header__observer" ref={obsRef} />;
+  return <div className="absolute top-0 h-px w-px m-0 opacity-0" ref={obsRef} />;
 }

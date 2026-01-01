@@ -1,15 +1,13 @@
 "use client";
 
-import { memo, UIEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { UIEvent, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { createDebounce, createThrottle } from "@/utils/debounceThrottle";
 import { ICategory, SelectPropertyResponse } from "@/@types/notion";
-import ActiveCheckSvg from "@/components/sidebar/category/ActiveCheckSvg";
 import { getCategoryPageUrl } from "@/route";
 import useCategoryName from "@/hook/useCategoryName";
 import { usePathname } from "next/navigation";
 import { KIcon } from "kku-ui";
-import "./category.scss";
 
 type ScrollPositionType = "left" | "between" | "right";
 type ScrollDirectionType = Omit<ScrollPositionType, "between">;
@@ -19,160 +17,122 @@ interface CategoryProps {
 }
 
 const arrowIconSize = 20;
-
 const initialCategoryList: SelectPropertyResponse[] = [{ id: "all", name: "All", description: "", color: "default" }];
 
-function Category({ list }: CategoryProps) {
+export default function Category({ list }: CategoryProps) {
   // region [Hooks]
-
   const pathname = usePathname();
   const categoryRef = useRef<HTMLUListElement>(null);
   const [scrollMaxWidth, setScrollMaxWidth] = useState(0);
   const [isScroll, setIsScroll] = useState(false);
   const [scrollPosition, setScrollPosition] = useState<ScrollPositionType>("left");
   const categoryName = useCategoryName();
-
   // endregion
 
   // region [Privates]
-
   const isLeftScrollIcon = useMemo(() => isScroll && scrollPosition !== "left", [isScroll, scrollPosition]);
   const isRightScrollIcon = useMemo(() => isScroll && scrollPosition !== "right", [isScroll, scrollPosition]);
 
-  const scrollAction = useCallback((direction: ScrollDirectionType) => {
+  const scrollAction = (direction: ScrollDirectionType) => {
     const scrollDefaultValue = 120;
     const { scrollLeft } = categoryRef.current!;
     const scrollValue = scrollLeft + (direction === "left" ? -scrollDefaultValue : scrollDefaultValue);
-
     categoryRef.current!.scroll({ top: 0, left: scrollValue, behavior: "smooth" });
-  }, []);
+  };
 
+  // 순서 재배치 로직 제거: All만 앞에 붙이고 나머지는 원본 순서 유지
   const sanitizedList = useMemo(() => {
-    const filteredList: ICategory = list || [];
-    const lowerCaseCategoryName = categoryName?.toLowerCase();
+    return initialCategoryList.concat(list || []);
+  }, [list]);
 
-    // Archive 메인 경로 접속
-    if (lowerCaseCategoryName === undefined) {
-      return initialCategoryList.concat(filteredList);
+  const initializeWidth = createDebounce(() => {
+    if (!categoryRef.current) return;
+    const { innerWidth: fullWidth } = window;
+    const { scrollWidth } = categoryRef.current;
+    setScrollMaxWidth(scrollWidth - fullWidth + 12 * 2);
+    setIsScroll(scrollWidth > fullWidth + 32);
+  }, 160);
+
+  const isActiveCategory = (name: string) => {
+    if (name === "All") {
+      return categoryName === null && !pathname.includes("search");
     }
-    // category 페이지 접속
-    const currentCategoryIdx = filteredList.findIndex((item) => {
-      return item?.name.toLowerCase() === lowerCaseCategoryName;
-    });
-
-    // 잘 못된 Category 인 경우
-    if (currentCategoryIdx === -1) {
-      return initialCategoryList.concat(filteredList);
-    }
-    // 현재 Category 객체를 All 아래에 위치 시키고 반환
-    const currentCategory = { ...filteredList[currentCategoryIdx] };
-
-    const remainingCategories = filteredList?.filter((item) => {
-      return item.name.toLowerCase() !== lowerCaseCategoryName;
-    });
-
-    return initialCategoryList.concat(currentCategory, remainingCategories);
-  }, [list, categoryName, initialCategoryList]);
-
-  const initializeWidth = useCallback(
-    createDebounce(() => {
-      if (!categoryRef.current) {
-        return;
-      }
-
-      const { innerWidth: fullWidth } = window;
-      const { scrollWidth } = categoryRef.current;
-
-      setScrollMaxWidth(scrollWidth - fullWidth + 12 * 2); // 16 is padding
-
-      if (scrollWidth > fullWidth + 32) {
-        setIsScroll(true);
-      } else {
-        setIsScroll(false);
-      }
-    }, 160),
-    [],
-  );
-
-  const linkClass = useCallback(
-    (name: string) => {
-      if ((name === "All" && categoryName === null && !pathname.includes("search")) || name.toLowerCase() === categoryName?.toLowerCase()) {
-        return "category__card__item__link--active";
-      }
-      return "";
-    },
-    [categoryName],
-  );
-
+    return name.toLowerCase() === categoryName?.toLowerCase();
+  };
   // endregion
 
   // region [Events]
+  const onScroll = createThrottle((e?: UIEvent<HTMLUListElement>) => {
+    if (!e) return; // e가 없을 경우 조기 리턴 (타입 가드)
 
-  const onScroll = useCallback(
-    createThrottle((e) => {
-      const event = e as UIEvent<HTMLUListElement>;
-      const { scrollLeft } = event.target as HTMLElement;
-
-      if (scrollLeft < 2) {
-        setScrollPosition("left");
-        return;
-      }
-      if (scrollLeft > scrollMaxWidth - 2) {
-        setScrollPosition("right");
-        return;
-      }
-      if (scrollLeft > 0) {
-        setScrollPosition("between");
-      }
-    }, 120),
-    [scrollMaxWidth],
-  );
-
-  const onScrollAction = useCallback(
-    (direction: ScrollDirectionType) => {
-      scrollAction(direction);
-    },
-    [scrollAction],
-  );
-
+    const { scrollLeft } = e.target as HTMLElement;
+    if (scrollLeft < 2) {
+      setScrollPosition("left");
+    } else if (scrollLeft > scrollMaxWidth - 2) {
+      setScrollPosition("right");
+    } else {
+      setScrollPosition("between");
+    }
+  }, 120);
   // endregion
-
-  // region [Effects]
 
   useEffect(() => {
     initializeWidth();
-
     window.addEventListener("resize", initializeWidth);
     return () => window.removeEventListener("resize", initializeWidth);
-  }, []);
-
-  // endregion
+  }, [initializeWidth]);
 
   return (
-    <div className="category__card">
+    <div className="relative border-b border-border">
       {isLeftScrollIcon && (
-        <button type="button" className="category__card__scroll-action-start__button" aria-label={"left scroll"} onClick={() => onScrollAction("left")}>
-          <KIcon icon={"keyboard_arrow_down"} className="category__card__scroll-action-start__button-icon" size={arrowIconSize} />
+        <button
+          type="button"
+          onClick={() => scrollAction("left")}
+          className="hidden md:flex absolute left-0 top-[2px] z-[1] h-[30px] w-6 items-center justify-start border-none bg-[#111111]
+          text-white after:absolute after:right-0 after:top-0 after:h-full after:w-[0.5px] after:bg-white after:content-['']"
+        >
+          <KIcon icon="keyboard_arrow_down" className="rotate-90" size={arrowIconSize} />
         </button>
       )}
-      <ul ref={categoryRef} className="category__card__list" onScroll={onScroll}>
-        {sanitizedList.map((listItem) => (
-          <li key={listItem.id} className="category__card__item">
-            <Link href={listItem.name === "All" ? "/archive" : getCategoryPageUrl(listItem.name)} className={`category__card__item__link ${linkClass(listItem.name)}`}>
-              <ActiveCheckSvg className="category__card__item__link__active-character" />
-              <div className="category__card__item__link__hover-character" />
-              <span className="category__card__item__text">{listItem.name}</span>
-            </Link>
-          </li>
-        ))}
+
+      <ul
+        ref={categoryRef}
+        onScroll={onScroll}
+        className="relative w-full rounded-[4px] border-[0.5px] border-gray-200 p-4
+          desktop:flex desktop:flex-row desktop:flex-nowrap desktop:gap-[6px] desktop:overflow-auto desktop:border-none desktop:p-0 desktop:pb-4 desktop:whitespace-nowrap no-scrollbar transition-all"
+      >
+        {sanitizedList.map((listItem) => {
+          const active = isActiveCategory(listItem.name);
+          return (
+            <li
+              key={listItem.id}
+              className="relative group before:absolute before:bottom-[-0.5px] before:left-1 before:h-[0.5px] before:w-[calc(100%-8px)]
+              before:bg-gray-200 before:transition-opacity before:content-[''] first:pt-0 hover:before:opacity-0 md:before:content-none"
+            >
+              <Link
+                href={listItem.name === "All" ? "/archive" : getCategoryPageUrl(listItem.name)}
+                className={`flex items-center gap-1 rounded-[4px] py-[6px] pl-4 pr-2 transition-colors duration-300 hover:bg-gray-100 
+                  desktop:hover:bg-transparent md:px-4 md:py-2 ${active ? "font-medium bg-gray-50" : ""}`}
+              >
+                <div
+                  className={`relative h-6 overflow-hidden transition-all duration-300 after:absolute after:top-[48%] after:left-1/2 
+                      after:-translate-x-1/2 after:content-['>'] ${active ? "hidden" : "w-0 group-hover:w-4 md:group-hover:w-[10px]"}`}
+                />
+                <span className="text-sm">{listItem.name}</span>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
+
       {isRightScrollIcon && (
-        <button type="button" className="category__card__scroll-action-end__button" aria-label={"right scroll"} onClick={() => onScrollAction("right")}>
-          <KIcon icon={"keyboard_arrow_down"} className="category__card__scroll-action-end__button-icon" size={arrowIconSize} />
-        </button>
+        <button
+          type="button"
+          onClick={() => scrollAction("right")}
+          className="hidden md:flex absolute right-0 top-[2px] z-[1] h-[30px] w-6 items-center justify-end border-none bg-[#111111] text-white
+                      after:absolute after:left-0 after:top-0 after:h-full after:w-[0.5px] after:bg-white after:content-['']"
+        />
       )}
     </div>
   );
 }
-
-export default memo(Category);

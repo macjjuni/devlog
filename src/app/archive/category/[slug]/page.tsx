@@ -43,9 +43,7 @@ export default async function ArchiveCategoryPage({ params }: { params: Promise<
 
   return (
     <Suspense fallback={<Fallback />}>
-      <aside className="archive__layout__sidebar">
-        <ArchiveSidebar info={info} />
-      </aside>
+      <ArchiveSidebar info={info} />
       <section className="archive__layout__content">
         <ArchiveContent pages={pages} />
       </section>

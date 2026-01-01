@@ -1,13 +1,14 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
+import { ViewTransitions } from "next-view-transitions";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Footer, Header, Main } from "@/layout";
-import SplineWrapper from "@/components/about/spline/spline";
-import PageLoader from "@/components/common/pageLoader/pageLoader";
-import HeaderObserver from "@/layout/header/headerObserver";
-import "kku-ui/lib/styles/index.css";
-import "@/style/index.scss";
-import "./layout.scss";
 import type { Viewport } from "next";
+import HeaderObserver from "@/layout/header/headerObserver";
+import "@/style/globals.css";
+import 'react-notion-x/src/styles.css'
+import 'prismjs/themes/prism-tomorrow.css'
+import "kku-ui/index.css";
+
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -16,22 +17,21 @@ export const viewport: Viewport = {
   userScalable: false,
   themeColor: "#111111",
 };
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ko">
-      <body>
-        <PageLoader />
-        <div className="kku__body__wrapper">
-          <HeaderObserver />
-          <Header />
-          <Main>
-            <SplineWrapper />
-            {children}
-          </Main>
-          <Footer />
-        </div>
-      </body>
-      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
-    </html>
+    <ViewTransitions>
+      <html lang="ko">
+        <body>
+          <div className="mx-auto flex flex-col min-h-dvh pt-header">
+            <HeaderObserver />
+            <Header />
+            <Main>{children}</Main>
+            <Footer />
+          </div>
+        </body>
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
+      </html>
+    </ViewTransitions>
   );
 }
