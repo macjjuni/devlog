@@ -1,3 +1,5 @@
+"use client";
+
 import NextTopLoader, { NextTopLoaderProps } from "nextjs-toploader";
 
 const loaderProps: NextTopLoaderProps = {

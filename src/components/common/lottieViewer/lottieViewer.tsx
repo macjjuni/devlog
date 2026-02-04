@@ -1,3 +1,5 @@
+"use client";
+
 import Lottie, { type LottieProps } from "react-lottie-player";
 
 export interface ILottieItem {

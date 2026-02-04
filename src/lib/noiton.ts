@@ -97,8 +97,18 @@ const notion = {
 
     const pages = searchPages.results as PageObjectResponse[];
     const currentPages = pages.filter((page) => page.parent.type === "database_id"); // 다른 노션 페이지 삭제
-    // 공개 페이지만 필터링
-    const filteredPages = currentPages.filter((item) => item.properties["상태"].type === "status" && item.properties["상태"].status?.name === "공개");
+
+    // 공개 페이지 + 프로젝트가 아닌 페이지만 필터링
+    const filteredPages = currentPages.filter((item) => {
+      const publishedProp = item.properties[propertyTable.Published];
+      const isPublished = publishedProp?.type === "status" && publishedProp.status?.name === "공개";
+
+      const checkboxProp = item.properties[propertyTable.Checkbox];
+      const isNotProject = checkboxProp?.type === "checkbox" && checkboxProp.checkbox === false;
+
+      return isPublished && isNotProject;
+    });
+
     return notion.getParsePages(filteredPages);
   },
   // 페이지 상세 조회
@@ -106,21 +116,31 @@ const notion = {
   // 노션 페이지 커버 이미지 주소 가져오는 함수
   generateCoverUrl: (recordMap: RecordMap) => {
     // page 타입인 블럭의 키값 찾기
-    let pageKey = "";
-    Object.keys(recordMap.block).forEach((key) => {
-      if (recordMap.block[key].value.type === "page") pageKey = key;
+    const pageKey = Object.keys(recordMap.block).find((key) => {
+      return recordMap.block[key]?.value?.type === "page";
     });
 
-    const pageBlock = recordMap.block[pageKey].value;
-    const alt = pageBlock.properties.title[0][0]; // 페이지 타이틀 이미지 alt 속성으로 사용
+    if (!pageKey) {
+      return { coverUrl: "", alt: config.post.DEFAULT_ALT };
+    }
+
+    const pageBlock = recordMap.block[pageKey]?.value;
+    if (!pageBlock) {
+      return { coverUrl: "", alt: config.post.DEFAULT_ALT };
+    }
+
+    const alt = pageBlock.properties?.title?.[0]?.[0] || config.post.DEFAULT_ALT;
+
     try {
-      if (!pageBlock.format) throw Error("Not found pageBlock!");
+      if (!pageBlock.format?.page_cover) {
+        throw Error("Not found page_cover!");
+      }
       const originUrl = pageBlock.format.page_cover;
       const filteredUrl = originUrl.charAt(0) === "/" ? `https://www.notion.so${originUrl}` : originUrl;
-      const coverUrl = `https://www.notion.so/image/${encodeURIComponent(filteredUrl)}?table=block&id=${pageBlock?.id}&cache=v2`;
+      const coverUrl = `https://www.notion.so/image/${encodeURIComponent(filteredUrl)}?table=block&id=${pageBlock.id}&cache=v2`;
       return { coverUrl, alt };
     } catch {
-      return { coverUrl: "", alt: config.post.DEFAULT_ALT };
+      return { coverUrl: "", alt };
     }
   },
 };

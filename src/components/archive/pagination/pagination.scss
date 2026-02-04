@@ -16,11 +16,11 @@
   }
 
   .pagination__prev-button {
-    transform: rotate(90deg);
+    // transform removed: using Unicode arrow (‹) instead
   }
 
   .pagination__next-button {
-    transform: rotate(-90deg);
+    // transform removed: using Unicode arrow (›) instead
   }
 
   .pagination__number-button, .pagination__number-button--active, .pagination__extra-button {

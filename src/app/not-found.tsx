@@ -1,3 +1,5 @@
+"use client";
+
 import ErrorPage from "@/app/404/page";
 
 export default function NotFound() {

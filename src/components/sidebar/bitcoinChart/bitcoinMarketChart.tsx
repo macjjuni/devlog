@@ -2,7 +2,7 @@
 
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import useMediaScreen from "@/hook/useMediaScreen";
-import { KButton } from "kku-ui";
+// import { KButton } from "kku-ui"; // Temporarily disabled for Next.js 16
 import { getBtcRangeData } from "@/api/bitcoin/marketChart";
 import { Line } from "react-chartjs-2";
 import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Tooltip } from "chart.js";
@@ -149,10 +149,10 @@ function BitcoinMarketChart() {
       />
       <div className="bitcoin__chart__button__group">
         {marketChartDays.map((marketChartDay) => (
-          <KButton key={marketChartDay.value} size={"small"} onClick={() => onClickChangeDays(marketChartDay.value)}
+          <button key={marketChartDay.value} onClick={() => onClickChangeDays(marketChartDay.value)}
             className={`bitcoin__chart__button ${isActiveButtonClass(marketChartDay.value)}`}>
             {marketChartDay.text}
-          </KButton>
+          </button>
         ))}
       </div>
     </div>
