@@ -1,9 +1,13 @@
+import { cache } from "react";
 import request from "@/lib/request";
 import notion, { getHeadDescription } from "@/lib/noiton";
 import { getPageTitle } from "notion-utils";
 import config from "@/config/notion.config";
 
 const { blog } = config;
+
+// Cache Notion database info to prevent duplicate API calls
+const getCachedNotionInfo = cache(notion.getNotionInfo);
 
 export async function getNotionCoverUrl() {
   const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
@@ -13,7 +17,7 @@ export async function getNotionCoverUrl() {
       throw new Error("DATABASE_ID is undefined.");
     }
 
-    const tempInfo = await notion.getNotionInfo(databaseId);
+    const tempInfo = await getCachedNotionInfo(databaseId);
     const { coverURL } = notion.getParseNotionInfo(tempInfo); // 데이터 가공
 
     const coverUrl = coverURL || (blog.SITE_IMAGE as string);
@@ -82,7 +86,7 @@ export async function getNotionCategoryList(categoryName: string) {
 
     const pages = await notion.getPages(databaseId, { categoryName });
 
-    const tempInfo = await notion.getNotionInfo(databaseId);
+    const tempInfo = await getCachedNotionInfo(databaseId);
     const info = notion.getParseNotionInfo(tempInfo); // 데이터 가공
 
     const cateArr = info.category?.map((cate) => cate.name) || [];
@@ -108,7 +112,7 @@ export async function getNotionSearchPages(keyword: string) {
     }
 
     const searchPages = await notion.getSelectPage(keyword);
-    const tempInfo = await notion.getNotionInfo(databaseId);
+    const tempInfo = await getCachedNotionInfo(databaseId);
     const info = notion.getParseNotionInfo(tempInfo); // 데이터 가공
 
     return { searchPages, info, error: false };

@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, memo } from "react";
+import { useMemo, memo, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import usePageSize from "@/hook/usePageSize";
-import { KIcon } from "kku-ui";
+// import { KIcon } from "kku-ui"; // Temporarily disabled for Next.js 16
 import config from "@/config/notion.config";
 import PageButton from "./pageButton";
 
@@ -20,18 +20,22 @@ const Pagination = ({ total }: IPagination) => {
   const { replace } = useRouter();
   const pageSize = usePageSize("page");
 
-  // 숫자 형식이 아닌 페이지 사이즈 접근 에러 핸들링(use client)
-  if (Number.isNaN(pageSize)) {
-    replace("/404");
-  }
-
   const current = Number(pageSize);
   const lastPageNumber = Math.ceil(total / POSTS_PER_PAGE);
 
-  // 페이지네이션 오버될 때 에러 핸들링 && 페이지 검색결과 없을 때 제외
-  if (pageSize > lastPageNumber && lastPageNumber !== 0) {
-    replace("/404");
-  }
+  // 에러 핸들링: useEffect로 이동하여 렌더링 중 side effect 방지
+  useEffect(() => {
+    // 숫자 형식이 아닌 페이지 사이즈 접근 에러 핸들링
+    if (Number.isNaN(pageSize)) {
+      replace("/404");
+      return;
+    }
+
+    // 페이지네이션 오버될 때 에러 핸들링 && 페이지 검색결과 없을 때 제외
+    if (pageSize > lastPageNumber && lastPageNumber !== 0) {
+      replace("/404");
+    }
+  }, [pageSize, lastPageNumber, replace]);
 
   // endregion
 
@@ -40,35 +44,35 @@ const Pagination = ({ total }: IPagination) => {
   const prevButtonDisabled = useMemo(() => current === 1, [current]);
   const nextButtonDisabled = useMemo(() => current === lastPageNumber || lastPageNumber === 0, [current, lastPageNumber]);
 
-  const prevIcon = useMemo(() => <KIcon size={18} icon="keyboard_arrow_down" color="inherit" />, []);
-  const nextIcon = useMemo(() => <KIcon size={18} icon="keyboard_arrow_down" color="inherit" />, []);
+  const extraButton = <PageButton href="#" active={false} disabled text="··" className="pagination__extra-button" />;
 
-  const extraButton = useMemo(() => <PageButton href="#" active={false} disabled text="··" className="pagination__extra-button" />, []);
+  const prevPageNumbers = useMemo(() => Array.from(Array(PAGINATION_RANGE), (_, index) => current - index - 1).reverse(), [current]);
+  const nextPageNumbers = useMemo(() => Array.from(Array(PAGINATION_RANGE), (_, index) => current + index + 1), [current]);
 
-  const prevPageNumbers = useMemo(() => Array.from(Array(PAGINATION_RANGE), (_, index) => current - index - 1).reverse(), [PAGINATION_RANGE, current]);
-  const nextPageNumbers = useMemo(() => Array.from(Array(PAGINATION_RANGE), (_, index) => current + index + 1), [PAGINATION_RANGE, current]);
+  const validPrevPageNumbers = useMemo(() => prevPageNumbers.filter((pageIndex) => pageIndex > 0), [prevPageNumbers]);
+  const validNextPageNumbers = useMemo(() => nextPageNumbers.filter((pageIndex) => pageIndex <= lastPageNumber), [nextPageNumbers, lastPageNumber]);
 
-  const firstEllipsis = useMemo(() => !prevPageNumbers.includes(1) && current !== 1 && extraButton, [prevPageNumbers, current, extraButton]);
-  const lastEllipsis = useMemo(() => !nextPageNumbers.includes(lastPageNumber) && current !== lastPageNumber && extraButton, [nextPageNumbers, lastPageNumber, extraButton]);
+  const showFirstEllipsis = useMemo(() => !prevPageNumbers.includes(1) && current !== 1, [prevPageNumbers, current]);
+  const showLastEllipsis = useMemo(() => !nextPageNumbers.includes(lastPageNumber) && current !== lastPageNumber, [nextPageNumbers, lastPageNumber, current]);
 
   // endregion
 
   return (
     <div className="pagination">
       {/* 이전 버튼 */}
-      <PageButton href={current - 1} icon={prevIcon} disabled={prevButtonDisabled} className="pagination__prev-button" />
+      <PageButton href={current - 1} icon={<span>‹</span>} disabled={prevButtonDisabled} className="pagination__prev-button" />
       {/* 줄임표 버튼 */}
-      {firstEllipsis}
+      {showFirstEllipsis && extraButton}
       {/* 현재 페이지 이전 숫자들 */}
-      {prevPageNumbers.map((pageIndex) => pageIndex > 0 && <PageButton key={pageIndex} href={pageIndex} text={pageIndex} className="pagination__number-button" />)}
+      {validPrevPageNumbers.map((pageIndex) => <PageButton key={pageIndex} href={pageIndex} text={pageIndex} className="pagination__number-button" />)}
       {/* 현재 페이지 */}
       <PageButton href={current} text={current} active className="pagination__number-button" />
       {/* 현재 페이지 이후 숫자들 */}
-      {nextPageNumbers.map((pageIndex) => pageIndex <= lastPageNumber && <PageButton key={pageIndex} href={pageIndex} text={pageIndex} className="pagination__number-button" />)}
+      {validNextPageNumbers.map((pageIndex) => <PageButton key={pageIndex} href={pageIndex} text={pageIndex} className="pagination__number-button" />)}
       {/* 줄임표 버튼 */}
-      {lastEllipsis}
+      {showLastEllipsis && extraButton}
       {/* 다음 버튼 */}
-      <PageButton href={current + 1} icon={nextIcon} disabled={nextButtonDisabled} className="pagination__next-button" />
+      <PageButton href={current + 1} icon={<span>›</span>} disabled={nextButtonDisabled} className="pagination__next-button" />
     </div>
   );
 };
