@@ -11,9 +11,9 @@ export default function ArchiveTitle({ pages }: { pages: PostMeta[] }) {
   const title = (categoryName && !keyword) ? categoryName : (keyword || "All");
 
   return (
-    <h2 className="flex items-center justify-start gap-2 pl-2 text-2xl font-medium desktop:text-[1.5rem]">
+    <h2 className="flex items-center gap-2 px-3 pb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
       <span>{title}</span>
-      <span className="text-gray-400">{`(${pages.length})`}</span>
+      <span className="text-sm font-normal text-gray-400 dark:text-gray-500">{pages.length}</span>
     </h2>
   );
 }

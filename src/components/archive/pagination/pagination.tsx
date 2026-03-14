@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import usePageSize from "@/hook/usePageSize";
 // import { KIcon } from "kku-ui"; // Temporarily disabled for Next.js 16
 import blogConfig from "@/config/blog.config";
-import PageButton from "./pageButton";
+import PageButton from "./PageButton";
 
 interface IPagination {
   total: number;
@@ -44,7 +44,7 @@ const Pagination = ({ total }: IPagination) => {
   const prevButtonDisabled = useMemo(() => current === 1, [current]);
   const nextButtonDisabled = useMemo(() => current === lastPageNumber || lastPageNumber === 0, [current, lastPageNumber]);
 
-  const extraButton = <PageButton href="#" active={false} disabled text="··" className="pagination__extra-button" />;
+  const extraButton = <PageButton href="#" disabled text="···" />;
 
   const prevPageNumbers = useMemo(() => Array.from(Array(PAGINATION_RANGE), (_, index) => current - index - 1).reverse(), [current]);
   const nextPageNumbers = useMemo(() => Array.from(Array(PAGINATION_RANGE), (_, index) => current + index + 1), [current]);
@@ -58,21 +58,14 @@ const Pagination = ({ total }: IPagination) => {
   // endregion
 
   return (
-    <div className="pagination">
-      {/* 이전 버튼 */}
-      <PageButton href={current - 1} icon={<span>‹</span>} disabled={prevButtonDisabled} className="pagination__prev-button" />
-      {/* 줄임표 버튼 */}
+    <div className="flex items-center justify-center gap-1 py-4">
+      <PageButton href={current - 1} icon={<span>‹</span>} disabled={prevButtonDisabled} />
       {showFirstEllipsis && extraButton}
-      {/* 현재 페이지 이전 숫자들 */}
-      {validPrevPageNumbers.map((pageIndex) => <PageButton key={pageIndex} href={pageIndex} text={pageIndex} className="pagination__number-button" />)}
-      {/* 현재 페이지 */}
-      <PageButton href={current} text={current} active className="pagination__number-button" />
-      {/* 현재 페이지 이후 숫자들 */}
-      {validNextPageNumbers.map((pageIndex) => <PageButton key={pageIndex} href={pageIndex} text={pageIndex} className="pagination__number-button" />)}
-      {/* 줄임표 버튼 */}
+      {validPrevPageNumbers.map((pageIndex) => <PageButton key={pageIndex} href={pageIndex} text={pageIndex} />)}
+      <PageButton href={current} text={current} active />
+      {validNextPageNumbers.map((pageIndex) => <PageButton key={pageIndex} href={pageIndex} text={pageIndex} />)}
       {showLastEllipsis && extraButton}
-      {/* 다음 버튼 */}
-      <PageButton href={current + 1} icon={<span>›</span>} disabled={nextButtonDisabled} className="pagination__next-button" />
+      <PageButton href={current + 1} icon={<span>›</span>} disabled={nextButtonDisabled} />
     </div>
   );
 };

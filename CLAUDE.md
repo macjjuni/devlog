@@ -1,196 +1,136 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Language
+
+- Always respond in **Korean** (comments, commit messages, PR descriptions, answers).
+- Write this file in English for token efficiency.
 
 ## Project Overview
 
-This is a Next.js 15-based personal blog that uses Notion as a headless CMS. Content is fetched from a Notion database and rendered using `react-notion-x`. The project uses Korean property names in the Notion database with a bilingual codebase.
+Next.js 16 personal blog using Markdown files as CMS. Posts live in `content/posts/*.md` with YAML frontmatter. Rendered via `unified` + `remark/rehype` pipeline with `rehype-pretty-code` (shiki) for syntax highlighting.
 
-## Development Commands
+## Commands
 
 ```bash
-# Development (uses Turbopack)
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Start production server
-pnpm start
-
-# Lint
-pnpm lint
+pnpm dev          # Dev server (Turbopack)
+pnpm build        # Production build
+pnpm start        # Start production
+pnpm lint         # Lint
 ```
 
 ## Environment Variables
 
-Required `.env.local` configuration:
-
 ```bash
-# Notion API (required for CMS functionality)
-NOTION_TOKEN=           # Official Notion API key
-NOTION_TOKEN_V2=        # Unofficial Notion API token (for rich content)
-NOTION_USER=            # Notion user ID (for unofficial API)
-NOTION_BLOG_DATABASE_ID= # The database ID containing blog posts
-
-# Public metadata
 NEXT_PUBLIC_TITLE=
 NEXT_PUBLIC_DESCRIPTION=
 NEXT_PUBLIC_DOMAIN=
 NEXT_PUBLIC_LOGO=
-NEXT_PUBLIC_GA_ID=      # Google Analytics ID (optional)
+NEXT_PUBLIC_GA_ID=         # Google Analytics (optional)
+NEXT_PUBLIC_GITHUB_REPO=   # Giscus comment repo
 ```
 
-See `.env.template` for full reference.
+## Architecture
 
-## Architecture Overview
+### Content Layer (Markdown)
 
-### Notion Integration (Dual-Client Pattern)
+- Posts: `content/posts/*.md` — slug derived from filename
+- Config: `src/config/blog.config.ts` — POSTS_PER_PAGE, RECENT_DAY, etc.
+- Core lib: `src/lib/markdown.ts` — `getAllPosts()`, `getPostBySlug()`, `getPostsByCategory()`, `searchPosts()`, `getBlogInfo()`
+- API layer: `src/api/posts/index.ts` — `getPostList()`, `getPostDetail()`, `getCategoryPostList()`, `getSearchResults()`
+- All functions use React `cache()` for request deduplication
 
-This codebase uses **two different Notion clients** for different purposes:
+### Frontmatter Schema
 
-1. **Official Client** (`@notionhq/client`) - `/src/lib/noiton.ts`
-   - Database queries and filtering
-   - Structured data extraction
-   - Used by: archive list, search, category filtering
-
-2. **Unofficial Client** (`notion-client`) - `/src/lib/noiton.ts`
-   - Rich content rendering via `recordMap`
-   - Used by: detail pages for full Notion content display
-
-### Notion Database Schema
-
-The Notion database uses Korean property names with this mapping in `src/config/notion.config.ts`:
-
-```typescript
-{
-  Date: "작성일",      // Published date
-  Published: "상태",   // Status ("공개" = published)
-  Tags: "태그",        // Tags
-  Category: "카테고리", // Category
-  Checkbox: "프로젝트"  // Project filter (false = show in blog)
-}
+```yaml
+---
+title: "Post Title"
+date: "2024-01-15"
+category: "JavaScript"
+tags: ["React", "Next.js"]
+cover: "/images/posts/cover.jpg"  # optional
+description: "SEO description"
+---
 ```
 
-**Only pages where `상태 = "공개"` AND `프로젝트 = false` are displayed on the blog.**
+### Types
 
-### Key Functions in `/src/lib/noiton.ts`
-
-- `getNotionInfo()` - Fetch database metadata
-- `getPages()` - Get all published blog posts with filtering
-- `getDetailPage(id)` - Fetch single post's `recordMap` for rendering
-- `getSelectPage(searchText)` - Full-text search across pages
-- `getParsePages()` - Transform raw Notion responses to app types
-- `generateCoverUrl()` - Extract and format page cover images
-- `getHeadDescription()` - Extract first 100 characters as excerpt
+- `src/@types/post.d.ts` — `PostMeta`, `Post` (extends PostMeta + content), `BlogInfo`
 
 ### Directory Structure
 
 ```
+content/posts/         # Markdown blog posts
+public/images/posts/   # Post images
 src/
-├── api/             # API integration (Notion, Bitcoin market data)
-├── app/             # Next.js App Router pages
-│   ├── archive/     # Blog list and detail pages
-│   │   ├── [id]/          # Individual post (dynamic route)
-│   │   ├── category/[slug]/ # Category-filtered posts
-│   │   └── search/        # Search results
-│   └── api/         # Server-side API routes
-├── components/      # React components organized by feature
-│   ├── archive/     # Blog-related components (list, viewer, comments)
-│   ├── sidebar/     # Sidebar widgets (search, category, Bitcoin chart)
-│   └── common/      # Shared UI components
-├── config/          # Configuration (Notion schema, metadata, social links)
-├── hook/            # Custom React hooks (URL params, responsive design)
-├── layout/          # Layout components (header, footer, main)
-├── lib/             # Core utilities (Notion client, HTTP, date)
-├── store/           # Zustand state management
-└── route/           # Route definitions and URL generators
+├── api/posts/         # Data layer (markdown-based)
+├── app/               # Next.js App Router
+│   ├── archive/       # Blog pages
+│   │   ├── [slug]/    # Post detail (ISR 60s)
+│   │   ├── category/[slug]/  # Category filter
+│   │   └── search/    # Search results
+├── components/
+│   ├── archive/       # ArchiveList, ArchiveTitle, MarkdownViewer, Pagination, Comment
+│   ├── sidebar/       # Profile, Search
+│   └── common/        # Navigation
+├── config/            # blog.config.ts, meta.ts
+├── hook/              # usePageSize, useCategoryName, useSearchText
+├── layout/            # Header, Footer, Main, ArchiveContent, ArchiveSidebar
+├── lib/               # markdown.ts, date.ts, request.ts
+├── store/             # Zustand (isHeaderMini)
+├── route/             # Route definitions
+├── style/             # globals.css, markdown.css
+└── utils/             # string.ts, system.ts
 ```
 
-### Routing Patterns
+### Routing
 
-- `/` - About/home page
-- `/archive` - Blog list (paginated)
-- `/archive/[id]` - Individual blog post (uses ISR with 60s revalidation)
-- `/archive/category/[slug]` - Category-filtered posts
-- `/archive/search?q=...` - Search results
+| Route | Description | Revalidation |
+|-------|-------------|--------------|
+| `/` | Home/About page | Static |
+| `/archive` | Post list (paginated) | 600s |
+| `/archive/[slug]` | Post detail | 60s |
+| `/archive/category/[slug]` | Category filter | 600s |
+| `/archive/search?q=...` | Search results | 600s |
 
-**Static Generation:** All archive pages are pre-generated at build time using `generateStaticParams()` from the Notion database.
+All archive pages are pre-generated at build via `generateStaticParams()`.
 
-**ISR Timings:**
-- Archive list: 600 seconds (10 minutes)
-- Archive detail: 60 seconds (1 minute)
-- Site image: 10800 seconds (3 hours)
+### Markdown Rendering
+
+- `MarkdownViewer` (`src/components/archive/markdownViewer/`) — async Server Component
+- Pipeline: `unified` → `remark-parse` → `remark-gfm` → `remark-rehype` → `rehype-slug` → `rehype-pretty-code` → `rehype-stringify`
+- Output: HTML string rendered via `dangerouslySetInnerHTML`
+- Styles: `src/style/markdown.css` (`.markdown-body` class)
 
 ### State Management (Zustand)
 
-Global state in `/src/store/store.ts` with LocalStorage persistence (key: `"kku-storage"`):
-
-- `isHeaderMini` - Header scroll state
-- `btcChart` - Bitcoin price chart data (cached by timeframe: 1, 7, 30, 365 days)
-- `realTimeMarketPriceUSD` - Current BTC price
-- `searchHistory` - Search history with deduplication
+- Store: `src/store/store.ts`, persisted to localStorage (`"kku-storage"`)
+- `isHeaderMini` — header scroll state
 
 ### Component Patterns
 
-**Server Components by Default:**
-- All pages and data-fetching components are server components
-- Mark components with `"use client"` only when needed (interactions, hooks, state)
-
-**NotionViewer Component** (`/src/components/archive/notionViewer/`):
-- Renders Notion content using `react-notion-x`
-- Dynamically injects TOC links (댓글, 글 목록)
-- Custom components for Code, Collection, Equation, nextImage, nextLink
-
-**ArchiveList Component** (`/src/components/archive/archiveList/`):
-- Shows "new" badge for posts published within 7 days
-- Handles pagination slicing with `useMemo`
+- Server Components by default; use `"use client"` only for interactions/hooks/state
+- `ArchiveList` shows "NEW" badge for posts within `RECENT_DAY` days
+- `PostHeader` renders title, date, category, tags, cover image
 
 ### Custom Hooks
 
-- `usePageSize()` - Extract `?page=` from URL
-- `useCategoryName()` - Extract category slug from URL path
-- `useSearchText()` - Extract `?q=` search query from URL
-- `useMediaScreen()` - Responsive breakpoint detection
-- `useOutsideClick()` - Click-outside handler for modals
-
-### SEO & Metadata
-
-Each page implements `generateMetadata()` for:
-- Dynamic titles and descriptions
-- OpenGraph and Twitter card images
-- Automatic fallback to Notion page cover images
+- `usePageSize("page")` — extract `?page=` from URL
+- `useCategoryName()` — extract category from pathname
+- `useSearchText()` — extract `?q=` from search params
 
 ### External Integrations
 
-- **Giscus** - GitHub-backed comment system (in `ArchiveComment`)
-- **Spline** - 3D background animation on About page
-- **Chart.js** - Bitcoin price chart in sidebar
-- **Google Analytics** - Via `@next/third-parties` with Partytown
+- **Giscus** — GitHub-backed comments (`mapping: "pathname"`)
+- **Google Analytics** — via `@next/third-parties` with Partytown
 
-## Important Architectural Notes
+### Image Handling
 
-1. **Search Implementation:**
-   - Search uses Notion's unofficial API to query page content
-   - Search history is deduplicated (keeps most recent occurrence)
-   - URL and Zustand state stay synchronized via custom hooks
+- Post covers: `/public/images/posts/`
+- Inline images: `/public/images/posts/{slug}/`
+- Site OG image: `/public/images/site-og.webp` (static)
+- Allowed remote: `pbs.twimg.com`, `avatars.githubusercontent.com`
 
-2. **Category Filtering:**
-   - Categories are extracted from Notion database Select property
-   - Sidebar uses horizontal scroll with arrow navigation
-   - Category pages are server-rendered with ISR
+## Key Packages
 
-3. **Image Handling:**
-   - Notion images allowed via `next.config.mjs` remote patterns
-   - Page cover images auto-extracted for SEO metadata
-   - GitHub/Twitter avatars allowed for social icons
-
-4. **Korean Content:**
-   - Notion property names are in Korean
-   - Code comments and UI strings may mix Korean/English
-   - Maintain consistency with existing patterns when adding features
-
-5. **Custom Packages:**
-   - `kku-ui` - Custom component library (external dependency)
-   - `kku-util` - Custom utilities (external dependency)
-   - These are maintained separately and imported as packages
+- `kku-ui` — custom component library (external)
+- `kku-util` — custom utilities (external)

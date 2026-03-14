@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       screens: {
-        'desktop': { 'max': '1100px' },
-        'tablet': { 'max': '768px' },
+        'desktop': { 'max': '1280px' },
+        'tablet': { 'max': '920px' },
         'mobile': { 'max': '464px' },
       },
       spacing: {
@@ -16,7 +16,6 @@ export default {
         'header': 'var(--header-height)',
         'header-mini': 'var(--header-mini-height)',
         'footer': 'var(--footer-height)',
-        'sidebar': 'var(--sidebar-width)',
       },
       fontFamily: {
         default: ['var(--default-font)'],

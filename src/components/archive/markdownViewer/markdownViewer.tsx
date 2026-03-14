@@ -6,7 +6,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import type { Post } from "@/@types/post";
-import PostHeader from "./postHeader";
+import PostHeader from "./PostHeader";
 import { toPostMeta } from "@/lib/markdown";
 
 interface MarkdownViewerProps {
@@ -31,7 +31,7 @@ export default async function MarkdownViewer({ post }: MarkdownViewerProps) {
   const html = await renderMarkdown(post.content);
 
   return (
-    <article className="mx-auto w-full max-w-[860px] px-4">
+    <article className="w-full">
       <PostHeader meta={meta} />
       <div className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
     </article>

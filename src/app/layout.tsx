@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <body>
           <div className="mx-auto flex flex-col min-h-dvh pt-header">
             <HeaderObserver />
-            <Header />
+            <Header logo={process.env.BLOG_TITLE || ''} />
             <Main>{children}</Main>
             <Footer />
           </div>

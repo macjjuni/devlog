@@ -4,9 +4,8 @@ import { Link } from "next-view-transitions";
 import Navigation from "@/components/common/navigation";
 import { useStore } from "@/store/store";
 
-const logoText = "kku.log";
+export default function Header({ logo }: { logo: string }) {
 
-export default function Header() {
   const isHeaderMini = useStore((state) => state.isHeaderMini);
 
   return (
@@ -16,7 +15,7 @@ export default function Header() {
         ${isHeaderMini ? "h-header-mini border-b backdrop-blur-md" : "h-header bg-transparent"}
       `}
     >
-      <div className="mx-auto flex h-full w-full max-w-[1100px] items-center justify-between px-4 tablet:px-6">
+      <div className="mx-auto flex h-full w-full max-w-[var(--layout-width)] items-center justify-between px-4 tablet:px-6">
         <Link
           href="/"
           className={[
@@ -24,7 +23,7 @@ export default function Header() {
               isHeaderMini ? "text-2xl" : "text-3xl",
             ].join(' ')}
         >
-          {logoText}
+          {logo}
         </Link>
 
         <Navigation />

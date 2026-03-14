@@ -7,7 +7,7 @@ const repoUrl = process.env.NEXT_PUBLIC_GITHUB_REPO as `${string}/${string}`;
 
 export default function ArchiveComment() {
   return (
-    <section
+    <div
       id={commentElementId}
       className="mt-12 flex min-h-[270px] w-full items-center justify-center gap-6"
     >
@@ -24,7 +24,6 @@ export default function ArchiveComment() {
         inputPosition="bottom"
         lang="ko"
       />
-      <div className="hidden w-full max-w-[280px] desktop:block" />
-    </section>
+    </div>
   );
 }

@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getMetadata } from "@/config/meta";
-import { ArchiveContent, ArchiveSidebar } from "@/layout";
+import { ArchiveContent } from "@/layout";
 import { getPostList } from "@/api/posts";
 import { isNumber } from "@/utils/string";
 import Fallback from "./fallBack";
@@ -18,7 +18,7 @@ export default async function ArchivePage({ searchParams }: { searchParams: Prom
     redirect("/404");
   }
 
-  const { info, pages, error } = await getPostList();
+  const { pages, error } = await getPostList();
 
   if (error) {
     redirect("/404");
@@ -26,7 +26,6 @@ export default async function ArchivePage({ searchParams }: { searchParams: Prom
 
   return (
     <Suspense fallback={<Fallback />}>
-      <ArchiveSidebar info={info} />
       <ArchiveContent pages={pages} />
     </Suspense>
   );

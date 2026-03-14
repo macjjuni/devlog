@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArchiveComment } from "@/components/archive";
-import MarkdownViewer from "@/components/archive/markdownViewer/markdownViewer";
+import { ArchiveComment, MarkdownViewer } from "@/components/archive";
 import { getPostDetail } from "@/api/posts";
 import { getAllPosts } from "@/lib/markdown";
 import { getMetadata } from "@/config/meta";

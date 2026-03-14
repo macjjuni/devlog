@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import Fallback from "@/app/archive/fallBack";
 import { getCategoryPostList } from "@/api/posts";
 import { getAllCategories } from "@/lib/markdown";
-import { ArchiveSidebar, ArchiveContent } from "@/layout";
+import { ArchiveContent } from "@/layout";
 import type { Metadata } from "next";
 import { getMetadata } from "@/config/meta";
 
@@ -25,18 +25,15 @@ export async function generateStaticParams() {
 export const revalidate = 600;
 export default async function ArchiveCategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolveParams = await params;
-  const { info, pages, error } = await getCategoryPostList(resolveParams.slug);
+  const { pages, error } = await getCategoryPostList(resolveParams.slug);
 
-  if (error || !info) {
+  if (error) {
     redirect("/404");
   }
 
   return (
     <Suspense fallback={<Fallback />}>
-      <ArchiveSidebar info={info} />
-      <section className="archive__layout__content">
-        <ArchiveContent pages={pages} />
-      </section>
+      <ArchiveContent pages={pages} />
     </Suspense>
   );
 }
