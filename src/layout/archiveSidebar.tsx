@@ -1,14 +1,12 @@
 import Profile from "@/components/sidebar/profile";
 import Search from "@/components/sidebar/search";
-import Category from "@/components/sidebar/category/category";
-import { NotionInfoProps } from "@/@types/notion";
+import type { BlogInfo } from "@/@types/post";
 
-export default function ArchiveSidebar({ info }: { info: NotionInfoProps }) {
+export default function ArchiveSidebar({ info }: { info: BlogInfo }) {
   return (
     <aside className="flex max-w-sidebar w-full flex-col gap-4">
-      <Profile description={info?.description} imageUrl={info?.coverURL} />
+      <Profile description={info?.description} />
       <Search />
-      <Category list={info?.category} />
     </aside>
   );
 }

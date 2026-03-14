@@ -4,7 +4,7 @@ import { useMemo, memo, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import usePageSize from "@/hook/usePageSize";
 // import { KIcon } from "kku-ui"; // Temporarily disabled for Next.js 16
-import config from "@/config/notion.config";
+import blogConfig from "@/config/blog.config";
 import PageButton from "./pageButton";
 
 interface IPagination {
@@ -12,7 +12,7 @@ interface IPagination {
 }
 
 // 페이지네이션 기본 옵션
-const { POSTS_PER_PAGE, PAGINATION_RANGE } = config.post;
+const { POSTS_PER_PAGE, PAGINATION_RANGE } = blogConfig.post;
 
 const Pagination = ({ total }: IPagination) => {
   // region [Hooks]

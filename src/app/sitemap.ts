@@ -1,19 +1,12 @@
 import { MetadataRoute } from "next";
 import routes from "@/route";
-import notion from "@/lib/noiton";
+import { getAllPosts, getAllCategories } from "@/lib/markdown";
 
 const domain = process.env.NEXT_PUBLIC_DOMAIN || "";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const databaseId = process.env.NOTION_BLOG_DATABASE_ID || "";
-
-  if (!databaseId) {
-    throw new Error("Not found database ID!");
-  }
-
-  const { category } = notion.getParseNotionInfo(await notion.getNotionInfo(databaseId));
-  const pages = await notion.getPages(databaseId);
-  // const projects = await notion.getAllProject(databaseId);
+  const categories = getAllCategories();
+  const posts = getAllPosts();
 
   const routeUrls = routes.map((route) => ({
     url: `${domain}${route.path}`,
@@ -22,26 +15,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const categoryUrls = category?.map(({ name }) => ({
+  const categoryUrls = categories.map((name) => ({
     url: `${domain}/archive/category/${encodeURIComponent(name)}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.6,
-  })) || [];
+  }));
 
-  const pageUrls = pages.map(({ id, published }) => ({
-    url: `${domain}/archive/${id}`,
-    lastModified: published,
+  const pageUrls = posts.map(({ slug, date }) => ({
+    url: `${domain}/archive/${slug}`,
+    lastModified: date,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
-
-  // const projectUrls = projects.map(({ id, published }) => ({
-  //   url: `${domain}/project/${id}`,
-  //   lastModified: new Date(published).toISOString(),
-  //   changeFrequency: "weekly",
-  //   priority: 0.6,
-  // }))
 
   return [...routeUrls, ...categoryUrls, ...pageUrls];
 }

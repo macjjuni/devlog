@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import config from "@/config/notion.config";
+import blogConfig from "@/config/blog.config";
 
 export function generateMetaTitle(subTitle: string) {
   return `${process.env.NEXT_PUBLIC_TITLE} :: ${subTitle}`;
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: process.env.NEXT_PUBLIC_TITLE,
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_DOMAIN}${config.blog.SITE_IMAGE}`,
+        url: `${process.env.NEXT_PUBLIC_DOMAIN}${blogConfig.blog.SITE_IMAGE}`,
         width: 800,
         height: 600,
       },
@@ -37,7 +37,7 @@ type MetadataPropsType = string | undefined | null;
 const defaultTitle = process.env.NEXT_PUBLIC_TITLE as string;
 const defaultDescription = process.env.NEXT_PUBLIC_DESCRIPTION as string;
 const defaultPageUrl = process.env.NEXT_PUBLIC_DOMAIN as string;
-const defaultImageUrl = `${process.env.NEXT_PUBLIC_DOMAIN}${config.blog.SITE_IMAGE}`;
+const defaultImageUrl = `${process.env.NEXT_PUBLIC_DOMAIN}${blogConfig.blog.SITE_IMAGE}`;
 
 export function getMetadata(_title: MetadataPropsType, _description: MetadataPropsType, _pageUrl: MetadataPropsType, _imageUrl: MetadataPropsType): Metadata {
   const title = _title ? generateMetaTitle(_title) : defaultTitle;

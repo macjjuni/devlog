@@ -1,8 +1,7 @@
-import { memo } from "react";
 import { ArchiveList, ArchiveTitle, Pagination } from "@/components/archive";
-import { NotionPageProps } from "@/@types/notion";
+import type { PostMeta } from "@/@types/post";
 
-export default function archiveContent({ pages }: { pages: NotionPageProps[] }) {
+export default function archiveContent({ pages }: { pages: PostMeta[] }) {
   return (
     <section className="w-full">
       <ArchiveTitle pages={pages} />

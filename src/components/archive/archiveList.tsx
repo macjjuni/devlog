@@ -1,17 +1,16 @@
 "use client";
 
 import { Link } from 'next-view-transitions'
-import config from "@/config/notion.config";
+import blogConfig from "@/config/blog.config";
 import usePageSize from "@/hook/usePageSize";
-import type { NotionPageProps } from "@/@types/notion";
+import type { PostMeta } from "@/@types/post";
 import { calcCurrentDateDifference, getFormatDate } from "@/lib/date";
 
-const { post } = config;
+const { post } = blogConfig;
 
-export default function ArchiveList({ pages }: { pages: NotionPageProps[] }) {
+export default function ArchiveList({ pages }: { pages: PostMeta[] }) {
   const page = usePageSize("page");
 
-  // React Compiler가 최적화를 담당하므로 useMemo 제거
   const pageList = pages.slice(post.POSTS_PER_PAGE * (page - 1), post.POSTS_PER_PAGE * page);
 
   const checkNew = (dateStr: string) => post.RECENT_DAY > calcCurrentDateDifference(dateStr, "day");
@@ -19,12 +18,12 @@ export default function ArchiveList({ pages }: { pages: NotionPageProps[] }) {
   return (
     <ul className="flex flex-col">
       {pageList.map((listItem) => {
-        const isNew = checkNew(listItem.published);
+        const isNew = checkNew(listItem.date);
 
         return (
-          <li key={listItem.id} className="group relative before:absolute before:bottom-[-0.5px] before:left-1 before:h-[0.5px] before:w-[calc(100%-8px)] before:bg-gray-200 before:transition-opacity before:content-[''] hover:before:opacity-0">
+          <li key={listItem.slug} className="group relative before:absolute before:bottom-[-0.5px] before:left-1 before:h-[0.5px] before:w-[calc(100%-8px)] before:bg-gray-200 before:transition-opacity before:content-[''] hover:before:opacity-0">
             <Link
-              href={`/archive/${listItem.id}`}
+              href={`/archive/${listItem.slug}`}
               className="relative flex items-center justify-between gap-2 rounded-[4px] px-6 py-3 transition-colors duration-300 hover:bg-gray-100 tablet:px-4 tablet:py-2"
               suppressHydrationWarning
             >
@@ -38,8 +37,8 @@ export default function ArchiveList({ pages }: { pages: NotionPageProps[] }) {
               </h3>
 
               <div className="relative flex w-[84px] flex-col items-center gap-1 pl-6 text-[12px] text-gray-400 after:absolute after:top-1/2 after:left-0 after:h-4/5 after:w-[0.5px] after:-translate-y-1/2 after:bg-gray-200 after:transition-colors after:content-[''] group-hover:after:bg-white tablet:w-[72px] tablet:text-[10px]">
-                <p className="whitespace-nowrap">{listItem.category?.name}</p>
-                <p className="whitespace-nowrap">{getFormatDate(listItem.published)}</p>
+                <p className="whitespace-nowrap">{listItem.category}</p>
+                <p className="whitespace-nowrap">{getFormatDate(listItem.date)}</p>
               </div>
             </Link>
           </li>

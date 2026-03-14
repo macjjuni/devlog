@@ -5,8 +5,7 @@ import { Footer, Header, Main } from "@/layout";
 import type { Viewport } from "next";
 import HeaderObserver from "@/layout/header/headerObserver";
 import "@/style/globals.css";
-import 'react-notion-x/src/styles.css'
-import 'prismjs/themes/prism-tomorrow.css'
+import "@/style/markdown.css";
 import "kku-ui/index.css";
 
 
