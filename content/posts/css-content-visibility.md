@@ -1,13 +1,11 @@
-# 렌더링 성능을 위한 content-visibility CSS 속성
-
-프로젝트: No
-카테고리: Dev
-작성일: 2023년 6월 22일
-태그: TIL
-작성자: 꾸생
-상태: 공개
-
-# content-visibility
+---
+title: "렌더링 성능을 위한 content-visibility"
+date: "2023-06-22"
+category: "Dev"
+tags: []
+cover: ""
+description: ""
+---
 
 2020년 8월 크롬 브라우저에 `content-visibility` CSS 속성이 추가됐다고 한다. 해당 속성에 주된 기능은 화면 밖 컨텐츠에 렌더링을 건너뛰어 뛰는데, 장점은 초기 로딩 시간을 획기적으로 줄일 수 있다는 것이다. 
 

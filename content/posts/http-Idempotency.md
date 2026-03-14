@@ -1,19 +1,19 @@
-# HTTP 메소드의 안정성과 멱등성
+---
+title: "HTTP 메소드의 안정성과 멱등성"
+date: "2023-08-28"
+category: "Dev"
+tags: ["TIL"]
+cover: ""
+description: ""
+---
 
-프로젝트: No
-카테고리: Dev
-작성일: 2023년 8월 28일
-태그: TIL
-작성자: 꾸생
-상태: 공개
+![image.png](/images/posts/http-Idempotency/http.webp)
 
 # **멱등성이란?**
 
-![image.png](HTTP%20%EB%A9%94%EC%86%8C%EB%93%9C%EC%9D%98%20%EC%95%88%EC%A0%95%EC%84%B1%EA%B3%BC%20%EB%A9%B1%EB%93%B1%EC%84%B1/image.png)
-
 동일한 요청을 한 번 만 보내건 여러 번 보내던 같은 효은 효과를 주고, 서버 상태도 동일하게 유지될 때, 멱등성을 가진다고 한다. HTTP 메서드에서 멱등성을 가진다라고 표현하는데, 올바르게 메서드를 구현한 경우 **`GET`**, **`HEAD`**, **`PUT`**, **`DELETE`** 메서드만 멱등성을 가진다.
 
-[**🔗 멱등성 - MDN Web Docs 용어 사전: 웹 용어 정의 | MDN**](https://developer.mozilla.org/ko/docs/Glossary/Idempotent)
+[**🔗 멱등성 - MDN Web Docs 용어 사전: 웹 용어 정의 | MDN**](https://developer.mozilla.org/ko/docs/Glossary/Idempotent)
 
 📌 **DELETE**의 경우만 두 번째 호출에서 404를 반환하지만 결과적으로 서버는 동일하게 유지되므로 멱등성을 가진다. 멱등성을 가진다라는 의미는 어느정도 안정성이 있다고 볼 수 있다. 하지만 무조건 안전하다는 의미는 아니기 때문에 안전한 메소드 설계에 힘을 써야한다.
 

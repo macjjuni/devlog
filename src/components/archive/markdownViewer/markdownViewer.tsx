@@ -13,6 +13,10 @@ interface MarkdownViewerProps {
   post: Post;
 }
 
+function preprocessBold(md: string): string {
+  return md.replace(/\*\*(.+?)\*\*(?=[가-힣])/g, "**$1** ");
+}
+
 async function renderMarkdown(content: string): Promise<string> {
   const result = await unified()
     .use(remarkParse)
@@ -21,7 +25,7 @@ async function renderMarkdown(content: string): Promise<string> {
     .use(rehypeSlug)
     .use(rehypePrettyCode, { theme: "github-dark", keepBackground: true })
     .use(rehypeStringify, { allowDangerousHtml: true })
-    .process(content);
+    .process(preprocessBold(content));
 
   return String(result);
 }
