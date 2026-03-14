@@ -17,7 +17,7 @@ export default function ArchiveComment() {
         category="Announcements"
         categoryId="DIC_kwDOKPQeNs4CiXns"
         mapping="pathname"
-        theme="noborder_gray"
+        theme="light"
         strict="0"
         reactionsEnabled="1"
         emitMetadata="0"

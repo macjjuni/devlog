@@ -1,0 +1,31 @@
+# 렌더링 성능을 위한 content-visibility CSS 속성
+
+프로젝트: No
+카테고리: Dev
+작성일: 2023년 6월 22일
+태그: TIL
+작성자: 꾸생
+상태: 공개
+
+# content-visibility
+
+2020년 8월 크롬 브라우저에 `content-visibility` CSS 속성이 추가됐다고 한다. 해당 속성에 주된 기능은 화면 밖 컨텐츠에 렌더링을 건너뛰어 뛰는데, 장점은 초기 로딩 시간을 획기적으로 줄일 수 있다는 것이다. 
+
+~~중요한 점은 크롬과 엣지 브라우저에서만 지원한다는 점인데, 사파리만 지원해줬으면 좋았을 텐데..~~
+
+이제는 사파리에서도 지원한다 😀(24.10.4)
+
+```css
+// 요소가 정상적으로 배치되고 렌더링 됨
+content-visibility: visible;
+// 요소가 렌더링 되지 않음.페이지 찾기, 탭 순서 탐색 등과 같은 사용자 기능에 액세스할 수 없고
+// 선택 가능하거나 포커스할 수 없다. display: none;과 같은 효과
+content-visibility: hidden; 
+// 화면 밖 요소는 렌더링을 건너 뜀. 숨김 속성과 달리 건너뛴 콘텐츠는 페이지에서 찾기, 
+// 탭 순서 탐색 등과 같은 사용자 기능에 정상적으로 접근 사용할 수 있다.
+content-visibility: auto;
+```
+
+# content-visibility 지원 브라우저
+
+["content-visibility" | Can I use... Support tables for HTML5, CSS3, etc](https://caniuse.com/?search=content-visibility)
