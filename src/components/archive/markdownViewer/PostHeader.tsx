@@ -6,7 +6,7 @@ import type { PostMeta } from "@/@types/post";
 
 export default function PostHeader({ meta }: { meta: PostMeta }) {
   return (
-    <header className="mb-8 border-b border-gray-200 pb-6">
+    <header className="pb-4 mb-4 border-b border-gray-200">
       {meta.cover && (
         <div className="relative mb-6 h-[300px] w-full overflow-hidden rounded-lg">
           <Image

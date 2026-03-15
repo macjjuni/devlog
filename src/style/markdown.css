@@ -42,12 +42,42 @@
 .markdown-body em { font-style: italic; }
 
 .markdown-body blockquote {
+  position: relative;
   margin: 1em 0;
-  padding: 0.5em 1em;
-  border-left: 4px solid #d1d5db;
-  color: #6b7280;
-  background: #f9fafb;
-  border-radius: 0 4px 4px 0;
+  padding: 0.75em 1.25em 0.75em 2.5em;
+  border-left: 6px solid #9ca3af;
+  color: #374151;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-size: 0.95em;
+}
+.markdown-body blockquote::before {
+  content: '❗️';
+  position: absolute;
+  left: 0.625em;
+  top: 0.65em;
+  font-size: 1em;
+  line-height: 1.8;
+}
+
+.markdown-body blockquote :is(h1, h2, h3, h4, h5) {
+    margin: 0 0 12px 0;
+}
+
+.markdown-body blockquote p {
+  margin-bottom: 0;
+}
+
+.markdown-body blockquote code {
+  background: #e2e8f0;
+}
+.dark .markdown-body blockquote {
+  border-left-color: #4b5563;
+  color: #9ca3af;
+  background: #1f2937;
+}
+.dark .markdown-body blockquote code {
+  background: #374151;
 }
 
 .markdown-body ul,
@@ -60,6 +90,56 @@
 .markdown-body li { margin: 0.25em 0; }
 .markdown-body li > ul,
 .markdown-body li > ol { margin: 0.25em 0; }
+
+.markdown-body .contains-task-list {
+  list-style: none;
+  padding-left: 0.25em;
+}
+.markdown-body .task-list-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+}
+.markdown-body .task-list-item p {
+  margin-bottom: 0;
+}
+
+.markdown-body .task-list-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.125em;
+  height: 1.125em;
+  border: 2px solid #9ca3af;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  top: 0.2em;
+}
+.markdown-body .task-list-item input[type="checkbox"]:checked {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+.markdown-body .task-list-item input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 0.875em;
+  font-weight: 700;
+  line-height: 1;
+}
+.dark .markdown-body .task-list-item input[type="checkbox"] {
+  background: #1f2937;
+  border-color: #4b5563;
+}
+.dark .markdown-body .task-list-item input[type="checkbox"]:checked {
+  background: #3b82f6;
+  border-color: #3b82f6;
+}
 
 .markdown-body code {
   padding: 0.2em 0.4em;
@@ -90,6 +170,17 @@
   height: auto;
   margin: 0 auto;
   border-radius: 8px;
+}
+
+.markdown-body .img-row p {
+  display: flex;
+  gap: 0.5em;
+  margin: 1em 0;
+}
+.markdown-body .img-row img {
+  flex: 1;
+  min-width: 0;
+  object-fit: cover;
 }
 
 .markdown-body table {

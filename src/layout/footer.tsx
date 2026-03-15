@@ -1,6 +1,6 @@
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const logoName = process.env.NEXT_PUBLIC_LOGO?.toLocaleLowerCase();
+  const logoName = process.env.NEXT_PUBLIC_TITLE?.toLocaleLowerCase();
 
   return (
     <footer className="h-footer flex-none">
