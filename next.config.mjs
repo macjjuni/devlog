@@ -2,6 +2,9 @@ const nextConfig = {
   sassOptions: {
     // prependData: `@use "@/style/index" as *;`
   },
+  outputFileTracingIncludes: {
+    "/*": ["./content/posts/**/*"],
+  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "pbs.twimg.com" },
