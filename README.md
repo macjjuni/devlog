@@ -1,27 +1,25 @@
 # 개발 블로그 ([🔗Link](https://kku.dev/))
 
+[![My Skills](https://skillicons.dev/icons?i=next,react,ts,tailwind,md,vercel)](https://skillicons.dev)
 
-[![My Skills](https://skillicons.dev/icons?i=next,react,ts,html,sass,idea,notion,vercel)](https://skillicons.dev)
+Next.js 16 + Markdown 기반 개인 개발 블로그입니다.
 
+## 실행 방법
 
-
-
-
-
-## .env.example
 ```bash
-NEXT_PUBLIC_LOGO=
-NEXT_PUBLIC_TITLE=
-NEXT_PUBLIC_DESCRIPTION=
-NEXT_PUBLIC_DOMAIN=
-NEXT_PUBLIC_GITHUB=
-NEXT_PUBLIC_GITHUB_REPO= // `${id}/${repoName}` pattern
-NEXT_PUBLIC_GA_ID=
+pnpm dev          # 개발 서버 (Turbopack)
+pnpm build        # 프로덕션 빌드
+pnpm start        # 프로덕션 실행
+pnpm lint         # 린트
+```
 
-NEXT_PUBLIC_ADMIN_EMAIL=
+## 환경변수
 
-NOTION_USER=
-NOTION_BLOG_DATABASE_ID=
-NOTION_TOKEN=
-NOTION_TOKEN_V2=
+```bash
+NEXT_PUBLIC_TITLE=          # 블로그 제목
+NEXT_PUBLIC_DESCRIPTION=    # 블로그 설명
+NEXT_PUBLIC_DOMAIN=         # 블로그 도메인
+NEXT_PUBLIC_GITHUB=         # GitHub 프로필 URL
+NEXT_PUBLIC_GITHUB_REPO=    # Giscus 댓글 저장소 (id/repoName)
+NEXT_PUBLIC_GA_ID=          # Google Analytics ID (선택)
 ```
