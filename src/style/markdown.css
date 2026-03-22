@@ -111,8 +111,8 @@
   top: 0.2em;
 }
 .markdown-body .task-list-item input[type="checkbox"]:checked {
-  background: var(--terminal-amber);
-  border-color: var(--terminal-amber);
+  background: #2563eb;
+  border-color: #2563eb;
 }
 .markdown-body .task-list-item input[type="checkbox"]:checked::after {
   content: '✓';
@@ -120,7 +120,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: var(--background);
+  color: #ffffff;
   font-size: 0.875em;
   font-weight: 700;
   line-height: 1;
