@@ -35,28 +35,16 @@ export default function ProjectSlider() {
   }, []);
 
   return (
-    <section className="w-full mt-16 animate-in fade-in slide-in-from-bottom-4 duration-1000 tablet:mt-12 mobile:mt-10">
-      <h2 className="text-xl font-bold tracking-tight text-terminal-amber mb-6 tablet:text-lg mobile:text-base mobile:mb-4">
+    <section className="w-[calc(100%+2rem)] -mx-4 desktop:w-[calc(100%+4rem)] desktop:-mx-8 tablet:w-[calc(100%+3rem)] tablet:-mx-6 mt-16 tablet:mt-12 mobile:mt-10">
+      <h2 className="px-5 tablet:px-6 desktop:px-0 text-xl font-bold tracking-tight text-terminal-amber mb-6 tablet:text-lg mobile:text-base mobile:mb-4">
         <span className="text-terminal-dim">$</span> ls ./projects
       </h2>
 
-      <div
-        ref={sliderRef}
-        className="flex gap-4 overflow-x-auto scrollbar-hide cursor-grab snap-x snap-mandatory pb-2 mobile:gap-3"
-        onMouseDown={onMouseDown}
-        onMouseUp={onMouseUp}
-        onMouseLeave={onMouseUp}
-        onMouseMove={onMouseMove}
-      >
+      <div ref={sliderRef} className="flex w-full gap-4 overflow-x-auto pb-2 mobile:gap-3"
+           onMouseDown={onMouseDown} onMouseUp={onMouseUp} onMouseLeave={onMouseUp} onMouseMove={onMouseMove}>
+        <div className="hidden mobile:block flex-shrink-0 w-px" />
         {projects.map((project) => (
-          <a
-            key={project.title}
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            draggable={false}
-            className="group flex-shrink-0 w-64 snap-start mobile:w-56"
-          >
+          <a key={project.title} href={project.url} target="_blank" rel="noopener noreferrer" draggable={false} className="group flex-shrink-0 w-64 snap-start mobile:w-56">
             <div className="terminal-box h-full overflow-hidden transition-all hover:shadow-glow">
               <div className="relative w-full h-36 bg-surface overflow-hidden mobile:h-28 rounded-t-lg">
                 <Image
@@ -72,18 +60,13 @@ export default function ProjectSlider() {
                     if (fallback) fallback.style.display = "flex";
                   }}
                 />
-                <div
-                  data-fallback
-                  className="absolute inset-0 items-center justify-center text-terminal-dim text-sm font-medium hidden"
-                >
+                <div data-fallback className="absolute inset-0 items-center justify-center text-terminal-dim text-sm font-medium bg-gray-100 hidden">
                   No Image
                 </div>
               </div>
 
               <div className="p-3">
-                <h3 className="text-sm font-bold text-terminal-amber group-hover:underline transition-all mb-1 mobile:text-xs">
-                  {project.title}
-                </h3>
+                <h3 className="text-sm font-bold text-terminal-amber group-hover:underline transition-all mb-1 mobile:text-xs">{project.title}</h3>
                 <p className="text-xs text-terminal-dim line-clamp-2">{project.description}</p>
               </div>
 
@@ -91,10 +74,7 @@ export default function ProjectSlider() {
                 <div className="px-3 pb-3">
                   <div className="flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-0.5 text-xs text-terminal-dim bg-surface border border-terminal-border rounded-full mobile:text-[10px]"
-                      >
+                      <span key={tag} className="px-2 py-0.5 text-xs text-terminal-dim bg-surface border border-terminal-border rounded-full mobile:text-[10px]">
                         {tag}
                       </span>
                     ))}
@@ -104,6 +84,7 @@ export default function ProjectSlider() {
             </div>
           </a>
         ))}
+        <div className="hidden mobile:block flex-shrink-0 w-px" />
       </div>
     </section>
   );
