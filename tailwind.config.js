@@ -30,8 +30,8 @@ export default {
         'terminal-border-dim': 'var(--terminal-border-dim)',
       },
       boxShadow: {
-        'glow': '0 0 8px var(--terminal-amber-glow), 0 0 2px #FFB00033',
-        'glow-sm': '0 0 4px var(--terminal-amber-glow)',
+        'glow': '0 1px 3px rgba(0, 0, 0, 0.1)',
+        'glow-sm': '0 1px 2px rgba(0, 0, 0, 0.05)',
       },
     },
   },

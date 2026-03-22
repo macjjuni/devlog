@@ -36,8 +36,8 @@ export default function ProjectSlider() {
 
   return (
     <section className="w-full mt-16 animate-in fade-in slide-in-from-bottom-4 duration-1000 tablet:mt-12 mobile:mt-10">
-      <h2 className="text-xl font-bold tracking-tight text-terminal-amber text-glow mb-6 tablet:text-lg mobile:text-base mobile:mb-4">
-        <span className="text-terminal-dim">$</span> ls ./Projects
+      <h2 className="text-xl font-bold tracking-tight text-terminal-amber mb-6 tablet:text-lg mobile:text-base mobile:mb-4">
+        <span className="text-terminal-dim">$</span> ls ./projects
       </h2>
 
       <div
@@ -58,7 +58,7 @@ export default function ProjectSlider() {
             className="group flex-shrink-0 w-64 snap-start mobile:w-56"
           >
             <div className="terminal-box h-full overflow-hidden transition-all hover:shadow-glow">
-              <div className="relative w-full h-36 bg-surface overflow-hidden mobile:h-28">
+              <div className="relative w-full h-36 bg-surface overflow-hidden mobile:h-28 rounded-t-lg">
                 <Image
                   src={project.thumbnail}
                   alt={project.title}
@@ -81,7 +81,7 @@ export default function ProjectSlider() {
               </div>
 
               <div className="p-3">
-                <h3 className="text-sm font-bold text-terminal-amber group-hover:text-glow transition-all mb-1 mobile:text-xs">
+                <h3 className="text-sm font-bold text-terminal-amber group-hover:underline transition-all mb-1 mobile:text-xs">
                   {project.title}
                 </h3>
                 <p className="text-xs text-terminal-dim line-clamp-2">{project.description}</p>
@@ -93,7 +93,7 @@ export default function ProjectSlider() {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-0.5 text-xs text-terminal-amber border border-terminal-border-dim mobile:text-[10px]"
+                        className="px-2 py-0.5 text-xs text-terminal-dim bg-surface border border-terminal-border rounded-full mobile:text-[10px]"
                       >
                         {tag}
                       </span>

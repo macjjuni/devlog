@@ -6,9 +6,9 @@ import type { PostMeta } from "@/@types/post";
 
 export default function PostHeader({ meta }: { meta: PostMeta }) {
   return (
-    <header className="pb-4 mb-4 border-b border-terminal-border-dim">
+    <header className="pb-4 mb-4 border-b border-terminal-border">
       {meta.cover && (
-        <div className="relative mb-6 h-[300px] w-full overflow-hidden border border-terminal-border-dim scanline-overlay">
+        <div className="relative mb-6 h-[300px] w-full overflow-hidden rounded-lg">
           <Image
             className="h-full w-full object-cover"
             src={meta.cover}
@@ -19,19 +19,13 @@ export default function PostHeader({ meta }: { meta: PostMeta }) {
           />
         </div>
       )}
-      <h1 className="mb-3 text-3xl font-bold leading-tight text-terminal-amber text-glow tablet:text-2xl">{meta.title}</h1>
-      <div className="flex flex-wrap items-center gap-2 text-sm text-terminal-dim font-mono">
-        <span className="text-terminal-amber">$</span>
-        <span>file:</span>
-        <span className="text-terminal-text">{meta.title}</span>
-        <span className="text-terminal-border-dim">|</span>
-        <span>date:</span>
-        <time dateTime={meta.date} className="text-terminal-text">{getFormatDate(meta.date)}</time>
+      <h1 className="mb-3 text-3xl font-bold leading-tight text-terminal-amber tablet:text-2xl">{meta.title}</h1>
+      <div className="flex flex-wrap items-center gap-2 text-sm text-terminal-dim">
+        <time dateTime={meta.date}>{getFormatDate(meta.date)}</time>
         {meta.category && (
           <>
-            <span className="text-terminal-border-dim">|</span>
-            <span>cat:</span>
-            <Link href={getCategoryPageUrl(meta.category)} className="text-terminal-amber hover:text-glow transition-all">
+            <span>&middot;</span>
+            <Link href={getCategoryPageUrl(meta.category)} className="text-terminal-amber hover:underline transition-all">
               {meta.category}
             </Link>
           </>
@@ -40,7 +34,7 @@ export default function PostHeader({ meta }: { meta: PostMeta }) {
       {meta.tags.length > 0 && (
         <div className="mt-3 flex flex-wrap gap-2">
           {meta.tags.map((tag) => (
-            <span key={tag} className="px-2 py-0.5 text-xs text-terminal-amber border border-terminal-border-dim">
+            <span key={tag} className="px-2 py-0.5 text-xs text-terminal-dim bg-surface border border-terminal-border rounded-full">
               #{tag}
             </span>
           ))}

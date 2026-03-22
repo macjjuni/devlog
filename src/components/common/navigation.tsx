@@ -8,18 +8,18 @@ export default function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex items-center gap-2">
+    <nav className="flex items-center gap-4 mobile:gap-2">
       {routes.map((route) => {
         const isActive = route.path === "/" ? pathname === "/" : pathname.startsWith(route.path);
 
         return (
           <Link key={route.id} href={route.path} className={[
-            "text-sm font-medium transition-all duration-200",
+            "text-sm mobile:text-xs font-medium transition-all duration-200",
             isActive
-              ? "text-terminal-amber text-glow"
-              : "text-terminal-dim hover:text-terminal-amber hover:shadow-glow-sm"
+              ? "text-terminal-amber font-bold"
+              : "text-terminal-dim hover:text-terminal-amber"
           ].join(" ")}>
-            {isActive ? `[* ${route.title} *]` : `[ ${route.title} ]`}
+            {route.title}
           </Link>
         );
       })}

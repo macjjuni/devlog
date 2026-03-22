@@ -23,11 +23,11 @@ const PageButton = ({ text, href, icon, active = false, disabled = false }: IPag
 
   const children = text?.toString() ? text : icon;
 
-  const baseStyle = "inline-flex items-center justify-center min-w-[32px] h-8 px-1 text-sm font-mono transition-all";
+  const baseStyle = "inline-flex items-center justify-center min-w-[32px] h-8 px-2 text-sm rounded transition-all";
 
   if (disabled) {
     return (
-      <span className={`${baseStyle} text-terminal-border-dim cursor-not-allowed`}>
+      <span className={`${baseStyle} text-terminal-border cursor-not-allowed`}>
         {children}
       </span>
     );
@@ -35,8 +35,8 @@ const PageButton = ({ text, href, icon, active = false, disabled = false }: IPag
 
   if (active) {
     return (
-      <span className={`${baseStyle} text-terminal-amber text-glow font-bold`}>
-        [*{children}*]
+      <span className={`${baseStyle} text-white bg-terminal-amber font-bold rounded`}>
+        {children}
       </span>
     );
   }
@@ -45,9 +45,9 @@ const PageButton = ({ text, href, icon, active = false, disabled = false }: IPag
     <Link
       href={generatePaginationUrl()}
       aria-label={text?.toString() || "Next page in the list"}
-      className={`${baseStyle} text-terminal-dim hover:text-terminal-amber`}
+      className={`${baseStyle} text-terminal-dim hover:text-terminal-amber hover:bg-surface`}
     >
-      [ {children} ]
+      {children}
     </Link>
   );
 };

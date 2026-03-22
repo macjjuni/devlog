@@ -81,29 +81,26 @@ export default function Search() {
       <button
         type="button"
         onClick={handleOpen}
-        className="flex h-9 w-full min-w-0 items-center justify-between gap-0 border border-terminal-border-dim bg-surface px-3 transition-colors hover:border-terminal-amber focus:outline-none"
+        className="flex h-9 w-full min-w-0 items-center justify-between gap-0 border border-terminal-border bg-white px-3 rounded-lg transition-colors hover:border-terminal-amber focus:outline-none"
       >
         <div className="flex items-center gap-3 text-sm text-terminal-dim">
           <span>🔍</span>
           <span>Search...</span>
         </div>
 
-        <div className="border border-terminal-border-dim px-1 py-[2px] text-[10px] font-bold leading-[12px] text-terminal-dim">
+        <div className="border border-terminal-border px-1.5 py-[2px] text-[10px] font-bold leading-[12px] text-terminal-dim rounded">
           {shortcutText}
         </div>
       </button>
 
       {isOpen && (
         <div
-          className="fixed inset-0 z-[200] flex items-start justify-center bg-black/60 pt-[15vh] animate-[fadeIn_150ms_ease-out]"
+          className="fixed inset-0 z-[200] flex items-start justify-center bg-black/40 pt-[15vh] animate-[fadeIn_150ms_ease-out]"
           onClick={handleBackdropClick}
         >
-          <div className="w-full max-w-[520px] mx-4 overflow-hidden border border-terminal-amber bg-[#121212] shadow-glow animate-[slideDown_150ms_ease-out]">
-            <div className="border-b border-terminal-border-dim px-4 py-2 text-xs text-terminal-amber text-glow">
-              +====== SEARCH ======+
-            </div>
+          <div className="w-full max-w-[520px] mx-4 overflow-hidden border border-terminal-border bg-white rounded-xl shadow-lg animate-[slideDown_150ms_ease-out]">
             <div className="flex items-center gap-3 px-4 py-3.5">
-              <span className="text-terminal-amber">$</span>
+              <span className="text-terminal-dim">🔍</span>
               <input
                 ref={inputRef}
                 type="text"
@@ -111,19 +108,19 @@ export default function Search() {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="검색어를 입력하세요..."
-                className="flex-1 bg-transparent text-sm text-terminal-text placeholder-terminal-dim outline-none font-default caret-terminal-amber"
+                className="flex-1 bg-transparent text-sm text-terminal-text placeholder-terminal-dim outline-none font-default"
               />
               <kbd
                 onClick={handleClose}
-                className="cursor-pointer select-none border border-terminal-border-dim px-1.5 py-0.5 text-[10px] font-bold leading-[12px] text-terminal-dim transition-colors hover:text-terminal-amber hover:border-terminal-amber"
+                className="cursor-pointer select-none border border-terminal-border px-1.5 py-0.5 text-[10px] font-bold leading-[12px] text-terminal-dim rounded transition-colors hover:text-terminal-amber hover:border-terminal-amber"
               >
                 ESC
               </kbd>
             </div>
 
-            <div className="border-t border-terminal-border-dim px-4 py-2.5">
+            <div className="border-t border-terminal-border px-4 py-2.5">
               <p className="text-[11px] text-terminal-dim">
-                <kbd className="mr-1 border border-terminal-border-dim px-1 py-px text-[10px]">Enter</kbd>
+                <kbd className="mr-1 border border-terminal-border px-1 py-px text-[10px] rounded">Enter</kbd>
                 검색
               </p>
             </div>

@@ -17,17 +17,17 @@ export default function Category({ categories }: CategoryListProps) {
 
   return (
     <nav>
-      <div className="text-terminal-amber text-sm font-bold mb-2 text-glow">+-- Categories --+</div>
+      <div className="text-terminal-amber text-sm font-bold mb-2">Categories</div>
       <ul className="space-y-1">
         <li>
           <Link
             href="/archive"
             className={[
-              "block text-sm transition-colors",
-              isAllActive ? "text-terminal-amber text-glow" : "text-terminal-dim hover:text-terminal-amber"
+              "block text-sm transition-colors rounded px-2 py-1",
+              isAllActive ? "text-terminal-amber bg-surface font-bold" : "text-terminal-dim hover:text-terminal-amber"
             ].join(" ")}
           >
-            | {isAllActive ? ">" : " "} All
+            All
           </Link>
         </li>
         {categories.map((category) => {
@@ -39,11 +39,11 @@ export default function Category({ categories }: CategoryListProps) {
               <Link
                 href={href}
                 className={[
-                  "block text-sm transition-colors",
-                  isActive ? "text-terminal-amber text-glow" : "text-terminal-dim hover:text-terminal-amber"
+                  "block text-sm transition-colors rounded px-2 py-1",
+                  isActive ? "text-terminal-amber bg-surface font-bold" : "text-terminal-dim hover:text-terminal-amber"
                 ].join(" ")}
               >
-                | {isActive ? ">" : " "} {category}
+                {category}
               </Link>
             </li>
           );
