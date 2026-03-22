@@ -3,7 +3,6 @@
 import { useMemo, memo, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import usePageSize from "@/hook/usePageSize";
-// import { KIcon } from "kku-ui"; // Temporarily disabled for Next.js 16
 import blogConfig from "@/config/blog.config";
 import PageButton from "./PageButton";
 
@@ -59,13 +58,13 @@ const Pagination = ({ total }: IPagination) => {
 
   return (
     <div className="flex items-center justify-center gap-1 py-4">
-      <PageButton href={current - 1} icon={<span>‹</span>} disabled={prevButtonDisabled} />
+      <PageButton href={current - 1} icon={<span>&lt; prev</span>} disabled={prevButtonDisabled} />
       {showFirstEllipsis && extraButton}
       {validPrevPageNumbers.map((pageIndex) => <PageButton key={pageIndex} href={pageIndex} text={pageIndex} />)}
       <PageButton href={current} text={current} active />
       {validNextPageNumbers.map((pageIndex) => <PageButton key={pageIndex} href={pageIndex} text={pageIndex} />)}
       {showLastEllipsis && extraButton}
-      <PageButton href={current + 1} icon={<span>›</span>} disabled={nextButtonDisabled} />
+      <PageButton href={current + 1} icon={<span>next &gt;</span>} disabled={nextButtonDisabled} />
     </div>
   );
 };

@@ -2,7 +2,6 @@
 
 import { useRef, useCallback } from "react";
 import Image from "next/image";
-import { KCard, KCardHeader, KCardTitle, KCardDescription, KCardContent } from "kku-ui";
 import projects from "@/data/projects";
 
 export default function ProjectSlider() {
@@ -37,8 +36,8 @@ export default function ProjectSlider() {
 
   return (
     <section className="w-full mt-16 animate-in fade-in slide-in-from-bottom-4 duration-1000 tablet:mt-12 mobile:mt-10">
-      <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 tablet:text-xl mobile:text-lg mobile:mb-4">
-        Projects
+      <h2 className="text-xl font-bold tracking-tight text-terminal-amber text-glow mb-6 tablet:text-lg mobile:text-base mobile:mb-4">
+        <span className="text-terminal-dim">$</span> ls ./Projects
       </h2>
 
       <div
@@ -58,8 +57,8 @@ export default function ProjectSlider() {
             draggable={false}
             className="group flex-shrink-0 w-64 snap-start mobile:w-56"
           >
-            <KCard className="h-full overflow-hidden transition-all hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-300 dark:hover:border-indigo-700">
-              <div className="relative w-full h-36 bg-slate-100 dark:bg-slate-800 overflow-hidden mobile:h-28">
+            <div className="terminal-box h-full overflow-hidden transition-all hover:shadow-glow">
+              <div className="relative w-full h-36 bg-surface overflow-hidden mobile:h-28">
                 <Image
                   src={project.thumbnail}
                   alt={project.title}
@@ -75,36 +74,34 @@ export default function ProjectSlider() {
                 />
                 <div
                   data-fallback
-                  className="absolute inset-0 items-center justify-center text-slate-400 dark:text-slate-600 text-sm font-medium hidden"
+                  className="absolute inset-0 items-center justify-center text-terminal-dim text-sm font-medium hidden"
                 >
                   No Image
                 </div>
               </div>
 
-              <KCardHeader>
-                <KCardTitle className="text-base group-hover:text-indigo-500 transition-colors mobile:text-sm">
+              <div className="p-3">
+                <h3 className="text-sm font-bold text-terminal-amber group-hover:text-glow transition-all mb-1 mobile:text-xs">
                   {project.title}
-                </KCardTitle>
-                <KCardDescription className="line-clamp-2">
-                  {project.description}
-                </KCardDescription>
-              </KCardHeader>
+                </h3>
+                <p className="text-xs text-terminal-dim line-clamp-2">{project.description}</p>
+              </div>
 
               {project.tags && (
-                <KCardContent>
+                <div className="px-3 pb-3">
                   <div className="flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-0.5 text-xs font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/50 rounded-full mobile:text-[10px]"
+                        className="px-2 py-0.5 text-xs text-terminal-amber border border-terminal-border-dim mobile:text-[10px]"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                </KCardContent>
+                </div>
               )}
-            </KCard>
+            </div>
           </a>
         ))}
       </div>

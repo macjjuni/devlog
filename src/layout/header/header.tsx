@@ -12,18 +12,20 @@ export default function Header({ logo }: { logo: string }) {
     <header
       className={`
         fixed top-0 left-0 z-[100] w-full flex-none transition-all duration-300 ease-in-out
-        ${isHeaderMini ? "h-header-mini border-b backdrop-blur-md" : "h-header bg-transparent"}
+        ${isHeaderMini
+          ? "h-header-mini border-b border-terminal-border backdrop-blur-md bg-[#121212]/80"
+          : "h-header bg-transparent"}
       `}
     >
       <div className="mx-auto flex h-full w-full max-w-[var(--layout-width)] items-center justify-between px-4 tablet:px-6">
         <Link
           href="/"
           className={[
-              'font-black italic tracking-tighter transition-all duration-300',
+              'font-black italic tracking-tighter transition-all duration-300 text-terminal-amber text-glow',
               isHeaderMini ? "text-2xl" : "text-3xl",
             ].join(' ')}
         >
-          {logo}
+          {logo}<span className="cursor-blink">_</span>
         </Link>
 
         <Navigation />

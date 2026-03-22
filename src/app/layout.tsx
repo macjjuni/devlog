@@ -14,13 +14,13 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#111111",
+  themeColor: "#121212",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <ViewTransitions>
-      <html lang="ko">
+      <html lang="ko" className="dark">
         <body>
           <div className="mx-auto flex flex-col min-h-dvh pt-header">
             <HeaderObserver />

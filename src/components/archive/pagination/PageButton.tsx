@@ -3,7 +3,6 @@
 import { memo, ReactNode, useCallback } from "react";
 import { Link } from 'next-view-transitions'
 import { usePathname, useSearchParams } from "next/navigation";
-import { KButton } from "kku-ui";
 
 interface IPageButton {
   text?: string | number;
@@ -24,25 +23,32 @@ const PageButton = ({ text, href, icon, active = false, disabled = false }: IPag
 
   const children = text?.toString() ? text : icon;
 
-  if (disabled || active) {
+  const baseStyle = "inline-flex items-center justify-center min-w-[32px] h-8 px-1 text-sm font-mono transition-all";
+
+  if (disabled) {
     return (
-      <KButton
-        size="sm"
-        variant={active ? "primary" : "ghost"}
-        disabled={disabled && !active}
-        aria-label={text?.toString() || "Page move Disabled"}
-      >
+      <span className={`${baseStyle} text-terminal-border-dim cursor-not-allowed`}>
         {children}
-      </KButton>
+      </span>
+    );
+  }
+
+  if (active) {
+    return (
+      <span className={`${baseStyle} text-terminal-amber text-glow font-bold`}>
+        [*{children}*]
+      </span>
     );
   }
 
   return (
-    <KButton size="sm" variant="ghost" asChild>
-      <Link href={generatePaginationUrl()} aria-label={text?.toString() || "Next page in the list"}>
-        {children}
-      </Link>
-    </KButton>
+    <Link
+      href={generatePaginationUrl()}
+      aria-label={text?.toString() || "Next page in the list"}
+      className={`${baseStyle} text-terminal-dim hover:text-terminal-amber`}
+    >
+      [ {children} ]
+    </Link>
   );
 };
 

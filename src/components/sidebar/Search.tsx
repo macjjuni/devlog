@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { KIcon } from "kku-ui";
 import { getOS } from "@/utils/system";
 
 
@@ -78,30 +77,33 @@ export default function Search() {
 
 
   return (
-    <div className="rounded-[4px] border-[0.5px] border-gray-200 md:border-none md:p-0">
+    <div>
       <button
         type="button"
         onClick={handleOpen}
-        className="flex h-9 w-full min-w-0 items-center justify-between gap-0 rounded-[4px] border border-gray-200 bg-white px-3 transition-colors hover:border-gray-400 focus:outline-primary dark:border-gray-700 dark:bg-[#111111]"
+        className="flex h-9 w-full min-w-0 items-center justify-between gap-0 border border-terminal-border-dim bg-surface px-3 transition-colors hover:border-terminal-amber focus:outline-none"
       >
-        <div className="flex items-center gap-3 text-sm font-light text-gray-400 dark:text-[#667183]">
-          <KIcon icon="search" size={18} />
+        <div className="flex items-center gap-3 text-sm text-terminal-dim">
+          <span>🔍</span>
           <span>Search...</span>
         </div>
 
-        <div className="rounded-[4px] border border-gray-200 px-1 py-[2px] text-[10px] font-bold leading-[12px] text-gray-500 dark:border-gray-700 dark:text-white">
+        <div className="border border-terminal-border-dim px-1 py-[2px] text-[10px] font-bold leading-[12px] text-terminal-dim">
           {shortcutText}
         </div>
       </button>
 
       {isOpen && (
         <div
-          className="fixed inset-0 z-[200] flex items-start justify-center backdrop-blur-sm bg-black/20 pt-[15vh] animate-[fadeIn_150ms_ease-out] dark:bg-black/50"
+          className="fixed inset-0 z-[200] flex items-start justify-center bg-black/60 pt-[15vh] animate-[fadeIn_150ms_ease-out]"
           onClick={handleBackdropClick}
         >
-          <div className="w-full max-w-[520px] mx-4 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-[0_16px_70px_rgba(0,0,0,0.15)] dark:border-gray-700 dark:bg-[#111111] dark:shadow-[0_16px_70px_rgba(0,0,0,0.6)] animate-[slideDown_150ms_ease-out]">
+          <div className="w-full max-w-[520px] mx-4 overflow-hidden border border-terminal-amber bg-[#121212] shadow-glow animate-[slideDown_150ms_ease-out]">
+            <div className="border-b border-terminal-border-dim px-4 py-2 text-xs text-terminal-amber text-glow">
+              +====== SEARCH ======+
+            </div>
             <div className="flex items-center gap-3 px-4 py-3.5">
-              <KIcon icon="search" size={20} color="#9ca3af" />
+              <span className="text-terminal-amber">$</span>
               <input
                 ref={inputRef}
                 type="text"
@@ -109,19 +111,19 @@ export default function Search() {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="검색어를 입력하세요..."
-                className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400 outline-none font-default dark:text-white dark:placeholder-gray-500"
+                className="flex-1 bg-transparent text-sm text-terminal-text placeholder-terminal-dim outline-none font-default caret-terminal-amber"
               />
               <kbd
                 onClick={handleClose}
-                className="cursor-pointer select-none rounded border border-gray-200 px-1.5 py-0.5 text-[10px] font-bold leading-[12px] text-gray-400 transition-colors hover:border-gray-100 hover:text-gray-700 dark:border-gray-700 dark:hover:text-white"
+                className="cursor-pointer select-none border border-terminal-border-dim px-1.5 py-0.5 text-[10px] font-bold leading-[12px] text-terminal-dim transition-colors hover:text-terminal-amber hover:border-terminal-amber"
               >
                 ESC
               </kbd>
             </div>
 
-            <div className="border-t border-gray-200 px-4 py-2.5 dark:border-gray-700">
-              <p className="text-[11px] text-gray-400 dark:text-gray-500">
-                <kbd className="mr-1 rounded border border-gray-200 px-1 py-px text-[10px] dark:border-gray-700">Enter</kbd>
+            <div className="border-t border-terminal-border-dim px-4 py-2.5">
+              <p className="text-[11px] text-terminal-dim">
+                <kbd className="mr-1 border border-terminal-border-dim px-1 py-px text-[10px]">Enter</kbd>
                 검색
               </p>
             </div>
