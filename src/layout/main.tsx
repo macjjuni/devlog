@@ -4,7 +4,7 @@ export default function Main({ children }: { children: ReactNode }) {
   return (
     <main className={["relative mx-auto w-full flex-auto transition-all",
                       "max-w-layout desktop:p-8",
-                      "tablet:p-6", "p-4"].join(" ")}
+                      "tablet:p-6", "px-4 pt-4 pb-4", "mobile:pt-0"].join(" ")}
     >
     {children}
     </main>
