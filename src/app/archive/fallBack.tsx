@@ -1,13 +1,14 @@
-import React from "react";
+'use client';
+
+import { KSkeleton } from "kku-ui";
 
 export default function FallBack() {
   return (
-    <>
-      <section className="archive__layout__content">
-        <div className="bg-red-500" />
-        <div className="bg-red-500" />
-        <div className="bg-red-500" />
-      </section>
-    </>
+    <div className="flex flex-col gap-4 w-full">
+      <KSkeleton className="h-8 w-48" />
+      <KSkeleton className="h-24 w-full" />
+      <KSkeleton className="h-24 w-full" />
+      <KSkeleton className="h-24 w-full" />
+    </div>
   );
-};
+}

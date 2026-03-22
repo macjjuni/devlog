@@ -1,34 +1,28 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import Fallback from "@/app/archive/fallBack";
-import { getNotionSearchPages } from "@/api/notion/page";
-import ArchiveSidebar from "@/layout/archiveSidebar";
-import ArchiveContent from "@/layout/archiveContent";
+import { getSearchResults } from "@/api/posts";
+import { ArchiveContent } from "@/layout";
 import type { Metadata } from "next";
 import { getMetadata } from "@/config/meta";
 
 export async function generateMetadata({ searchParams }: { searchParams: Promise<{ q: string }> }): Promise<Metadata> {
-
   const resolveSearchParams = await searchParams;
   return getMetadata(`검색: ${resolveSearchParams.q}`, null, `search?q=${resolveSearchParams.q}`, null);
 }
 
 export const revalidate = 600;
 export default async function ArchiveSearchPage({ searchParams }: { searchParams: Promise<{ q: string }> }) {
-
   const resolveSearchParams = await searchParams;
-  const { info, searchPages, error } = await getNotionSearchPages(resolveSearchParams?.q || "");
+  const { searchPages, error } = await getSearchResults(resolveSearchParams?.q || "");
 
-  if (error || !info) {
+  if (error) {
     redirect("/404");
   }
 
   return (
     <Suspense fallback={<Fallback />}>
-        <ArchiveSidebar info={info} />
-      <section className="archive__layout__content">
-        <ArchiveContent pages={searchPages} />
-      </section>
+      <ArchiveContent pages={searchPages} />
     </Suspense>
   );
 }

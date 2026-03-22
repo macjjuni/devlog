@@ -1,0 +1,45 @@
+import Image from "next/image";
+import { Link } from "next-view-transitions";
+import { getFormatDate } from "@/lib/date";
+import { getCategoryPageUrl } from "@/route";
+import type { PostMeta } from "@/@types/post";
+
+export default function PostHeader({ meta }: { meta: PostMeta }) {
+  return (
+    <header className="pb-4 mb-4 border-b border-terminal-border">
+      {meta.cover && (
+        <div className="relative mb-6 h-[300px] w-full overflow-hidden rounded-lg">
+          <Image
+            className="h-full w-full object-cover"
+            src={meta.cover}
+            alt={meta.title}
+            width={1052}
+            height={300}
+            priority
+          />
+        </div>
+      )}
+      <h1 className="mb-3 text-3xl font-bold leading-tight text-terminal-amber tablet:text-2xl">{meta.title}</h1>
+      <div className="flex flex-wrap items-center gap-2 text-sm text-terminal-dim">
+        <time dateTime={meta.date}>{getFormatDate(meta.date)}</time>
+        {meta.category && (
+          <>
+            <span>&middot;</span>
+            <Link href={getCategoryPageUrl(meta.category)} className="text-terminal-amber hover:underline transition-all">
+              {meta.category}
+            </Link>
+          </>
+        )}
+      </div>
+      {meta.tags.length > 0 && (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {meta.tags.map((tag) => (
+            <span key={tag} className="px-2 py-0.5 text-xs text-terminal-dim bg-surface border border-terminal-border rounded-full">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+  );
+}

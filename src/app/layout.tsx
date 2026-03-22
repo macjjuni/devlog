@@ -5,8 +5,7 @@ import { Footer, Header, Main } from "@/layout";
 import type { Viewport } from "next";
 import HeaderObserver from "@/layout/header/headerObserver";
 import "@/style/globals.css";
-import 'react-notion-x/src/styles.css'
-import 'prismjs/themes/prism-tomorrow.css'
+import "@/style/markdown.css";
 import "kku-ui/index.css";
 
 
@@ -15,7 +14,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#111111",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -25,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <body>
           <div className="mx-auto flex flex-col min-h-dvh pt-header">
             <HeaderObserver />
-            <Header />
+            <Header logo={process.env.NEXT_PUBLIC_TITLE || ''} />
             <Main>{children}</Main>
             <Footer />
           </div>

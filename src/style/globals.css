@@ -6,26 +6,47 @@
 @layer utilities {
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes cursorBlink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @layer base {
 
     :root {
-        --background: 0 0% 100%;
+        --background: #ffffff;
+        --surface: #f8f9fa;
+        --terminal-amber: #111827;
+        --terminal-amber-dim: #374151;
+        --terminal-amber-glow: transparent;
+        --terminal-text: #374151;
+        --terminal-dim: #9ca3af;
+        --terminal-border: #e5e7eb;
+        --terminal-border-dim: #e5e7eb;
 
         --layout-width: 1100px;
+        --content-width: 840px;
         --header-height: 64px;
         --header-mini-height: 48px;
         --footer-height: 40px;
-        --sidebar-width: 256px;
 
-        --default-font: JetBrains Mono, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+        --default-font: 'Pretendard', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
         Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
         --number-font: 'Roboto Mono', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
         'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     }
-    .dark { --background: 0 0% 7.1%; }
-
 
     body {
         @apply relative font-default;
@@ -33,5 +54,24 @@
         line-height: 1;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        background-color: var(--background);
+        color: var(--terminal-text);
     }
+}
+
+/* 텍스트 Glow 유틸리티 — 라이트 테마에서는 비활성 */
+.text-glow {
+    text-shadow: none;
+}
+
+/* 박스 스타일 */
+/* 커서 깜빡임 */
+.cursor-blink {
+    animation: cursorBlink 1s step-end infinite;
+}
+
+.terminal-box {
+    border: 1px solid var(--terminal-border);
+    background: var(--surface);
+    border-radius: 8px;
 }
