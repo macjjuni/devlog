@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/common/Image";
 import { Link } from "next-view-transitions";
 import { getFormatDate } from "@/lib/date";
 import { getCategoryPageUrl } from "@/route";

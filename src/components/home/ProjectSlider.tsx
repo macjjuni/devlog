@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useCallback } from "react";
-import Image from "next/image";
+import Image from "@/components/common/Image";
 import projects from "@/data/projects";
 
 export default function ProjectSlider() {
