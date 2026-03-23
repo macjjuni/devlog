@@ -1,5 +1,5 @@
 ---
-title: "Hello World"
+title: "Git 컨벤션"
 date: "2023-02-23"
 category: "Dev"
 tags: ["Blog", "Introduction"]
