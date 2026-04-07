@@ -22,6 +22,13 @@ const projects: Project[] = [
     tags: ["PWA", "Next.js", "React", "TypeScript", "Tailwind CSS", "kku-ui"],
   },
   {
+    title: "kku-ui",
+    description: "Radix UI 기반 커스텀 컴포넌트 라이브러리",
+    thumbnail: "/images/projects/kku-ui.webp",
+    url: "https://github.com/macjjuni/kku-ui",
+    tags: ["React", "TypeScript", "Vitest", "Storybook"],
+  },
+  {
     title: "EZ Paint",
     description: "휘뚜루마뚜루 사용하는 웹 그림판",
     thumbnail: "https://ez-paint.web.app/favicon/apple-touch-icon.png",
@@ -34,13 +41,6 @@ const projects: Project[] = [
     thumbnail: "/images/projects/devlog.webp",
     url: "https://macjjuni.me",
     tags: ["Next.js", "Markdown", "Tailwind", "kku-ui"],
-  },
-  {
-    title: "kku-ui",
-    description: "Radix UI 기반 커스텀 컴포넌트 라이브러리",
-    thumbnail: "/images/projects/kku-ui.webp",
-    url: "https://github.com/macjjuni/kku-ui",
-    tags: ["React", "TypeScript", "Vitest", "Storybook"],
   },
 ];
 
