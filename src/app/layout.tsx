@@ -4,10 +4,13 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Footer, Header, Main } from "@/layout";
 import type { Viewport } from "next";
 import HeaderObserver from "@/layout/header/headerObserver";
+import { metadata as siteMetadata } from "@/config/meta";
 import "@/style/globals.css";
 import "@/style/markdown.css";
 import "kku-ui/index.css";
 
+
+export const metadata = siteMetadata;
 
 export const viewport: Viewport = {
   width: "device-width",
