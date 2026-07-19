@@ -40,18 +40,18 @@ export default function ProjectSlider() {
         <span className="text-terminal-dim">$</span> ls ./projects
       </h2>
 
-      <div ref={sliderRef} className="flex w-full gap-4 overflow-x-auto pb-2 mobile:gap-3"
+      <div ref={sliderRef} className="no-scrollbar flex w-full gap-4 overflow-x-auto pt-2 -mt-2 pb-7 -mb-5 mobile:gap-3"
            onMouseDown={onMouseDown} onMouseUp={onMouseUp} onMouseLeave={onMouseUp} onMouseMove={onMouseMove}>
         <div className="hidden mobile:block flex-shrink-0 w-px" />
         {projects.map((project) => (
-          <a key={project.title} href={project.url} target="_blank" rel="noopener noreferrer" draggable={false} className="group flex-shrink-0 w-64 snap-start mobile:w-56">
-            <div className="terminal-box h-full overflow-hidden transition-all hover:shadow-glow">
-              <div className="relative w-full h-36 bg-surface overflow-hidden mobile:h-28 rounded-t-lg">
+          <a key={project.title} href={project.url} target="_blank" rel="noopener noreferrer" draggable={false} className="group flex-shrink-0 w-[294px] snap-start mobile:w-[258px]">
+            <div className="flex h-full flex-col overflow-hidden rounded-xl border border-terminal-border bg-background transition-all duration-300 group-hover:-translate-y-1 group-hover:border-terminal-amber-dim group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)]">
+              <div className="relative w-full h-[166px] bg-surface overflow-hidden mobile:h-32">
                 <Image
                   src={project.thumbnail}
                   alt={project.title}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
                   draggable={false}
                   onError={(e) => {
                     const target = e.currentTarget;
@@ -60,27 +60,23 @@ export default function ProjectSlider() {
                     if (fallback) fallback.style.display = "flex";
                   }}
                 />
-                <div data-fallback className="absolute inset-0 items-center justify-center text-terminal-dim text-sm font-medium bg-gray-100 hidden">
+                <div data-fallback className="absolute inset-0 items-center justify-center text-terminal-dim text-sm font-medium bg-surface hidden">
                   No Image
                 </div>
               </div>
 
-              <div className="p-3">
-                <h3 className="text-sm font-bold text-terminal-amber group-hover:underline transition-all mb-1 mobile:text-xs">{project.title}</h3>
-                <p className="text-xs text-terminal-dim line-clamp-2">{project.description}</p>
+              <div className="flex flex-1 flex-col gap-1.5 p-4 mobile:p-3">
+                <h3 className="flex items-center gap-1 text-sm font-bold leading-snug text-terminal-amber mobile:text-xs">
+                  <span className="truncate">{project.title}</span>
+                  <svg
+                    className="h-3.5 w-3.5 flex-shrink-0 text-terminal-dim opacity-0 -translate-x-1 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden
+                  >
+                    <path d="M7 17L17 7M9 7h8v8" />
+                  </svg>
+                </h3>
+                <p className="text-xs leading-relaxed text-terminal-dim line-clamp-2">{project.description}</p>
               </div>
-
-              {project.tags && (
-                <div className="px-3 pb-3">
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="px-2 py-0.5 text-xs text-terminal-dim bg-surface border border-terminal-border rounded-full mobile:text-[10px]">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           </a>
         ))}
